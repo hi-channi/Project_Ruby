@@ -12,8 +12,8 @@
 
 <c:set var="root" value="<%=request.getContextPath() %>"/>
 <link rel="stylesheet" type="text/css" href="${root }/css/menu.css">
-<script type="text/javascript">
 
+<script type="text/javascript">
 $(function () {
 	$("div.category").mouseover(function(){
 		$("div.dropmenu").stop().fadeIn(150);
@@ -38,8 +38,6 @@ $(function () {
     });
 });
 </script>
-
-<title>Insert title here</title>
 </head>
 <body>
 
@@ -52,22 +50,22 @@ $(function () {
 	</div>
 	<div class="menuitem">
 		<span class="menu">
-		그룹보기
+		<a href="/ground" style="text-decoration: none;">그룹보기</a>
 		</span>
 	</div>
 	<div class="menuitem">
 		<span class="menu">
-		커뮤니티
+		<a href="/community" style="text-decoration: none;">커뮤니티</a>
 		</span>
 	</div>
 	<div class="menuitem">
 		<span class="menu">
-		중고장터
+		<a href="/marketplace" style="text-decoration: none;">중고장터</a>
 		</span>
 	</div>
 	<div class="menuitem">
 		<span class="menu">
-		챌린지
+		<a href="/challenge" style="text-decoration: none;">챌린지</a>
 		</span>
 	</div>
 	<div class="menuitem_member" style="margin-left: 450px;">
@@ -84,23 +82,23 @@ $(function () {
 </div>
 <div class="dropmenu" style="z-index: 9999;">
 		<ul class="dropmenu_ul">
-			<li><a class="dm_main" href="#">그룹보기</a>
+			<li><a class="dm_main" href="/ground">그룹보기</a>
 				<ul>
-					<li><a href="#">모든 팀 보기</a>
+					<li><a href="/ground">모든 팀 보기</a>
 					<li><a href="#">나의 팀 보기</a>
 					<li><a href="#">팀 만들기</a>
 				</ul>
 			</li>
-			<li><a class="dm_main" href="#">커뮤니티</a>
+			<li><a class="dm_main" href="/community">커뮤니티</a>
 				<ul>
-					<li><a href="#">Q & A 모아보기</a>
+					<li><a href="#">Q &#38; A 모아보기</a>
 					<li><a href="#">내 작성글 관리</a>
 				</ul>
 			</li>
-			<li><a class="dm_main" href="#">중고장터</a></li>
-			<li><a class="dm_main" href="#">챌린지</a>
+			<li><a class="dm_main" href="/marketplace">중고장터</a></li>
+			<li><a class="dm_main" href="/challenge">챌린지</a>
 				<ul>
-					<li><a href="#">진행중인 챌린지</a>
+					<li><a href="/challenge">진행중인 챌린지</a>
 					<li><a href="#">내 도전목록</a>
 				</ul>
 			</li>

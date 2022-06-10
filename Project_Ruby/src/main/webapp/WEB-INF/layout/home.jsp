@@ -11,18 +11,18 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <c:set var="root" value="<%=request.getContextPath() %>"/>
-<link rel="stylesheet" type="text/css" href="${root }/css/header.css">
+<link rel="stylesheet" type="text/css" href="${root }/css/main.css">
 
+<title>Insert title here</title>
 </head>
 <body>
-<div class="headerarea">
-	<a href="/" style="text-decoration: none;">
-		<img alt="" src="${root }/element/logo@2x.png" class="logo">
-	</a>
-	<img alt="" src="${root }/element/icon_myinfo.png" class="icon_myinfo">
-	<img alt="" src="${root }/element/icon_inbox.png" class="icon_inbox">
-	<img alt="" src="${root }/element/icon_favorite.png" class="icon_favorite">
-	<hr style="margin: 0;">
-</div>
+
+<span>MAIN</span>
+
+<pre>
+첫줄 정렬이 이상하게 되는 오류가 있음
+MAIN 글자 위치가 원래 왼쪽 벽으로 붙어야 함 ㅠ
+</pre>
+
 </body>
 </html>
