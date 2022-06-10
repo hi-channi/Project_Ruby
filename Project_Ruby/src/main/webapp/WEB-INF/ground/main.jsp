@@ -17,6 +17,10 @@
 </head>
 <body>
 
+<span>MAIN</span>
+<pre>
+그룹보기 초기 페이지
+</pre>
 
 </body>
 </html>

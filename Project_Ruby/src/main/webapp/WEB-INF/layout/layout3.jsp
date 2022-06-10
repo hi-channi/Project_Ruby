@@ -59,7 +59,7 @@ div.layout div.footer{
 </style>
 </head>
 <body>
-<!-- 사이드 메뉴가 존재하는 marketplace layout -->
+<!-- 사이드 메뉴가 존재하는 challenge layout -->
 <div class="layout">
 	<div class="header">
 		<tiles:insertAttribute name="header"/>
@@ -68,7 +68,7 @@ div.layout div.footer{
 		<tiles:insertAttribute name="menu"/>
 	</div>
 	<div class="side_menu">
-		<tiles:insertAttribute name="m_sidemenu"/>
+		<tiles:insertAttribute name="c_sidemenu"/>
 	</div>
 	<div class="main">
 		<tiles:insertAttribute name="main"/>

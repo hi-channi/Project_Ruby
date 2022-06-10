@@ -27,7 +27,6 @@ div.layout div.menu{
 	width: 1920px;
 	height: 56px;
 	z-index: 10;
-	
 }
 
 div.layout div.main{
@@ -40,11 +39,10 @@ div.layout div.main{
 
 div.layout div.footer{
 	position: relative;
-		width: auto;
+	width: auto;
 	height: 250px;
 }
 </style>
-<title>Insert title here</title>
 </head>
 <body>
 <div class="layout">

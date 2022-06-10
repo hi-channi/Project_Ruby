@@ -9,6 +9,26 @@
 	margin: 0 0 0 300px;
 }
 
+ a:link {
+ color: #000; 
+ text-decoration: none;
+ }	
+ 
+ a:visited {
+ color: #000;
+ text-decoration: none;
+ }	
+ 
+ div.menuitem a:hover {
+ color: #ff4b4e !important; 
+ text-decoration: none;
+ }
+ 
+ div.dropmenu a:hover {
+ color: #fff !important; 
+ text-decoration: none;
+ }
+
 /* 전체 메뉴 버튼 영역 */
 div.category {
 	width: 180px;
@@ -164,5 +184,5 @@ a.dm_main {
 }
 
 .dropmenu ul li a:hover {
-		text-shadow: 3px 3px 15px black;
+		text-shadow: 3px 3px 5px black;
 }

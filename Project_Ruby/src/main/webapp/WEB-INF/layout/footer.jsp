@@ -13,10 +13,8 @@
 <c:set var="root" value="<%=request.getContextPath() %>"/>
 <link rel="stylesheet" type="text/css" href="${root }/css/footer.css">
 
-<title>Insert title here</title>
 </head>
 <body>
-
 <div class="footerhead">
 	<span class="option_intro_bold">
 		회사소개
