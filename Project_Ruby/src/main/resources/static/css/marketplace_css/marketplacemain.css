@@ -1,0 +1,124 @@
+@charset "UTF-8";
+
+div.main{
+position: absolute;
+background: #fff; 
+}
+
+div.marketfirst {
+  width: 170px;
+  height: 20px;
+  margin: 0px 7px 20px 45px;
+}
+
+span.sangpumcount {
+  width: 46px;
+  height: 18px;
+  margin: 2px 2px 0 0;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #ff4b4e;
+}
+
+span.sangpumcountcomment {
+  width: 122px;
+  height: 20px;
+  margin: 0 0 0 2px;
+  font-family: NotoSansKR;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.35px;
+  text-align: left;
+  color: #191919;
+}
+
+div.search {
+  width: 300px;
+  height: 36px;
+  margin: 52px 16px 20px 82px;
+  padding: 9px 12px 8px;
+  border: solid 1px #dbdbdb;
+  background-color: #fff;
+}
+
+
+span.searchicon {
+  position : absolute;
+  width: 13px;
+  height: 13px;
+  margin-top : 83px;
+  margin-left : 10px;
+  background-color: #fff;
+  
+}
+
+div.changelist{
+	position: absolute;
+	margin-top: -58px;
+	margin-left: 400px;
+	
+}
+span.largeicon{
+  width: 36px;
+  height: 36px;
+  padding: 11px;
+   border: solid 1px #dbdbdb;
+  background-color: #fff;
+	
+}
+span.listicon{
+  width: 36px;
+  height: 36px;
+  padding: 11px 10px;
+  border: solid 1px #dbdbdb;
+  background-color: #fff;
+}
+
+.searchtext{
+  
+  width: 250px;
+  height: 20px;
+  border: 0 solid black;
+	
+}
+div.marketfirst2{
+ position : absolute;
+  width: 170px;
+  height: 20px;
+  margin: 0px 7px 20px 45px;
+  left: -580px;
+  top: 85px;
+}
+div.relatedsearch{
+  width: 1024px;
+  height: 85px;
+  margin-left : -550px;
+  padding: 0 0 32px;
+  border: solid 1px #ededed;
+  background-color: #fff;
+}
+
+span.spanrelatedsearch{
+  width: 68px;
+  height: 21px;
+  margin: 31px 20px 0 32px;
+  font-family: NotoSansKR;
+  font-size: 15px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.38px;
+  text-align: left;
+  color: #191919;	
+	
+}
