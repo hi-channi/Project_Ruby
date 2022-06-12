@@ -58,6 +58,7 @@ span.searchicon {
   margin-top : 83px;
   margin-left : 10px;
   background-color: #fff;
+  cursor : pointer;
   
 }
 
@@ -73,6 +74,7 @@ span.largeicon{
   padding: 11px;
    border: solid 1px #dbdbdb;
   background-color: #fff;
+  cursor : pointer;
 	
 }
 span.listicon{
@@ -81,6 +83,7 @@ span.listicon{
   padding: 11px 10px;
   border: solid 1px #dbdbdb;
   background-color: #fff;
+  cursor : pointer;
 }
 
 .searchtext{
@@ -122,3 +125,84 @@ span.spanrelatedsearch{
   color: #191919;	
 	
 }
+span.searchname{
+  font-family: NotoSansKR;
+  font-size: 13px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.33px;
+  text-align: left;
+  color: #767676;
+  cursor : pointer;
+}
+
+span.morelook{
+  margin-left : 500px;
+  width: 35px;
+  height: 19px;
+  font-family: NotoSansKR;
+  font-size: 13px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.33px;
+  text-align: left;
+  color: #767676;
+}
+
+span.morelookicon{
+  width: 16px;
+  height: 16px;
+  cursor : pointer;
+  padding: 6.5px 5px;
+  background-color: #fff;
+	
+}
+
+div.cartegoribtn{
+	position: absolute;
+	border : 1px solid black;
+	left: -550px;
+	top: 250px;
+	width: 1024px;
+    height: 85px;
+}
+
+div.carbtn{
+  width: 83px;
+  height: 35px;
+  margin: 24px 10px 40px 36px;
+  padding: 8px 10px 7px 12px;
+  border-radius: 16px;
+  background-color: #f8f8fa;	
+	
+}
+
+.carbtnname{
+  width: 43px;
+  height: 17px;
+  
+  font-family: NotoSansKR;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.3px;
+  text-align: left;
+  color: #767676;	
+ 
+}
+
+span.removeicon{
+  width: 8px;
+  height: 1px;
+  margin: 0 0 7.5px;
+  background-color: #fff;
+}
+
+
+

@@ -41,10 +41,25 @@
 	
 	<div class="relatedsearch">
 		<br>
-		<span class="spanrelatedsearch">연관검색어</span>
+		<span class="spanrelatedsearch">연관검색어</span>&nbsp;&nbsp;
+		<span class="searchname">무선키보드</span>&nbsp;&nbsp;
+		<span class="searchname">블루투스키보드</span>&nbsp;&nbsp;
+		<span class="searchname">무접점키보드</span>
+		<span class="morelook">더보기&nbsp;<span class="glyphicon glyphicon-menu-down morelookicon"></span></span>
 	</div>
 
-	
+
+	<div class="cartegoribtn">
+		<div class="carbtn">
+			<span class="carbtnname">리세일가&nbsp;<span class="glyphicon glyphicon-remove removeicon"></span></span>
+			<span class="carbtnname">리세일가&nbsp;<span class="glyphicon glyphicon-remove removeicon"></span></span>
+			<span class="carbtnname">리세일가&nbsp;<span class="glyphicon glyphicon-remove removeicon"></span></span>	
+			
+			<input type="checkbox" id="canbuylook" name="canbuylook">거래가능 제품만 보기				
+		</div>
+		
+		
+	</div>
 </div>
 </body>
 </html>
