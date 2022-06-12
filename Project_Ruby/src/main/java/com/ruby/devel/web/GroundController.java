@@ -12,4 +12,17 @@ public class GroundController {
 		return "/ground/main";  // ground/(파일명)
 	}
 	
+	@GetMapping("/ground/enroll")  // 크루 등록하기
+	public String enroll()
+	{
+		return "/ground/enroll";
+	}
+	
+	@GetMapping("/ground/crewlist")  // 전체 크루 리스트, 순위 
+	public String crewlist()
+	{
+		return "/ground/crewlist";
+	}
+	
+	
 }

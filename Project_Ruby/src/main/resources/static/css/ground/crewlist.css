@@ -1,0 +1,175 @@
+@charset "UTF-8";
+
+.container {
+	position: absolute;
+	height: 1250px;
+}
+
+div.layout div.main {
+	position: relative;
+	background-color: #fff;
+	width: 1920px;
+	height: 1250px;
+	z-index: 1;
+}
+
+.crewrank {
+	width: 280px;
+	height: 35px;
+	background-color: #fff;
+	margin: 70px 1513px 800px -1px;
+	margin-left: 100px;
+	position: relative;
+	left: 220px;
+}
+
+.crew_rank {
+	width: 87px;
+	height: 35px;
+	margin: 53px 279px 20px 320px;
+	font-family: NotoSansKR;
+	font-size: 24px;
+	font-weight: 500;
+	margin: auto;
+	letter-spacing: -0.6px;
+	text-align: left;
+	color: #191919;
+	letter-spacing: -0.6px;
+}
+
+.crewrank_list {
+	width: 280px;
+	height: 296px;
+	position: relative;
+	top: -790px;
+	margin-left: 310px;
+	position: relative;
+}
+
+.new_crew {
+	width: 87px;
+	height: 35px;
+	margin: 53px 279px 20px 320px;
+	font-family: NotoSansKR;
+	font-size: 24px;
+	font-weight: 500;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: -0.6px;
+	text-align: left;
+	color: #191919;
+	position: relative;
+	top: -750px;
+}
+
+.newcrewlist {
+	width: 280px;
+	height: 150px;
+	position: relative;
+	top: -738px;
+	margin-left: 310px;
+	position: relative;
+}
+
+.crewlist {
+	width: 87px;
+	height: 35px;
+	margin: 53px 279px 20px 320px; font-family : NotoSansKR;
+	font-size: 24px;
+	font-weight: 500;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: -0.6px;
+	color: #191919;
+	position: relative;
+	top: -1311px;
+	left: 350px;
+	font-family: NotoSansKR;
+}
+
+.mycrew {
+	width: 121px;
+	height: 40px;
+	margin: 50px 15px 18px 49px;
+	padding: 10px 15px 10px 15px;
+	border-radius: 20px;
+	border: solid 1px #4d96ff;
+	font-family: NotoSansKR;
+	font-size: 14px;
+	font-weight: 500;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: -0.35px;
+	text-align: center;
+	color: #4d96ff;
+	background-color: #ffffff;
+	position: absolute;
+	left: 580px;
+}
+
+.makecrew {
+	width: 121px;
+	height: 40px;
+	margin: 50px 15px 18px 49px;
+	padding: 10px 15px 10px 15px;
+	border-radius: 20px;
+	border: solid 1px #191919;
+	font-family: NotoSansKR;
+	font-size: 14px;
+	font-weight: 500;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: -0.35px;
+	text-align: center;
+	color: #191919;
+	background-color: #ffffff;
+	position: absolute;
+	left: 720px;
+}
+
+.btns {
+	position: relative;
+	top: -1397px;
+	left: 680px;
+}
+
+.crewlisttable {
+	width: 898px;
+	height: 529px;
+	position: relative;
+	top: -1300px;
+	left: 671px;
+
+}
+
+.search {
+	position: relative;
+	top: -1240px;
+	left: 980px;
+	width: 350px;
+}
+
+.text_search {
+	width: 100%;
+}
+
+.icon {
+position : absolute;
+ width: 19px;
+  height: 19px;
+  margin: 0;
+  padding: 3px;
+  color: #767676;
+  right: 40px;
+}
+
+.check{
+	position: relative;
+	top:-1270px;
+	left: 1350px;
+	
+}

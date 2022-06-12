@@ -1,0 +1,190 @@
+@charset "UTF-8";
+
+.container {
+	position: absolute;
+}
+
+.box {
+	position: absolute;
+	top: 152px;
+	right: 598px;
+	bottom: 170px;
+	left: 590px;
+	width: 724px;
+	height: 558px;
+	padding: 44px 40px 30px 44px;
+	background-color: #fff;
+}
+
+.crew {
+	width: 101px;
+	height: 40px;
+	position: absolute;
+	top: 110px;
+	left: 610px;
+	bottom: 1056px;
+	right: 1209px;
+	font-family: NotoSansKR;
+	font-size: 20px;
+	font-weight: 500;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: -0.7px;
+	text-align: left;
+	color: #505050;
+	font-family: NotoSansKR;
+}
+
+.crew_name {
+	width: 165px;
+	height: 56px;
+	margin: 0 35px 20px 0;
+	padding: 16px 107px 16px 0;
+	background-color: #fff;
+	font-family: NotoSansKR;
+	font-size: 16px;
+	font-weight: 500;
+	color: #191919;
+	text-align: left;
+	position: relative;
+	top: 20px;
+}
+
+.crew_name_text {
+	width: 440px;
+	height: 56px;
+	position: relative;
+	left: 196px;
+	top: -32px;
+	bottom: 927px;
+	right: 800px;
+	padding: 7px 0 0;
+	background-color: #fff;
+	border-left: none;
+	border-top: none;
+	border-right: none;
+}
+
+input:focus {
+	outline: none;
+}
+
+.crew_color {
+	width: 165px;
+	height: 56px;
+	margin: 0 35px 50px 0;
+	padding: 16px 107px 16px 0;
+	background-color: #fff;
+	font-family: NotoSansKR;
+	font-size: 16px;
+	font-weight: 500;
+	letter-spacing: -0.4px;
+	color: #191919;
+	text-align: left;
+	position: relative;
+	top: 30px;
+}
+
+.crew_pr {
+	width: 165px;
+	height: 56px;
+	margin: 10 35px 50px 10;
+	padding: 20px 110px 20px 0;
+	background-color: #fff;
+	font-family: NotoSansKR;
+	font-size: 16px;
+	font-weight: 500;
+	letter-spacing: -0.4px;
+	color: #191919;
+	text-align: left;
+	position: relative;
+	top: 60px;
+}
+
+#crew_pr_text {
+	width: 640px;
+	height: 140px;
+	margin: 76px 0 60px;
+	padding: 0 0 100px;
+	border: solid 1px #dbdbdb;
+	background-color: #fff;
+	position: relative;
+	top: 2px;
+}
+
+#clr {
+	margin-left: 200px;
+}
+
+#clr div {
+	width: 35px;
+	height: 35px;
+	border: 0.8px solid black;
+	cursor: pointer;
+	border-radius: 50px;
+	margin-left: 10px;
+	margin-top: -26px;
+	position: relative;
+	top: 26px;
+	left: -10px;
+	display: inline-block;
+}
+
+.crew_enroll {
+	width: 220px;
+	height: 56px;
+	margin: 60px 5 0 255px;
+	padding: 16 81 16 81;
+	border-radius: 20px;
+	background-color: #ff4b4e;
+	border: none;
+	float: right;
+	position: relative;
+	bottom: 30px;
+}
+
+.btn-large {
+	width: 220px; /* 넓이 수정 가능 */
+	font-size: 16px;
+	font-weight: 400; /* 글씨 Bold 수정 가능 */
+	color: #fff;
+	cursor: pointer;
+	height: 55px; /* 높이 수정 가능 */
+	text-align: center;
+	border: none;
+	background-size: 300% 100%;
+	border-radius: 20px; /* 테두리 곡률 수정 가능 */
+	moz-transition: all .4s ease-in-out;
+	-o-transition: all .4s ease-in-out;
+	-webkit-transition: all .4s ease-in-out;
+	transition: all .4s ease-in-out;
+	background-image: linear-gradient(to right, #ff4b4e, #f15e64, #e14e53, #e2373f);
+	box-shadow: 0 5px 15px rgba(242, 97, 103, .4);
+	float: right;
+	position: relative;
+	bottom: 30px;
+}
+
+.btn-large:hover {
+	background-position: 100% 0;
+	moz-transition: all .4s ease-in-out;
+	-o-transition: all .4s ease-in-out;
+	-webkit-transition: all .4s ease-in-out;
+	transition: all .4s ease-in-out;
+}
+
+.btn-large:focus {
+	outline: none;
+}
+
+.crew_enroll_btn {
+	width: 58px;
+	height: 30px;
+	font-family: NotoSansKR;
+	font-size: 16px;
+	font-weight: 500;
+	letter-spacing: -0.4px;
+	text-align: left;
+	color: #fff;
+}
