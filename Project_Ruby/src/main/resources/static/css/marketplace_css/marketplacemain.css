@@ -1,9 +1,12 @@
 @charset "UTF-8";
 
-div.main{
+ div.container{
 position: absolute;
-background: #fff; 
-}
+background: #fff;
+width: 1550px;
+height: 1250px;
+} 
+
 
 div.marketfirst {
   width: 170px;
@@ -11,6 +14,16 @@ div.marketfirst {
   margin: 0px 7px 20px 45px;
 }
 
+div.marketfirst2{
+  position : absolute;
+  width: 170px;
+  height: 20px;
+  margin: 0px 7px 20px 45px;
+  left: 0px;
+  top: 85px;
+}
+
+/*n개의 상품이 있습니다.*/
 span.sangpumcount {
   width: 46px;
   height: 18px;
@@ -41,31 +54,42 @@ span.sangpumcountcomment {
   color: #191919;
 }
 
+/*검색 창*/
 div.search {
+  position : relative;
   width: 300px;
   height: 36px;
   margin: 52px 16px 20px 82px;
   padding: 9px 12px 8px;
   border: solid 1px #dbdbdb;
   background-color: #fff;
+  left: 500px;
+  
 }
 
-
+/*검색 창 아이콘*/
 span.searchicon {
-  position : absolute;
+  position : relative;
   width: 13px;
-  height: 13px;
-  margin-top : 83px;
-  margin-left : 10px;
+  height: 13px;  
   background-color: #fff;
   cursor : pointer;
   
 }
 
+.searchtext{
+  
+  width: 250px;
+  height: 20px;
+  border: 0 solid black;
+	
+}
+
+/*리스트 형식 변경*/
 div.changelist{
 	position: absolute;
 	margin-top: -58px;
-	margin-left: 400px;
+	left: 900px;
 	
 }
 span.largeicon{
@@ -86,25 +110,12 @@ span.listicon{
   cursor : pointer;
 }
 
-.searchtext{
-  
-  width: 250px;
-  height: 20px;
-  border: 0 solid black;
-	
-}
-div.marketfirst2{
- position : absolute;
-  width: 170px;
-  height: 20px;
-  margin: 0px 7px 20px 45px;
-  left: -580px;
-  top: 85px;
-}
+
+/*연관 검색어*/
 div.relatedsearch{
   width: 1024px;
   height: 85px;
-  margin-left : -550px;
+  left : 100px;
   padding: 0 0 32px;
   border: solid 1px #ededed;
   background-color: #fff;
@@ -166,7 +177,9 @@ div.selectbox{
 	position : absolute;
 	width: 200px;
 	height: 30px;
-	left: 300px;
+	left: 20px;
+	top : 250px;
+	
 }
 
 div.marketplacetable{
@@ -184,7 +197,7 @@ div.table {
   padding: 9px 12px 8px;
   border: solid 1px #dbdbdb;
   background-color: #fff;
-  left: -550px;
+  left: 0px;
 }
 
 .chb{
@@ -204,7 +217,7 @@ div.pagenum{
   border: solid 1px #dbdbdb;
   background-color: #fff;
   top : 1100px;
-  left: -200px;
+  left: 500px;
    float: left;
 }
 
@@ -233,3 +246,23 @@ span.spanpagingnumber{
 }
 
 
+
+.addbtnimg{
+  position : relative;
+  width: 91px;
+  height: 35px;
+  left : 900px;
+  bottom : 35px;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+.markettable{
+	position: relative;
+	left: 50px;
+	top: 100px;
+}
+
+marketmenutitle li{
+	float: left;
+}

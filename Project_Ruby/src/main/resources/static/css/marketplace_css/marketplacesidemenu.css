@@ -1,4 +1,7 @@
 @charset "UTF-8";
+
+
+
 div.sidemenu{
   position : absolute;
   width: 220px;
@@ -62,3 +65,51 @@ div.colorbox{
 	
 	
 }
+
+.submenutitle{
+  width: 300px;
+  height: 19px;
+  margin: 2px 3px 10px 4px;
+  font-family: NotoSansKR;
+  font-size: 13px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.33px;
+  text-align: left;
+  color: #505050;
+}
+
+#carte1,#carte2,#carte3{
+  width: 220px;
+  height: 60px;
+  padding: 0 0 19px;
+}
+
+.menuup{
+  width: 20px;
+  height: 20px;
+  padding: 7.5px 3.5px 6.5px 4.5px;
+  background-color: #fff;
+}
+
+.colorname{
+  position :relative;	
+  width: 50px;
+  height: 17px;
+  
+  font-family: NotoSansKR;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.3px;
+  text-align: left;
+  color: #505050;
+  top: 30px;
+}
+
+
+
