@@ -1,8 +1,64 @@
 @charset "UTF-8";
 div.sidemenu{
+  position : absolute;
   width: 220px;
-  height: 893px;
-  margin: 20px 36px 18px 320px;
+  height: 893px; 
   padding: 0 0 40px;
   border: solid 3px #dbdbdb;
+  background: white;
+  
+  top: 127px;
+}
+
+span.sidemenubarname{
+  position : absolute;
+  width: 150px;
+  height: 35px;
+  font-family: NotoSansKR;
+  font-size: 24px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.6px;
+  text-align: left;
+  color: #191919;
+  top: 70px;
+}
+
+.marketpriceselect{
+  width: 22px;
+  height: 22px;
+  margin: 0 13px 0 0;
+  padding: 6px;
+  border-radius: 11px;
+  border: solid 1px #ff4b4e;
+  background-color: #fff;
+}
+
+div.sidemenucolorbox{
+  width: 30px;
+  height: 30px;
+  margin: 18px 18px 7px 15px;
+  border-radius: 100%;
+	
+}
+
+.marketmenutitle{
+  font-family: NotoSansKR;
+  font-size: 15px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.38px;
+  text-align: left;
+  color: #191919;
+}
+
+div.colorbox{
+	width : 220px;
+	height : 200px;
+	
+	
 }

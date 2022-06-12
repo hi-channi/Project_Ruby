@@ -47,8 +47,38 @@
 		<span class="searchname">무접점키보드</span>
 		<span class="morelook">더보기&nbsp;<span class="glyphicon glyphicon-menu-down morelookicon"></span></span>
 	</div>
-
-
+	<div class="selectbox">
+		<input type="checkbox" class="chb">거래가능 제품만 보기
+	</div>
+	<br>
+	<div class="table">
+	
+	</div>
+	
+	
+	<div class="pagenum">
+	<div class="pagingnumber">
+		<span class="spanpagingnumber">1</span>	
+	</div>
+	
+	<div class="pagingnumber">
+		<span class="spanpagingnumber">2</span>	
+	</div>
+	
+	<div class="pagingnumber">
+		<span class="spanpagingnumber">3</span>	
+	</div>
+	
+	<div class="pagingnumber">
+		<span class="spanpagingnumber">4</span>	
+	</div>
+	
+	<div class="pagingnumber">
+		<span class="spanpagingnumber">5</span>	
+	</div>
+	
+	</div>
+	
 	
 </div>
 </body>

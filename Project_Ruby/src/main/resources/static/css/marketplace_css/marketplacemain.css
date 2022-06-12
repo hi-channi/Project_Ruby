@@ -162,7 +162,74 @@ span.morelookicon{
 	
 }
 
+div.selectbox{
+	position : absolute;
+	width: 200px;
+	height: 30px;
+	left: 300px;
+}
+
+div.marketplacetable{
+	width: 1000px;
+	height: 1000px;
+	border: 1px solid black;
+}
 
 
+div.table {
+  position : absolute;
+  width: 1024px;
+  height: 800px;
+  margin-top : 50px;
+  padding: 9px 12px 8px;
+  border: solid 1px #dbdbdb;
+  background-color: #fff;
+  left: -550px;
+}
+
+.chb{
+  width: 20px;
+  height: 20px;
+  margin: 35px 7px 41px 75px;
+  border: solid 1px #dbdbdb;
+  background-color: #fff;
+	
+}
+
+div.pagenum{
+  position : absolute;
+  width: 300px;
+  height: 50px;
+  padding: 9px 12px 8px;
+  border: solid 1px #dbdbdb;
+  background-color: #fff;
+  top : 1100px;
+  left: -200px;
+   float: left;
+}
+
+div.pagingnumber{
+  width: 36px;
+  height: 36px;
+  padding: 10px 14px 9px;
+  background-color: #ff4b4e;
+  border-radius: 100%;
+  float: left;
+}
+
+span.spanpagingnumber{
+  width: 8px;
+  height: 17px;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #fff;
+  
+}
 
 
