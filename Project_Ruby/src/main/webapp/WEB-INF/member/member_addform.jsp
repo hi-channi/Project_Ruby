@@ -11,7 +11,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <c:set var="root" value="<%=request.getContextPath() %>"/>
-<link rel="stylesheet" type="text/css" href="${root }/css/member/memberaddform.css">
+<link rel="stylesheet" type="text/css" href="${root }/css/member/member_addform.css">
 
 <script type="text/javascript">
 $(function() {
@@ -129,14 +129,14 @@ function search_DaumPostcode() {
 				<button type="button" class="btn-small" id="idcheck" style="position: absolute; float: left; margin: 10px 0 0 10px;">중복확인</button>
 			</div>
 			<div class="wrapper">
-				<input type="password" class="input" name="password" placeholder="비밀번호를 입력하세요" required="required" style="width: 360px;">
+				<input type="password" class="input" name="password" placeholder="비밀번호를 입력하세요" required="required" autocomplete="off" style="width: 360px;">
 				<span class="underline"></span>
-				<i class="glyphicon glyphicon-eye-close" id="pwtoggle" style="font-size: 16pt; color: #505050"></i>
+				<i class="glyphicon glyphicon-eye-close" id="pwtoggle" style="font-size: 16pt; color: #999999"></i>
 			</div>
 			<div class="wrapper">
 				<input type="password" class="input" name="password_check" placeholder="비밀번호 확인" required="required"style="width: 360px;">
 				<span class="underline"></span>
-				<i class="glyphicon glyphicon-eye-close" id="pwtoggle" style="font-size: 16pt; color: #505050"></i>
+				<i class="glyphicon glyphicon-eye-close" id="pwtoggle" style="font-size: 16pt; color: #999999"></i>
 			</div>
 			<div class="wrapper">
 				<input type="text" class="input" name="nickname" placeholder="닉네임을 입력하세요" required="required" style="width: 280px;">

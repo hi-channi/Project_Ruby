@@ -9,21 +9,25 @@ public class MemberController {
 	@GetMapping("/signup")  // 회원가입 페이지
 	public String signup()
 	{
-		return "/member/memberaddform";  // m/member/(파일명)
+		return "/member/member_addform";  // m/member/(파일명)
 	}
 	
-	// 임시매핑
-	@GetMapping("/signup2")  // 회원가입 추가정보 페이지
+	@GetMapping("/signupinfo")  // 회원가입 추가정보 페이지
 	public String signup2()
 	{
-		return "/member/memberinfoaddform";  // m/member/(파일명)
+		return "/member/member_infoaddform";
 	}
 	
-	// 임시매핑
-	@GetMapping("/findaccount")  // 로그인 정보 찾기 페이지
-	public String findid()
+	@GetMapping("/findaccount")  // 계정 정보 찾기 페이지
+	public String findaccount()
 	{
-		return "/member/memberaccountfindform";  // m/member/(파일명)
+		return "/member/member_accountfindform";
+	}
+	
+	@GetMapping("/login")  // 로그인 페이지
+	public String login()
+	{
+		return "/member/member_loginform";
 	}
 	
 }

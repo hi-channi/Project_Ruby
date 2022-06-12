@@ -11,7 +11,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <c:set var="root" value="<%=request.getContextPath()%>"/>
-<link rel="stylesheet" type="text/css" href="${root }/css/member/memberaccountfindform.css">
+<link rel="stylesheet" type="text/css" href="${root }/css/member/member_accountfindform.css">
 
 <script type="text/javascript">
 // '아이디 찾기-이메일'이 기본값으로 '아이디 찾기-연락처' 폼 숨기기
@@ -35,12 +35,13 @@ function setDisplay(){
 </head>
 <body>
 <div class="title">
-아이디 찾기
+계정 정보 찾기
 </div>
 	<div class="container">
 		<div class="box">
-			<div style="text-align: center; margin-bottom: 45px;">
+			<div style="text-align: center; margin-bottom: 18px;">
 				계정 정보를 잃어버리셨나요?<br> 몇가지 질문으로 로그인 정보를 찾을 수 있습니다.
+			<hr style="margin: 30px 0 0 0;">
 			</div>
 			<div class="content">
 				<div class="tabs">
@@ -48,6 +49,7 @@ function setDisplay(){
 						<input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch"> 
 						<label for="tab-1" class="tab-label" style="margin-left: 60px;">아이디 찾기</label>
 						<div class="tab-content">
+						<hr style="margin: 0;">
 						<ul>
 							<li>
 							<input type="radio" id="findid_email" name="selector" checked="checked" onchange="setDisplay()">
@@ -61,7 +63,7 @@ function setDisplay(){
 							</li>
 						</ul>
 						<div class="findid_emailform" id="findid_emailform">
-						
+						<!-- 이메일로 아이디 찾기 form -->
 						<form action="#email">
 						<div class="wrapper" style="margin-bottom: 55px;">
 						</div>
@@ -75,7 +77,7 @@ function setDisplay(){
 							<input type="email" class="input" name="job" id="addr2" placeholder="이메일을 입력하세요" required="required" style="width: 305px;"> 
 							<span class="underline" style="width: 305px; margin: 0 0 0 52px;"></span> 
 						</div>
-						<button class="btn-large" style="margin-top: 60px;" type="submit">아이디 찾기</button>
+						<button class="btn-large" style="margin-top: 40px;" type="submit">아이디 찾기</button>
 						</form>	
 					</div>
 					<div class="findid_contactform" id="findid_contactform">
@@ -93,7 +95,7 @@ function setDisplay(){
 							<input type="text" class="input" name="job" id="addr2" placeholder="연락처를 입력하세요" required="required" style="width: 305px;"> 
 							<span class="underline" style="width: 305px; margin: 0 0 0 52px;"></span> 
 						</div>
-						<button class="btn-large" style="margin-top: 60px;" type="submit">아이디 찾기</button>	
+						<button class="btn-large" style="margin-top: 40px;" type="submit">아이디 찾기</button>	
 					</form>
 					</div>
 					</div>
@@ -102,9 +104,10 @@ function setDisplay(){
 						<input type="radio" name="css-tabs" id="tab-2" class="tab-switch">
 						<label for="tab-2" class="tab-label">비밀번호 찾기</label>
 						<div class="tab-content">
+						<hr style="margin: 0;">
 						<!-- 비밀번호 찾기 form -->
 						<form action="#findpw">
-						<div class="wrapper" style="margin-top: 30px;">
+						<div class="wrapper" style="margin-top: 40px;">
 							아이디&nbsp;&nbsp;
 							<input type="text" class="input" name="job" id="addr2" placeholder="아이디를 입력하세요" required="required" style="width: 305px;"> 
 							<span class="underline" style="width: 305px; margin: 0 0 0 52px;"></span> 
@@ -119,7 +122,7 @@ function setDisplay(){
 							<input type="date" class="input" name="birth" required="required" data-placeholder="생년월일을 입력하세요" style="width: 296px; color: #505050;">
 							<span class="underline" style="width: 296px; margin: 2px 0 0 62px;"></span>
 						</div>
-						<button class="btn-large" style="margin-top: 80px;" type="submit">비밀번호 찾기</button>
+						<button class="btn-large" style="margin-top: 50px;" type="submit">비밀번호 찾기</button>
 						</form>
 						</div>
 					</div>
