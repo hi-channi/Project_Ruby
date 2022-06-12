@@ -27,8 +27,14 @@
 <span class="crew">크루 등록</span>
 <div class="box">
 
+
 <span class="crew_name">크루 이름</span>
-<input type="text" placeholder="&nbsp;&nbsp;&nbsp;크루 이름을 입력하세요" class="crew_name_text" >
+
+<div class="wrapper">
+ <input type="text" class="input" name="crew_name_text" placeholder="크루 이름을 입력하세요" required="required" style="width: 360px;">
+ <span class="underline"></span>
+         </div>
+
 <br>
 <span class="crew_color">크루 색상</span>
 
@@ -46,7 +52,7 @@
 
 <br>
 <span class="crew_pr">크루 소개</span>
-<textarea placeholder="크루 소개글을 작성하는 공간입니다." id="crew_pr_text">
+<textarea placeholder="크루 소개글을 작성하는 공간입니다." id="crew_pr_text" style="font-family: 'Noto Sans KR'">
 </textarea>
 
 <button type="submit" class="btn-large">

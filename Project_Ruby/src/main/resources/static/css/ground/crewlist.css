@@ -90,36 +90,40 @@ div.layout div.main {
 }
 
 .mycrew {
+	outline: none;
 	width: 121px;
 	height: 40px;
 	margin: 50px 15px 18px 49px;
-	padding: 10px 15px 10px 15px;
+	padding: 8px 15px 10px 15px;
 	border-radius: 20px;
-	border: solid 1px #4d96ff;
-	font-family: NotoSansKR;
+	 border: 2px solid #ff4b4e; 
+	font-family: 'Noto Sans KR';
 	font-size: 14px;
-	font-weight: 500;
+	font-weight: 400;
+	background: transparent;
+	cursor: pointer;
 	font-stretch: normal;
 	font-style: normal;
 	line-height: normal;
 	letter-spacing: -0.35px;
 	text-align: center;
-	color: #4d96ff;
+	color: #ff4b4e;
 	background-color: #ffffff;
 	position: absolute;
 	left: 580px;
+	  transition: all 0.3s ease;
 }
 
 .makecrew {
 	width: 121px;
 	height: 40px;
 	margin: 50px 15px 18px 49px;
-	padding: 10px 15px 10px 15px;
+	padding: 8px 15px 10px 15px;
 	border-radius: 20px;
 	border: solid 1px #191919;
 	font-family: NotoSansKR;
 	font-size: 14px;
-	font-weight: 500;
+	font-weight: 400;
 	font-stretch: normal;
 	font-style: normal;
 	line-height: normal;
@@ -165,6 +169,19 @@ position : absolute;
   padding: 3px;
   color: #767676;
   right: 40px;
+}
+
+.text_search:focus {
+	outline-color: #ff4b4e;
+}
+
+input::-webkit-input-placeholder {
+	color: #AAA;
+}
+
+input:focus::-webkit-input-placeholder {
+	color: #ff4b4e;
+	outline: none
 }
 
 .check{

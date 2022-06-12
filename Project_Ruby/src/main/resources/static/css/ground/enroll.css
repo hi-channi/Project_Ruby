@@ -16,7 +16,7 @@
 	background-color: #fff;
 }
 
-.crew {
+.crew { /*크루 등록*/
 	width: 101px;
 	height: 40px;
 	position: absolute;
@@ -24,7 +24,7 @@
 	left: 610px;
 	bottom: 1056px;
 	right: 1209px;
-	font-family: NotoSansKR;
+	font-family: 'Noto Sans KR';
 	font-size: 20px;
 	font-weight: 500;
 	font-stretch: normal;
@@ -33,16 +33,15 @@
 	letter-spacing: -0.7px;
 	text-align: left;
 	color: #505050;
-	font-family: NotoSansKR;
 }
 
-.crew_name {
+.crew_name { /*크루 이름*/
 	width: 165px;
 	height: 56px;
 	margin: 0 35px 20px 0;
 	padding: 16px 107px 16px 0;
 	background-color: #fff;
-	font-family: NotoSansKR;
+	font-family: 'Noto Sans KR';
 	font-size: 16px;
 	font-weight: 500;
 	color: #191919;
@@ -51,23 +50,60 @@
 	top: 20px;
 }
 
-.crew_name_text {
-	width: 440px;
-	height: 56px;
-	position: relative;
-	left: 196px;
-	top: -32px;
-	bottom: 927px;
-	right: 800px;
-	padding: 7px 0 0;
-	background-color: #fff;
-	border-left: none;
-	border-top: none;
-	border-right: none;
+.wrapper i {
+	position: absolute;
+	margin: 7px 0 0 -20px;
+	float: right;
 }
 
-input:focus {
+.input {
+	background-color: transparent;
+	border: none;
+	border-bottom: 1px solid #CCC;
+	color: #555;
+	box-sizing: border-box;
+	font-family: 'Noto Sans KR';
+	font-size: 16px;
+	padding: 10px 0px;
+	position: relative;
+	width: 360px;
+	left: 224px;
+	top: -13.5px;
+	bottom: 927px;
+	right: 638px;
+}
+
+.input:focus {
 	outline: none;
+}
+
+input::-webkit-input-placeholder {
+	color: #AAA;
+}
+
+input:focus::-webkit-input-placeholder {
+	color: #ff4b4e;
+	outline: none
+}
+
+.input:focus+.underline {
+	transform: scale(1);
+	outline: none;
+}
+
+.underline {
+	background-color: #ff4b4e;
+	display: inline-block;
+	height: 2px;
+	left: 0px;
+	position: absolute;
+	top: 96.2px;
+	left: 268.1px;
+	-webkit-transform: scale(0, 1);
+	transform: scale(0, 1);
+	-webkit-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+	width: 360px;
 }
 
 .crew_color {
@@ -76,7 +112,7 @@ input:focus {
 	margin: 0 35px 50px 0;
 	padding: 16px 107px 16px 0;
 	background-color: #fff;
-	font-family: NotoSansKR;
+	font-family: 'Noto Sans KR';
 	font-size: 16px;
 	font-weight: 500;
 	letter-spacing: -0.4px;
@@ -92,7 +128,7 @@ input:focus {
 	margin: 10 35px 50px 10;
 	padding: 20px 110px 20px 0;
 	background-color: #fff;
-	font-family: NotoSansKR;
+	font-family: 'Noto Sans KR';
 	font-size: 16px;
 	font-weight: 500;
 	letter-spacing: -0.4px;
@@ -111,6 +147,10 @@ input:focus {
 	background-color: #fff;
 	position: relative;
 	top: 2px;
+}
+
+#crew_pr_text:focus {
+	outline-color: #ff4b4e;
 }
 
 #clr {
@@ -178,10 +218,19 @@ input:focus {
 	outline: none;
 }
 
+textarea::-webkit-input-placeholder {
+	color: #AAA;
+}
+
+textarea:focus::-webkit-input-placeholder {
+	color: #ff4b4e;
+	outline: none
+}
+
 .crew_enroll_btn {
 	width: 58px;
 	height: 30px;
-	font-family: NotoSansKR;
+	font-family: 'Noto Sans KR';
 	font-size: 16px;
 	font-weight: 500;
 	letter-spacing: -0.4px;
