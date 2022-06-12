@@ -49,17 +49,7 @@
 	</div>
 
 
-	<div class="cartegoribtn">
-		<div class="carbtn">
-			<span class="carbtnname">리세일가&nbsp;<span class="glyphicon glyphicon-remove removeicon"></span></span>
-			<span class="carbtnname">리세일가&nbsp;<span class="glyphicon glyphicon-remove removeicon"></span></span>
-			<span class="carbtnname">리세일가&nbsp;<span class="glyphicon glyphicon-remove removeicon"></span></span>	
-			
-			<input type="checkbox" id="canbuylook" name="canbuylook">거래가능 제품만 보기				
-		</div>
-		
-		
-	</div>
+	
 </div>
 </body>
 </html>
