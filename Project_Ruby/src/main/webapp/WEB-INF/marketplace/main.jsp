@@ -73,9 +73,7 @@
 		<span class="spanpagingnumber">4</span>	
 	</div>
 	
-	<div class="pagingnumber">
-		<span class="spanpagingnumber">5</span>	
-	</div>
+
 	
 	</div>
 	
