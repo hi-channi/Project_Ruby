@@ -24,5 +24,11 @@ public class GroundController {
 		return "/ground/crewlist";
 	}
 	
+	@GetMapping("/ground/crew")  // 내 크루 보는 
+	public String crew()
+	{
+		return "/ground/crew";
+	}
+	
 	
 }

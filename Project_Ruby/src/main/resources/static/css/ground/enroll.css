@@ -237,3 +237,9 @@ textarea:focus::-webkit-input-placeholder {
 	text-align: left;
 	color: #fff;
 }
+
+.colortext {
+	position: relative;
+	top: 48px;
+	left: 131px;
+}

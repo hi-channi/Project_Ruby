@@ -49,6 +49,24 @@
 <div style="background-color: green;"> </div>
 <div style="background-color: brown;"> </div>
 </div>
+<table class="colortext">
+<tr>
+             <td class="text1" ></td>
+             <td class="text2" >
+                <div id="color2" style="padding-left: 66.2px; margin-top: -15px; font-size: 14px; color: #505050; font-weight: 300;">
+                   <span>블랙</span>
+                   <span style="margin-left: 12.5px;">그레이</span>
+                   <span style="margin-left: 12px;">블루</span>
+                   <span style="margin-left: 12px;">옐로우</span>
+                   <span style="margin-left: 11px;">퍼플</span>
+                   <span style="margin-left: 11px;">화이트</span>
+                   <span style="margin-left: 12px;">레드</span>
+                   <span style="margin-left: 12px;">그린</span>
+                   <span style="margin-left: 12px;">브라운</span>
+                </div>
+             </td>
+          </tr>
+          </table>
 
 <br>
 <span class="crew_pr">크루 소개</span>

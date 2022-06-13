@@ -27,7 +27,7 @@ div.layout div.main {
 	width: 87px;
 	height: 35px;
 	margin: 53px 279px 20px 320px;
-	font-family: NotoSansKR;
+	font-family: 'Noto Sans KR';
 	font-size: 24px;
 	font-weight: 500;
 	margin: auto;
@@ -50,7 +50,7 @@ div.layout div.main {
 	width: 87px;
 	height: 35px;
 	margin: 53px 279px 20px 320px;
-	font-family: NotoSansKR;
+	font-family: 'Noto Sans KR';
 	font-size: 24px;
 	font-weight: 500;
 	font-stretch: normal;
@@ -61,6 +61,10 @@ div.layout div.main {
 	color: #191919;
 	position: relative;
 	top: -750px;
+}
+
+td, th, tr {
+	font-family: 'Noto Sans KR';
 }
 
 .newcrewlist {
@@ -75,7 +79,8 @@ div.layout div.main {
 .crewlist {
 	width: 87px;
 	height: 35px;
-	margin: 53px 279px 20px 320px; font-family : NotoSansKR;
+	margin: 53px 279px 20px 320px; 
+	font-family: 'Noto Sans KR';
 	font-size: 24px;
 	font-weight: 500;
 	font-stretch: normal;
@@ -84,9 +89,8 @@ div.layout div.main {
 	letter-spacing: -0.6px;
 	color: #191919;
 	position: relative;
-	top: -1311px;
+	top: -1314px;
 	left: 350px;
-	font-family: NotoSansKR;
 }
 
 .mycrew {
@@ -111,7 +115,8 @@ div.layout div.main {
 	background-color: #ffffff;
 	position: absolute;
 	left: 580px;
-	  transition: all 0.3s ease;
+	top: -6px;
+	transition: all 0.3s ease;
 }
 
 .makecrew {
@@ -121,7 +126,7 @@ div.layout div.main {
 	padding: 8px 15px 10px 15px;
 	border-radius: 20px;
 	border: solid 1px #191919;
-	font-family: NotoSansKR;
+	font-family: 'Noto Sans KR';
 	font-size: 14px;
 	font-weight: 400;
 	font-stretch: normal;
@@ -133,6 +138,7 @@ div.layout div.main {
 	background-color: #ffffff;
 	position: absolute;
 	left: 720px;
+	top: -6.5px;
 }
 
 .btns {
@@ -145,7 +151,7 @@ div.layout div.main {
 	width: 898px;
 	height: 529px;
 	position: relative;
-	top: -1300px;
+	top: -1306px;
 	left: 671px;
 
 }

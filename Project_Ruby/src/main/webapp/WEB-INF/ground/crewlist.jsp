@@ -28,7 +28,7 @@
   <thead>
   </thead>
   <tbody>
-    <tr >
+    <tr>
       <th>1</th>
       <td >싹쓰리1 <img src="../image/1.png" style="width: 20px;"> </td>
       <td > <img src="../image/star.png" style="width: 19px;"> 24965점</td>
@@ -84,7 +84,8 @@
 <span class="crewlist">크루 리스트</span>
 <div class="btns">
 <button class="mycrew">마이 크루</button>
-<button class="makecrew"><span class="makecrew1">크루 만들기</span></button>
+<button class="makecrew" onclick="location.href='enroll'">
+<span class="makecrew1">크루 만들기</span></button>
 </div>
 
 <div class="crewlisttable" style="border: 1px solid #191919; border-left-color: #dbdbdb; border-right-color: #dbdbdb; border-bottom-color:#dbdbdb; ">
@@ -196,12 +197,12 @@
 <!-- 테이블 밑에 페이징 처리 넣어야 함 -->
 
 <div class="search">
-<input type="text" class="text_search" placeholder="검색하실 크루명을 입력하세요" style="width: 300px; height:36px; ">
+<input type="text" class="text_search" placeholder="검색하실 크루명을 입력하세요" style="width: 300px; height:36px; font-family: 'Noto Sans KR';  ">
 <span class="icon glyphicon glyphicon-search"></span>
 </div>
 
 <div class="check" style="width: 210px;">
-<input type="checkbox" name="check" id="check1" value ="crewsearch"> 신청 가능한 크루만 보기
+<input type="checkbox" name="check" id="check1" value ="crewsearch" style="font-family: 'Noto Sans KR';"> 신청 가능한 크루만 보기
 </div>
 
 
