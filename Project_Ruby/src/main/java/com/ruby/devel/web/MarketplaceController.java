@@ -18,4 +18,9 @@ public class MarketplaceController {
 		return "/marketplace/market_productaddform";
 	}
 	
+	@GetMapping("/productdetail")
+	public String detail() {
+		return "/marketplace/market_productdetail";
+	}
+	
 }
