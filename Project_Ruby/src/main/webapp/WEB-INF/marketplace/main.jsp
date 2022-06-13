@@ -65,7 +65,10 @@ $(function(){
 	</div>
 	
 	<div class="marketfirst2">
-		<span class="sangpumcount">300</span>	
+		<span class="sangpumcount">
+		<!--marketplace 상품 총 갯수   -->
+		300
+		</span>	
 		<span class="sangpumcountcomment">개의 상품이 있습니다.</span>		
 	</div>
 	
@@ -73,7 +76,7 @@ $(function(){
 		
 	<div class="search" style="border: solid 1px #dbdbdb;">
 		<input type="text" value="검색어를 입력해 주세요." class="searchtext">
-		<span class="glyphicon glyphicon-search searchicon"></span>	
+		<a href="#"><span class="glyphicon glyphicon-search searchicon"></span>	</a>
 	</div>
 	
 	
@@ -92,7 +95,8 @@ $(function(){
 	</div>
 	<div class="selectbox">
 		<label><input type="checkbox" class="chb">&nbsp;거래가능 제품만 보기</label>
-		<img alt="" src="${root }/element/sangpumaddbtn.png" class="addbtnimg">
+		<!-- 상품등록 페이지 연결 -->
+		<a href="#"><img alt="" src="${root }/element/sangpumaddbtn.png" class="addbtnimg"></a>
 	</div>
 	<br>
 	<div class="tab-content">
