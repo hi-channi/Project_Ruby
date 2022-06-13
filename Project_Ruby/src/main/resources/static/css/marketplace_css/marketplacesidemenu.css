@@ -3,14 +3,12 @@
 
 
 div.sidemenu{
-  position : absolute;
+  position : relative;
   width: 220px;
   height: 893px; 
   padding: 0 0 40px;
-  border: solid 3px #dbdbdb;
-  background: white;
-  
-  top: 127px;
+  background: white; 
+  top: 98px;
 }
 
 span.sidemenubarname{

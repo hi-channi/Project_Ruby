@@ -81,7 +81,7 @@ $(function(){
    <div id="전체" class="tab-pane fade in active markettable" >
       <h3>전체 상품</h3>
     <p>
-      <table class="shoptb table table-bordered" style="width: 950px; height: 600px;">
+      <table class="shoptb table table-bordered" style="width: 1024px; height: 600px;">
          
          <tr>
          
@@ -112,7 +112,7 @@ $(function(){
    <div id="리스트" class="tab-pane fade in active markettable" >
       <h3>전체 상품 (리스트)</h3>
     <p>
-      <table class="shoptb table table-bordered" style="width: 950px; height: 600px;">
+      <table class="shoptb table table-bordered" style="width: 1024px; height: 600px;">
          
          <tr>
          

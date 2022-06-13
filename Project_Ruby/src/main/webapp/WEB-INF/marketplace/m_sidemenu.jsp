@@ -13,11 +13,11 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 $(function () {
-	$(".sub1").hide()
-	$(".sub2").hide()
-	$(".sub3").hide()
-	$(".sub1-1").hide()
-	
+	$(".sub1").hide();
+	$(".sub2").hide();
+	$(".sub3").hide();
+	$(".sub1-1").hide();
+	$("sub2 li div").hide();
 	$("#carte1").click(function(){
 		
 		$(this).next().toggle("fast");
@@ -89,6 +89,7 @@ $(function () {
 			</ul>
  		</li>
  	</ul>
+ 	
 </div>
 
 </body>
