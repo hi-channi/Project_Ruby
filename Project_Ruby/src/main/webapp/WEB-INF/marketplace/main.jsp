@@ -46,6 +46,11 @@ $(function(){
 		$(this).val("");
 	});
 	
+	<%--체크박스 체크시 테이블 select문으로 거래가능 출력--%>
+	$(".chb").click(function(){
+		
+		
+	});
 	
 	
 	
@@ -80,13 +85,13 @@ $(function(){
 	<div class="relatedsearch" style="border: solid 1px #dbdbdb; border-top: solid 2px black;">
 		<br>
 		<span class="spanrelatedsearch">연관검색어</span>&nbsp;&nbsp;
-		<span class="searchname">무선키보드</span>&nbsp;&nbsp;
-		<span class="searchname">블루투스키보드</span>&nbsp;&nbsp;
-		<span class="searchname">무접점키보드</span>
+		<span class="searchname"><a href="#">무선키보드</a></span>&nbsp;&nbsp;
+		<span class="searchname"><a href="#">블루투스키보드</a></span>&nbsp;&nbsp;
+		<span class="searchname"><a href="#">무접점키보드</a></span>
 		<span class="morelook">더보기&nbsp;<span class="glyphicon glyphicon-menu-down morelookicon"></span></span>
 	</div>
 	<div class="selectbox">
-		<input type="checkbox" class="chb">거래가능 제품만 보기
+		<label><input type="checkbox" class="chb">&nbsp;거래가능 제품만 보기</label>
 		<img alt="" src="${root }/element/sangpumaddbtn.png" class="addbtnimg">
 	</div>
 	<br>
@@ -100,74 +105,81 @@ $(function(){
       <table class="table table-bordered alltable" style="width: 1024px; height: 600px;">
          
          <tr>
-         	<td>
-         		<label for="chk1">
+         	<td id="phototd">
+         	<label for="chk1">
          			<input type="checkbox" id="chk1">
          			<h class="heart">♡</h>
-         		</label> 
+         	</label>	
          	</td>
-         	<td>
-         		<label for="chk2">
+         	 
+         	<td id="phototd">
+         	<label for="chk2">
          			<input type="checkbox" id="chk2">
          			<h class="heart">♡</h>
-         		</label> 
+         	</label>	
          	</td>
-         	<td>
-         		<label for="chk3">
+         	 
+         	<td id="phototd">
+         	<label for="chk3">
          			<input type="checkbox" id="chk3">
          			<h class="heart">♡</h>
-         		</label> 
+         	</label>	
          	</td>
-         	<td>
-         		<label for="chk4">
+         	
+         	<td id="phototd">
+         	<label for="chk4">
          			<input type="checkbox" id="chk4">
          			<h class="heart">♡</h>
-         		</label> 
-         	</td>    	
+         	</label> 	
+         	</td>
+         	    	
          </tr>
          
           <tr>
-         	<td> </td>
-         	<td> </td>
-         	<td> </td>
-         	<td> </td>    	
+         	<td id="detailtd"> </td>
+         	<td id="detailtd"> </td>
+         	<td id="detailtd"> </td>
+         	<td id="detailtd"> </td>    	
          </tr>
          
           <tr>
-         	<td>
-         		<label for="chk5">
+         	<td id="phototd">
+         	<label for="chk5">
          			<input type="checkbox" id="chk5">
          			<h class="heart">♡</h>
-         		</label>
+         	</label>	
          	</td>
          	
-         	<td>
-         		<label for="chk6">
+         	
+         	<td id="phototd">
+         	<label for="chk6">
          			<input type="checkbox" id="chk6">
          			<h class="heart">♡</h>
-         		</label>
+         	</label>	
          	</td>
          	
-         	<td>
-         		<label for="chk7">
+         	<td id="phototd">
+         	<label for="chk7">
          			<input type="checkbox" id="chk7">
          			<h class="heart">♡</h>
-         		</label>
+         	</label>	
          	</td>
          	
-         	<td>
-         		<label for="chk8">
+         	
+         	<td id="phototd">
+         	<label for="chk8">
          			<input type="checkbox" id="chk8">
          			<h class="heart">♡</h>
-         		</label>
-         	</td>    	
+         	</label>  		
+         	</td>
+         	  	
          </tr>
          
           <tr>
-         	<td> </td>
-         	<td> </td>
-         	<td> </td>
-         	<td> </td>    	
+         	<td id="detailtd"> </td>
+         	<td id="detailtd"> </td>
+         	<td id="detailtd"> </td>
+         	<td id="detailtd"> </td>    	
          </tr>
       </table>
     </p>
@@ -180,24 +192,54 @@ $(function(){
       <table class="table table-bordered listtable" style="width: 1024px; height: 600px;">
          
          <tr>
-         	<td class="photozone"></td>
-        	<td><span class="glyphicon glyphicon-heart hearticonon2"></span></td>
-        	<td class="photozone"></td>
-        	<td><span class="glyphicon glyphicon-heart hearticonon2"></span></td>       	
+         	<td id="photozone"></td>
+        	<td id="detailzone">
+        	<label for="listchk1">
+         			<input type="checkbox" id="listchk1">
+         			<h class="listheart">♡</h>
+         	</label>
+        	</td>
+        	<td id="photozone"></td>
+        	<td id="detailzone">
+        	<label for="listchk2">
+         			<input type="checkbox" id="listchk2">
+         			<h class="listheart">♡</h>
+         	</label>
+        	</td>       	
          </tr>
          
          <tr>
-         	<td class="photozone"></td>
-        	<td><span class="glyphicon glyphicon-heart hearticonon2"></span></td>
-        	<td class="photozone"></td>
-        	<td><span class="glyphicon glyphicon-heart hearticonon2"></span></td>       	
+         	<td id="photozone"></td>
+        	<td id="detailzone">
+        	<label for="listchk3">
+         			<input type="checkbox" id="listchk3">
+         			<h class="listheart">♡</h>
+         	</label>
+        	</td>
+        	<td id="photozone"></td>
+        	<td id="detailzone">
+        	<label for="listchk4">
+         			<input type="checkbox" id="listchk4">
+         			<h class="listheart">♡</h>
+         	</label>
+        	</td>       	
          </tr>
          
          <tr>
-         	<td class="photozone"></td>
-        	<td><span class="glyphicon glyphicon-heart hearticonon2"></span></td>
-        	<td class="photozone"></td>
-        	<td><span class="glyphicon glyphicon-heart hearticonon2"></span></td>       	
+         	<td id="photozone"></td>
+        	<td id="detailzone">
+        	<label for="listchk5">
+         			<input type="checkbox" id="listchk5">
+         			<h class="listheart">♡</h>
+         	</label>
+        	</td>
+        	<td id="photozone"></td>
+        	<td id="detailzone">
+        	<label for="listchk6">
+         			<input type="checkbox" id="listchk6">
+         			<h class="listheart">♡</h>
+         	</label>
+        	</td>       	
          </tr>
          
          

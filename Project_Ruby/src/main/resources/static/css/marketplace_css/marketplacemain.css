@@ -206,6 +206,8 @@ div.table {
   margin: 35px 7px 41px 75px;
   border: solid 1px #dbdbdb;
   background-color: #fff;
+  vertical-align: -5px;
+  
 	
 }
 
@@ -284,7 +286,31 @@ marketmenutitle li{
 	left: 200px;
 }
 
-#chk1:checked + .heart,#chk2:checked + .heart,#chk3:checked + .heart,#chk4:checked + .heart,#chk5:checked + .heart,#chk6:checked + .heart,#chk7:checked + .heart,#chk8:checked + .heart{
+#chk1:checked + .heart,#chk2:checked + .heart,#chk3:checked + .heart,#chk4:checked + .heart,
+#chk5:checked + .heart,#chk6:checked + .heart,#chk7:checked + .heart,#chk8:checked + .heart{
+	color: red;
+	
+}
+
+/*리스트테이블 하트 아이콘*/
+#listchk1,#listchk2,#listchk3,#listchk4,#listchk5,#listchk6,#listchk7,#listchk8{
+	position: absolute;
+	left: -999em;
+}
+.listheart{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	content : '2661';
+	box-sizing: border-box;
+	cursor: pointer;	
+	font-size: 20pt;
+	position: relative;
+	left: 260px;
+}
+
+#listchk1:checked + .listheart,#listchk2:checked + .listheart,#listchk3:checked + .listheart,#listchk4:checked + .listheart,
+#listchk5:checked + .listheart,#listchk6:checked + .listheart,#listchk7:checked + .listheart,#listchk8:checked + .listheart{
 	color: red;
 	
 }
@@ -293,16 +319,24 @@ marketmenutitle li{
 
 
 
-
-
-/*전체 리스트 테이블 하트 아이콘*/
-.hearticonon2{
-  position : relative;
-  left : 250px;
-  font-size : 20pt;
-  color: #ff4b4e;
+/*목록 테이블 크기 조정*/
+#phototd{
+	width: 255.75px;
+	height: 228.78px;
+}
+#detailtd{
+	width: 255.75px;
+	height: 70.7px;
 }
 
-.photozone{
+
+/*리스트 테이블 크기 조정*/
+#photozone{
 	width: 200px;
+	height: 199.66px;
 }
+#detailzone{
+	width: 311.5px;
+	height: 199.66px;
+}
+
