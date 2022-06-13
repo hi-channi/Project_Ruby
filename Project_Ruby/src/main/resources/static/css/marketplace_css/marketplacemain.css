@@ -210,15 +210,15 @@ div.table {
 }
 
 div.pagenum{
-  position : absolute;
+  position : relative;
   width: 300px;
   height: 50px;
   padding: 9px 12px 8px;
   border: solid 1px #dbdbdb;
   background-color: #fff;
-  top : 1100px;
-  left: 500px;
-   float: left;
+  top : 200px;
+  left: 400px;
+  float: left;
 }
 
 div.pagingnumber{
@@ -265,4 +265,44 @@ span.spanpagingnumber{
 
 marketmenutitle li{
 	float: left;
+}
+
+/*전체테이블 하트 아이콘*/
+#chk1,#chk2,#chk3,#chk4,#chk5,#chk6,#chk7,#chk8{
+	position: absolute;
+	left: -999em;
+}
+.heart{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	content : '2661';
+	box-sizing: border-box;
+	cursor: pointer;	
+	font-size: 20pt;
+	position: relative;
+	left: 200px;
+}
+
+#chk1:checked + .heart,#chk2:checked + .heart,#chk3:checked + .heart,#chk4:checked + .heart,#chk5:checked + .heart,#chk6:checked + .heart,#chk7:checked + .heart,#chk8:checked + .heart{
+	color: red;
+	
+}
+
+
+
+
+
+
+
+/*전체 리스트 테이블 하트 아이콘*/
+.hearticonon2{
+  position : relative;
+  left : 250px;
+  font-size : 20pt;
+  color: #ff4b4e;
+}
+
+.photozone{
+	width: 200px;
 }

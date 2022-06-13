@@ -19,6 +19,8 @@
 $(function(){
 	$("#리스트").hide();
 	
+	
+	<%--목록형 테이블--%>
 	$("span.large").click(function(){
 		
 		$("#리스트").hide();
@@ -26,12 +28,26 @@ $(function(){
 		$("#전체").show();
 	});
 	
+	<%--리스트 테이블--%>
 	$("span.list").click(function(){
 		
 		$("#전체").hide();
 		
 		$("#리스트").show();
 	});
+	
+	
+	
+	
+	<%--검색창 클릭시 가이드 문구 없어짐--%>
+	$(".searchtext").click(function(){
+		
+		//alert(1);
+		$(this).val("");
+	});
+	
+	
+	
 	
 });
 
@@ -81,28 +97,77 @@ $(function(){
    <div id="전체" class="tab-pane fade in active markettable" >
       <h3>전체 상품</h3>
     <p>
-      <table class="shoptb table table-bordered" style="width: 1024px; height: 600px;">
+      <table class="table table-bordered alltable" style="width: 1024px; height: 600px;">
          
          <tr>
+         	<td>
+         		<label for="chk1">
+         			<input type="checkbox" id="chk1">
+         			<h class="heart">♡</h>
+         		</label> 
+         	</td>
+         	<td>
+         		<label for="chk2">
+         			<input type="checkbox" id="chk2">
+         			<h class="heart">♡</h>
+         		</label> 
+         	</td>
+         	<td>
+         		<label for="chk3">
+         			<input type="checkbox" id="chk3">
+         			<h class="heart">♡</h>
+         		</label> 
+         	</td>
+         	<td>
+         		<label for="chk4">
+         			<input type="checkbox" id="chk4">
+         			<h class="heart">♡</h>
+         		</label> 
+         	</td>    	
+         </tr>
          
-        	 <td>
-        	   <a  style="cursor: pointer;" class="godetail">
-        	     <img alt="" src="" >
-        	     <br>
-        	     <br>
-        	     <b style="color: red; font-size: 1.3em;"></b>
-        	     <span style="float: right;">
-        	       <div style="color: gray; font-size: 13pt;">
-        	        
-        	         <strike></strike>
-        	       </div>
-        	       <div style="color: black; font-size: 16px;">
-        	         
-        	       </div>
-        	     </span>
-        	   </a>
-        	 </td>
-        	
+          <tr>
+         	<td> </td>
+         	<td> </td>
+         	<td> </td>
+         	<td> </td>    	
+         </tr>
+         
+          <tr>
+         	<td>
+         		<label for="chk5">
+         			<input type="checkbox" id="chk5">
+         			<h class="heart">♡</h>
+         		</label>
+         	</td>
+         	
+         	<td>
+         		<label for="chk6">
+         			<input type="checkbox" id="chk6">
+         			<h class="heart">♡</h>
+         		</label>
+         	</td>
+         	
+         	<td>
+         		<label for="chk7">
+         			<input type="checkbox" id="chk7">
+         			<h class="heart">♡</h>
+         		</label>
+         	</td>
+         	
+         	<td>
+         		<label for="chk8">
+         			<input type="checkbox" id="chk8">
+         			<h class="heart">♡</h>
+         		</label>
+         	</td>    	
+         </tr>
+         
+          <tr>
+         	<td> </td>
+         	<td> </td>
+         	<td> </td>
+         	<td> </td>    	
          </tr>
       </table>
     </p>
@@ -112,29 +177,30 @@ $(function(){
    <div id="리스트" class="tab-pane fade in active markettable" >
       <h3>전체 상품 (리스트)</h3>
     <p>
-      <table class="shoptb table table-bordered" style="width: 1024px; height: 600px;">
+      <table class="table table-bordered listtable" style="width: 1024px; height: 600px;">
          
          <tr>
-         
-        	 <td>
-        	   <a  style="cursor: pointer;" class="godetail">
-        	     <img alt="" src="" >
-        	     <br>
-        	     <br>
-        	     <b style="color: red; font-size: 1.3em;"></b>
-        	     <span style="float: right;">
-        	       <div style="color: gray; font-size: 13pt;">
-        	        
-        	         <strike></strike>
-        	       </div>
-        	       <div style="color: black; font-size: 16px;">
-        	         
-        	       </div>
-        	     </span>
-        	   </a>
-        	 </td>
-        	
+         	<td class="photozone"></td>
+        	<td><span class="glyphicon glyphicon-heart hearticonon2"></span></td>
+        	<td class="photozone"></td>
+        	<td><span class="glyphicon glyphicon-heart hearticonon2"></span></td>       	
          </tr>
+         
+         <tr>
+         	<td class="photozone"></td>
+        	<td><span class="glyphicon glyphicon-heart hearticonon2"></span></td>
+        	<td class="photozone"></td>
+        	<td><span class="glyphicon glyphicon-heart hearticonon2"></span></td>       	
+         </tr>
+         
+         <tr>
+         	<td class="photozone"></td>
+        	<td><span class="glyphicon glyphicon-heart hearticonon2"></span></td>
+        	<td class="photozone"></td>
+        	<td><span class="glyphicon glyphicon-heart hearticonon2"></span></td>       	
+         </tr>
+         
+         
       </table>
     </p>
   </div>

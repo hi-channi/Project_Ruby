@@ -17,7 +17,7 @@ $(function () {
 	$(".sub2").hide();
 	$(".sub3").hide();
 	$(".sub1-1").hide();
-	$("sub2 li div").hide();
+	
 	$("#carte1").click(function(){
 		
 		$(this).next().toggle("fast");
@@ -41,6 +41,8 @@ $(function () {
 		$(this).next().toggle("fast");
 	});
 	
+	
+	
 });
 </script>
 </head>
@@ -51,21 +53,21 @@ $(function () {
 <div class="sidemenu" style="border: solid 1px #dbdbdb; border-top: solid 2px black;">
  	<ul>
  		<li class="marketmenu">
- 			<div class="marketmenutitle" id="carte1">카테고리<span class="glyphicon glyphicon-menu-up menuup"></span></div>
+ 			<div class="marketmenutitle" id="carte1"><b>카테고리</b><span class="glyphicon glyphicon-menu-up menuup1"></span></div>
  			<ul class="sub1">
- 				<li><b class="subtitle">IT전자기기</b>
+ 				<li class="carte1sub"><h6 class="subtitle">IT전자기기</h6>
  				<ul class="sub1-1">
- 					<li class="submenutitle">노트북</li>
- 					<li class="submenutitle">모니터</li>
- 					<li class="submenutitle">키보드</li>
- 					<li class="submenutitle">마우스</li>
- 					<li class="submenutitle">스피커</li>
+ 					<li class="submenutitle">· 노트북</li>
+ 					<li class="submenutitle">· 모니터</li>
+ 					<li class="submenutitle">· 키보드</li>
+ 					<li class="submenutitle">· 마우스</li>
+ 					<li class="submenutitle">· 스피커</li>
  				</ul>
  				</li>
- 				<li>IT사무용품</li>
- 				<li>IT도서</li>
+ 				<li class="carte1sub"><h6>IT사무용품</h6></li>
+ 				<li class="carte1sub"><h6>IT도서</h6></li>
  			</ul>
- 			<div class="marketmenutitle" id="carte2" style="border-top: solid 1px #dbdbdb;">컬러</div>
+ 			<div class="marketmenutitle" id="carte2" style="border-top: solid 1px #dbdbdb;"><b>컬러</b><span class="glyphicon glyphicon-menu-up menuup2"></span></div>
  			<div class="colorbox">
  			<ul class="sub2">
  				<li><div class="sidemenucolorbox" style="background: black; float: left; border: 1px solid #dbdbdb;"><span class="colorname">블랙</span></div></li>
@@ -76,17 +78,19 @@ $(function () {
 				<li><div class="sidemenucolorbox" style="background: white; float: left; border: 1px solid #dbdbdb;"><span class="colorname">흰색</span></div></li>
 				<li><div class="sidemenucolorbox" style="background: red; float: left; border: 1px solid #dbdbdb;"><span class="colorname">빨강</span></div></li>
 				<li><div class="sidemenucolorbox" style="background: green; float: left; border: 1px solid #dbdbdb;"><span class="colorname">초록</span></div></li>
-				<li><div class="sidemenucolorbox" style="background: brown; float: left; border: 1px solid #dbdbdb;"><span class="colorname">갈색</span></div></li>
+				<li><div class="sidemenucolorbox" style="background: brown; float: left; border: 1px solid #dbdbdb;"><span class="colorname">갈색</span></div></li>			
  			</ul>
  			</div>
- 			<div class="marketmenutitle" id="carte3" style="border-top: solid 1px #dbdbdb;">가격대</div>
+ 			<div class="marketmenutitle" id="carte3" style="border-top: solid 1px #dbdbdb;"><b>가격대</b><span class="glyphicon glyphicon-menu-up menuup3"></span></div>
  			<ul class="sub3">
-			<li class="submenutitle"><input type="radio" name="marketprice" class="marketpriceselect">10,000원 이하</li>
-			<li class="submenutitle"><input type="radio" name="marketprice" class="marketpriceselect">10,000원 ~ 50,000원</li>
-			<li class="submenutitle"><input type="radio" name="marketprice" class="marketpriceselect">50,000원 ~ 100,000원</li>
-			<li class="submenutitle"><input type="radio" name="marketprice" class="marketpriceselect">100,000원 ~ 200,000원</li>
-			<li class="submenutitle"><input type="radio" name="marketprice" class="marketpriceselect">200,000원 이상</li>
+			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn"><em class="radioimg"></em>10,000원 이하</label></li>
+			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn"><em class="radioimg"></em>10,000원 ~ 50,000원</label></li>
+			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn"><em class="radioimg"></em>50,000원 ~ 100,000원</label></li>
+			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn"><em class="radioimg"></em>100,000원 ~ 200,000원</label></li>
+			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn"><em class="radioimg"></em>200,000원 이상</label></li>
 			</ul>
+			
+			
  		</li>
  	</ul>
  	
