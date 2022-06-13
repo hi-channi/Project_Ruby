@@ -60,7 +60,7 @@ $(document).ready(function(){
 		<div class="box">
 			<form action="add" method="post" name="frm" onsubmit="return check(this)">
 			<div class="wrapper">
-				<input type="text" class="input" name="id" placeholder="로그인 아이디를 입력하세요" required="required" style="width: 360px;">
+				<input type="text" class="input" name="id" placeholder="아이디를 입력하세요" required="required" style="width: 360px;">
 				<span class="underline"></span>
 			</div>
 			<div class="wrapper">
@@ -75,7 +75,7 @@ $(document).ready(function(){
 				<div class="check"></div>
 				</li>
 			</ul>
-			<span style="margin-left: 70px; font-size: 11pt; letter-spacing :-0.04em; color: #505050; cursor: pointer;" onclick="location.href='/findaccount'">
+			<span class="findaccount_click" onclick="location.href='/findaccount'">
 			아이디/비밀번호 찾기
 			</span>
 			

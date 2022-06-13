@@ -30,4 +30,15 @@ public class MemberController {
 		return "/member/member_loginform";
 	}
 	
+	@GetMapping("/findidresult")  // 아이디 찾기 결과 페이지
+	public String findidresult()
+	{
+		return "/member/member_findidresult";
+	}
+	
+	@GetMapping("/pwreset")  // 비밀번호 재설정 페이지
+	public String userpwreset()
+	{
+		return "/member/member_userpwreset";
+	}
 }

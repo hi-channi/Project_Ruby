@@ -234,3 +234,14 @@ input[type=checkbox]:checked ~ label {
 	color: #ff4b4e;
 }
 
+span.findaccount_click {
+	margin-left: 70px; 
+	font-size: 11pt; 
+	letter-spacing :-0.04em; 
+	color: #505050; 
+	cursor: pointer;
+}
+
+span.findaccount_click:hover {
+	color: #ff4b4e; 
+}
