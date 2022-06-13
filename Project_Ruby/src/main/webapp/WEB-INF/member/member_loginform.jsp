@@ -70,23 +70,22 @@ $(document).ready(function(){
 			</div>
 			<ul>
 				<li>
-				<input type="checkbox" id="findid_email" name="selector" onchange="setDisplay()">
-				<label for="findid_email">아이디 저장</label>
+				<input type="checkbox" id="saveid" name="saveid" onchange="setDisplay()">
+				<label for="saveid">아이디 저장</label>
 				<div class="check"></div>
 				</li>
 			</ul>
 			<span class="findaccount_click" onclick="location.href='/findaccount'">
 			아이디/비밀번호 찾기
 			</span>
-			
 			<button class="btn-large1" style="margin: 30px 0 10px 0;" type="submit">로그인</button>
 			<div style="font-size: 11pt; letter-spacing :-0.04em; color: #767676; text-align: center; padding-top: 25px;" >
-			간편하게 시작하기
-			<br>
-			<br>
-			<img alt="" src="${root }/element/icon_kakaologin.png" class="">&emsp;
-			<img alt="" src="${root }/element/icon_googlelogin.png" class="">&emsp;
-			<img alt="" src="${root }/element/icon_naverlogin.png" class="">
+				간편하게 시작하기
+				<br>
+				<br>
+				<img alt="" src="${root }/element/icon_kakaologin.png" class="">&emsp;
+				<img alt="" src="${root }/element/icon_googlelogin.png" class="">&emsp;
+				<img alt="" src="${root }/element/icon_naverlogin.png" class="">
 			</div>
 			<button class="btn-large2" style="margin-top: 37px;" type="button">회원가입</button>
 			</form>

@@ -16,7 +16,7 @@
 <title>Insert title here</title>
 
 <script type="text/javascript">
-//비밀번호 보이기/숨기기 토글
+//비밀번호 보이기-숨기기 토글
 $(document).ready(function(){
     $('.wrapper i').on('click',function(){
         $('input').toggleClass('active');
@@ -37,6 +37,7 @@ $(document).ready(function(){
 </div>
 <div class="container">
 		<div class="box">
+			<form action="#">
 			<div style="text-align: center; margin-top: 10px; color: #505050; ">
 				입력하신 정보에 해당하는 계정의 비밀번호를 재설정 합니다.<br>
 				재설정하실 비밀번호를 입력해주세요. 
@@ -54,8 +55,8 @@ $(document).ready(function(){
 				<i class="glyphicon glyphicon-eye-close" id="pwtoggle" style="font-size: 16pt; color: #999999"></i>
 			</div>
 			</div>
-			<button class="btn-large" style="margin: 40px 0 35px 0;" type="button">비밀번호 재설정</button>
-
+			<button class="btn-large" style="margin: 40px 0 35px 0;" type="submit">비밀번호 재설정</button>
+			</form>
 		</div>
 	</div>
 </body>

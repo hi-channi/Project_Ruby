@@ -20,7 +20,7 @@ $(function () {
 });
 
 // 라디오 버튼 선택에 따라 아이디 찾기 폼 노출
-function setDisplay(){
+function setFindformType(){
 	if($('input:radio[id=findid_email]').is(':checked')){
     	$('#findid_emailform').show();
 		$('#findid_contactform').hide();
@@ -52,12 +52,12 @@ function setDisplay(){
 						<hr style="margin: 0;">
 						<ul>
 							<li>
-							<input type="radio" id="findid_email" name="selector" checked="checked" onchange="setDisplay()">
+							<input type="radio" id="findid_email" name="selector" checked="checked" onchange="setFindformType()">
 							<label for="findid_email">이메일로 찾기</label>
 							<div class="check"></div>
 							</li>
 							<li>
-							<input type="radio" id="findid_contact" name="selector" onchange="setDisplay()">
+							<input type="radio" id="findid_contact" name="selector" onchange="setFindformType()">
 							<label for="findid_contact">&emsp;&emsp;휴대폰 번호로 찾기</label>
 							<div class="check"><div class="inside"></div></div>
 							</li>
@@ -69,12 +69,12 @@ function setDisplay(){
 						</div>
 						<div class="wrapper">
 							이름&nbsp;&nbsp;
-							<input type="text" class="input" name="job" id="addr2" placeholder="이름을 입력하세요" required="required" style="width: 320px;"> 
+							<input type="text" class="input" name="name" id="name" placeholder="이름을 입력하세요" required="required" style="width: 320px;"> 
 							<span class="underline"></span> 
 						</div>
 						<div class="wrapper">
 							이메일&nbsp;&nbsp;
-							<input type="email" class="input" name="job" id="addr2" placeholder="이메일을 입력하세요" required="required" style="width: 305px;"> 
+							<input type="email" class="input" name="email" id="email" placeholder="이메일을 입력하세요 (ex. devel@ruby.com)" required="required" style="width: 305px;"> 
 							<span class="underline" style="width: 305px; margin: 0 0 0 52px;"></span> 
 						</div>
 						<button class="btn-large" style="margin-top: 40px;" type="submit">아이디 찾기</button>
@@ -87,12 +87,12 @@ function setDisplay(){
 						</div>
 						<div class="wrapper">
 							이름&nbsp;&nbsp;
-							<input type="text" class="input" name="job" id="addr2" placeholder="이름을 입력하세요" required="required" style="width: 320px;"> 
+							<input type="text" class="input" name="name" id="name" placeholder="이름을 입력하세요" required="required" style="width: 320px;"> 
 							<span class="underline"></span> 
 						</div>
 						<div class="wrapper">
 							연락처&nbsp;&nbsp;
-							<input type="text" class="input" name="job" id="addr2" placeholder="연락처를 입력하세요" required="required" style="width: 305px;"> 
+							<input type="text" class="input" name="contact_number" id="contact_number" placeholder="연락처를 입력하세요 (ex. 010-1234-5678)" required="required" style="width: 305px;"> 
 							<span class="underline" style="width: 305px; margin: 0 0 0 52px;"></span> 
 						</div>
 						<button class="btn-large" style="margin-top: 40px;" type="submit">아이디 찾기</button>	
@@ -109,17 +109,17 @@ function setDisplay(){
 						<form action="#findpw">
 						<div class="wrapper" style="margin-top: 40px;">
 							아이디&nbsp;&nbsp;
-							<input type="text" class="input" name="job" id="addr2" placeholder="아이디를 입력하세요" required="required" style="width: 305px;"> 
+							<input type="text" class="input" name="id" id="id" placeholder="아이디를 입력하세요" required="required" style="width: 305px;"> 
 							<span class="underline" style="width: 305px; margin: 0 0 0 52px;"></span> 
 						</div>
 						<div class="wrapper">
 							이름&nbsp;&nbsp;
-							<input type="text" class="input" name="job" id="addr2" placeholder="이름을 입력하세요" required="required" style="width: 320px;"> 
+							<input type="text" class="input" name="name" id="name" placeholder="이름을 입력하세요" required="required" style="width: 320px;"> 
 							<span class="underline"></span> 
 						</div>
 						<div class="wrapper">
 							생년월일&nbsp;&nbsp;
-							<input type="date" class="input" name="birth" required="required" data-placeholder="생년월일을 입력하세요" style="width: 296px; color: #505050;">
+							<input type="date" class="input" name="birth" id="birth" required="required" data-placeholder="생년월일을 입력하세요" style="width: 296px; color: #505050;">
 							<span class="underline" style="width: 296px; margin: 2px 0 0 62px;"></span>
 						</div>
 						<button class="btn-large" style="margin-top: 50px;" type="submit">비밀번호 찾기</button>

@@ -47,7 +47,7 @@ $(function() {
 			<div style="text-align: center; margin-bottom: 30px; color: #505050; ">
 				<b>회원가입을 환영합니다.</b><br> 몇가지 추가정보를 입력하면 활동이 가능합니다.
 			</div>
-			<form action="add" method="post" name="frm" onsubmit="return check(this)">
+			<form action="#" method="post">
 				<div class="wrapper">
 					직업&nbsp;&nbsp;
 					<input type="text" class="input" name="job" id="addr2" placeholder="직업을 입력하세요" required="required" style="width: 320px;"> 

@@ -134,7 +134,7 @@ function search_DaumPostcode() {
 				<i class="glyphicon glyphicon-eye-close" id="pwtoggle" style="font-size: 16pt; color: #999999"></i>
 			</div>
 			<div class="wrapper">
-				<input type="password" class="input" name="password_check" placeholder="비밀번호 확인" required="required"style="width: 360px;">
+				<input type="password" class="input" name="password_check" placeholder="비밀번호 확인" required="required" style="width: 360px;">
 				<span class="underline"></span>
 				<i class="glyphicon glyphicon-eye-close" id="pwtoggle" style="font-size: 16pt; color: #999999"></i>
 			</div>
