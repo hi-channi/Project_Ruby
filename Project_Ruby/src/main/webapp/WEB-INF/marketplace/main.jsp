@@ -49,7 +49,6 @@ $(function(){
 	<%--체크박스 체크시 테이블 select문으로 거래가능 출력--%>
 	$(".chb").click(function(){
 		
-		
 	});
 	
 	
