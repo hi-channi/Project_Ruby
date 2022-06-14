@@ -42,6 +42,16 @@ $(function () {
 	});
 	
 	
+	$(".submenutitle").click(function(){
+		
+		var i=$(this).text();
+		alert(i);
+		
+		$(this).css("font-weight","bold");
+		
+	});
+	
+	
 	
 });
 </script>
@@ -71,15 +81,15 @@ $(function () {
  			
  			<ul class="sub2">
  			<div class="colorbox">
- 				<li><a href="#"><div class="sidemenucolorbox" style="background: black; float: left; border: 1px solid #dbdbdb;"><span class="colorname">블랙</span></div></a></li>
-				<li><a href="#"><div class="sidemenucolorbox" style="background: gray; float: left; border: 1px solid #dbdbdb;"><span class="colorname">회색</span></div></a></li>
-				<li><a href="#"><div class="sidemenucolorbox" style="background: blue; float: left; border: 1px solid #dbdbdb;"><span class="colorname">블루</span></div></a></li>
-				<li><a href="#"><div class="sidemenucolorbox" style="background: yellow; float: left; border: 1px solid #dbdbdb;"><span class="colorname">노랑</span></div></a></li>
-				<li><a href="#"><div class="sidemenucolorbox" style="background: purple; float: left; border: 1px solid #dbdbdb;"><span class="colorname">보라</span></div></a></li>
-				<li><a href="#"><div class="sidemenucolorbox" style="background: white; float: left; border: 1px solid #dbdbdb;"><span class="colorname">흰색</span></div></a></li>
-				<li><a href="#"><div class="sidemenucolorbox" style="background: red; float: left; border: 1px solid #dbdbdb;"><span class="colorname">빨강</span></div></a></li>
-				<li><a href="#"><div class="sidemenucolorbox" style="background: green; float: left; border: 1px solid #dbdbdb;"><span class="colorname">초록</span></div></a></li>
-				<li><a href="#"><div class="sidemenucolorbox" style="background: brown; float: left; border: 1px solid #dbdbdb;"><span class="colorname">갈색</span></div></a></li>
+ 				<li id="colorli"><a href="#"><div class="sidemenucolorbox" style="background: black; float: left; border: 1px solid #dbdbdb;"><span class="colorname">블랙</span></div></a></li>
+				<li id="colorli"><a href="#"><div class="sidemenucolorbox" style="background: gray; float: left; border: 1px solid #dbdbdb;"><span class="colorname">회색</span></div></a></li>
+				<li id="colorli"><a href="#"><div class="sidemenucolorbox" style="background: blue; float: left; border: 1px solid #dbdbdb;"><span class="colorname">블루</span></div></a></li>
+				<li id="colorli"><a href="#"><div class="sidemenucolorbox" style="background: yellow; float: left; border: 1px solid #dbdbdb;"><span class="colorname">노랑</span></div></a></li>
+				<li id="colorli"><a href="#"><div class="sidemenucolorbox" style="background: purple; float: left; border: 1px solid #dbdbdb;"><span class="colorname">보라</span></div></a></li>
+				<li id="colorli"><a href="#"><div class="sidemenucolorbox" style="background: white; float: left; border: 1px solid #dbdbdb;"><span class="colorname">흰색</span></div></a></li>
+				<li id="colorli"><a href="#"><div class="sidemenucolorbox" style="background: red; float: left; border: 1px solid #dbdbdb;"><span class="colorname">빨강</span></div></a></li>
+				<li id="colorli"><a href="#"><div class="sidemenucolorbox" style="background: green; float: left; border: 1px solid #dbdbdb;"><span class="colorname">초록</span></div></a></li>
+				<li id="colorli"><a href="#"><div class="sidemenucolorbox" style="background: brown; float: left; border: 1px solid #dbdbdb;"><span class="colorname">갈색</span></div></a></li>
 				<li></li>	
 			</div>		
  			</ul>

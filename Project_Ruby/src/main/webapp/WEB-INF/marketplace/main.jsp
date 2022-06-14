@@ -17,27 +17,31 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 $(function(){
-	$("#리스트").hide();
+	$("#listtb").hide();
 	
 	
 	<%--목록형 테이블--%>
 	$("span.large").click(function(){
 		
-		$("#리스트").hide();
+		$("#listtb").hide();
+		$("#alltb").show();
 		
-		$("#전체").show();
+		$("span.large").css("border","1px solid black");
+		$("span.list").css("border","1px solid #dbdbdb");
 	});
 	
 	<%--리스트 테이블--%>
 	$("span.list").click(function(){
 		
-		$("#전체").hide();
+		$("#alltb").hide();
+		$("#listtb").show();
 		
-		$("#리스트").show();
+		$("span.list").css("border","1px solid black");
+		$("span.large").css("border","1px solid #dbdbdb");
 	});
 	
 	
-	
+	  
 	
 	<%--검색창 클릭시 가이드 문구 없어짐--%>
 	$(".searchtext").click(function(){
@@ -52,11 +56,149 @@ $(function(){
 	});
 	
 	
+	<%--연관검색어 클릭시 연관검색어 테스트 가져옴--%>
+	$(".searchname").click(function(){
+		
+		location.reload();
+		var i=$(this).text();
+		alert(i);
+		
+	});
+	
+	$(".searchicon").click(function(){
+		
+		var i=$(".searchtext").val();
+		alert(i);
+		location.reload();
+		
+	});
+	
+	
+	/* if(var i=0;i<9;i++)
+	{	
+		$("#chk"+i).change(function(){
+		
+		if($("#chk"+i).is(":checked"))
+		{
+			$(".lab"+i+" img").attr("src","${root }/element/icon_bigheart_inback.png")
+		}
+		else
+		{
+			$(".lab"+i+" img").attr("src","${root }/element/icon_bigheart_noback.png")
+		}
+		});
+	} */
+	
+	<%--이프문으로 수정 해야될 부분--%>
+		$("#chk1").change(function(){
+		
+		if($("#chk1").is(":checked"))
+		{
+			$(".lab1 img").attr("src","${root }/element/icon_bigheart_inback.png")
+		}
+		else
+		{
+			$(".lab1 img").attr("src","${root }/element/icon_bigheart_noback.png")
+		}
+		});
+		
+		$("#chk2").change(function(){
+			
+			if($("#chk2").is(":checked"))
+			{
+				$(".lab2 img").attr("src","${root }/element/icon_bigheart_inback.png")
+			}
+			else
+			{
+				$(".lab2 img").attr("src","${root }/element/icon_bigheart_noback.png")
+			}
+		});
+		
+		$("#chk3").change(function(){
+			
+			if($("#chk3").is(":checked"))
+			{
+				$(".lab3 img").attr("src","${root }/element/icon_bigheart_inback.png")
+			}
+			else
+			{
+				$(".lab3 img").attr("src","${root }/element/icon_bigheart_noback.png")
+			}
+		});
+		
+		
+		$("#chk4").change(function(){
+			
+			if($("#chk4").is(":checked"))
+			{
+				$(".lab4 img").attr("src","${root }/element/icon_bigheart_inback.png")
+			}
+			else
+			{
+				$(".lab4 img").attr("src","${root }/element/icon_bigheart_noback.png")
+			}
+		});
+		
+		
+		$("#chk5").change(function(){
+			
+			if($("#chk5").is(":checked"))
+			{
+				$(".lab5 img").attr("src","${root }/element/icon_bigheart_inback.png")
+			}
+			else
+			{
+				$(".lab5 img").attr("src","${root }/element/icon_bigheart_noback.png")
+			}
+		});
+		
+		
+		$("#chk6").change(function(){
+			
+			if($("#chk6").is(":checked"))
+			{
+				$(".lab6 img").attr("src","${root }/element/icon_bigheart_inback.png")
+			}
+			else
+			{
+				$(".lab6 img").attr("src","${root }/element/icon_bigheart_noback.png")
+			}
+		});
+		
+		
+		$("#chk7").change(function(){
+			
+			if($("#chk7").is(":checked"))
+			{
+				$(".lab7 img").attr("src","${root }/element/icon_bigheart_inback.png")
+			}
+			else
+			{
+				$(".lab7 img").attr("src","${root }/element/icon_bigheart_noback.png")
+			}
+		});
+		
+		
+		$("#chk8").change(function(){
+			
+			if($("#chk8").is(":checked"))
+			{
+				$(".lab8 img").attr("src","${root }/element/icon_bigheart_inback.png")
+			}
+			else
+			{
+				$(".lab8 img").attr("src","${root }/element/icon_bigheart_noback.png")
+			}
+		});
 	
 });
 
 </script>
 </head>
+
+
+
+
 <body>
 <div class="container">
 	<div class="marketfirst">
@@ -102,37 +244,37 @@ $(function(){
 	
 	
 <%--전체 테이블 --%>
-   <div id="전체" class="tab-pane fade in active markettable" >
+   <div id="alltb" class="tab-pane fade in active markettable" >
       <h3>전체 상품</h3>
     <p>
       <table class="table table-bordered alltable" style="width: 1024px; height: 600px;">
          
          <tr>
          	<td id="phototd">
-         	<label for="chk1">
+         	<label for="chk1" class="lab1">
          			<input type="checkbox" id="chk1">
-         			<h class="heart">♡</h>
+         			<img alt="" src="${root }/element/icon_bigheart_noback.png" class="heart">
          	</label>	
          	</td>
          	 
          	<td id="phototd">
-         	<label for="chk2">
+         	<label for="chk2" class="lab2">
          			<input type="checkbox" id="chk2">
-         			<h class="heart">♡</h>
+         			<img alt="" src="${root }/element/icon_bigheart_noback.png" class="heart">
          	</label>	
          	</td>
          	 
          	<td id="phototd">
-         	<label for="chk3">
+         	<label for="chk3" class="lab3">
          			<input type="checkbox" id="chk3">
-         			<h class="heart">♡</h>
+         			<img alt="" src="${root }/element/icon_bigheart_noback.png" class="heart">
          	</label>	
          	</td>
          	
          	<td id="phototd">
-         	<label for="chk4">
+         	<label for="chk4" class="lab4">
          			<input type="checkbox" id="chk4">
-         			<h class="heart">♡</h>
+         			<img alt="" src="${root }/element/icon_bigheart_noback.png" class="heart">
          	</label> 	
          	</td>
          	    	
@@ -147,32 +289,32 @@ $(function(){
          
           <tr>
          	<td id="phototd">
-         	<label for="chk5">
+         	<label for="chk5" class="lab5">
          			<input type="checkbox" id="chk5">
-         			<h class="heart">♡</h>
+         			<img alt="" src="${root }/element/icon_bigheart_noback.png" class="heart">
          	</label>	
          	</td>
          	
          	
          	<td id="phototd">
-         	<label for="chk6">
+         	<label for="chk6" class="lab6">
          			<input type="checkbox" id="chk6">
-         			<h class="heart">♡</h>
+         			<img alt="" src="${root }/element/icon_bigheart_noback.png" class="heart">
          	</label>	
          	</td>
          	
          	<td id="phototd">
-         	<label for="chk7">
+         	<label for="chk7" class="lab7">
          			<input type="checkbox" id="chk7">
-         			<h class="heart">♡</h>
+         			<img alt="" src="${root }/element/icon_bigheart_noback.png" class="heart">
          	</label>	
          	</td>
          	
          	
          	<td id="phototd">
-         	<label for="chk8">
+         	<label for="chk8" class="lab8">
          			<input type="checkbox" id="chk8">
-         			<h class="heart">♡</h>
+         			<img alt="" src="${root }/element/icon_bigheart_noback.png" class="heart">
          	</label>  		
          	</td>
          	  	
@@ -188,8 +330,10 @@ $(function(){
     </p>
   </div>
   
+  
+  
   <%--리스트 테이블 --%>
-   <div id="리스트" class="tab-pane fade in active markettable" >
+   <div id="listtb" class="tab-pane fade in active markettable" >
       <h3>전체 상품 (리스트)</h3>
     <p>
       <table class="table table-bordered listtable" style="width: 1024px; height: 600px;">
