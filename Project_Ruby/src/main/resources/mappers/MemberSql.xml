@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTDMapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruby.devel.service.impl.MemberMapper">
+	<insert id="insertMember" parameterType="member"> 
+		insert into member(id, password, name, nickname, address, birth, contact_number, email, join_day) values (#{id}, #{password}, #{name}, #{nickname}, #{address}, #{birth}, #{contact_number}, #{email}, now())
+	</insert>
+	<select id="getAllDatas" resultType="member">
+		select * from member order by num desc
+	</select>
+	<select id="checkVaildId" parameterType="String" resultType="int">
+		select count(*) from member where id=#{id}
+	</select>
+	<delete id="deleteMember" parameterType="String">
+		delete from member where member_idx=#{member_idx}
+	</delete>
+	<select id="getName" parameterType="String" resultType="String">
+		select name from member where id=#{id}
+	</select>
+	<select id="login" parameterType="HashMap" resultType="int">
+		select count(*) from member where id=#{id} and password=#{password}
+	</select>
+
+
+	<select id="getData" parameterType="String" resultType="member">
+		select * from member where num=#{num}
+	</select>
+	<update id="updateMember" parameterType="member">
+		update member set name=#{name}, pw=#{pw}, hp=#{hp}, addr=#{addr}, email=#{email}, hp=#{hp} where member_idx=#{member_idx}
+	</update>
+</mapper>
