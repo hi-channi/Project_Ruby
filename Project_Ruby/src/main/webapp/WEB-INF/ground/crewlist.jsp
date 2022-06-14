@@ -23,49 +23,45 @@
 <span class="crew_rank">크루 순위</span>
 </div>
 
-<div class="crewrank_list" style="height: 395px;">
-            <div class="listbox1"> 
-                  <table class="table" style="margin-top: 7px;">
-                     
-                        <tr>
-                           <td class="subject1">싹쓰리 <img src="../image/1.png" style="width: 19px;"></td>   <!-- 게시글 제목 출력 -->
-                           <td></td>
-                           <td class="likecount1"><img src="../image/star.png">1,234</td>
-                        </tr>
-                        
-                        <tr>
-                           <td class="subject1">싹쓰리</td>   <!-- 게시글 제목 출력 -->
-                           <td></td>
-                           <td class="likecount1"><img src="../image/star.png">1,234</td>
-                        </tr>
-                        
-                        <tr>
-                           <td class="subject1">싹쓰리</td>   <!-- 게시글 제목 출력 -->
-                           <td></td>
-                           <td class="likecount1"><img src="../image/star.png">1,234</td>
-                        </tr>
-                        
-                        <tr>
-                           <td class="subject1">싹쓰리</td>   <!-- 게시글 제목 출력 -->
-                           <td></td>
-                           <td class="likecount1"><img src="../image/star.png">1,234</td>
-                        </tr>
-                        <tr>
-                           <td class="subject1">싹쓰리</td>   <!-- 게시글 제목 출력 -->
-                           <td></td>
-                           <td class="likecount1"><img src="../image/star.png">1,234</td>
-                        </tr>
-                     
-                  </table>
-            </div>
-               
-         </div>
+<div class="crewrank_list" style="border: 1px solid #191919; border-left-color: #dbdbdb; border-right-color: #dbdbdb; border-bottom-color:#dbdbdb; ">
+<table class="table" style="width: 280px; height: 300px;">
+  <thead>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td >싹쓰리1 <img src="../image/1.png" style="width: 20px;"> </td>
+      <td > <img src="../image/star.png" style="width: 19px;"> 24965점</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td >싹쓰리2</td>
+      <td ><img src="../image/star.png" style="width: 19px;"> 1525점</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td >싹쓰리3</td>
+      <td > <img src="../image/star.png" style="width: 19px;"> 890점</td>
+    </tr>
+     <tr>
+      <th >4</th>
+      <td >싹쓰리4</td>
+      <td > <img src="../image/star.png" style="width: 19px;"> 870점</td>
+    </tr>
+     <tr>
+      <th>5</th>
+      <td >싹쓰리5</td>
+      <td > <img src="../image/star.png" style="width: 19px;"> 860점</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 <span class="new_crew">신규 크루</span>
 
 <div class="newcrewlist" style="border: 1px solid #191919; border-left-color: #dbdbdb; border-right-color: #dbdbdb; border-bottom-color:#dbdbdb; ">
-<table class="table" style="width: 280px; height: 110px;">
+<table class="table" style="width: 280px; height: 150px;">
  <thead>
   </thead>
   <tbody>

@@ -24,7 +24,6 @@
 	left: 610px;
 	bottom: 1056px;
 	right: 1209px;
-	/*폰트 적용*/
 	font-family: 'Noto Sans KR';
 	font-size: 20px;
 	font-weight: 500;
@@ -42,7 +41,6 @@
 	margin: 0 35px 20px 0;
 	padding: 16px 107px 16px 0;
 	background-color: #fff;
-	/*폰트 적용*/
 	font-family: 'Noto Sans KR';
 	font-size: 16px;
 	font-weight: 500;
@@ -64,7 +62,6 @@
 	border-bottom: 1px solid #CCC;
 	color: #555;
 	box-sizing: border-box;
-	/*폰트 적용*/
 	font-family: 'Noto Sans KR';
 	font-size: 16px;
 	padding: 10px 0px;
@@ -115,7 +112,6 @@ input:focus::-webkit-input-placeholder {
 	margin: 0 35px 50px 0;
 	padding: 16px 107px 16px 0;
 	background-color: #fff;
-	/*폰트 적용*/
 	font-family: 'Noto Sans KR';
 	font-size: 16px;
 	font-weight: 500;
@@ -132,7 +128,6 @@ input:focus::-webkit-input-placeholder {
 	margin: 10 35px 50px 10;
 	padding: 20px 110px 20px 0;
 	background-color: #fff;
-	/*폰트 적용*/
 	font-family: 'Noto Sans KR';
 	font-size: 16px;
 	font-weight: 500;
@@ -235,7 +230,6 @@ textarea:focus::-webkit-input-placeholder {
 .crew_enroll_btn {
 	width: 58px;
 	height: 30px;
-	/*폰트 적용*/
 	font-family: 'Noto Sans KR';
 	font-size: 16px;
 	font-weight: 500;
