@@ -26,7 +26,7 @@ $(function() {
 				data : {"id" : id},
 				success : function(data) {
 					if (data.vaild == 0) {
-						alert("가입가능한 아뒤");
+						alert("가입가능한 아이디 입니다.");
 					} else {
 						alert("이미 존재하는 아이디 입니다.\n다른 아이디를 입력해주세요.");
 						$("#id").val("");
@@ -43,7 +43,7 @@ $(function() {
 });
 
 // 비밀번호 일치 검증
-function check(form) {
+function checkpw(form) {
 	if (form.password.value !== form.password_check.value) {
 		alert("비밀번호가 일치하지 않습니다.");
 		form.password.value = "";
@@ -122,7 +122,7 @@ function search_DaumPostcode() {
 </div>
 <div class="container">
 	<div class="box">
-		<form action="add" method="post" name="frm" onsubmit="return check(this)">
+		<form action="memberadd" method="post" onsubmit="return checkpw(this)">
 			<div class="wrapper">
 				<input type="text" class="input" name="id" id="id" placeholder="아이디 입력하세요" required="required" style="width: 280px;">
 				<span class="underline_id"></span>
@@ -139,6 +139,10 @@ function search_DaumPostcode() {
 				<i class="glyphicon glyphicon-eye-close" id="pwtoggle" style="font-size: 16pt; color: #999999"></i>
 			</div>
 			<div class="wrapper">
+				<input type="text" class="input" name="name" placeholder="이름을 입력하세요" required="required" style="width: 360px;">
+				<span class="underline"></span>
+			</div>
+			<div class="wrapper">
 				<input type="text" class="input" name="nickname" placeholder="닉네임을 입력하세요" required="required" style="width: 280px;">
 				<span class="underline_id"></span>
 				<button type="button" class="btn-small" id="idcheck" style="position: absolute; float: left; margin: 10px 0 0 10px;">중복확인</button>
@@ -152,7 +156,7 @@ function search_DaumPostcode() {
 				<button type="button" class="btn-small" style="width: 50px; margin: 0 0 0 6px;" onclick="search_DaumPostcode()">찾기</button><br>
 			</div>
 			<div class="wrapper">
-				<input type="text" class="input" name="addr2" id="addr2" placeholder="상세주소를 입력하세요" style="width: 299px;">
+				<input type="text" class="input" name="addr2" id="addr2" placeholder="상세주소를 입력하세요(선택)" style="width: 299px;">
 				<span class="underline_addr"></span>
 				<input type="text" class="input" name="zipcode" id="zipcode" readonly="readonly" style="width: 50px;">
 			</div>

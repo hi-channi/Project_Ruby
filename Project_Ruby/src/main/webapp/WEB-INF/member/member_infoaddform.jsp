@@ -49,6 +49,7 @@ $(function() {
 			</div>
 			<form action="#" method="post">
 				<div class="wrapper">
+				<input type="text" name="idx" id="idx" required="required" readonly="readonly" value="${member_idx }"> 
 					직업&nbsp;&nbsp;
 					<input type="text" class="input" name="job" id="addr2" placeholder="직업을 입력하세요" required="required" style="width: 320px;"> 
 					<span class="underline"></span> 
