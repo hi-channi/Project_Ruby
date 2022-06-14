@@ -47,7 +47,7 @@ $(function () {
 		var i=$(this).text();
 		alert(i);
 		
-		$(this).css("font-weight","bold");
+		//$(this).css("font-weight","bold");
 		
 	});
 	

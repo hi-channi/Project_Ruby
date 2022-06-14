@@ -94,10 +94,17 @@ $(function(){
 		
 		if($("#chk1").is(":checked"))
 		{
+			var i=$(this).val();
+			alert(i);
+			
 			$(".lab1 img").attr("src","${root }/element/icon_bigheart_inback.png")
+			
 		}
 		else
 		{
+			var i=$(this).val();
+			alert(i);
+			
 			$(".lab1 img").attr("src","${root }/element/icon_bigheart_noback.png")
 		}
 		});
