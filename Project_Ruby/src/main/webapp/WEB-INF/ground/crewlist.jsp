@@ -40,7 +40,7 @@
                         </tr>
                         
                         <tr>
-                           <td class="subject1">싹쓰리</td>   <!-- 게시글 제목 출력 -->
+                           <td class="subject1">싹쓰리1212</td>   <!-- 게시글 제목 출력 -->
                            <td></td>
                            <td class="likecount1"><img src="../image/star.png">1,234</td>
                         </tr>
