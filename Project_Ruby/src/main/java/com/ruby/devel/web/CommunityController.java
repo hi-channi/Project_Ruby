@@ -29,4 +29,10 @@ public class CommunityController {
 	{
 		return "/community/community_detail_normal_logout";
 	}
+	
+	@GetMapping("/community/detailqanda")  // Q&A글 상세보기
+	public String detailQandA()
+	{
+		return "/community/community_detail_qanda";
+	}
 }
