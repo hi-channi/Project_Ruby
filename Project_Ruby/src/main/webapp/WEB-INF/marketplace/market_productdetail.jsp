@@ -16,8 +16,7 @@
 
 <!-- css  -->
 <c:set var="root" value="<%=request.getContextPath()%>" />
-<link rel="stylesheet" type="text/css"
-	href="${root }/css/marketplace/market_productdetail.css">
+<link rel="stylesheet" type="text/css" href="${root }/css/marketplace/market_productdetail.css">
 <title>Insert title here</title>
 
 <!-- 해당 style은 임시로 적용되었습니다. -->
@@ -27,9 +26,6 @@ background-color: #fff !important;
 }
 </style>
 
-<script type="text/javascript">
-
-</script>
 </head>
 <body>
 	<div class="container">
@@ -90,7 +86,7 @@ background-color: #fff !important;
 						</div>
 					</div>
 				</div>
-
+				<!-- 보상 판매 영역  -->  <!-- 추후 거래시 유의사항 으로 변경 예정 -->
 				<div class="bosang">보상 판매 내용</div>
 
 				<div class="bosangcontent">보상 판매 대상 상품은 구매시 사용할 수 있는 포인트로 교환
@@ -117,7 +113,7 @@ background-color: #fff !important;
 					연관상품
 			</div>
 		</div>
-		
+			<!-- 연관 상품 리스트 -->
 		<div class="container3" style="margin: 39px 0 0 0;" >
 			<c:forEach var="i" end="6" begin="1">
 				<div class="relproduct" style="width: 160px; height: 262px; float: left; margin-left: 54.9px;">

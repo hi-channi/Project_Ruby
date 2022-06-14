@@ -12,4 +12,10 @@ public class CommunityController {
 		return "/community/main";  // community/(파일명)
 	}
 	
+	@GetMapping("/communitymain")
+	public String main() {
+		
+		return "/community/community_main";
+	}
+	
 }
