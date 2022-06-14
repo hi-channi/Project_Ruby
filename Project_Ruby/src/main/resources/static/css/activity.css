@@ -172,7 +172,7 @@ div.detail_market,.detail_challenge {
 	
 	/* 폰트 */
 	font-family: "Noto Sans KR";
-	font-size: 10px;
+	font-size: 12px;
 	color: #505050;
 }
 
@@ -181,6 +181,11 @@ div.detail_market,.detail_challenge {
 	width: 150px;
 	height: 150px;
 	margin-bottom: 5px;
+}
+#cimg {
+	border-radius: 10px;
+	width: 150px;
+	/* height: 150px; */
 }
 
 /* 아이콘 위치 조정 */
@@ -254,6 +259,13 @@ div.btn_delete {
 	text-align: center;
 	color: #4d96ff;
 }
+
+/* 페이징 */
+#num1,#num2,#num3,#num4,#num5 {
+	margin: 0 5px 0 5px;
+}
+
+
 /* main css 끝 */
 /* 2. 나의활동>작성글목록 끝 */
 
@@ -261,6 +273,16 @@ div.btn_delete {
 
 /* 3. 나의활동>거래목록 시작 */
 /* main css 시작 */
+/* market 거래완료 img */
+#mimgafter {
+	width: 150px;
+	height: 150px;
+	margin-bottom: 5px;
+	opacity: 30%;
+}
+#msuccess {
+	width: 70px;
+}
 /* main css 끝 */
 /* 3. 나의활동>거래목록 끝 */
 
@@ -268,6 +290,31 @@ div.btn_delete {
 
 /* 4. 나의활동>챌린지목록 시작 */
 /* main css 시작 */
+#cname {
+	margin-top: 2px;
+	margin-left: 4px;
+	font-size: 12px;
+	letter-spacing: -0.23px;
+	text-align: left;
+}
+#cimgafter_s {
+	width: 150px;
+	height: 150px;
+	margin-bottom: 5px;
+	opacity: 20%;
+	border: 5px solid #6bcb77;
+	border-radius: 10px;
+}
+#cimgafter_f {
+	width: 150px;
+	height: 150px;
+	margin-bottom: 5px;
+	opacity: 20%;
+	border: 5px solid #ff4b4e;
+	border-radius: 10px;
+}
+#csuccess {	width: 90px; }
+#cfail { width: 50px; }
 /* main css 끝 */
 /* 4. 나의활동>챌린지목록 끝 */
 
@@ -275,7 +322,39 @@ div.btn_delete {
 
 /* 5. 나의활동>스크랩 시작 */
 /* main css 시작 */
-
+#mcompany {
+	margin-top: 5px;
+	font-size: 12px;
+	font-weight: 500;
+	letter-spacing: -0.23px;
+	text-align: left;
+	color: #191919;
+}
+#mname {
+	margin-top: 2px;
+	font-size: 12px;
+	letter-spacing: -0.23px;
+	text-align: left;
+}
+#mprice {
+	margin: 8px 3px 0 0;
+	font-size: 15px;
+	font-weight: 600;
+	letter-spacing: -0.23px;
+	text-align: left;
+}
+#moprice {
+	margin: 8px 0 0 8px;
+	font-size: 12px;
+	font-weight: 400;
+	letter-spacing: -0.23px;
+	text-align: left;
+	text-decoration:line-through;
+	color: #767676;
+}
+.icon_activity_move {
+	margin: 50px 0 0 30px;
+}
 /* main css 끝 */
 
 /* main2 css 시작 */

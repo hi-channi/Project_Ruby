@@ -66,18 +66,18 @@ span.side_main_span_main {
 		<hr style="border: solid 1px #191919;">
 	</div>
 	<div class="main_detail3">
-		<!-- 나의 거래 목록 보이기 -->
+		<!-- 나의 거래 목록 보이기 -->		
 		<div class="detail_market">
-			<img id="mimg" src="${root }/element/icon_noimg.png">
-			상품 제목이 입력되는 공간입니다!! 상품 제목이 입력되는 공간입니다!!
+			<img id="mimg" src="${root }/activity/img_activity_key1.jpg">
+			<div id="mname">한성컴퓨터 블루투스 무접점 한글 영문 무선키보드</div>
 		</div>
 		<div class="detail_market">
 			<img id="mimg" src="${root }/element/icon_noimg.png">
-			상품 제목이 입력되는 공간입니다!! 상품 제목이 입력되는 공간입니다!!
+			<div id="mname">제품명</div>
 		</div>
 		<div class="detail_market">
 			<img id="mimg" src="${root }/element/icon_noimg.png">
-			상품 제목이 입력되는 공간입니다!! 상품 제목이 입력되는 공간입니다!!
+			<div id="mname">제품명</div>
 		</div>
 	</div>
 	<a href="../activity/seeMarketplace"><img src="${root }/element/icon_activity_add.png" class="icon_activity_add"></a>
@@ -91,16 +91,16 @@ span.side_main_span_main {
 	<div class="main_detail4">
 		<!-- 나의 챌린지 목록 보이기 -->
 		<div class="detail_challenge">
-			<img id="cimg" src="${root }/element/icon_noimg.png">
-			챌린지 명이 입력되는 공간입니다!! 챌린지 명이 입력되는 공간입니다!!
+			<img id="cimg" src="${root }/activity/img_challenge_key1.jpg">
+			<div id="cname">매일아침 조깅 1시간 챌린지</div>
 		</div>
 		<div class="detail_challenge">
 			<img id="cimg" src="${root }/element/icon_noimg.png">
-			챌린지 명이 입력되는 공간입니다!! 챌린지 명이 입력되는 공간입니다!!
+			<div id="cname">챌린지명</div>
 		</div>
 		<div class="detail_challenge">
 			<img id="cimg" src="${root }/element/icon_noimg.png">
-			챌린지 명이 입력되는 공간입니다!! 챌린지 명이 입력되는 공간입니다!!
+			<div id="cname">챌린지명</div>
 		</div>
 	</div>
 	<a href="../activity/seeChallenge"><img src="${root }/element/icon_activity_add.png" class="icon_activity_add"></a>

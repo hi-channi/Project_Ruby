@@ -82,6 +82,17 @@ span.side_main_span_write {
 		<hr style="border: solid 0.5px #767676;">
 		
 		<div class="btn_delete" style="border: solid 0.5px #4d96ff;">삭제하기</div>
+		
+		<!-- 페이징 -->
+		<div class="page" align="center" style="margin-top: 20px;">
+			<img src="${root }/activity/icon_activity_move2.png">
+			<span id="num1">1</span>
+			<span id="num2">2</span>
+			<span id="num3">3</span>
+			<span id="num4">4</span>
+			<span id="num5">5</span>
+			<img src="${root }/activity/icon_activity_move1.png">
+		</div>
 	</div>
 </div>
 

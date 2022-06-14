@@ -30,20 +30,50 @@ span.side_main_span_scrap {
 <hr id="main_hr">
 <div class="main_content">
 	<!-- 상품 스크랩 -->
-	<div class="main_detail3">
+	<div class="main_detail3" style="width: 850px;">
 		<!-- 나의 거래 목록 보이기 -->
-		<div class="detail_market">
-			<img id="mimg" src="${root }/element/icon_noimg.png">
-			상품 제목이 입력되는 공간입니다!! 상품 제목이 입력되는 공간입니다!!
+		<div class="detail_market" style="position: relative;">
+			<img id="mimg" src="${root }/activity/img_activity_key1.jpg">
+			<div style="position: absolute; top: 10px; right: 10px;">
+				<img id="mimgdel" src="${root }/element/icon_activity_delete.png">
+			</div>
+			<div id="mcompany">레오폴드</div>
+			<div id="mname">FC750RBT PD 그레이 블루 한글 적축(국내정품)</div>
+			<span id="mprice">173,000</span>원
+			<span id="moprice">200,000</span>
 		</div>
-		<div class="detail_market">
+		<div class="detail_market" style="position: relative;">
 			<img id="mimg" src="${root }/element/icon_noimg.png">
-			상품 제목이 입력되는 공간입니다!! 상품 제목이 입력되는 공간입니다!!
+			<div style="position: absolute; top: 10px; right: 10px;">
+				<img id="mimgdel" src="${root }/element/icon_activity_delete.png">
+			</div>
+			<div id="mcompany">제조사</div>
+			<div id="mname">제품명</div>
+			<span id="mprice">1,111,111</span>원
+			<span id="moprice">2,222,222</span>
 		</div>
-		<div class="detail_market">
+		<div class="detail_market" style="position: relative;">
 			<img id="mimg" src="${root }/element/icon_noimg.png">
-			상품 제목이 입력되는 공간입니다!! 상품 제목이 입력되는 공간입니다!!
+			<div style="position: absolute; top: 10px; right: 10px;">
+				<img id="mimgdel" src="${root }/element/icon_activity_delete.png">
+			</div>
+			<div id="mcompany">제조사</div>
+			<div id="mname">제품명</div>
+			<span id="mprice">1,111,111</span>원
+			<span id="moprice">2,222,222</span>
 		</div>
+		<div class="detail_market" style="position: relative;">
+			<img id="mimg" src="${root }/element/icon_noimg.png">
+			<div style="position: absolute; top: 10px; right: 10px;">
+				<img id="mimgdel" src="${root }/element/icon_activity_delete.png">
+			</div>
+			<div id="mcompany">제조사</div>
+			<div id="mname">제품명</div>
+			<span id="mprice">1,111,111</span>원
+			<span id="moprice">2,222,222</span>
+		</div>	
+		
+		<a href=""><img src="${root }/element/icon_activity_move.png" class="icon_activity_move"></a>
 	</div>
 
 </div>
@@ -64,6 +94,17 @@ span.side_main_span_scrap {
 		<hr style="border: solid 0.5px #767676;">
 		<div class="write_sub">내 작성글 제목</div>
 		<hr style="border: solid 0.5px #767676;">
+		
+		<!-- 페이징 -->
+		<div class="page" align="center" style="margin-top: 50px;">
+			<img src="${root }/activity/icon_activity_move2.png">
+			<span id="num1">1</span>
+			<span id="num2">2</span>
+			<span id="num3">3</span>
+			<span id="num4">4</span>
+			<span id="num5">5</span>
+			<img src="${root }/activity/icon_activity_move1.png">
+		</div>
 	</div>
 </div>
 

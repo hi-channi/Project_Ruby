@@ -26,12 +26,72 @@ span.side_main_span_market {
 </head>
 <body>
 <!-- main -->
-<div class="main_title">거래 목록</div>
+<div class="main_title">거래 미완료 목록 보기</div>
 <hr id="main_hr">
+
 <div class="main_content">
-	<!-- 거래 목록 -->
+	<!-- 거래 미완료 목록 -->
+	<div class="main_detail3" style="width: 800px;">
+		<div class="detail_market">
+			<img id="mimg" src="${root }/activity/img_activity_key1.jpg">
+			<div id="mname">
+				한성컴퓨터 블루투스 무접점 한글 영문 무선키보드
+			</div>
+		</div>
+		<div class="detail_market">
+			<img id="mimg" src="${root }/element/icon_noimg.png">
+			<div id="mname">제품명</div>
+		</div>
+		<div class="detail_market">
+			<img id="mimg" src="${root }/element/icon_noimg.png">
+			<div id="mname">제품명</div>
+		</div>
+		<div class="detail_market">
+			<img id="mimg" src="${root }/element/icon_noimg.png">
+			<div id="mname">제품명</div>
+		</div>
+		
+		<a href=""><img src="${root }/element/icon_activity_move.png" class="icon_activity_move"></a>
+	</div>
+</div>
 
 
+<div class="main_title2">거래 완료 목록 보기</div>
+<hr id="main_hr2">
+<div class="main_content2">
+	<!-- 거래 완료 목록 -->
+	<div class="main_detail3" style="width: 800px;">
+		<div class="detail_market" style="position: relative;">
+			<img id="mimgafter" src="${root }/activity/img_activity_key1.jpg">
+			<div style="position: absolute; top: 65px; left: 40px;">
+				<img id="msuccess" src="${root }/element/img_activity_success.png">
+			</div>
+			<div id="mname">한성컴퓨터 블루투스 무접점 한글 영문 무선키보드</div>
+		</div>
+		<div class="detail_market" style="position: relative;">
+			<img id="mimgafter" src="${root }/element/icon_noimg.png">
+			<div style="position: absolute; top: 65px; left: 40px;">
+				<img id="msuccess" src="${root }/element/img_activity_success.png">
+			</div>
+			<div id="mname">제품명</div>
+		</div>
+		<div class="detail_market" style="position: relative;">
+			<img id="mimgafter" src="${root }/element/icon_noimg.png">
+			<div style="position: absolute; top: 65px; left: 40px;">
+				<img id="msuccess" src="${root }/element/img_activity_success.png">
+			</div>
+			<div id="mname">제품명</div>
+		</div>
+		<div class="detail_market" style="position: relative;">
+			<img id="mimgafter" src="${root }/element/icon_noimg.png">
+			<div style="position: absolute; top: 65px; left: 40px;">
+				<img id="msuccess" src="${root }/element/img_activity_success.png">
+			</div>
+			<div id="mname">제품명</div>
+		</div>
+		
+		<a href=""><img src="${root }/element/icon_activity_move.png" class="icon_activity_move"></a>
+	</div>
 </div>
 
 </body>
