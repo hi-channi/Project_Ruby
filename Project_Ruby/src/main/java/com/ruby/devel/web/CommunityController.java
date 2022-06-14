@@ -17,4 +17,16 @@ public class CommunityController {
 	{
 		return "/community/community_contentaddform";
 	}
+	
+	@GetMapping("/community/detailnormallogin")  // 일반글 상세보기(로그인)
+	public String detailNormalLogin()
+	{
+		return "/community/community_detail_normal_login";
+	}
+	
+	@GetMapping("/community/detailnormallogout")  // 일반글 상세보기(로그아웃)
+	public String detailNormalLogout()
+	{
+		return "/community/community_detail_normal_logout";
+	}
 }
