@@ -34,10 +34,52 @@ $(function() {
     });
     /*End Dropdown Menu*/
     
+    // 업로드 된 파일명
+   $("#file").on("change",function(){
+      fileName=$("#file")[0].files;
+       fileList="";
+      // 최대 업로드 이미지 수 제한
+      if(fileName.length>5){
+         alert("이미지는 최대 5장까지 첨부 가능합니다.");
+         return false;
+      }
+      var vaildchk=1;      // 유효성 검증 값
+       for(i=0; i<fileName.length; i++){
+          if(checkFileName(fileName[i].name)==true) {      // 파일명 검증
+             fileList +=fileName[i].name+", ";
+          } else {
+             vaildchk=0;      // 유효성 검증 실패
+             break;
+          }
+       }
+       if(vaildchk==1) {
+          fileList=fileList.slice(0, -2);
+         $("input.filename_list").val(fileList);
+       } else {   // vaildchk==0 
+          fileList="";
+         $("input.filename_list").val("파일명(확장자)를 확인 후 재업로드 해주세요");
+       }
+   });
+    
     /* 연령대 선택 하지 않았을 경우 페이지 이동 방지 스크립트 추가하기 */
 });
-</script>
 
+//파일명 검증
+function checkFileName(str){
+    var ext=str.split(".").pop().toLowerCase();
+    var pattern =   /[\{\}\/?,;:|*~`!^\+<>@\#$%&\\\=\'\"]/gi;
+    if($.inArray(ext, ["bmp","jpg","png","jpeg","gif"]) == -1) {    // 파일 확장자 체크
+       //alert(ext);
+        alert("이미지 파일만 업로드 가능합니다.\n(업로드 가능 확장자: jpg, png, bmp, gif)");
+        return false;
+    } else if(pattern.test(str)){    // 파일명에 특수문자 체크
+        alert("파일명에 특수문자를 제거해주세요.");
+        return false;
+    } else {
+       return true;
+    }
+ }
+</script>
 
 </head>
 <body>
@@ -54,8 +96,8 @@ $(function() {
 	 		<div class="wrapper">
           
                <div class="dropdown">
-                  <div class="select">
-                     <span class="category_placeholder"> <div style="padding-bottom: 20px;">카테고리를 선택하세요</div> </span> <i class="fa fa-chevron-left"></i>
+                  <div class="select" style="margin-top: -5px;">
+                     <span class="category_placeholder" > <div>카테고리를 선택하세요</div> </span> <i class="fa fa-chevron-left"></i>
                   </div>
                   <input type="hidden" name="" value="empty">
                   <ul class="dropdown-menu">
@@ -89,6 +131,18 @@ $(function() {
 					</div>
 	 			</td>
  			</tr>
+ 			
+ 			<tr>
+ 				<td class="text1"><div style="padding-bottom: 20px;">상품 사진</div></td>
+	 			<td class="text2">
+	 				<div class="filebox" style="padding-bottom: 15px;">
+                    		<input class="filename_list" style="margin-left: 60px; outline: none;" value="업로드 버튼으로 이미지를 첨부하세요" readonly="readonly">      
+                       		 <label for="file">업로드</label> 
+                        	<input type="file" value="첨부파일" id="file" name="photo" style="width: 520px;" multiple="multiple">
+             	 	 </div>
+	 			</td>
+ 			</tr>
+ 			
  			<tr>
  				<td class="text1"><div style="padding-bottom: 20px;">상품원가</div></td>
 	 			<td class="text2">
@@ -145,7 +199,7 @@ $(function() {
 				<td colspan="2">
 				<div class="wrapper_textarea" style="margin-top: 15px;">
                <div style="position:relative; margin-bottom: 15px; font-size:16px; font-weight: 500; color: #505050;" >상품 설명</div>
-               <textarea class="select" style="resize: none;" placeholder="상품 판매자가 상품 등록시 올리는 설명 글을 작성하는 공간입니다."></textarea>
+               <textarea class="select" style="resize: none;" placeholder="판매할 상품에 대한 정보를 입력해주세요.&#13;&#10;상세하게 작성할 수록 새로운 주인을 찾기 쉬워요!"></textarea>
                <div style="font-size:12px; letter-spacing :-0.1em; position: relative; margin-bottom: 10px; color: #505050">
                </div>
           		 </div>

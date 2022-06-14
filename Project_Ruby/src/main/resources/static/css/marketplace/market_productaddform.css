@@ -28,7 +28,7 @@ div.container div.box {
 	bottom: 170px;
 	left: 590px;
 	width: 724px;
-	height: 938px;
+	height: 1030px;
 	background-color: #fff;
     border-radius: 20px;
 }
@@ -142,7 +142,7 @@ input:focus::-webkit-input-placeholder {
 	padding-top: 5px;
 	font-size: 16px;
 	color: #474747;
-	height: 48px;
+	height: 40px;
 	text-align: left;
 	outline: none;
 }
@@ -224,7 +224,7 @@ textarea {
 	width: 640px;
 	height: 236px;
 	margin: 56px 0 40px;
-	padding: 14px 203px 112px 14px;
+	padding: 14px;
 	border-radius: 10px;
 	border: solid 1px #dbdbdb;
 	background-color: #fff;
@@ -274,4 +274,38 @@ textarea:focus {
 
 .btn-large:focus {
 	outline: none;
+}
+
+ /* input file 수정 */
+.filebox .filename_list {
+    display: inline-block;
+    width: 300px;
+    height: 40px;
+    padding: 0 10px;
+    vertical-align: middle;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    color: #999999;
+}
+
+.filebox label {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    vertical-align: middle;
+    background-color: #ff4b4e;
+    cursor: pointer;
+    height: 40px;
+    margin-left: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+
+.filebox input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
 }

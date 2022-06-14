@@ -19,6 +19,14 @@
 <link rel="stylesheet" type="text/css"
 	href="${root }/css/marketplace/market_productdetail.css">
 <title>Insert title here</title>
+
+<!-- 해당 style은 임시로 적용되었습니다. -->
+<style type="text/css">
+div.main {
+background-color: #fff !important;
+}
+</style>
+
 <script type="text/javascript">
 
 </script>
