@@ -5,12 +5,16 @@
 	height: 1250px;
 }
 
-div.layout div.main {
+/*div.layout div.main {
 	position: relative;
 	background-color: #fff;
 	width: 1920px;
 	height: 1250px;
 	z-index: 1;
+}*/
+
+div.main {
+background-color: #fff !important;
 }
 
 .crewrank {
@@ -27,6 +31,7 @@ div.layout div.main {
 	width: 87px;
 	height: 35px;
 	margin: 53px 279px 20px 320px;
+	/*폰트 적용*/
 	font-family: 'Noto Sans KR';
 	font-size: 24px;
 	font-weight: 500;
@@ -50,6 +55,7 @@ div.layout div.main {
 	width: 87px;
 	height: 35px;
 	margin: 53px 279px 20px 320px;
+	/*폰트 적용*/
 	font-family: 'Noto Sans KR';
 	font-size: 24px;
 	font-weight: 500;
@@ -60,10 +66,11 @@ div.layout div.main {
 	text-align: left;
 	color: #191919;
 	position: relative;
-	top: -750px;
+	top: -950px;
 }
 
 td, th, tr {
+	/*폰트 적용*/
 	font-family: 'Noto Sans KR';
 }
 
@@ -71,7 +78,7 @@ td, th, tr {
 	width: 280px;
 	height: 150px;
 	position: relative;
-	top: -738px;
+	top: -940px;
 	margin-left: 310px;
 	position: relative;
 }
@@ -80,6 +87,7 @@ td, th, tr {
 	width: 87px;
 	height: 35px;
 	margin: 53px 279px 20px 320px; 
+	/*폰트 적용*/
 	font-family: 'Noto Sans KR';
 	font-size: 24px;
 	font-weight: 500;
@@ -89,7 +97,7 @@ td, th, tr {
 	letter-spacing: -0.6px;
 	color: #191919;
 	position: relative;
-	top: -1314px;
+	top: -1415px;
 	left: 350px;
 }
 
@@ -101,6 +109,7 @@ td, th, tr {
 	padding: 8px 15px 10px 15px;
 	border-radius: 20px;
 	 border: 2px solid #ff4b4e; 
+	 /*폰트 적용*/
 	font-family: 'Noto Sans KR';
 	font-size: 14px;
 	font-weight: 400;
@@ -115,7 +124,7 @@ td, th, tr {
 	background-color: #ffffff;
 	position: absolute;
 	left: 580px;
-	top: -6px;
+	top: -108px;
 	transition: all 0.3s ease;
 }
 
@@ -126,6 +135,7 @@ td, th, tr {
 	padding: 8px 15px 10px 15px;
 	border-radius: 20px;
 	border: solid 1px #191919;
+	/*폰트 적용*/
 	font-family: 'Noto Sans KR';
 	font-size: 14px;
 	font-weight: 400;
@@ -138,7 +148,7 @@ td, th, tr {
 	background-color: #ffffff;
 	position: absolute;
 	left: 720px;
-	top: -6.5px;
+	top: -108px;
 }
 
 .btns {
@@ -151,14 +161,14 @@ td, th, tr {
 	width: 898px;
 	height: 529px;
 	position: relative;
-	top: -1306px;
+	top: -1405px;
 	left: 671px;
 
 }
 
 .search {
 	position: relative;
-	top: -1240px;
+	top: -1320px;
 	left: 980px;
 	width: 350px;
 }
@@ -192,7 +202,48 @@ input:focus::-webkit-input-placeholder {
 
 .check{
 	position: relative;
-	top:-1270px;
+	top:-1350px;
 	left: 1350px;
 	
+}
+
+/* BEST 게시글 css */
+
+table.list1{
+   width: 290px; 
+   height: 21px; 
+   margin: 22px 0 0 20px;
+}
+   
+table.list1 tr td.subject1{
+   font-size: 15px;
+   font-weight: 300;
+   font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.38px;
+    color: #505050;
+    padding: 20px 0;
+}
+   
+td.likecount1 {
+  font-size: 13px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.33px;
+  color: #505050;   
+   padding: 20px 0;
+   text-align: right;
+   
+}
+
+td.likecount1 img{
+   max-width: 21px;
+   max-height: 21px;
+}
+td {
+  border-bottom: 1px solid #767676;
+ 
 }
