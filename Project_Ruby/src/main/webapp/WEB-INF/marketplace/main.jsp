@@ -11,20 +11,32 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <c:set var="root" value="<%=request.getContextPath() %>"/>
 <link rel="stylesheet" type="text/css" href="${root }/css/main.css">
-<link rel="stylesheet" type="text/css" href="${root }/css/marketplace_css/marketplacemain.css">
+<link rel="stylesheet" type="text/css" href="${root }/css/marketplace/marketplacemain.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <title>Insert title here</title>
+<style type="text/css">
+div.main {
+background-color: #fff !important;
+}
+
+/* #d1{
+	color: red;
+} */
+
+
+</style>
+
 <script type="text/javascript">
 $(function(){
-	$("#listtb").hide();
+	$(".sangpumlistdiv").hide();
 	
 	
 	<%--목록형 테이블--%>
 	$("span.large").click(function(){
 		
-		$("#listtb").hide();
-		$("#alltb").show();
+		$(".sangpumlistdiv").hide();
+		$(".sangpumdiv").show();
 		
 		$("span.large").css("border","1px solid black");
 		$("span.list").css("border","1px solid #dbdbdb");
@@ -33,8 +45,8 @@ $(function(){
 	<%--리스트 테이블--%>
 	$("span.list").click(function(){
 		
-		$("#alltb").hide();
-		$("#listtb").show();
+		$(".sangpumdiv").hide();
+		$(".sangpumlistdiv").show();
 		
 		$("span.list").css("border","1px solid black");
 		$("span.large").css("border","1px solid #dbdbdb");
@@ -90,113 +102,24 @@ $(function(){
 	} */
 	
 	<%--이프문으로 수정 해야될 부분--%>
-		$("#chk1").change(function(){
+		$("#chk").change(function(){
 		
-		if($("#chk1").is(":checked"))
+		if($("#chk").is(":checked"))
 		{
-			var i=$(this).val();
-			alert(i);
 			
-			$(".lab1 img").attr("src","${root }/element/icon_bigheart_inback.png")
+			
+			$("#lab img").attr("src","${root }/element/icon_bigheart_inback.png")
 			
 		}
 		else
 		{
-			var i=$(this).val();
-			alert(i);
 			
-			$(".lab1 img").attr("src","${root }/element/icon_bigheart_noback.png")
+			
+			$("#lab img").attr("src","${root }/element/icon_bigheart_noback.png")
 		}
 		});
 		
-		$("#chk2").change(function(){
-			
-			if($("#chk2").is(":checked"))
-			{
-				$(".lab2 img").attr("src","${root }/element/icon_bigheart_inback.png")
-			}
-			else
-			{
-				$(".lab2 img").attr("src","${root }/element/icon_bigheart_noback.png")
-			}
-		});
 		
-		$("#chk3").change(function(){
-			
-			if($("#chk3").is(":checked"))
-			{
-				$(".lab3 img").attr("src","${root }/element/icon_bigheart_inback.png")
-			}
-			else
-			{
-				$(".lab3 img").attr("src","${root }/element/icon_bigheart_noback.png")
-			}
-		});
-		
-		
-		$("#chk4").change(function(){
-			
-			if($("#chk4").is(":checked"))
-			{
-				$(".lab4 img").attr("src","${root }/element/icon_bigheart_inback.png")
-			}
-			else
-			{
-				$(".lab4 img").attr("src","${root }/element/icon_bigheart_noback.png")
-			}
-		});
-		
-		
-		$("#chk5").change(function(){
-			
-			if($("#chk5").is(":checked"))
-			{
-				$(".lab5 img").attr("src","${root }/element/icon_bigheart_inback.png")
-			}
-			else
-			{
-				$(".lab5 img").attr("src","${root }/element/icon_bigheart_noback.png")
-			}
-		});
-		
-		
-		$("#chk6").change(function(){
-			
-			if($("#chk6").is(":checked"))
-			{
-				$(".lab6 img").attr("src","${root }/element/icon_bigheart_inback.png")
-			}
-			else
-			{
-				$(".lab6 img").attr("src","${root }/element/icon_bigheart_noback.png")
-			}
-		});
-		
-		
-		$("#chk7").change(function(){
-			
-			if($("#chk7").is(":checked"))
-			{
-				$(".lab7 img").attr("src","${root }/element/icon_bigheart_inback.png")
-			}
-			else
-			{
-				$(".lab7 img").attr("src","${root }/element/icon_bigheart_noback.png")
-			}
-		});
-		
-		
-		$("#chk8").change(function(){
-			
-			if($("#chk8").is(":checked"))
-			{
-				$(".lab8 img").attr("src","${root }/element/icon_bigheart_inback.png")
-			}
-			else
-			{
-				$(".lab8 img").attr("src","${root }/element/icon_bigheart_noback.png")
-			}
-		});
 	
 });
 
@@ -239,169 +162,68 @@ $(function(){
 		<span class="searchname"><a href="#">무선키보드</a></span>&nbsp;&nbsp;
 		<span class="searchname"><a href="#">블루투스키보드</a></span>&nbsp;&nbsp;
 		<span class="searchname"><a href="#">무접점키보드</a></span>
-		<span class="morelook">더보기&nbsp;<span class="glyphicon glyphicon-menu-down morelookicon"></span></span>
+		<!-- <span class="morelook">더보기&nbsp;<span class="glyphicon glyphicon-menu-down morelookicon"></span></span> -->
 	</div>
 	<div class="selectbox">
-		<label><input type="checkbox" class="chb">&nbsp;거래가능 제품만 보기</label>
+		<label class="selectboxlb"><input type="checkbox" class="chb">&nbsp;거래가능 제품만 보기</label>
 		<!-- 상품등록 페이지 연결 -->
-		<a href="#"><img alt="" src="${root }/element/sangpumaddbtn.png" class="addbtnimg"></a>
+		<button type="button" class="btn-small">상품등록</button>
 	</div>
 	<br>
-	<div class="tab-content">
+	<!-- <div class="tab-content"> -->
 	
 	
-<%--전체 테이블 --%>
-   <div id="alltb" class="tab-pane fade in active markettable" >
-      <h3>전체 상품</h3>
-    <p>
-      <table class="table table-bordered alltable" style="width: 1024px; height: 600px;">
-         
-         <tr>
-         	<td id="phototd">
-         	<label for="chk1" class="lab1">
-         			<input type="checkbox" id="chk1">
-         			<img alt="" src="${root }/element/icon_bigheart_noback.png" class="heart">
-         	</label>	
-         	</td>
-         	 
-         	<td id="phototd">
-         	<label for="chk2" class="lab2">
-         			<input type="checkbox" id="chk2">
-         			<img alt="" src="${root }/element/icon_bigheart_noback.png" class="heart">
-         	</label>	
-         	</td>
-         	 
-         	<td id="phototd">
-         	<label for="chk3" class="lab3">
-         			<input type="checkbox" id="chk3">
-         			<img alt="" src="${root }/element/icon_bigheart_noback.png" class="heart">
-         	</label>	
-         	</td>
-         	
-         	<td id="phototd">
-         	<label for="chk4" class="lab4">
-         			<input type="checkbox" id="chk4">
-         			<img alt="" src="${root }/element/icon_bigheart_noback.png" class="heart">
-         	</label> 	
-         	</td>
-         	    	
-         </tr>
-         
-          <tr>
-         	<td id="detailtd"> </td>
-         	<td id="detailtd"> </td>
-         	<td id="detailtd"> </td>
-         	<td id="detailtd"> </td>    	
-         </tr>
-         
-          <tr>
-         	<td id="phototd">
-         	<label for="chk5" class="lab5">
-         			<input type="checkbox" id="chk5">
-         			<img alt="" src="${root }/element/icon_bigheart_noback.png" class="heart">
-         	</label>	
-         	</td>
-         	
-         	
-         	<td id="phototd">
-         	<label for="chk6" class="lab6">
-         			<input type="checkbox" id="chk6">
-         			<img alt="" src="${root }/element/icon_bigheart_noback.png" class="heart">
-         	</label>	
-         	</td>
-         	
-         	<td id="phototd">
-         	<label for="chk7" class="lab7">
-         			<input type="checkbox" id="chk7">
-         			<img alt="" src="${root }/element/icon_bigheart_noback.png" class="heart">
-         	</label>	
-         	</td>
-         	
-         	
-         	<td id="phototd">
-         	<label for="chk8" class="lab8">
-         			<input type="checkbox" id="chk8">
-         			<img alt="" src="${root }/element/icon_bigheart_noback.png" class="heart">
-         	</label>  		
-         	</td>
-         	  	
-         </tr>
-         
-          <tr>
-         	<td id="detailtd"> </td>
-         	<td id="detailtd"> </td>
-         	<td id="detailtd"> </td>
-         	<td id="detailtd"> </td>    	
-         </tr>
-      </table>
-    </p>
+  <%--전체 테이블 --%>
+  <c:forEach var="i" begin="1" end="4"> 
+  <c:forEach var="i" begin="1" end="2">
+  <div class="sangpumdiv" style="border: 0px solid black;">
+	  <label for="chk" class="lab" id="lab">
+	      <input type="checkbox" id="chk">
+	      <img alt="" src="${root }/element/icon_bigheart_noback.png" class="heart">
+	  </label>
+  <div class="sangpumphoto" style="border: 1px solid #dbdbdb;">
+  <img alt="" src="${root }/element/sangpumaddbtn.png" style="max-width: 220px; max-height: 170px;" class="photo">
   </div>
+  
+  <div class="sangpumdetail" style="border: 1px solid #dbdbdb;">
+  <span class="subject">레오폴드</span><br>
+  <span class="content">FC750RBT PD 그레이 블루 한글 적축 [국내정품]</span><br>
+  <span class="price">173,000원</span>&nbsp;&nbsp;&nbsp;<span class="original_price">200,000</span><br>
+  <span class="region">서울</span>
+  </div>
+  </div>
+  </c:forEach>
+  </c:forEach>
   
   
   
-  <%--리스트 테이블 --%>
-   <div id="listtb" class="tab-pane fade in active markettable" >
-      <h3>전체 상품 (리스트)</h3>
-    <p>
-      <table class="table table-bordered listtable" style="width: 1024px; height: 600px;">
-         
-         <tr>
-         	<td id="photozone"></td>
-        	<td id="detailzone">
-        	<label for="listchk1">
-         			<input type="checkbox" id="listchk1">
-         			<h class="listheart">♡</h>
-         	</label>
-        	</td>
-        	<td id="photozone"></td>
-        	<td id="detailzone">
-        	<label for="listchk2">
-         			<input type="checkbox" id="listchk2">
-         			<h class="listheart">♡</h>
-         	</label>
-        	</td>       	
-         </tr>
-         
-         <tr>
-         	<td id="photozone"></td>
-        	<td id="detailzone">
-        	<label for="listchk3">
-         			<input type="checkbox" id="listchk3">
-         			<h class="listheart">♡</h>
-         	</label>
-        	</td>
-        	<td id="photozone"></td>
-        	<td id="detailzone">
-        	<label for="listchk4">
-         			<input type="checkbox" id="listchk4">
-         			<h class="listheart">♡</h>
-         	</label>
-        	</td>       	
-         </tr>
-         
-         <tr>
-         	<td id="photozone"></td>
-        	<td id="detailzone">
-        	<label for="listchk5">
-         			<input type="checkbox" id="listchk5">
-         			<h class="listheart">♡</h>
-         	</label>
-        	</td>
-        	<td id="photozone"></td>
-        	<td id="detailzone">
-        	<label for="listchk6">
-         			<input type="checkbox" id="listchk6">
-         			<h class="listheart">♡</h>
-         	</label>
-        	</td>       	
-         </tr>
-         
-         
-      </table>
-    </p>
+  
+  
+ 
+  <%--리스트 테이블 --%>  
+  <c:forEach var="i" begin="1" end="4"> 
+  <c:forEach var="i" begin="1" end="2">
+  <div class="sangpumlistdiv" style="border: 1px solid black;">
+  <div class="sangpumlistphoto" style="border: 1px solid black;">
+  <img alt="" src="${root }/element/sangpumaddbtn.png" style="max-width: 150px; max-height: 150px;" class="photo">
   </div>
+  <div class="sangpumlistdetail" style="border: 0px solid black">
+  
+  <span class="subject">레오폴드</span><br>
+  <span class="content">FC750RBT PD 그레이 블루 한글 적축 [국내정품]</span><br>
+  <span class="price">173,000원</span>&nbsp;&nbsp;&nbsp;<span class="original_price">200,000</span><br>
+  <span class="region">서울</span>
+  
+  <label for="chk" class="lablist" id="lab">
+	      <input type="checkbox" id="chk">
+	      <img alt="" src="${root }/element/icon_bigheart_noback.png" class="heart">
+    </label> 
+  </div>
+  </div>
+  </c:forEach>
+  </c:forEach>
 	
-  </div>
+  
 	
 
 

@@ -2,9 +2,7 @@
 
  div.container{
 position: absolute;
-background: #fff;
-width: 1550px;
-height: 1250px;
+
 } 
 
 
@@ -181,7 +179,11 @@ div.selectbox{
 	top : 100px;
 	
 }
-
+.selectboxlb{
+	position: relative;
+	top:-30px;
+	
+}
 div.marketplacetable{
 	width: 1000px;
 	height: 1000px;
@@ -270,7 +272,7 @@ marketmenutitle li{
 }
 
 /*전체테이블 하트 아이콘*/
-#chk1,#chk2,#chk3,#chk4,#chk5,#chk6,#chk7,#chk8{
+#chk{
 	position: absolute;
 	left: -999em;
 }
@@ -289,59 +291,177 @@ marketmenutitle li{
 	background-position: center;
 }
 
-#chk1:checked + .heart,#chk2:checked + .heart,#chk3:checked + .heart,#chk4:checked + .heart,
-#chk5:checked + .heart,#chk6:checked + .heart,#chk7:checked + .heart,#chk8:checked + .heart{
-	/*color: red;*/
-	
-}
 
 
 
-/*리스트테이블 하트 아이콘*/
-#listchk1,#listchk2,#listchk3,#listchk4,#listchk5,#listchk6,#listchk7,#listchk8{
-	position: absolute;
-	left: -999em;
-}
-.listheart{
-	display: inline-block;
-	width: 20px;
-	height: 20px;
-	content : '2661';
-	box-sizing: border-box;
-	cursor: pointer;	
-	font-size: 20pt;
+
+/*전체 테이블 */
+.sangpumdiv{
+	width: 220px;
+	height: 300px;
+	float: left;
 	position: relative;
-	left: 260px;
+	margin-left: 30px;
+    margin-top: 100px;
+    left: 0px;
+    top: -52px;
+}
+/*테이블 사진영역*/
+.sangpumphoto{
+  width: 220px;
+  height: 170px;
+  padding-top: 35px;
+}
+/*테이블 하트 아이콘 영역*/
+.lab{
+	position: relative;
+	top: 50px;
+	left: -20px;
+}
+/*테이블 상품 설명 부분*/
+.sangpumdetail{
+	width: 220px;
+	height: 100px;
 }
 
-#listchk1:checked + .listheart,#listchk2:checked + .listheart,#listchk3:checked + .listheart,#listchk4:checked + .listheart,
-#listchk5:checked + .listheart,#listchk6:checked + .listheart,#listchk7:checked + .listheart,#listchk8:checked + .listheart{
-	color: red;
+/*상품 이름*/
+.subject{
+  font-family: Noto Sans KR;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.35px;
+  text-align: left;
+  color: #191919;
+}
+
+/*상품 콘텐트*/
+.content{
+  font-family: Noto Sans KR;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.35px;
+  text-align: left;
+  color: #505050;
+		
+}
+/*상품 오리지널 가격*/
+.original_price{
+  font-family: Roboto;
+  font-size: 14px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.35px;
+  text-align: left;
+  color: #767676;
+  text-decoration:line-through;
+}
+/*지역 */
+.region{
+  font-family: Noto Sans KR;
+  font-size: 11px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.28px;
+  text-align: left;
+  color: #767676;
+}
+
+/*리스트 상품 테이블*/
+.sangpumlistdiv{
+	width: 450px;
+	height: 150px;
+	margin-top: 50px;
+	margin-left : 100px;
+	float: left;
+	position: relative;
+	top: 50px;
+	left: -90px;
+	
+}
+
+/*리스트 상품 테이블 사진부분*/
+.sangpumlistphoto{
+	width: 150px;
+	height: 150px;
+	padding-top: 40px;  
+	
+}
+.sangpumlistdetail{
+	width: 300px;
+	height: 150px;
+	position: relative;
+	left: 150px;
+	top: -150px;
+	margin-top: 30px;
+	margin-left: 10px;
+	
+	
+}
+
+/*리스트 에서의 하트 아이콘*/
+.lablist{
+	position: relative;
+	left: 20px;
+	top: -90px;
 	
 }
 
 
-
-
-
-/*목록 테이블 크기 조정*/
-#phototd{
-	width: 255.75px;
-	height: 228.78px;
+/*주찬님이 뿌려준 버튼 css*/
+.btn-small {
+  outline: none;
+  width: 75px;   /* 넓이 수정 가능 */
+  height: 30px; /* 높이 수정 가능 */
+  border: 2px solid #ff4b4e; 
+  border-radius: 20px;
+  color: #ff4b4e;
+  font-family: 'Noto Sans KR';
+  font-weight: 400;   /* 글씨 Bold 수정 가능 */
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  
+  /*위치로 인한 추가 코드*/
+  left: 920px;
+  top: -70px;
 }
-#detailtd{
-	width: 255.75px;
-	height: 70.7px;
+
+.btn-small {
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+.btn-small:hover {
+   background: #ff4b4e;
+  color: #fff;
+}
+.btn-small:before {
+    position: absolute;
+    content: '';
+    display: inline-block;
+    top: -180px;
+    left: 0;
+    width: 30px;
+    height: 100%;
+    background-color: #fff;
+    animation: shiny-btn1 3s ease-in-out infinite;
 }
 
+.btn-small:active{
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+}
 
-/*리스트 테이블 크기 조정*/
-#photozone{
-	width: 200px;
-	height: 199.66px;
-}
-#detailzone{
-	width: 311.5px;
-	height: 199.66px;
-}
 

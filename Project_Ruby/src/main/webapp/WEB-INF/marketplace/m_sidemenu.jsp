@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Yeon+Sung&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="${root }/css/marketplace_css/marketplacesidemenu.css">
+<link rel="stylesheet" type="text/css" href="${root }/css/marketplace/marketplacesidemenu.css">
 <title>Insert title here</title>
 <script type="text/javascript">
 $(function () {
@@ -42,14 +42,14 @@ $(function () {
 	});
 	
 	
-	$(".submenutitle").click(function(){
+	//이거 라디오 버튼으로 해보기
+	$("#selectionmenu").click(function(){
 		
-		var i=$(this).text();
-		alert(i);
-		
-		//$(this).css("font-weight","bold");
-		
+		$(this).css("color","red");
 	});
+	
+	
+	
 	
 	
 	
@@ -63,47 +63,124 @@ $(function () {
 <div class="sidemenu" style="border: solid 1px #dbdbdb; border-top: solid 2px black;">
  	<ul>
  		<li class="marketmenu">
- 			<div class="marketmenutitle" id="carte1"><b>카테고리</b><span class="glyphicon glyphicon-menu-up menuup1"></span></div>
+ 			<div class="marketmenutitle" id="carte1"><b id="side_control">카테고리</b><span class="glyphicon glyphicon-menu-down menudown1" id="menudownicon"></span></div>
  			<ul class="sub1">
  				<li class="carte1sub"><h6 class="subtitle">IT전자기기</h6>
  				<ul class="sub1-1">
- 					<li class="submenutitle"><a href="#">· 노트북</a></li>
- 					<li class="submenutitle"><a href="#">· 모니터</a></li>
- 					<li class="submenutitle"><a href="#">· 키보드</a></li>
- 					<li class="submenutitle"><a href="#">· 마우스</a></li>
- 					<li class="submenutitle"><a href="#">· 스피커</a></li>
+ 					<li class="submenutitle"><a href="#" id="selectionmenu">· 노트북</a></li>
+ 					<li class="submenutitle"><a href="#" id="selectionmenu">· 모니터</a></li>
+ 					<li class="submenutitle"><a href="#" id="selectionmenu">· 키보드</a></li>
+ 					<li class="submenutitle"><a href="#" id="selectionmenu">· 마우스</a></li>
+ 					<li class="submenutitle"><a href="#" id="selectionmenu">· 스피커</a></li>
  				</ul>
  				</li>
- 				<li class="carte1sub"><h6>IT사무용품</h6></li>
- 				<li class="carte1sub"><h6>IT도서</h6></li>
+ 				<li class="carte1sub"><h6 class="subtitle">IT사무용품</h6></li>
+ 				<li class="carte1sub"><h6 class="subtitle">IT도서</h6></li>
  			</ul>
- 			<div class="marketmenutitle" id="carte2" style="border-top: solid 1px #dbdbdb;"><b>컬러</b><span class="glyphicon glyphicon-menu-up menuup2"></span></div>
+ 			<div class="marketmenutitle" id="carte2" style="border-top: solid 1px #dbdbdb;"><b id="side_control">컬러</b><span class="glyphicon glyphicon-menu-down  menudown2" id="menudownicon"></span></div>
  			
  			<ul class="sub2">
  			<div class="colorbox">
- 				<li id="colorli"><a href="#"><div class="sidemenucolorbox" style="background: black; float: left; border: 1px solid #dbdbdb;"><span class="colorname">블랙</span></div></a></li>
-				<li id="colorli"><a href="#"><div class="sidemenucolorbox" style="background: gray; float: left; border: 1px solid #dbdbdb;"><span class="colorname">회색</span></div></a></li>
-				<li id="colorli"><a href="#"><div class="sidemenucolorbox" style="background: blue; float: left; border: 1px solid #dbdbdb;"><span class="colorname">블루</span></div></a></li>
-				<li id="colorli"><a href="#"><div class="sidemenucolorbox" style="background: yellow; float: left; border: 1px solid #dbdbdb;"><span class="colorname">노랑</span></div></a></li>
-				<li id="colorli"><a href="#"><div class="sidemenucolorbox" style="background: purple; float: left; border: 1px solid #dbdbdb;"><span class="colorname">보라</span></div></a></li>
-				<li id="colorli"><a href="#"><div class="sidemenucolorbox" style="background: white; float: left; border: 1px solid #dbdbdb;"><span class="colorname">흰색</span></div></a></li>
-				<li id="colorli"><a href="#"><div class="sidemenucolorbox" style="background: red; float: left; border: 1px solid #dbdbdb;"><span class="colorname">빨강</span></div></a></li>
-				<li id="colorli"><a href="#"><div class="sidemenucolorbox" style="background: green; float: left; border: 1px solid #dbdbdb;"><span class="colorname">초록</span></div></a></li>
-				<li id="colorli"><a href="#"><div class="sidemenucolorbox" style="background: brown; float: left; border: 1px solid #dbdbdb;"><span class="colorname">갈색</span></div></a></li>
+ 				<li id="colorli"><a href="#">
+ 					<label for="colorchk" class="blacklabel" id="colorkind">
+						<input type="radio" id="colorchk">
+		 					<div class="sidemenucolorbox" style="background: black; border: 1px solid #dbdbdb;">
+		 						<span class="colorname">블랙</span>
+		 					</div>
+		 			</label>
+ 				</a></li>
+ 				
+				<li id="colorli"><a href="#">
+					<label for="colorchk" class="graylabel" id="colorkind">
+						<input type="radio" id="colorchk">
+							<div class="sidemenucolorbox" style="background: gray; border: 1px solid #dbdbdb;">
+							<span class="colorname">회색</span>
+							</div>
+					</label>
+				</a></li>
+				
+				<li id="colorli"><a href="#">
+					<label for="colorchk" class="bluelabel" id="colorkind">
+						<input type="radio" id="colorchk">
+							<div class="sidemenucolorbox" style="background: blue; border: 1px solid #dbdbdb;">
+							<span class="colorname">블루</span>
+							</div>
+					</label>
+				</a></li>
+				
+				<li id="colorli"><a href="#">
+					<label for="colorchk" class="yellowlabel" id="colorkind">
+						<input type="radio" id="colorchk">
+							<div class="sidemenucolorbox" style="background: yellow; border: 1px solid #dbdbdb;">
+							<span class="colorname">노랑</span>
+							</div>
+					</label>
+				</a></li>
+				
+				<li id="colorli"><a href="#">
+					<label for="colorchk" class="purplelabel" id="colorkind">
+						<input type="radio" id="colorchk">
+							<div class="sidemenucolorbox" style="background: purple; border: 1px solid #dbdbdb;">
+							<span class="colorname">보라</span>
+							</div>
+					</label>
+				</a></li>
+				
+				<li id="colorli"><a href="#">
+					<label for="colorchk" class="whitelabel" id="colorkind">
+						<input type="radio" id="colorchk">
+							<div class="sidemenucolorbox" style="background: white; border: 1px solid #dbdbdb;">
+							<span class="colorname">흰색</span>
+							</div>
+					</label>
+				</a></li>
+				
+				<li id="colorli"><a href="#">
+					<label for="colorchk" class="redlabel" id="colorkind">
+						<input type="radio" id="colorchk">
+							<div class="sidemenucolorbox" style="background: red; border: 1px solid #dbdbdb;">
+							<span class="colorname">빨강</span>
+							</div>
+					</label>
+				</a></li>
+				
+				<li id="colorli"><a href="#">
+					<label for="colorchk" class="greenlabel" id="colorkind">
+						<input type="radio" id="colorchk">
+							<div class="sidemenucolorbox" style="background: green; border: 1px solid #dbdbdb;">
+							<span class="colorname">초록</span>
+							</div>
+					</label>
+				</a></li>
+				
+				<li id="colorli"><a href="#">
+					<label for="colorchk" class="brownlabel" id="colorkind">
+						<input type="radio" id="colorchk">		
+							<div class="sidemenucolorbox" style="background: brown; border: 1px solid #dbdbdb;">
+							<span class="colorname">갈색</span>
+							</div>
+					</label>
+				</a></li>
+				
 				<li></li>	
 			</div>		
  			</ul>
  			
- 			<div class="marketmenutitle" id="carte3" style="border-top: solid 1px #dbdbdb;"><b>가격대</b><span class="glyphicon glyphicon-menu-up menuup3"></span></div>
+ 			<div class="marketmenutitle" id="carte3" style="border-top: solid 1px #dbdbdb;"><b id="side_control">가격대</b><span class="glyphicon glyphicon-menu-down  menudown3" id="menudownicon"></span></div>
  			<ul class="sub3">
-			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn"><em class="radioimg"></em>10,000원 이하</label></li>
-			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn"><em class="radioimg"></em>10,000원 ~ 50,000원</label></li>
-			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn"><em class="radioimg"></em>50,000원 ~ 100,000원</label></li>
-			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn"><em class="radioimg"></em>100,000원 ~ 200,000원</label></li>
-			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn"><em class="radioimg"></em>200,000원 이상</label></li>
+			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn"><b class="radioimg"></b>10,000원 이하</label></li>
+			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn"><b class="radioimg"></b>10,000원 ~ 50,000원</label></li>
+			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn"><b class="radioimg"></b>50,000원 ~ 100,000원</label></li>
+			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn"><b class="radioimg"></b>100,000원 ~ 200,000원</label></li>
+			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn"><b class="radioimg"></b>200,000원 이상</label></li>
 			</ul>
 			
 			
+		<!-- 	<label for="colorchk">
+				<input type="checkbox" id="colorchk">
+				<div class="sidemenucolorbox" style="background: brown; border: 1px solid #dbdbdb;">
+				<span class="colorname">갈색</span>
+			</label> -->
  		</li>
  	</ul>
  	

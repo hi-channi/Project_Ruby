@@ -15,7 +15,7 @@ span.sidemenubarname{
   position : relative;
   width: 150px;
   height: 35px;
-  font-family: NotoSansKR;
+  font-family: Noto Sans KR;
   font-size: 24px;
   font-weight: 500;
   font-stretch: normal;
@@ -42,7 +42,7 @@ span.sidemenubarname{
 
 
 .marketmenutitle{
-  font-family: NotoSansKR;
+  font-family: Noto Sans KR;
   font-size: 15px;
   font-weight: 500;
   font-stretch: normal;
@@ -53,7 +53,24 @@ span.sidemenubarname{
   color: #191919;
   
 }
-
+/*사이드 메뉴 타이틀 (카테고리,컬러,가격대) 위치 조정*/
+#side_control{
+	position: relative;
+	top: 15px;
+	left: 10px;
+}
+/*카테고리 안에 큰 타이틀(IT전자기기,사무용품 도서) 폰트 스타일*/
+.subtitle{
+  font-family: Noto Sans KR;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.35px;
+  text-align: left;
+  color: #191919;
+}
 h6{
 cursor: pointer;	
 }
@@ -68,9 +85,12 @@ div.colorbox{
 div.sidemenucolorbox{
   width: 30px;
   height: 30px;
-  margin: 18px 18px 7px 15px;
+  
   border-radius: 100%;
   cursor: pointer;
+  float: left;
+  margin-left: 30px;
+  margin-top: 20px;
 	
 }
 
@@ -79,7 +99,7 @@ div.sidemenucolorbox{
   width: 50px;
   height: 17px;
   
-  font-family: NotoSansKR;
+  font-family: Noto Sans KR;
   font-size: 12px;
   font-weight: normal;
   font-stretch: normal;
@@ -96,7 +116,7 @@ div.sidemenucolorbox{
   width: 300px;
   height: 19px;
   margin: 2px 3px 10px 4px;
-  font-family: NotoSansKR;
+  font-family: Noto Sans KR;
   font-size: 13px;
   font-weight: normal;
   font-stretch: normal;
@@ -113,17 +133,24 @@ div.sidemenucolorbox{
   padding: 0 0 19px;
 }
 
-.menuup1{
+/*사이드바 글리피콘 위치 조정*/
+#menudownicon{
+	position: relative;
+	top: 12px;
+}
+.menudown1{
   position : relative;
   left : 120px;
+  top:100px;
   width: 20px;
   height: 20px;
   padding: 7.5px 3.5px 6.5px 4.5px;
   background-color: #fff;
   
+  
 }
 
-.menuup2{
+.menudown2{
   position : relative;
   left : 148px;
   width: 20px;
@@ -133,7 +160,7 @@ div.sidemenucolorbox{
   
 }
 
-.menuup3{
+.menudown3{
   position : relative;
   left : 135px;
   width: 20px;
@@ -165,10 +192,10 @@ div.sidemenucolorbox{
 
 .radioimg:after {
 	position : relative;
-	top : -30px;
-	left: -2px;
-	content: '\00B7';
-	font-size: 50px;
+	top : -2px;
+	left: 4px;
+	content: '●';
+	font-size: 10px;
 	color: red;
 	opacity: 0;
 }
@@ -181,5 +208,77 @@ div.sidemenucolorbox{
 	cursor: pointer;
 }
 
+
+/*컬러 체크박스 화*/
+#colorchk{
+	position: absolute;
+	left: -999em;
+}
+
+/*컬러 : 블랙 위치*/
+.blacklabel{
+	position: relative;
+	left: -80px;
+}
+/*컬러 : 회색 위치*/
+.graylabel{
+	position: relative;
+	top: -60px;
+	left: -15px;
+}
+
+/*컬러 : 블루 위치*/
+.bluelabel{
+	position: relative;
+	top: -120px;
+	left: 50px;
+}
+
+/*컬러 : 노랑 위치*/
+.yellowlabel{
+	position: relative;
+	left: -80px;
+	top: -120px;
+}
+
+/*컬러 : 보라 위치*/
+.purplelabel{
+	position: relative;
+	left: -15px;
+	top: -180px;
+}
+
+/*컬러 : 흰색 위치*/
+.whitelabel{
+	position: relative;
+	left: 50px;
+	top: -240px;
+}
+
+/*컬러 : 빨강 위치*/
+.redlabel{
+	position: relative;
+	left: -80px;
+	top: -240px;
+}
+
+/*컬러 : 초록 위치*/
+.greenlabel{
+	position: relative;
+	left: -15px;
+	top: -300px;
+}
+
+/*컬러 : 갈색 위치*/
+.brownlabel{
+	position: relative;
+	left: 50px;
+	top: -360px;
+}
+
+
+#colorchk:checked + span.colorname{
+	color: red;
+}
 
 
