@@ -274,7 +274,7 @@ marketmenutitle li{
 /*전체테이블 하트 아이콘*/
 #chk{
 	position: absolute;
-	/* left: -999em;  */
+	 left: -999em;  
 }
 .heart{
 	/*하트 이미지 배경 처리중  사진 안불러와 짐 다시 돌아가려면 메인에 하트 특수문자 넣고  백그라운드 지우고 위치 다시 조정*/

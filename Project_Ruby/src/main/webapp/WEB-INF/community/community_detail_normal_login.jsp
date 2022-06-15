@@ -71,18 +71,18 @@ $(function(){
 	<span class="contentnum">#글번호</span>
 	
 	<%--태그1 받아오기 --%>
-	<div class="tag" style="border: solid 1px #dbdbdb;">
-	<span class="tag">#태그1</span>
+	<div class="tag" style="border: solid 0px #dbdbdb;">
+	<span class="badge" style="font-size: 1.1em; float: left;">태그1</span>
 	</div>
 	
 	<%--태그2 받아오기 --%>
-	<div class="tag" style="border: solid 1px #dbdbdb;">
-	<span class="tag">#태그2</span>
+	<div class="tag" style="border: solid 0px #dbdbdb;">
+	<span class="badge" style="font-size: 1.1em; float: left;">태그2</span>
 	</div>
 	
 	<%--태그3 받아오기 --%>
-	<div class="tag" style="border: solid 1px #dbdbdb;">
-	<span class="tag">#태그3</span>
+	<div class="tag" style="border: solid 0px #dbdbdb;">
+	<span class="badge" style="font-size: 1.1em; float: left;">태그3</span>
 	</div>
 	
 	</div>
@@ -133,29 +133,17 @@ $(function(){
 	
 	
 	<div class="commentdiv" style="border: solid 1px #dbdbdb;">
+	
+	<c:forEach var="i" begin="1" end="3">
 	<div>
 		<img alt="" src="${root }/element/icon_profile.png">
-		<span class="commentuser">유저1</span>
+		<span class="commentuser">유저</span>
 		<input type="text" class="commentwritetext" value="댓글1" readonly="readonly">
 		<br>
 		<span class="commentwriteday">2022-06-14 05:03</span>
 	</div>
+	</c:forEach>
 	
-	<div>
-		<img alt="" src="${root }/element/icon_profile.png">
-		<span class="commentuser">유저2</span>
-		<input type="text" class="commentwritetext" value="댓글2" readonly="readonly">
-		<br>
-		<span class="commentwriteday">2022-06-14 05:05</span>
-	</div>
-	
-	<div>
-		<img alt="" src="${root }/element/icon_profile.png">
-		<span class="commentuser">유저3</span>
-		<input type="text" class="commentwritetext" value="댓글3" readonly="readonly">
-		<br>
-		<span class="commentwriteday">2022-06-14 05:07</span>
-	</div>
 	</div>
 </div>
 </body>

@@ -84,18 +84,18 @@ $(function(){
 	
 	
 	<%--태그1 받아오기 --%>
-	<div class="tag" style="border: solid 1px #dbdbdb;">
-	<span class="tag">#태그1</span>
+	<div class="tag" style="border: solid 0px #dbdbdb;">
+	<span class="badge" style="font-size: 1.1em; float: left;">태그1</span>
 	</div>
 	
 	<%--태그2 받아오기 --%>
-	<div class="tag" style="border: solid 1px #dbdbdb;">
-	<span class="tag">#태그2</span>
+	<div class="tag" style="border: solid 0px #dbdbdb;">
+	<span class="badge" style="font-size: 1.1em; float: left;">태그2</span>
 	</div>
 	
 	<%--태그3 받아오기 --%>
-	<div class="tag" style="border: solid 1px #dbdbdb;">
-	<span class="tag">#태그3</span>
+	<div class="tag" style="border: solid 0px #dbdbdb;">
+	<span class="badge" style="font-size: 1.1em; float: left;">태그3</span>
 	</div>
 	
 	</div>
