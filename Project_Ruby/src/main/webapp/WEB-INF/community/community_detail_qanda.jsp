@@ -146,6 +146,7 @@ $(function(){
 	
 	
 	<div class="commentdiv" style="border: solid 1px #dbdbdb;">
+	<c:forEach var="i" begin="1" end="1">
 	<div>
 		<img alt="" src="${root }/element/icon_profile.png">
 		<span class="commentuser">유저1</span>
@@ -155,7 +156,7 @@ $(function(){
 		<textarea rows="" cols="" class="cocomment" readonly="readonly">??</textarea>
 		<img alt="" src="${root }/element/button_selection.png" class="selectionbtn">
 	</div>
-	
+	</c:forEach>
 	
 	</div>
 </div>
