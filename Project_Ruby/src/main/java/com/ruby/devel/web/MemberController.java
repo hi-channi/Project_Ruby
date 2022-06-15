@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +29,8 @@ public class MemberController {
 	}
 	
 	@PostMapping("/memberadd")
-	public String memberadd(@ModelAttribute MemberDto m_dto,
+	public String memberadd(Model model,
+			@ModelAttribute MemberDto m_dto,
 			@RequestParam String id,
 			@RequestParam String password,
 			@RequestParam String name,
@@ -39,29 +41,17 @@ public class MemberController {
 			@RequestParam String birth,
 			@RequestParam String contact_number,
 			@RequestParam String email
-			
 			) {
 		
 		// 주소 합쳐서 저장
 		m_dto.setAddress(addr1+" "+addr2+" ("+zipcode+")");
 		Mmapper.addMember(m_dto);
 		
+		System.out.println("가입한 아이디의 key: "+m_dto.getMember_idx());
+		model.addAttribute("member_idx", m_dto.getMember_idx());
+		
 		return "/member/member_infoaddform";
 	}
-	
-	// 테스트 중
-	@GetMapping("/member_infoaddform")
-	public ModelAndView memberkeythrow(@ModelAttribute MemberDto m_dto,
-			@RequestParam String id) {
-		System.out.println("가져온 아이디: "+id);
-		int member_idx=Mmapper.memberThrow(id);
-		ModelAndView mview=new ModelAndView();
-		mview.addObject("member_idx", member_idx);
-		
-		mview.setViewName("foward:/member/member_infoaddform");
-		return mview;
-	}
-	
 	
 	// id 검증
 	@ResponseBody	// @RestController 면 생략 가능(json 형태로 반환 > ajax 이용 시 )
