@@ -176,9 +176,21 @@ div.sidemenucolorbox{
 	text-align: left;
 }
 /*라디오 버튼 커스텀*/
- input[type=radio]{
+ input[name='marketprice']{
  /*라디오 버튼 다시 보이게 하기1*/
-	 display: none; 
+	   display: none;
+	
+}
+
+/*카테고리 라디오 */
+input[name='subtitle']{
+
+	display: none;
+}
+
+/*컬러 라디오 */
+input[name='colorradio']{
+	display: none;
 	
 }
 .radioimg{
@@ -287,5 +299,7 @@ div.sidemenucolorbox{
 /* input[type=radio]:checked + span.colorname{
 	color : red;
 } */
+
+
 
 

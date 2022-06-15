@@ -86,39 +86,44 @@ $(function(){
 	});
 	
 	
-	/* if(var i=0;i<9;i++)
-	{	
-		$("#chk"+i).change(function(){
-		
-		if($("#chk"+i).is(":checked"))
-		{
-			$(".lab"+i+" img").attr("src","${root }/element/icon_bigheart_inback.png")
-		}
-		else
-		{
-			$(".lab"+i+" img").attr("src","${root }/element/icon_bigheart_noback.png")
-		}
-		});
-	} */
 	
-	<%--이프문으로 수정 해야될 부분--%>
-		$("#chk").change(function(){
+	
+	<%--목록 테이블 하트 이벤트--%>
+		$(".chheart").change(function(){
 		
-		if($("#chk").is(":checked"))
+		if($(this).is(":checked"))
 		{
-			
-			
-			$("#lab img").attr("src","${root }/element/icon_bigheart_inback.png")
-			
+			$(this).parent('.lab').children(".heart").attr("src","${root }/element/icon_bigheart_inback.png");
+			/* $(this).parent('.lablist').children(".heart").attr("src","${root }/element/icon_bigheart_inback.png"); */
 		}
 		else
 		{
 			
 			
-			$("#lab img").attr("src","${root }/element/icon_bigheart_noback.png")
+			$(this).parent('.lab').children(".heart").attr("src","${root }/element/icon_bigheart_noback.png");
+			/* $(this).parent('.lablist').children(".heart").attr("src","${root }/element/icon_bigheart_noback.png"); */
 			
 		}
 		});
+		
+		
+	 <%--리스트 테이블 하트 이벤트--%>
+		$(".chheart").change(function(){
+		
+		if($(this).is(":checked"))
+		{
+			$(this).parent('.lablist').children(".heart").attr("src","${root }/element/icon_bigheart_inback.png");
+		}
+		else
+		{
+			
+			
+			$(this).parent('.lablist').children(".heart").attr("src","${root }/element/icon_bigheart_noback.png");
+			
+		}
+		});
+		
+		
 		
 		
 	
@@ -175,11 +180,11 @@ $(function(){
 	
 	
   <%--전체 테이블 --%>
-  <c:forEach var="i" begin="1" end="4"> 
-  <c:forEach var="i" begin="1" end="2">
+  <c:forEach var="a" begin="1" end="4" varStatus="i"> 
+  <c:forEach var="a" begin="1" end="2">
   <div class="sangpumdiv" style="border: 0px solid black;">
-	  <label for="chk" class="lab" id="lab">
-	      <input type="checkbox" id="chk">
+	  <label  class="lab" id="lab">
+	      <input type="checkbox" id="chk" value="${i }" class="chheart">
 	      <img alt="" src="${root }/element/icon_bigheart_noback.png" class="heart">
 	  </label>
   <div class="sangpumphoto" style="border: 1px solid #dbdbdb;">
@@ -202,7 +207,7 @@ $(function(){
   
  
   <%--리스트 테이블 --%>  
-  <c:forEach var="i" begin="1" end="4"> 
+  <c:forEach var="i" begin="1" end="4" varStatus="i"> 
   <c:forEach var="i" begin="1" end="2">
   <div class="sangpumlistdiv" style="border: 1px solid #dbdbdb;">
   <div class="sangpumlistphoto" style="border: 1px solid #dbdbdb;">
@@ -215,8 +220,8 @@ $(function(){
   <span class="price">173,000원</span>&nbsp;&nbsp;&nbsp;<span class="original_price">200,000</span><br>
   <span class="region">서울</span>
   
-  <label for="chk" class="lablist" id="lab">
-	      <input type="checkbox" id="chk">
+  <label  class="lablist" id="lab">
+	      <input type="checkbox" id="chk" value="${i }" class="chheart">
 	      <img alt="" src="${root }/element/icon_bigheart_noback.png" class="heart">
     </label> 
   </div>
