@@ -128,7 +128,7 @@ $(function(){
 	<div class="addcomment" style="border: solid 1px #dbdbdb;">
 	
 	<input type="text" value="댓글을 입력하세요" class="commenttext">
-	<img alt="" src="${root }/element/button_addcomment.png" class="commentaddimg">
+	<button type="button" class="btn-small">댓글등록</button>
 	</div>
 	
 	

@@ -40,16 +40,7 @@ $(function () {
 		
 		$(this).next().toggle("fast");
 	});
-	
-	
-	//이거 라디오 버튼으로 해보기
-	$("#selectionmenu").click(function(){
-		
-		$(this).css("color","red");
-	});
-	
-	
-	
+
 	
 	
 	
@@ -82,8 +73,8 @@ $(function () {
  			<ul class="sub2">
  			<div class="colorbox">
  				<li id="colorli"><a href="#">
- 					<label for="colorchk" class="blacklabel" id="colorkind">
-						<input type="radio" id="colorchk">
+ 					<label  class="blacklabel" id="colorkind">
+						<input type="radio" id="colorchk" name="colorradio">
 		 					<div class="sidemenucolorbox" style="background: black; border: 1px solid #dbdbdb;">
 		 						<span class="colorname">블랙</span>
 		 					</div>
@@ -91,8 +82,8 @@ $(function () {
  				</a></li>
  				
 				<li id="colorli"><a href="#">
-					<label for="colorchk" class="graylabel" id="colorkind">
-						<input type="radio" id="colorchk">
+					<label  class="graylabel" id="colorkind">
+						<input type="radio" id="colorchk" name="colorradio">
 							<div class="sidemenucolorbox" style="background: gray; border: 1px solid #dbdbdb;">
 							<span class="colorname">회색</span>
 							</div>
@@ -100,8 +91,8 @@ $(function () {
 				</a></li>
 				
 				<li id="colorli"><a href="#">
-					<label for="colorchk" class="bluelabel" id="colorkind">
-						<input type="radio" id="colorchk">
+					<label  class="bluelabel" id="colorkind">
+						<input type="radio" id="colorchk" name="colorradio">
 							<div class="sidemenucolorbox" style="background: blue; border: 1px solid #dbdbdb;">
 							<span class="colorname">블루</span>
 							</div>
@@ -109,8 +100,8 @@ $(function () {
 				</a></li>
 				
 				<li id="colorli"><a href="#">
-					<label for="colorchk" class="yellowlabel" id="colorkind">
-						<input type="radio" id="colorchk">
+					<label class="yellowlabel" id="colorkind">
+						<input type="radio" id="colorchk" name="colorradio">
 							<div class="sidemenucolorbox" style="background: yellow; border: 1px solid #dbdbdb;">
 							<span class="colorname">노랑</span>
 							</div>
@@ -118,8 +109,8 @@ $(function () {
 				</a></li>
 				
 				<li id="colorli"><a href="#">
-					<label for="colorchk" class="purplelabel" id="colorkind">
-						<input type="radio" id="colorchk">
+					<label  class="purplelabel" id="colorkind">
+						<input type="radio" id="colorchk" name="colorradio">
 							<div class="sidemenucolorbox" style="background: purple; border: 1px solid #dbdbdb;">
 							<span class="colorname">보라</span>
 							</div>
@@ -127,8 +118,8 @@ $(function () {
 				</a></li>
 				
 				<li id="colorli"><a href="#">
-					<label for="colorchk" class="whitelabel" id="colorkind">
-						<input type="radio" id="colorchk">
+					<label  class="whitelabel" id="colorkind">
+						<input type="radio" id="colorchk" name="colorradio">
 							<div class="sidemenucolorbox" style="background: white; border: 1px solid #dbdbdb;">
 							<span class="colorname">흰색</span>
 							</div>
@@ -136,8 +127,8 @@ $(function () {
 				</a></li>
 				
 				<li id="colorli"><a href="#">
-					<label for="colorchk" class="redlabel" id="colorkind">
-						<input type="radio" id="colorchk">
+					<label  class="redlabel" id="colorkind">
+						<input type="radio" id="colorchk" name="colorradio">
 							<div class="sidemenucolorbox" style="background: red; border: 1px solid #dbdbdb;">
 							<span class="colorname">빨강</span>
 							</div>
@@ -145,8 +136,8 @@ $(function () {
 				</a></li>
 				
 				<li id="colorli"><a href="#">
-					<label for="colorchk" class="greenlabel" id="colorkind">
-						<input type="radio" id="colorchk">
+					<label  class="greenlabel" id="colorkind">
+						<input type="radio" id="colorchk" name="colorradio">
 							<div class="sidemenucolorbox" style="background: green; border: 1px solid #dbdbdb;">
 							<span class="colorname">초록</span>
 							</div>
@@ -154,8 +145,8 @@ $(function () {
 				</a></li>
 				
 				<li id="colorli"><a href="#">
-					<label for="colorchk" class="brownlabel" id="colorkind">
-						<input type="radio" id="colorchk">		
+					<label  class="brownlabel" id="colorkind">
+						<input type="radio" id="colorchk" name="colorradio">		
 							<div class="sidemenucolorbox" style="background: brown; border: 1px solid #dbdbdb;">
 							<span class="colorname">갈색</span>
 							</div>

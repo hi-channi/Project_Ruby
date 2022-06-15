@@ -41,7 +41,7 @@ span.sangpumcountcomment {
   width: 122px;
   height: 20px;
   margin: 0 0 0 2px;
-  font-family: NotoSansKR;
+  font-family: Noto Sans KR;
   font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
@@ -123,7 +123,7 @@ span.spanrelatedsearch{
   width: 68px;
   height: 21px;
   margin: 31px 20px 0 32px;
-  font-family: NotoSansKR;
+  font-family: Noto Sans KR;
   font-size: 15px;
   font-weight: 500;
   font-stretch: normal;
@@ -135,7 +135,7 @@ span.spanrelatedsearch{
 	
 }
 span.searchname{
-  font-family: NotoSansKR;
+  font-family: Noto Sans KR;
   font-size: 13px;
   font-weight: normal;
   font-stretch: normal;
@@ -151,7 +151,7 @@ span.morelook{
   margin-left : 500px;
   width: 35px;
   height: 19px;
-  font-family: NotoSansKR;
+  font-family: Noto Sans KR;
   font-size: 13px;
   font-weight: normal;
   font-stretch: normal;
@@ -379,7 +379,7 @@ marketmenutitle li{
 .sangpumlistdiv{
 	width: 450px;
 	height: 150px;
-	margin-top: 50px;
+	margin-top: 40px;
 	margin-left : 100px;
 	float: left;
 	position: relative;

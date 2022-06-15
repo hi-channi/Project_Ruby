@@ -116,6 +116,7 @@ $(function(){
 			
 			
 			$("#lab img").attr("src","${root }/element/icon_bigheart_noback.png")
+			
 		}
 		});
 		
@@ -203,8 +204,8 @@ $(function(){
   <%--리스트 테이블 --%>  
   <c:forEach var="i" begin="1" end="4"> 
   <c:forEach var="i" begin="1" end="2">
-  <div class="sangpumlistdiv" style="border: 1px solid black;">
-  <div class="sangpumlistphoto" style="border: 1px solid black;">
+  <div class="sangpumlistdiv" style="border: 1px solid #dbdbdb;">
+  <div class="sangpumlistphoto" style="border: 1px solid #dbdbdb;">
   <img alt="" src="${root }/element/sangpumaddbtn.png" style="max-width: 150px; max-height: 150px;" class="photo">
   </div>
   <div class="sangpumlistdetail" style="border: 0px solid black">

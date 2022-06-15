@@ -177,7 +177,9 @@ div.sidemenucolorbox{
 }
 /*라디오 버튼 커스텀*/
  input[type=radio]{
-	display: none;
+ /*라디오 버튼 다시 보이게 하기1*/
+	 display: none; 
+	
 }
 .radioimg{
 	border : 1px solid red;
@@ -211,8 +213,10 @@ div.sidemenucolorbox{
 
 /*컬러 체크박스 화*/
 #colorchk{
-	position: absolute;
-	left: -999em;
+	position: relative;
+	
+	/*라디오 버튼 다시 보이게 하기2*/
+	 left: -999em;  
 }
 
 /*컬러 : 블랙 위치*/
@@ -277,8 +281,11 @@ div.sidemenucolorbox{
 }
 
 
-#colorchk:checked + span.colorname{
+/* #colorchk:checked + span.colorname{
 	color: red;
-}
+}  */
+/* input[type=radio]:checked + span.colorname{
+	color : red;
+} */
 
 
