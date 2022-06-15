@@ -226,18 +226,49 @@
 			</table>
 
 		</div>
-		
-		
+
+
 		<div id="modal2">
 
 			<div class="modal_content2">
-				<h4 style="text-align: center; font-family: 'Noto Sans KR';">크루 신청하기
-				</h4>
+				<h4 style="text-align: center; font-family: 'Noto Sans KR';">크루
+					신청하기</h4>
 
-				<table class="table crew_pro">
-					
-				</table>
 
+				<div class="crewname_">crew</div>
+				<span class="inwon">15/50</span>
+				<div class="crewprone" style="border: 0px solid black;">크루 한 줄
+					소개 란입니다. 크루 한 줄 소개 란입니다. 크루 한 줄 소개 란입니다.크루 한 줄 소개 란입니다.</div>
+
+					<div class="mypricrew" style="height: 395px;">
+            <span class="title">내 개인정보</span>
+            <div class="listbox1"> 
+                  <table class="list1" style="margin-top: 7px;">
+                     
+                        <tr>
+                           <td class="subject1">이름</td>   <!-- 게시글 제목 출력 -->
+                           <td></td>
+                           <td class="likecount1">김쌍용</td>
+                        </tr>
+                     
+                        <tr>
+                           <td class="subject1">연령대</td>   <!-- 게시글 제목 출력 -->
+                           <td></td>
+                           <td class="likecount1">20대 초반</td>
+                        </tr>
+                  </table>
+            </div>
+               
+         </div>
+
+<div class="wrapper">
+ <input type="text" class="input" name="crew_name_text" placeholder="자기소개 한 줄" required="required" style="width: 360px;">
+ <span class="underline"></span>
+         </div>
+
+				<button type="submit" class="btn-large">
+					<span class="crew_enroll_btn">신청하기</span>
+				</button>
 
 
 				<button type="button" id="modal_close_btn2"
@@ -249,31 +280,31 @@
 		</div>
 
 	</div>
-		<!-- 테이블 밑에 페이징 처리 넣어야 함 -->
+	<!-- 테이블 밑에 페이징 처리 넣어야 함 -->
 
-		<div class="search">
-			<input type="text" class="text_search" placeholder="검색하실 크루명을 입력하세요"
-				style="width: 300px; height: 36px; font-family: 'Noto Sans KR';">
-			<span class="icon glyphicon glyphicon-search"></span>
-		</div>
+	<div class="search">
+		<input type="text" class="text_search" placeholder="검색하실 크루명을 입력하세요"
+			style="width: 300px; height: 36px; font-family: 'Noto Sans KR';">
+		<span class="icon glyphicon glyphicon-search"></span>
+	</div>
 
-		<div class="check" style="width: 210px;">
-			<input type="checkbox" name="check" id="check1" value="crewsearch"
-				style="font-family: 'Noto Sans KR';"> 신청 가능한 크루만 보기
-		</div>
-
-
+	<div class="check" style="width: 210px;">
+		<input type="checkbox" name="check" id="check1" value="crewsearch"
+			style="font-family: 'Noto Sans KR';"> 신청 가능한 크루만 보기
+	</div>
 
 
-<script type="text/javascript">
-document.getElementById("modal_opne_btn2").onclick = function() {
-	document.getElementById("modal2").style.display = "block";
-}
 
-document.getElementById("modal_close_btn2").onclick = function() {
-	document.getElementById("modal2").style.display = "none";
-}
-</script>
+
+	<script type="text/javascript">
+		document.getElementById("modal_opne_btn2").onclick = function() {
+			document.getElementById("modal2").style.display = "block";
+		}
+
+		document.getElementById("modal_close_btn2").onclick = function() {
+			document.getElementById("modal2").style.display = "none";
+		}
+	</script>
 
 </body>
 </html>
