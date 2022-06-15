@@ -70,6 +70,23 @@ $(function () {
 		
 	
 	 });
+	 
+	 $("#resetbtn").click(function(){
+		 
+		 location.reload();
+	 });
+	 
+	 $("#successbtn").click(function(){
+		
+		var i = $('input[name="subtitle"]:checked').val();
+		var j = $('input[name="colorradio"]:checked').val();
+		//후에 가격대 밸류값 정해서 넘기면 됨
+		var k = $('input[name="marketprice"]:checked').val();
+		 
+		 alert(i+j+k);
+	 });
+	 
+	 
 });
 </script>
 </head>
@@ -217,11 +234,11 @@ $(function () {
  			
  			<div class="marketmenutitle" id="carte3" style="border-top: solid 1px #dbdbdb;"><b id="side_control">가격대</b><span class="glyphicon glyphicon-menu-down  menudown3" id="menudownicon"></span></div>
  			<ul class="sub3">
-			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn"><b class="radioimg"></b>10,000원 이하</label></li>
-			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn"><b class="radioimg"></b>10,000원 ~ 50,000원</label></li>
-			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn"><b class="radioimg"></b>50,000원 ~ 100,000원</label></li>
-			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn"><b class="radioimg"></b>100,000원 ~ 200,000원</label></li>
-			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn"><b class="radioimg"></b>200,000원 이상</label></li>
+			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn" value="10000"><b class="radioimg"></b>10,000원 이하</label></li>
+			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn" value="10000 ~ 50000"><b class="radioimg"></b>10,000원 ~ 50,000원</label></li>
+			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn" value="50000 ~ 100000"><b class="radioimg"></b>50,000원 ~ 100,000원</label></li>
+			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn" value="100000 ~ 200000"><b class="radioimg"></b>100,000원 ~ 200,000원</label></li>
+			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn" value="200000이상"><b class="radioimg"></b>200,000원 이상</label></li>
 			</ul>
 			
 			
@@ -230,12 +247,17 @@ $(function () {
 				<div class="sidemenucolorbox" style="background: brown; border: 1px solid #dbdbdb;">
 				<span class="colorname">갈색</span>
 			</label> -->
-			
+		
 			
  		</li>
  		
  		
  	</ul>
+ 	
+ 	<div class="btnarea" style="border: 1px solid black;">
+ 		<span  id="successbtn">완료</span>
+ 		<span  id="resetbtn">초기화</span>
+ 	</div>
  	
 </div>
 
