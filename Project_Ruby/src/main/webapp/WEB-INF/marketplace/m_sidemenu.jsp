@@ -11,6 +11,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${root }/css/marketplace/marketplacesidemenu.css">
 <title>Insert title here</title>
+
+
+
 <script type="text/javascript">
 $(function () {
 	$(".sub1").hide();
@@ -71,11 +74,14 @@ $(function () {
 	
 	 });
 	 
+	 /*리셋 버튼*/
 	 $("#resetbtn").click(function(){
 		 
 		 location.reload();
+		
 	 });
 	 
+	 /*완료 버튼*/
 	 $("#successbtn").click(function(){
 		
 		var i = $('input[name="subtitle"]:checked').val();
@@ -255,6 +261,10 @@ $(function () {
  	</ul>
  	
  	<div class="btnarea" style="border: 1px solid black;">
+ 		<!-- <button type="button" class="btn-small">완료</button>
+ 		<button type="button" class="btn-small">초기화</button> -->
+ 		
+ 		<button type="button" class="btn-small">완료</button>
  		<span  id="successbtn">완료</span>
  		<span  id="resetbtn">초기화</span>
  	</div>
