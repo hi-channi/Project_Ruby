@@ -39,8 +39,8 @@
 <span class="crew_color">크루 색상</span>
 
 <div id="clr" >
-<div style="background-color: black;"> </div>
-<div style="background-color: gray;"> </div>
+<div style="background-color: #191919;"> </div>
+<div style="background-color: #6464;"> </div>
 <div style="background-color: blue;"> </div>
 <div style="background-color: yellow;">  </div>
 <div style="background-color: purple;">  </div>
@@ -55,10 +55,10 @@
              <td class="text2" >
                 <div id="color2" style="padding-left: 66.2px; margin-top: -15px; font-size: 14px; color: #505050; font-weight: 300;">
                    <span>블랙</span>
-                   <span style="margin-left: 12.5px;">그레이</span>
-                   <span style="margin-left: 12px;">블루</span>
-                   <span style="margin-left: 12px;">옐로우</span>
-                   <span style="margin-left: 11px;">퍼플</span>
+                   <span style="margin-left: 12.5px;" >그레이</span>
+                   <span style="margin-left: 11px;">블루</span>
+                   <span style="margin-left: 11px;">옐로우</span>
+                   <span style="margin-left: 10px;">퍼플</span>
                    <span style="margin-left: 11px;">화이트</span>
                    <span style="margin-left: 12px;">레드</span>
                    <span style="margin-left: 12px;">그린</span>
@@ -80,5 +80,16 @@
 
 </div>
 </div>
+
+<script type="text/javascript">
+
+$("#clr div").click(function () {
+   $(this).css("background-color");
+   $(this).css("border-width","1.2px"); 
+   $(this).css("border-color","#ff4b4e");
+});
+
+
+</script>
 </body>
 </html>
