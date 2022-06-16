@@ -11,7 +11,51 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${root }/css/marketplace/marketplacesidemenu.css">
 <title>Insert title here</title>
+<style type="text/css">
+/*공용버튼*/
+.btn-small {
+  outline: none;
+  width: 75px;   /* 넓이 수정 가능 */
+  height: 30px; /* 높이 수정 가능 */
+  border: 2px solid #ff4b4e; 
+  border-radius: 20px;
+  color: #ff4b4e;
+  font-family: 'Noto Sans KR';
+  font-weight: 400;   /* 글씨 Bold 수정 가능 */
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+}
 
+.btn-small {
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+.btn-small:hover {
+   background: #ff4b4e;
+  color: #fff;
+}
+.btn-small:before {
+    position: absolute;
+    content: '';
+    display: inline-block;
+    top: -180px;
+    left: 0;
+    width: 30px;
+    height: 100%;
+    background-color: #fff;
+    animation: shiny-btn1 3s ease-in-out infinite;
+}
+
+.btn-small:active{
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+}
+</style>
 
 
 <script type="text/javascript">
@@ -49,8 +93,8 @@ $(function () {
 		
 		if($(this).is(":checked"))
 		{
-			var a=$(this).val();
-			alert(a);
+			//var a=$(this).val();
+			//alert(a);
 			
 			$(".colorname").css("color","black");
 			$(this).parent('#colorkind').children(".sidemenucolorbox").children(".colorname").css("color","red");
@@ -64,8 +108,8 @@ $(function () {
 		
 		if($(this).is(":checked"))
 		{
-			var a=$(this).val();
-			alert(a);
+			//var a=$(this).val();
+			//alert(a);
 			
 			$(".cglabel").css("color","black");
 			$(this).parent().css("color","red");
@@ -89,7 +133,7 @@ $(function () {
 		//후에 가격대 밸류값 정해서 넘기면 됨
 		var k = $('input[name="marketprice"]:checked').val();
 		 
-		 alert(i+j+k);
+		 alert(i+","+j+","+k);
 	 });
 	 
 	 
@@ -261,12 +305,8 @@ $(function () {
  	</ul>
  	
  	<div class="btnarea" style="border: 0px solid black;">
- 		<!-- <button type="button" class="btn-small">완료</button>
- 		<button type="button" class="btn-small">초기화</button> -->
- 		
- 		
- 		<span  id="successbtn" class="submenubtn">&nbsp;&nbsp;완료&nbsp;&nbsp;</span>
- 		<span  id="resetbtn" class="submenubtn">&nbsp;&nbsp;초기화&nbsp;&nbsp;</span>
+ 		<button type="button" class="btn-marketsub" id="successbtn">검색</button>
+ 		<button type="button" class="btn-marketsub" id="resetbtn">초기화</button>
  	</div>
  	
 </div>

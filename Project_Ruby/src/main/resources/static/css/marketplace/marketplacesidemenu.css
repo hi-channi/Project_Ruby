@@ -297,11 +297,12 @@ input[name='colorradio']{
 /*버튼 div*/
 div.btnarea{
 	position: relative;
+	top: 30px;
 	
 }
 
 /*공용버튼*/
-.btn-small {
+.btn-marketsub {
   outline: none;
   width: 75px;   /* 넓이 수정 가능 */
   height: 30px; /* 높이 수정 가능 */
@@ -315,17 +316,19 @@ div.btnarea{
   transition: all 0.3s ease;
   position: relative;
   display: inline-block;
+  top: 0px;
+  left: 0px;
 }
 
-.btn-small {
+.btn-marketsub {
   overflow: hidden;
   transition: all 0.2s ease;
 }
-.btn-small:hover {
+.btn-marketsub:hover {
    background: #ff4b4e;
   color: #fff;
 }
-.btn-small:before {
+.btn-marketsub:before {
     position: absolute;
     content: '';
     display: inline-block;
@@ -337,24 +340,16 @@ div.btnarea{
     animation: shiny-btn1 3s ease-in-out infinite;
 }
 
-.btn-small:active{
+.btn-marketsub:active{
   box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
               -4px -4px 6px 0 rgba(116, 125, 136, .2), 
     inset -4px -4px 6px 0 rgba(255,255,255,.2),
     inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
 }
 
-
-.submenubtn{
-  width : 200px;
-  border-radius: 10px;
-  background-color: #ff4b4e;
-  font-size : 10pt;
-  font-family: 'Noto Sans KR';
-  color: #fff;
-  
-  }
-  
 #successbtn{
-	margin-left: 60px;
+	margin-left: 30px;
 }
+
+  
+
