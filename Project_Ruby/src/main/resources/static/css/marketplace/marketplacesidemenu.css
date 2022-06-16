@@ -344,3 +344,17 @@ div.btnarea{
     inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
 }
 
+
+.submenubtn{
+  width : 200px;
+  border-radius: 10px;
+  background-color: #ff4b4e;
+  font-size : 10pt;
+  font-family: 'Noto Sans KR';
+  color: #fff;
+  
+  }
+  
+#successbtn{
+	margin-left: 60px;
+}

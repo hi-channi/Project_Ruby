@@ -260,13 +260,13 @@ $(function () {
  		
  	</ul>
  	
- 	<div class="btnarea" style="border: 1px solid black;">
+ 	<div class="btnarea" style="border: 0px solid black;">
  		<!-- <button type="button" class="btn-small">완료</button>
  		<button type="button" class="btn-small">초기화</button> -->
  		
- 		<button type="button" class="btn-small">완료</button>
- 		<span  id="successbtn">완료</span>
- 		<span  id="resetbtn">초기화</span>
+ 		
+ 		<span  id="successbtn" class="submenubtn">&nbsp;&nbsp;완료&nbsp;&nbsp;</span>
+ 		<span  id="resetbtn" class="submenubtn">&nbsp;&nbsp;초기화&nbsp;&nbsp;</span>
  	</div>
  	
 </div>
