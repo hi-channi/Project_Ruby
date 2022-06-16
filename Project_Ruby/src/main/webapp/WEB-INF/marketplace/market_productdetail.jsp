@@ -19,12 +19,25 @@
 <link rel="stylesheet" type="text/css" href="${root }/css/marketplace/market_productdetail.css">
 <title>Insert title here</title>
 
-<!-- 해당 style은 임시로 적용되었습니다. -->
-<style type="text/css">
-div.main {
-background-color: #fff !important;
-}
-</style>
+<script type="text/javascript">
+	$(function () {
+		$(".chheart").change(function(){
+		      
+		      if($(this).is(":checked"))
+		      {
+		         $(this).parent('.lab').children(".heart").attr("src","${root }/element/icon_heart_red.png");
+		        
+		      }
+		      else
+		      {
+		         $(this).parent('.lab').children(".heart").attr("src","${root }/element/icon_heart.png");
+   
+		      }
+		});
+
+	});
+
+</script>
 
 </head>
 <body>
@@ -35,7 +48,7 @@ background-color: #fff !important;
 				
 				<!-- 상세 서브 포토 구현 -->
 					<c:forEach var="1" begin="1" end="4">
-						<div class="subphoto1">
+						<div class="subphoto1" style="cursor: pointer;">
 							<img alt="" src="${root }/photo_marketplace/1.png">
 						</div>
 					</c:forEach>	
@@ -60,7 +73,10 @@ background-color: #fff !important;
 					PD 그레이 블루 한글 적축 (국내정품)
 					</div>
 					<div>
-						<img class="heart" alt="" src="${root }/element/icon_heart.png"> 
+						<label  class="lab" id="lab">
+        					 <input type="checkbox" id="chk" value="${i }" class="chheart">
+         					 <img alt="" src="${root }/element/icon_heart.png" class="heart">
+						</label>
 						<img alt=""	src="${root }/photo_marketplace/share.png" style="margin-top: 10px;">
 					</div>
 				</div>
@@ -102,8 +118,15 @@ background-color: #fff !important;
 					</div>	
 				</div>
 
-				<div class="btn" style="margin: 10px 0 0 335px;">
-					<button type="button" class="btn-small">목록보기</button>
+				<div class="buttongroup" style="margin-top: 25px; text-align: right;">
+					<!-- 등록자 화면에만 보이도록 구현  -->
+					<div class="btn2" style="float: left; margin-left: 170px;">
+						<button type="button" class="btn-complete">거래 완료 처리 </button>
+					</div> 
+					
+					<div class="btn" style="padding: 0px;">
+						<button type="button" class="btn-list">목록보기</button>
+					</div>
 				</div>
 			</div>
 		</div>

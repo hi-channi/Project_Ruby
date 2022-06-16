@@ -32,22 +32,41 @@
 		        $("span.category_placeholder").css("color", "#505050");
 		    });
 		    /*End Dropdown Menu*/
-		
+		    
+		   /* scrap button change */
+		    $(".chscrap").change(function(){
+			      
+			      if($(this).is(":checked"))
+			      {
+			         $(this).parent('.lab').children(".scrap").attr("src","${root }/element/icon_scrap_red.png");
+			        
+			      }
+			      else
+			      {
+			         $(this).parent('.lab').children(".scrap").attr("src","${root }/element/icon_scrap.png");
+	   
+			      }
+			});
+		    /* end scrap button change */
 	});
 </script>
 
-<script type="text/javascript">
-	$(function () {
-		
-		$(".searchimg").click(function() {
-			
-			alert("되라 ~~");
-		});
-		
-	});
-
-
-</script>
+<style type="text/css">
+	.scrap{
+   /*하트 이미지 배경 처리중  사진 안불러와 짐 다시 돌아가려면 메인에 하트 특수문자 넣고  백그라운드 지우고 위치 다시 조정*/
+   width: 26px;
+   height: 26px;
+   content : '2661';
+   box-sizing: border-box;
+   cursor: pointer;   
+   font-size: 20pt;
+   left: 200px;
+   
+}
+#chk{
+   display: none;
+}
+</style>
 
 </head>
 <body>
@@ -127,7 +146,12 @@
 				<c:forEach var="1" begin="1" end="9">	
 				<table class="communitylist">
 					<tr>
-						<td width="32"> <img alt="" src="${root }/element/icon_scrap.png" class="scrapimg"> </td>
+						<td width="32"> 
+						<label  class="lab" id="lab">
+        					 <input type="checkbox" id="chk" value="${i }" class="chscrap">
+         					 <img alt="" src="${root }/element/icon_scrap.png" class="scrap">
+						</label>
+						</td>
 						<td width="550" colspan="2"> 
 							<div class="contentnumber1">#글번호</div>  <!-- 글번호 -->
 							<div class="tagbox" style="margin-top: 4px;">

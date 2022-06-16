@@ -61,6 +61,11 @@ $(function() {
        }
    });
     
+    /* 색상 선택시 rgb값 받아오기 alert test */
+	$("#color div").click(function() {
+ 		alert($(this).css("background-color"));
+ 	});
+    
     /* 연령대 선택 하지 않았을 경우 페이지 이동 방지 스크립트 추가하기 */
 });
 
@@ -136,7 +141,7 @@ function checkFileName(str){
  				<td class="text1"><div style="padding-bottom: 20px;">상품 사진</div></td>
 	 			<td class="text2">
 	 				<div class="filebox" style="padding-bottom: 15px;">
-                    		<input class="filename_list" style="margin-left: 60px; outline: none;" value="업로드 버튼으로 이미지를 첨부하세요" readonly="readonly">      
+                    		<input class="filename_list" style="margin-left: 60px; outline: none;" value="이미지를 첨부하세요" readonly="readonly">      
                        		 <label for="file">업로드</label> 
                         	<input type="file" value="첨부파일" id="file" name="photo" style="width: 520px;" multiple="multiple">
              	 	 </div>
@@ -166,14 +171,14 @@ function checkFileName(str){
 	 			<td class="text2">
 	 				<div id="color" >
 						<div style="background-color: #191919;"></div>
-						<div style="background-color: gray;"></div>
-						<div style="background-color: blue;"></div>
-						<div style="background-color: yellow;"></div>
-						<div style="background-color: purple;"></div>
-						<div style="background-color: white;"></div>
-						<div style="background-color: red;"></div>
-						<div style="background-color: green;"></div>
-						<div style="background-color: brown;"></div>
+						<div style="background-color: #dbdbdb;"></div>
+						<div style="background-color: #5172de;"></div>
+						<div style="background-color: #ffd93d;"></div>
+						<div style="background-color: #72138e;"></div>
+						<div style="background-color: #ffffff;"></div>
+						<div style="background-color: #f62020;"></div>
+						<div style="background-color: #095a19;"></div>
+						<div style="background-color: #541f1f;"></div>
 					</div>
 	 			</td>
  			</tr>

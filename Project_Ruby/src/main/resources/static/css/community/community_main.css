@@ -299,9 +299,9 @@ div.personphoto img{
 }
 
 /* 스크랩버튼 css */
-img.scrapimg {
+img.scrap {
 	margin: -10px 0 12px 10px;
-	cursor: pointer;
+	
 }
 
 /* list 작성일 css */
@@ -310,6 +310,8 @@ tr td div.day{
 	color: #505050;
 	font-size: 16px;
 }
+
+/* 커뮤니티 main css end */
 
 /* 드롭다운 옵션(카테고리 선택) */
 
