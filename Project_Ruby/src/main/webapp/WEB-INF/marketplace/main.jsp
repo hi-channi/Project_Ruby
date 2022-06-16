@@ -30,13 +30,18 @@ background-color: #fff !important;
 <script type="text/javascript">
 $(function(){
 	$(".sangpumlistdiv").hide();
-	
+	$(".pagenumlist").hide();
 	
 	<%--목록형 테이블--%>
 	$("span.large").click(function(){
 		
 		$(".sangpumlistdiv").hide();
+		$(".pagenumlist").hide();
+		
 		$(".sangpumdiv").show();
+		
+		$(".pagenumlist").hide();
+		$(".pagenumall").show();
 		
 		$("span.large").css("border","1px solid black");
 		$("span.list").css("border","1px solid #dbdbdb");
@@ -47,6 +52,9 @@ $(function(){
 		
 		$(".sangpumdiv").hide();
 		$(".sangpumlistdiv").show();
+		
+		$(".pagenumlist").show();
+		$(".pagenumall").hide();
 		
 		$("span.list").css("border","1px solid black");
 		$("span.large").css("border","1px solid #dbdbdb");
@@ -71,7 +79,7 @@ $(function(){
 	<%--연관검색어 클릭시 연관검색어 테스트 가져옴--%>
 	$(".searchname").click(function(){
 		
-		location.reload();
+		//location.reload();
 		var i=$(this).text();
 		alert(i);
 		
@@ -81,7 +89,7 @@ $(function(){
 		
 		var i=$(".searchtext").val();
 		alert(i);
-		location.reload();
+		//location.reload();
 		
 	});
 	
@@ -173,7 +181,7 @@ $(function(){
 	<div class="selectbox">
 		<label class="selectboxlb"><input type="checkbox" class="chb">&nbsp;거래가능 제품만 보기</label>
 		<!-- 상품등록 페이지 연결 -->
-		<button type="button" class="btn-small">상품등록</button>
+		<button type="button" class="btn-addsangpum">상품등록</button>
 	</div>
 	<br>
 	<!-- <div class="tab-content"> -->
@@ -234,8 +242,32 @@ $(function(){
 
 
 
-<%--페이징 처리 --%>
-	<div class="pagenum">
+<%-- 전체 페이지 페이징 처리 --%>
+	<div class="pagenumall">
+	<div class="pagingnumber">
+		<span class="spanpagingnumber">1</span>	
+	</div>
+	
+	<div class="pagingnumber">
+		<span class="spanpagingnumber">2</span>	
+	</div>
+	
+	<div class="pagingnumber">
+		<span class="spanpagingnumber">3</span>	
+	</div>
+	
+	<div class="pagingnumber">
+		<span class="spanpagingnumber">4</span>	
+	</div>
+	
+	<div class="pagingnumber">
+		<span class="spanpagingnumber">5</span>	
+	</div>
+	
+	</div>
+	
+<%-- 리스트 페이지 페이징 처리 --%>
+	<div class="pagenumlist">
 	<div class="pagingnumber">
 		<span class="spanpagingnumber">1</span>	
 	</div>

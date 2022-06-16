@@ -8,7 +8,7 @@ div.sidemenu{
   height: 893px; 
   padding: 0 0 40px;
   background: white; 
-  top: 66px;
+  top: 103px;
 }
 
 span.sidemenubarname{
@@ -24,7 +24,7 @@ span.sidemenubarname{
   letter-spacing: -0.6px;
   text-align: left;
   color: #191919;
-  top: 40px;
+  top: 80px;
 }
 
 .marketpriceselect{
@@ -70,6 +70,7 @@ span.sidemenubarname{
   letter-spacing: -0.35px;
   text-align: left;
   color: #191919;
+  margin-left: 10pt;
 }
 h6{
 cursor: pointer;	
@@ -137,22 +138,24 @@ div.sidemenucolorbox{
 #menudownicon{
 	position: relative;
 	top: 12px;
+	
 }
 .menudown1{
   position : relative;
-  left : 120px;
-  top:100px;
+  left : 131px;
+  top:110px;
   width: 20px;
   height: 20px;
   padding: 7.5px 3.5px 6.5px 4.5px;
   background-color: #fff;
+ 
   
   
 }
 
 .menudown2{
   position : relative;
-  left : 148px;
+  left : 158px;
   width: 20px;
   height: 20px;
   padding: 7.5px 3.5px 6.5px 4.5px;
@@ -162,7 +165,7 @@ div.sidemenucolorbox{
 
 .menudown3{
   position : relative;
-  left : 135px;
+  left : 145px;
   width: 20px;
   height: 20px;
   padding: 7.5px 3.5px 6.5px 4.5px;

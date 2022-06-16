@@ -11,51 +11,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${root }/css/marketplace/marketplacesidemenu.css">
 <title>Insert title here</title>
-<style type="text/css">
-/*공용버튼*/
-.btn-small {
-  outline: none;
-  width: 75px;   /* 넓이 수정 가능 */
-  height: 30px; /* 높이 수정 가능 */
-  border: 2px solid #ff4b4e; 
-  border-radius: 20px;
-  color: #ff4b4e;
-  font-family: 'Noto Sans KR';
-  font-weight: 400;   /* 글씨 Bold 수정 가능 */
-  background: transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  display: inline-block;
-}
 
-.btn-small {
-  overflow: hidden;
-  transition: all 0.2s ease;
-}
-.btn-small:hover {
-   background: #ff4b4e;
-  color: #fff;
-}
-.btn-small:before {
-    position: absolute;
-    content: '';
-    display: inline-block;
-    top: -180px;
-    left: 0;
-    width: 30px;
-    height: 100%;
-    background-color: #fff;
-    animation: shiny-btn1 3s ease-in-out infinite;
-}
-
-.btn-small:active{
-  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
-              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
-    inset -4px -4px 6px 0 rgba(255,255,255,.2),
-    inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
-}
-</style>
 
 
 <script type="text/javascript">
@@ -69,17 +25,73 @@ $(function () {
 		
 		$(this).next().toggle("fast");
 		
+		$("#carte1").children("#menudownicon").attr("class","glyphicon glyphicon-menu-up menudown1");
+		
+		 if($("#carte1").children("#menudownicon").attr("class","glyphicon glyphicon-menu-up menudown1"))
+		{
+			$("#carte1").click(function(){
+				
+				$("#carte1").children("#menudownicon").attr("class","glyphicon glyphicon-menu-down menudown1");
+				
+			});
+		}
+		else if($("#carte1").children("#menudownicon").attr("class","glyphicon glyphicon-menu-down menudown1"))
+		{
+			$("#carte1").click(function(){
+				
+				$("#carte1").children("#menudownicon").attr("class","glyphicon glyphicon-menu-up menudown1");
+				
+			});
+		}
 	});
 	
 	$("#carte2").click(function(){
 		
 		$(".sub2").toggle("fast");
 		
+		
+		$("#carte2").children("#menudownicon").attr("class","glyphicon glyphicon-menu-up menudown2");
+		
+		 if($("#carte2").children("#menudownicon").attr("class","glyphicon glyphicon-menu-up menudown2"))
+		{
+			$("#carte2").click(function(){
+				
+				$("#carte2").children("#menudownicon").attr("class","glyphicon glyphicon-menu-down menudown2");
+				
+			});
+		}
+		else if($("#carte2").children("#menudownicon").attr("class","glyphicon glyphicon-menu-down menudown2"))
+		{
+			$("#carte2").click(function(){
+				
+				$("#carte2").children("#menudownicon").attr("class","glyphicon glyphicon-menu-up menudown2");
+				
+			});
+		}
 	});
 	
 	$("#carte3").click(function(){
 	
 	$(this).next().toggle("fast");
+	
+	$("#carte3").children("#menudownicon").attr("class","glyphicon glyphicon-menu-up menudown3");
+	
+	 if($("#carte3").children("#menudownicon").attr("class","glyphicon glyphicon-menu-up menudown3"))
+	{
+		$("#carte3").click(function(){
+			
+			$("#carte3").children("#menudownicon").attr("class","glyphicon glyphicon-menu-down menudown3");
+			
+		});
+	}
+	else if($("#carte3").children("#menudownicon").attr("class","glyphicon glyphicon-menu-down menudown3"))
+	{
+		$("#carte3").click(function(){
+			
+			$("#carte3").children("#menudownicon").attr("class","glyphicon glyphicon-menu-up menudown3");
+			
+		});
+	}
 	
 	});
 	
@@ -137,6 +149,13 @@ $(function () {
 	 });
 	 
 	 
+	 
+	/*  $(".menudown1").click(function(){
+		 
+		$(this).attr("class",""); 
+		 
+	 }); */
+	 
 });
 </script>
 </head>
@@ -154,14 +173,14 @@ $(function () {
  					<li class="submenutitle"><a href="#" id="selectionmenu">
 	 					<label class="cglabel">
 	 					<input type="radio" id="cartegorisubmenu" class="submenucartegori" name="subtitle" value="노트북">
-	 					· 노트북
+	 					&nbsp;&nbsp;&nbsp;&nbsp;· 노트북
 	 					</label>
  					</a></li>
  					
  					<li class="submenutitle"><a href="#" id="selectionmenu">
 	 					<label class="cglabel">
 		 				<input type="radio" id="cartegorisubmenu" class="submenucartegori" name="subtitle" value="모니터">
-	 					· 모니터
+	 					&nbsp;&nbsp;&nbsp;&nbsp;· 모니터
 	 					</label>
  					</a></li>
  					
@@ -169,7 +188,7 @@ $(function () {
  					<li class="submenutitle"><a href="#" id="selectionmenu">
  					<label class="cglabel">
 		 			<input type="radio" id="cartegorisubmenu" class="submenucartegori" name="subtitle" value="키보드">
- 					· 키보드
+ 					&nbsp;&nbsp;&nbsp;&nbsp;· 키보드
  					</label>
  					</a></li>
  					
@@ -177,7 +196,7 @@ $(function () {
  					<li class="submenutitle"><a href="#" id="selectionmenu">
  					<label class="cglabel">
 		 			<input type="radio" id="cartegorisubmenu" class="submenucartegori" name="subtitle" value="마우스">
- 					· 마우스
+ 					&nbsp;&nbsp;&nbsp;&nbsp;· 마우스
  					</label>
  					</a></li>
  					
@@ -185,7 +204,7 @@ $(function () {
  					<li class="submenutitle"><a href="#" id="selectionmenu">
  					<label class="cglabel">
 		 			<input type="radio" id="cartegorisubmenu" class="submenucartegori" name="subtitle" value="스피커">
- 					· 스피커
+ 					&nbsp;&nbsp;&nbsp;&nbsp;· 스피커
  					</label>
  					</a></li>
  				</ul>

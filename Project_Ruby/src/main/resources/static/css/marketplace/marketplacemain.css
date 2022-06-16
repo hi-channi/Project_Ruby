@@ -13,11 +13,11 @@ div.marketfirst {
 }
 
 div.marketfirst2{
-  position : absolute;
+  position : relative;
   width: 170px;
   height: 20px;
   margin: 0px 7px 20px 45px;
-  left: 0px;
+  left: -40px;
   top: 85px;
 }
 
@@ -61,7 +61,7 @@ div.search {
   padding: 9px 12px 8px;
   border: solid 1px #dbdbdb;
   background-color: #fff;
-  left: 500px;
+  left: 560px;
   
 }
 
@@ -87,7 +87,7 @@ span.searchicon {
 div.changelist{
 	position: absolute;
 	margin-top: -58px;
-	left: 900px;
+	left: 963px;
 	
 }
 span.largeicon{
@@ -114,7 +114,7 @@ div.relatedsearch{
   width: 1024px;
   height: 85px;
   left : 100px;
-  padding: 0 0 32px;
+  padding: 8px 0 32px;
   border: solid 1px #ededed;
   background-color: #fff;
 }
@@ -179,11 +179,7 @@ div.selectbox{
 	top : 100px;
 	
 }
-.selectboxlb{
-	position: relative;
-	top:-30px;
-	
-}
+
 div.marketplacetable{
 	width: 1000px;
 	height: 1000px;
@@ -213,14 +209,26 @@ div.table {
 	
 }
 
-div.pagenum{
+div.pagenumall{
   position : relative;
   width: 300px;
   height: 50px;
   padding: 9px 12px 8px;
   border: solid 1px #dbdbdb;
   background-color: #fff;
-  top : 200px;
+  top : 60px;
+  left: 400px;
+  float: left;
+}
+
+div.pagenumlist{
+  position : relative;
+  width: 300px;
+  height: 50px;
+  padding: 9px 12px 8px;
+  border: solid 1px #dbdbdb;
+  background-color: #fff;
+  top : 100px;
   left: 400px;
   float: left;
 }
@@ -290,7 +298,12 @@ marketmenutitle li{
 	
 }
 
-
+/*거래가능 제품 보기*/
+.selectboxlb{
+	position: relative;
+	left: 30px;
+	top: -15px;
+}
 
 
 
@@ -416,10 +429,10 @@ marketmenutitle li{
 
 
 /*주찬님이 뿌려준 버튼 css*/
-.btn-small {
+.btn-addsangpum {
   outline: none;
-  width: 75px;   /* 넓이 수정 가능 */
-  height: 30px; /* 높이 수정 가능 */
+  width: 120px;   /* 넓이 수정 가능 */
+  height: 40px; /* 높이 수정 가능 */
   border: 2px solid #ff4b4e; 
   border-radius: 20px;
   color: #ff4b4e;
@@ -431,20 +444,19 @@ marketmenutitle li{
   position: relative;
   display: inline-block;
   
-  /*위치로 인한 추가 코드*/
-  left: 920px;
-  top: -70px;
+  left: 880px;
+  top: -50px;
 }
 
-.btn-small {
+.btn-addsangpum {
   overflow: hidden;
   transition: all 0.2s ease;
 }
-.btn-small:hover {
+.btn-addsangpum:hover {
    background: #ff4b4e;
   color: #fff;
 }
-.btn-small:before {
+.btn-addsangpum:before {
     position: absolute;
     content: '';
     display: inline-block;
@@ -456,7 +468,7 @@ marketmenutitle li{
     animation: shiny-btn1 3s ease-in-out infinite;
 }
 
-.btn-small:active{
+.btn-addsangpum:active{
   box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
               -4px -4px 6px 0 rgba(116, 125, 136, .2), 
     inset -4px -4px 6px 0 rgba(255,255,255,.2),
