@@ -111,7 +111,7 @@
             <table class="communitylist">
                <tr align="center">
                <td colspan="4" width="130">#크루번호</td>
-               <td colspan="4" width="220">크루 이름</td>
+               <td colspan="4" width="220"><button type="button" id="modal_opne_btn2">크루 이름</button></td>
                <td colspan="4" width="120"><img alt="" src="../image/face.png" style="width: 20px">3/50</td>
                <td colspan="4" width="220"><img alt="" src="../image/star.png" style="width: 20px">2582</td>
                <td colspan="4" width="220">2022-06-10</td>
@@ -131,7 +131,7 @@
 
 
 				<div class="crewname_">crew</div>
-				<span class="inwon">15/50</span>
+				<span class="inwon"><img alt="" src="../image/face.png" style="width: 19px;">15/50</span>
 				<div class="crewprone" style="border: 0px solid black;">크루 한 줄
 					소개 란입니다. 크루 한 줄 소개 란입니다. 크루 한 줄 소개 란입니다.크루 한 줄 소개 란입니다.</div>
 

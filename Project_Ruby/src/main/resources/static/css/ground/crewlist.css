@@ -267,13 +267,13 @@ td {
 }
 
 #modal2 .modal_content2 {
-	width: 296px;
+	width: 450px;
 	margin: 100px auto;
 	padding: 20px 10px;
 	background: #fff;
 	position: relative;
 	top: -2090px;
-	left: 800px;
+	left: 730px;
 	height: 562px;
 	border-radius: 20px;
 	box-shadow: 20px 20px 40px 0 rgba(0, 0, 0, 0.1);
@@ -291,10 +291,15 @@ td {
 	z-index: -1;
 }
 
+#modal_opne_btn2{
+	background-color: #fff; 
+	border: none;
+}
+
 #modal_close_btn2 {
 	position: relative;
 	top: -608px;
-	left: 50px;
+	left: 202px;
 }
 
 .crew_pro {
@@ -304,11 +309,11 @@ td {
 }
 
 .crewname_ {
-	font-size: 14pt;
+	font-size: 18pt;
 	font-family: 'Noto Sans KR';
 	position: relative;
 	top: 25px;
-	left: 112px;
+	left: 40px;
 	font-weight: 500;
 }
 
@@ -316,12 +321,12 @@ td {
 	font-family: 'Noto Sans KR';
 	position: relative;
 	top: 9px;
-	left: 170px;
+	left: 350px;
 	font-size: 7pt;
 }
 
 .crewprone{
-	width: 210px;
+	width: 350px;
 	height: 55pt;
 	font-size: 11pt;
 	font-family: 'Noto Sans KR';
@@ -336,8 +341,8 @@ td {
    width: 200px; /* 넓이 수정 가능 */
    
    position:relative;
-   top: -120px;
-   left: 38px;
+   top: -130px;
+   left: 110px;
    font-size: 16px;
    font-weight: 400; /* 글씨 Bold 수정 가능 */
    color: #fff;
@@ -369,17 +374,17 @@ td {
 
 .title {
 	position: relative;
-	top: 70px;
-	left: 40px;
+	top: 50px;
+	left: 105px;
 	font-family: 'Noto Sans KR';
 }
 table.list1{
-   width: 150px; 
+   width: 200px; 
    height: 21px; 
-   margin: 11px 0 0 11px;
+   margin: 5px 0 0 5px;
    position: relative;
-   top: 60px;
-   left: 52px;
+   top: 40px;
+   left: 100px;
 }
    
 table.list1 tr td.subject1{
@@ -429,8 +434,8 @@ td {
 	padding: 10px 0px;
 	position: relative;
 	width: 200px !important;
-	left: 40px;
-	top: -170px;
+	left: 115px;
+	top: -180px;
 	bottom: 927px;
 	right: 638px;
 }
@@ -459,8 +464,8 @@ input:focus::-webkit-input-placeholder {
 	height: 2px;
 	left: 0px;
 	position: absolute;
-	top: 427px;
-	left: 50px;
+	top: 427.2px;
+	left: 125px;
 	-webkit-transform: scale(0, 1);
 	transform: scale(0, 1);
 	-webkit-transition: all 0.1s linear;
@@ -471,7 +476,7 @@ input:focus::-webkit-input-placeholder {
 
 div.secondbox {
   position: relative;
-	top: -1405px;
+	top: -1420px;
 	left: 650px;	
 }
 /* 커뮤니티 리스트 css */
