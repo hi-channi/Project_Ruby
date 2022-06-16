@@ -105,127 +105,22 @@
 			</button>
 		</div>
 
-		<div class="crewlisttable"
-			style="border: 1px solid #191919; border-left-color: #dbdbdb; border-right-color: #dbdbdb; border-bottom-color: #dbdbdb;">
-			<table class="table">
-				<thead>
-					<tr>
-						<th scope="col">#크루 번호</th>
-						<th scope="col">크루 이름</th>
-						<th scope="col">크루원 수</th>
-						<th scope="col">크루 점수</th>
-						<th scope="col">개설일</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">1</th>
-						<td><button type="button" id="modal_opne_btn2"
-								style="background-color: white; border: none;">Mark</button></td>
-						<td><img src="../image/face.png" style="width: 19px;">
-							15/50</td>
-						<td><img src="../image/star.png" style="width: 19px;">
-							25598</td>
-						<td>@mdo</td>
-					</tr>
-					<tr>
-						<th scope="row">2</th>
-						<td>Jacob</td>
-						<td><img src="../image/face.png" style="width: 19px;">
-							3/50</td>
-						<td><img src="../image/star.png" style="width: 19px;">
-							25598</td>
-						<td>@mdo</td>
-					</tr>
-					<tr>
-						<th scope="row">3</th>
-						<td>Larry</td>
-						<td><img src="../image/face.png" style="width: 19px;">
-							15/50</td>
-						<td><img src="../image/star.png" style="width: 19px;">
-							25598</td>
-						<td>@mdo</td>
-					</tr>
-					<tr>
-						<th scope="row">3</th>
-						<td>Larry</td>
-						<td><img src="../image/face.png" style="width: 19px;">
-							15/50</td>
-						<td><img src="../image/star.png" style="width: 19px;">
-							25598</td>
-						<td>@mdo</td>
-					</tr>
-					<tr>
-						<th scope="row">3</th>
-						<td>Larry</td>
-						<td><img src="../image/face.png" style="width: 19px;">
-							15/50</td>
-						<td><img src="../image/star.png" style="width: 19px;">
-							25598</td>
-						<td>@mdo</td>
-					</tr>
-					<tr>
-						<th scope="row">3</th>
-						<td>Larry</td>
-						<td><img src="../image/face.png" style="width: 19px;">
-							15/50</td>
-						<td><img src="../image/star.png" style="width: 19px;">
-							25598</td>
-						<td>@mdo</td>
-					</tr>
-					<tr>
-						<th scope="row">3</th>
-						<td>Larry</td>
-						<td>the Bird</td>
-						<td>@twitter</td>
-						<td>@mdo</td>
-					</tr>
-					<tr>
-						<th scope="row">3</th>
-						<td>Larry</td>
-						<td>the Bird</td>
-						<td>@twitter</td>
-						<td>@mdo</td>
-					</tr>
-					<tr>
-						<th scope="row">3</th>
-						<td>Larry</td>
-						<td>the Bird</td>
-						<td>@twitter</td>
-						<td>@mdo</td>
-					</tr>
-					<tr>
-						<th scope="row">3</th>
-						<td>Larry</td>
-						<td>the Bird</td>
-						<td>@twitter</td>
-						<td>@mdo</td>
-					</tr>
-					<tr>
-						<th scope="row">3</th>
-						<td>Larry</td>
-						<td>the Bird</td>
-						<td>@twitter</td>
-						<td>@mdo</td>
-					</tr>
-					<tr>
-						<th scope="row">3</th>
-						<td>Larry</td>
-						<td>the Bird</td>
-						<td>@twitter</td>
-						<td>@mdo</td>
-					</tr>
-					<tr>
-						<th scope="row">3</th>
-						<td>Larry</td>
-						<td>the Bird</td>
-						<td>@twitter</td>
-						<td>@mdo</td>
-					</tr>
-				</tbody>
-			</table>
+		
+		<div class="secondbox">
+ <c:forEach var="1" begin="1" end="7">
+            <table class="communitylist">
+               <tr align="center">
+               <td colspan="4" width="130">#크루번호</td>
+               <td colspan="4" width="220">크루 이름</td>
+               <td colspan="4" width="120"><img alt="" src="../image/face.png" style="width: 20px">3/50</td>
+               <td colspan="4" width="220"><img alt="" src="../image/star.png" style="width: 20px">2582</td>
+               <td colspan="4" width="220">2022-06-10</td>
+               <tr>
 
-		</div>
+        </table>
+          </c:forEach>
+        
+         </div>
 
 
 		<div id="modal2">

@@ -467,3 +467,125 @@ input:focus::-webkit-input-placeholder {
 	transition: all 0.1s linear;
 	width: 200px;
 }
+
+
+div.secondbox {
+  position: relative;
+	top: -1405px;
+	left: 650px;	
+}
+/* 커뮤니티 리스트 css */
+div.container2 div.secondbox{
+   border: 1px solid #dbdbdb; 
+   border-top-color: #191919;
+   margin-top: 14.5px; 
+   height: 817px;
+
+}
+
+/* 커뮤니티 리스트 table css */
+table.communitylist{
+   margin: 16px 14px 0 14px; 
+   height: 68px; 
+   border: 1px solid black; 
+   border-collapse:separate; 
+   border-radius: 10px;
+    color: #505050;
+}
+
+table.communitylist td{
+   border-bottom: 0px;
+}
+
+/* 커뮤니티 리스트 글번호 css */
+tr td div.contentnumber1{
+   font-size: 18px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.38px;
+    text-align: left;
+    color: #505050;
+     margin-left: 19px; 
+     float: left;
+}
+
+/* 태그 배지 css */
+span.tag{
+   font-size: 1.1em; 
+   float: left;
+   margin-left: 6px;
+   cursor: pointer;
+}
+
+/* 커뮤니티리스트 글 제목이 나타납니다 css */
+tr td div.contentnumber2{
+   font-size: 18px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.38px;
+    text-align: left;
+    color: #505050;
+    cursor: pointer;
+    margin:0 0 5px 56px;
+}
+
+/* 커뮤니티리스트  코맨트, 따봉, 조회 수*/   
+td div.word{
+   font-size: 13px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.33px;
+    color: #505050;
+} 
+
+td.count div{
+   display: inline-block;
+}
+
+/* 작성자 css */
+div.writer{
+  font-size: 18px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.38px;
+  color: #505050;
+  cursor: pointer;
+}
+
+/* 크루 네임, 색상 입력틀 div css */
+tr td div.crew{
+   border: 1px solid #505050; 
+   border-radius: 7.5px; 
+   width: 72px; 
+   height: 25px; 
+   margin: 6px 0 0 130px;
+}
+
+/* 작성자 사진 css */
+div.personphoto img{
+   margin:11px 0 0 71px; 
+   float: left;
+   cursor: pointer;
+}
+
+/* 스크랩버튼 css */
+img.scrapimg {
+   margin: -10px 0 12px 10px;
+   cursor: pointer;
+}
+
+/* list 작성일 css */
+tr td div.day{
+   margin: 0 0 5px 137px; 
+   color: #505050;
+   font-size: 16px;
+}
+
