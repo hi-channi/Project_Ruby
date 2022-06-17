@@ -10,6 +10,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Hi+Melody&family=Nanum+Brush+Script&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+/* container의 내용의 높이에 따라 div.container 높이 자동 조절 */
+function funLoad(){
+	var childHeight = $("div.container").height()+100;
+	//alert(childHeight);		// (영역 높이+100) 값 출력
+    $('div.main').css({'height':childHeight+'px'});
+	
+};
+window.onload = funLoad;
+window.onresize = funLoad;
+
+</script>
+
 <style type="text/css">
 /* layout 테스트 환경일 경우 border 1px 지정 */
 div.layout div{
@@ -29,26 +43,12 @@ div.layout div.menu{
 	z-index: 10;
 }
 
-/* main 내 side_menu 영역 */
-div.layout div.side_menu{
-	position: relative;
-	background-color: #fff;
-	margin-top: -5px;
-	padding: 30px 15px 30px 315px; /* 상단, 우측, 하단, 좌측 */
-	width: 550px;
-	height: 1250px;
-	z-index: 1;
-	float: left;
-	clear: both;
-}
-
 div.layout div.main{
 	position: relative;
 	background-color: #f1f1f5;
-	margin-left:550px;
-	width: 1370px;
-	height: 1250px;
-	z-index: 1;	
+	width: 1920px;
+	height: 950px;
+	z-index: 1;
 }
 
 div.layout div.footer{
@@ -59,16 +59,12 @@ div.layout div.footer{
 </style>
 </head>
 <body>
-<!-- 사이드 메뉴가 존재하는 marketplace layout -->
 <div class="layout">
 	<div class="header">
 		<tiles:insertAttribute name="header"/>
 	</div>
 	<div class="menu">
 		<tiles:insertAttribute name="menu"/>
-	</div>
-	<div class="side_menu">
-		<tiles:insertAttribute name="m_sidemenu"/>
 	</div>
 	<div class="main">
 		<tiles:insertAttribute name="main"/>

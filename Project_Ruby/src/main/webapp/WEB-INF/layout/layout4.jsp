@@ -32,7 +32,7 @@ div.layout div.menu{
 /* main 내 side_menu 영역 */
 div.layout div.side_menu{
 	position: relative;
-	background-color: #fff;
+	/* background-color: #f1f1f5; */
 	margin-top: -5px;
 	padding: 30px 15px 30px 315px; /* 상단, 우측, 하단, 좌측 */
 	width: 550px;
@@ -44,7 +44,7 @@ div.layout div.side_menu{
 
 div.layout div.main{
 	position: relative;
-	background-color: #f1f1f5;
+	/* background-color: #f1f1f5; */
 	margin-left:550px;
 	width: 1370px;
 	height: 1250px;
@@ -59,7 +59,7 @@ div.layout div.footer{
 </style>
 </head>
 <body>
-<!-- 사이드 메뉴가 존재하는 marketplace layout -->
+<!-- 사이드 메뉴가 존재하는 challenge layout -->
 <div class="layout">
 	<div class="header">
 		<tiles:insertAttribute name="header"/>
@@ -68,7 +68,7 @@ div.layout div.footer{
 		<tiles:insertAttribute name="menu"/>
 	</div>
 	<div class="side_menu">
-		<tiles:insertAttribute name="m_sidemenu"/>
+		<tiles:insertAttribute name="a_sidemenu"/>
 	</div>
 	<div class="main">
 		<tiles:insertAttribute name="main"/>
