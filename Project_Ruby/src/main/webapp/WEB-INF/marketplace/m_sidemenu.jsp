@@ -161,7 +161,6 @@ $(function () {
 </head>
 
 <body>
-
 <span class="sidemenubarname">키보드검색</span>
 <div class="sidemenu" style="border: solid 1px #dbdbdb; border-top: solid 2px black;">
  	<ul>
@@ -310,25 +309,18 @@ $(function () {
 			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn" value="200000이상"><b class="radioimg"></b>200,000원 이상</label></li>
 			</ul>
 			
-			
 		<!-- 	<label for="colorchk">
 				<input type="checkbox" id="colorchk">
 				<div class="sidemenucolorbox" style="background: brown; border: 1px solid #dbdbdb;">
 				<span class="colorname">갈색</span>
 			</label> -->
 		
-			
  		</li>
- 		
- 		
  	</ul>
- 	
  	<div class="btnarea" style="border: 0px solid black;">
  		<button type="button" class="btn-marketsub" id="successbtn">검색</button>
  		<button type="button" class="btn-marketsub" id="resetbtn">초기화</button>
  	</div>
- 	
 </div>
-
 </body>
 </html>

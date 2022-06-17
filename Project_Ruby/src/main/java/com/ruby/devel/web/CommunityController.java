@@ -12,6 +12,12 @@ public class CommunityController {
 		return "/community/main";  // community/(파일명)
 	}
 	
+	@GetMapping("/communitymain")
+	public String main() {
+		
+		return "/community/community_main";
+	}
+	
 	@GetMapping("/community/contentadd")  // 글쓰기 페이지
 	public String contentadd()
 	{
@@ -35,4 +41,5 @@ public class CommunityController {
 	{
 		return "/community/community_detail_qanda";
 	}
+
 }

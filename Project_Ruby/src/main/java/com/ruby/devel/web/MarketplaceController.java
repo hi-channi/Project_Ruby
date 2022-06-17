@@ -12,4 +12,15 @@ public class MarketplaceController {
 		return "m/marketplace/main";  // m/marketplace/(파일명)
 	}
 	
+	@GetMapping("/productadd") // 상품등록 페이지
+	public String upload() {
+		
+		return "/marketplace/market_productaddform";
+	}
+	
+	@GetMapping("/productdetail")
+	public String detail() {
+		return "/marketplace/market_productdetail";
+	}
+	
 }
