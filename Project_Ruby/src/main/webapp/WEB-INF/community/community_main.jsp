@@ -137,7 +137,7 @@
 				 	  
 					<!-- 글쓰기 버튼  -->
 				 <div class="writebutton" style="margin-left: 186px;" align="right">
-					  <button type="button" class="btn-small">글쓰기</button>
+					  <button type="button" class="btn-small" onclick="location.href='/community/contentadd'">글쓰기</button>
 				 </div>	   	
 			</div>
 			

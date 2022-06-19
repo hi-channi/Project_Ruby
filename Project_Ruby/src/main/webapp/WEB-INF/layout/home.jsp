@@ -28,7 +28,7 @@ div.main {
 <div class="container1">
 	<img alt="" src="${root }/element/banner_main.png" class="mainbanner">
 		<button class="main_button">
-			<div class="button_content"><p class="button_text">시작하기</p></div>
+			<div class="button_content"><p class="button_text" onclick="location.href='/login'">시작하기</p></div>
 		</button>
 	</div>
 <div class="container2">
@@ -41,7 +41,7 @@ div.main {
 		<div style="height: 390px;">
 			<div class="section_title">
 				NEW ITEM
-				<button type="button" class="btn-showAll" id="idcheck" style="position: absolute; float: left; margin: 6px 0 0 167px; font-size: 14px;">전체보기</button>
+				<button type="button" class="btn-showAll" id="idcheck" style="position: absolute; float: left; margin: 6px 0 0 167px; font-size: 14px;" onclick="location.href='/marketplace'">전체보기</button>
 			</div>
 			<c:forEach var="i" begin="1" end="3">
 				<div class="gallery_content">
@@ -63,7 +63,7 @@ div.main {
 		<div style="height: 390px;">
 			<div class="section_title">
 				HOT CHALLENGE
-				<button type="button" class="btn-showAll" id="idcheck" style="position: absolute; float: left; margin: 6px 0 0 120px; font-size: 14px;">전체보기</button>
+				<button type="button" class="btn-showAll" id="idcheck" style="position: absolute; float: left; margin: 6px 0 0 120px; font-size: 14px;" onclick="location.href='/challenge'">전체보기</button>
 			</div>
 			<c:forEach var="i" begin="1" end="3">
 				<div class="gallery_content">

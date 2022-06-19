@@ -99,8 +99,8 @@
 
 		<span class="crewlist">크루 리스트</span>
 		<div class="btns">
-			<button class="mycrew">마이 크루</button>
-			<button class="makecrew" onclick="location.href='enroll'">
+			<button class="mycrew" onclick="location.href='/ground/mycrew'">마이 크루</button>
+			<button class="makecrew" onclick="location.href='/ground/crewenroll'">
 				<span class="makecrew1">크루 만들기</span>
 			</button>
 		</div>

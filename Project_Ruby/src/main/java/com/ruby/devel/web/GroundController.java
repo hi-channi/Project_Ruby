@@ -7,27 +7,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class GroundController {
 	
 	@GetMapping("/ground")  // 메뉴 선택 시 이동하는 기본 페이지
-	public String extend_home()
+	public String ground_home()
 	{
-		return "/ground/main";  // ground/(파일명)
+		return "/ground/ground_main";  // /ground/(파일명)
 	}
 	
-	@GetMapping("/ground/enroll")  // 크루 등록하기
-	public String enroll()
+	@GetMapping("/ground/crewenroll")  // 크루 등록 페이지
+	public String ground_crewenroll()
 	{
-		return "/ground/enroll";
+		return "/ground/ground_crewEnrollForm";
 	}
 	
-	@GetMapping("/ground/crewlist")  // 전체 크루 리스트, 순위 
-	public String crewlist()
+	@GetMapping("/ground/mycrew")  // 나의 크루 페이지
+	public String ground_mycrew()
 	{
-		return "/ground/crewlist";
-	}
-	
-	@GetMapping("/ground/crew")  // 내 크루 보는 
-	public String crew()
-	{
-		return "/ground/crew";
+		return "/ground/ground_myCrew";
 	}
 	
 	

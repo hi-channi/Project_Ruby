@@ -181,7 +181,7 @@ $(function(){
 	<div class="selectbox">
 		<label class="selectboxlb"><input type="checkbox" class="chb">&nbsp;거래가능 제품만 보기</label>
 		<!-- 상품등록 페이지 연결 -->
-		<button type="button" class="btn-addsangpum">상품등록</button>
+		<button type="button" class="btn-addsangpum" onclick="location.href='/marketplace/productadd'">상품등록</button>
 	</div>
 	<br>
 	<!-- <div class="tab-content"> -->

@@ -161,7 +161,7 @@ $(function () {
 </head>
 
 <body>
-<span class="sidemenubarname">키보드검색</span>
+<span class="sidemenubarname">중고장터</span>
 <div class="sidemenu" style="border: solid 1px #dbdbdb; border-top: solid 2px black;">
  	<ul>
  		<li class="marketmenu">

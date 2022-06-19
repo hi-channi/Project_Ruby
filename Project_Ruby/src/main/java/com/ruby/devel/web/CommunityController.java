@@ -7,39 +7,33 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class CommunityController {
 	
 	@GetMapping("/community")  // 메뉴 선택 시 이동하는 기본 페이지
-	public String home()
-	{
-		return "/community/main";  // community/(파일명)
-	}
-	
-	@GetMapping("/communitymain")
-	public String main() {
+	public String community_main() {
 		
-		return "/community/community_main";
+		return "/community/community_main";	// /community/(파일명)
 	}
 	
 	@GetMapping("/community/contentadd")  // 글쓰기 페이지
-	public String contentadd()
+	public String community_contentadd()
 	{
-		return "/community/community_contentaddform";
+		return "/community/community_contentAddForm";
 	}
 	
-	@GetMapping("/community/detailnormallogin")  // 일반글 상세보기(로그인)
-	public String detailNormalLogin()
+	@GetMapping("/community/contentdetail")  // 일반글 상세 페이지
+	public String community_contentdetail()
 	{
-		return "/community/community_detail_normal_login";
+		return "/community/community_contentDetail";
 	}
 	
-	@GetMapping("/community/detailnormallogout")  // 일반글 상세보기(로그아웃)
-	public String detailNormalLogout()
+	@GetMapping("/community/contentdetail_logout")  // 일반글 상세보기(로그아웃) [임시]
+	public String community_contentdetail_logout()
 	{
-		return "/community/community_detail_normal_logout";
+		return "/community/community_contentDetail_logout";
 	}
 	
-	@GetMapping("/community/detailqanda")  // Q&A글 상세보기
-	public String detailQandA()
+	@GetMapping("/community/qnadetail")  // Q&A글 상세 페이지
+	public String community_qnadetail()
 	{
-		return "/community/community_detail_qanda";
+		return "/community/community_qnaDetail";
 	}
 
 }
