@@ -52,7 +52,7 @@ public class MemberController {
 		System.out.println("발급된 member_idx: "+m_dto.getMember_idx());
 		model.addAttribute("member_idx", m_dto.getMember_idx());
 		
-		return "/member/member_infoaddform";
+		return "/member/member_infoAddForm";
 	}
 	
 	// id 검증(중복확인)
@@ -62,7 +62,19 @@ public class MemberController {
 		Map<String, Integer> map=new HashMap<>();
 		int check=Mmapper.checkVaildId(id);
 		
-		map.put("vaild", check); // 해당 아이디와 일치하는 아이디 없음(0) >> vaild=0
+		map.put("vaildId", check); // 해당 아이디와 일치하는 아이디 없음(0) >> vaild=0
+		
+		return map;
+	}
+	
+	// nickname 검증(중복확인)
+	@ResponseBody
+	@GetMapping("/nicknamecheck")
+	public Map<String, Integer> nicknameCheckProcess(@RequestParam String nickname) {
+		Map<String, Integer> map=new HashMap<>();
+		int check=Mmapper.checkVaildNickname(nickname);
+		
+		map.put("vaildNickname", check); // 해당 아이디와 일치하는 아이디 없음(0) >> vaild=0
 		
 		return map;
 	}
