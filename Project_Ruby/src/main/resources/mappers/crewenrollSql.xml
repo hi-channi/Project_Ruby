@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTDMapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ruby.devel.service.impl.crewenrollMapper">
+
+
+	<insert id="insertCrewEnroll" parameterType="crewenroll">
+		insert into Team
+		(team_idx, name, info, create_day) values
+		(#{team_idx}, #{name},
+		#{info}, now())
+
+	</insert>
+
+	<select id="getNewCrewDatas" resultType="crewenroll">
+		select * from Team order by team_idx desc
+	</select>
+
+	<select id="getCrewPointDatas" resultType="crewenroll">
+		select * from Team order by score desc
+	</select>
+	
+
+
+</mapper>

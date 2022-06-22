@@ -22,6 +22,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<form action="crewinsert" method="post">
 <div class="container">
 
 <span class="crew">크루 등록</span>
@@ -31,7 +32,7 @@
 <span class="crew_name">크루 이름</span>
 
 <div class="wrapper">
- <input type="text" class="input" name="crew_name_text" placeholder="크루 이름을 입력하세요" required="required" style="width: 360px;">
+ <input type="text" class="input" name="name" placeholder="크루 이름을 입력하세요" required="required" style="width: 360px;">
  <span class="underline"></span>
          </div>
 
@@ -70,7 +71,8 @@
 
 <br>
 <span class="crew_pr">크루 소개</span>
-<textarea placeholder="크루 소개글을 작성하는 공간입니다." id="crew_pr_text" style="font-family: 'Noto Sans KR'">
+<textarea placeholder="크루 소개글을 작성하는 공간입니다." 
+name="info" id="crew_pr_text" style="font-family: 'Noto Sans KR'">
 </textarea>
 
 <button type="submit" class="btn-large">
@@ -80,7 +82,7 @@
 
 </div>
 </div>
-
+</form>
 <script type="text/javascript">
 
 $("#clr div").click(function () {
@@ -88,6 +90,8 @@ $("#clr div").click(function () {
    $(this).css("border-width","1.2px"); 
    $(this).css("border-color","#ff4b4e");
 });
+
+
 
 
 </script>
