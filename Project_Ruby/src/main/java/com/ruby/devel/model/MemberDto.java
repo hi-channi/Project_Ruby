@@ -23,7 +23,9 @@ public class MemberDto {
 	
 	private String job;	// 직업
 	private String age;	// 연령대
-	private String hobby;	// 취미
+	private String hobby1;	// 취미1
+	private String hobby2;	// 취미2
+	private String hobby3;	// 취미3
 	private String pr;	//
 	
 	// 폼이 아직 없는 항목들
