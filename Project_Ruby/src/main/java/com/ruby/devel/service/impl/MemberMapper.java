@@ -23,4 +23,14 @@ public interface MemberMapper {
 
 	// 로그인 
 	public int login(HashMap<String, String> user);
+	
+	// 회원 이름 가져오기(by ID)
+	public String getName(String id);
+	
+	// 회원 이름 가져오기(by ID)
+	public String getNickname(String id);
+	
+	public String findIdByEmail(HashMap<String, String> finder);
+	
+	public String findIdByContactNumber(HashMap<String, String> finder);
 }
