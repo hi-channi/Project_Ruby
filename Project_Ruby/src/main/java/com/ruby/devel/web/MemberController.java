@@ -24,9 +24,9 @@ public class MemberController {
 	MemberMapper Mmapper;
 	
 	@GetMapping("/signup")  // 회원가입 페이지
-	public String signup()
+	public String member_signup()
 	{
-		return "/member/member_addform";  // m/member/(파일명)
+		return "/member/member_addForm";  // m/member/(파일명)
 	}
 	
 	// 회원가입 처리
@@ -131,32 +131,32 @@ public class MemberController {
 	// 이하 미완성 
 	
 	@GetMapping("/signupinfo")  // 회원가입 추가정보 페이지
-	public String signup2()
+	public String member_signupinfo()
 	{
-		return "/member/member_infoaddform";
+		return "/member/member_infoAddForm";
 	}
 	
 	@GetMapping("/findaccount")  // 계정 정보 찾기 페이지
-	public String findaccount()
+	public String member_findaccount()
 	{
-		return "/member/member_accountfindform";
+		return "/member/member_accountFindForm";
 	}
 	
 	@GetMapping("/login")  // 로그인 페이지
-	public String login()
+	public String member_login()
 	{
-		return "/member/member_loginform";
+		return "/member/member_loginForm";
 	}
 	
 	@GetMapping("/findidresult")  // 아이디 찾기 결과 페이지
-	public String findidresult()
+	public String member_findidresult()
 	{
-		return "/member/member_findidresult";
+		return "/member/member_findIdResult";
 	}
 	
 	@GetMapping("/pwreset")  // 비밀번호 재설정 페이지
-	public String userpwreset()
+	public String member_userpwreset()
 	{
-		return "/member/member_userpwreset";
+		return "/member/member_userPwReset";
 	}
 }
