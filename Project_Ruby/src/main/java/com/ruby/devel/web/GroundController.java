@@ -22,7 +22,8 @@ public class GroundController {
 	crewenrollMapper Cmapper;
 
 	@GetMapping("/ground") // 메뉴 선택 시 이동하는 기본 페이지
-	public String ground_home(Model model, @RequestParam(value = "currentPage", defaultValue = "1") int currentPage) {
+	//ModelAndView!!
+	public ModelAndView ground_home(Model model, @RequestParam(value = "currentPage", defaultValue = "1") int currentPage) {
 		ModelAndView mview = new ModelAndView();
 
 		int totalCount = Cmapper.getTotalCount();
@@ -32,7 +33,7 @@ public class GroundController {
 		int startPage; // 각블럭의 시작페이지
 		int endPage; // 각블럭의 끝페이지
 		int start; // 각페이지의 시작번호
-		int perPage = 5; // 한페이지에 보여질 글 갯수
+		int perPage = 7; // 한페이지에 보여질 글 갯수
 		int perBlock = 5; // 한블럭당 보여지는 페이지 개수
 
 		// 총페이지 개수구하기
@@ -64,6 +65,8 @@ public class GroundController {
 		// 출력에 필요한 변수들을 request 에 저장
 		mview.addObject("list", list);
 		mview.addObject("startPage", startPage);
+		System.out.println(startPage);
+		System.out.println(endPage);
 		mview.addObject("endPage", endPage);
 		mview.addObject("totalPage", totalPage);
 		mview.addObject("totalCount", totalCount);
@@ -80,7 +83,7 @@ public class GroundController {
 		System.out.println(list);
 		mview.setViewName("/ground/ground_main");
 
-		return "/ground/ground_main"; // /ground/(파일명)
+		return mview; // /ground/(파일명)
 	}
 
 	@GetMapping("/ground/crewenroll") // 크루 등록 페이지

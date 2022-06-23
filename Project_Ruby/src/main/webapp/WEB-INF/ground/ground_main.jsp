@@ -110,7 +110,7 @@
 		</div> --%>
 
 		<div class="secondbox">
-			<c:forEach var="a" items="${newlist }" end="6">
+			<c:forEach var="a" items="${list }">
 				<table class="communitylist">
 					<tr align="center">
 						<td colspan="4" width="130">${a.team_idx }</td>
