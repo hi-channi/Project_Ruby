@@ -141,9 +141,12 @@
 				 </div>	   	
 			</div>
 			
+		<%-- <div> 총 ${totalCount }개의 글이 있습니다.</div> --%>
+		
 				<!-- 커뮤니티 리스트 출력 화면 -->
+		<c:if test="${totalCount>0 }">	
 			<div class="secondbox">
-				<c:forEach var="1" begin="1" end="9">	
+				<c:forEach var="c" items="${list }">	
 				<table class="communitylist">
 					<tr>
 						<td width="32"> 
@@ -153,11 +156,12 @@
 						</label>
 						</td>
 						<td width="550" colspan="2"> 
-							<div class="contentnumber1">#글번호</div>  <!-- 글번호 -->
+							<div class="contentnumber1">#${no }</div>
+							<c:set var="no" value="${no-1 }"></c:set>  <!-- 글번호 -->
 							<div class="tagbox" style="margin-top: 4px;">
-								<span class="tag badge">태그1</span>
-								<span class="tag badge">태그2</span>
-								<span class="tag badge">태그3</span>
+								<span class="tag badge">#${c.tag1 }</span>
+								<span class="tag badge">#${c.tag2 }</span>
+								<span class="tag badge">#${c.tag3 }</span>
 							</div>
 						</td>  
 	
@@ -167,7 +171,7 @@
 							<div> <img alt="" src="${root }/element/icon_thumb.png" style="margin-left: 23px;"> </div>
 							<div class="word">30</div>
 							<div> <img alt="" src="${root }/element/icon_visibility.png" style="margin-left: 15px;"> </div>
-							<div class="word">2</div>
+							<div class="word" > ${c.read_count } </div>
 						</td>
 						<td rowspan="2" width="230" style="padding-bottom: 7px;">
 							<div class="personphoto" style="width: 126px;"> <img src="${root }/element/icon_person1.png"> </div>
@@ -177,13 +181,22 @@
 					</tr>
 					
 					<tr>
-						<td colspan="3"> <div class="contentnumber2">글 제목이 나타납니다.</div> </td>
-						<td> <div class="day">2020-06-15 </div></td>
+						<td colspan="3"> 
+							<div class="contentnumber2">
+								<a href="${root }/community/contentdetail?community_idx=${c.community_idx }&key=list">${c.subject}</a>
+							</div> 
+						</td>
+						<td> 
+							<div class="day">
+								<fmt:formatDate value="${c.write_day }" pattern="yyyy-MM-dd"/>
+							</div>
+						</td>
 						<td></td>
 					</tr> 		
 				</table>
 				</c:forEach>
 			</div>
+			</c:if>	
 		</div>
 	
 	</div>

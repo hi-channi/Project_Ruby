@@ -64,9 +64,9 @@ span.tag{
 
 /*글작성일*/
 .writeday{
-	position: relative;
-	left: 680px;
-	top: 110px;
+	position: absolute;
+	left: 1000px;
+	top: 80px;
 }
 
 /*content*/
@@ -198,7 +198,7 @@ div.contentarea{
 
 
 /*추천수 아이콘*/
-.likes{
+.likes img{
 	cursor: pointer;
 }
 /*댓글 추가*/

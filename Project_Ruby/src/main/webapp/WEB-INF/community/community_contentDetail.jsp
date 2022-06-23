@@ -48,7 +48,7 @@ $(function(){
 	
 	
 	<%--추천수 이벤트--%>
-	$(".likes").click(function(){
+	$(".likes img").click(function(){
 		
 		alert("추천수가 올라야해요!");
 		
@@ -68,30 +68,31 @@ $(function(){
 
 <div class="detailsubject" style="border: 0px solid black;">
 	<%--글번호 받아오기 --%>
-	<span class="contentnum">#글번호</span>
+	<span class="contentnum">#${c_dto.community_idx }</span>
 	
 	<%--태그1 받아오기 --%>
 	<div class="tag" style="border: solid 0px #dbdbdb;">
-	<span class="badge" style="font-size: 1.1em; float: left;">태그1</span>
+	<span class="badge" style="font-size: 1.1em; float: left;">#${c_dto.tag1 }</span>
 	</div>
 	
 	<%--태그2 받아오기 --%>
 	<div class="tag" style="border: solid 0px #dbdbdb;">
-	<span class="badge" style="font-size: 1.1em; float: left;">태그2</span>
+	<span class="badge" style="font-size: 1.1em; float: left;">#${c_dto.tag2 }</span>
 	</div>
 	
 	<%--태그3 받아오기 --%>
 	<div class="tag" style="border: solid 0px #dbdbdb;">
-	<span class="badge" style="font-size: 1.1em; float: left;">태그3</span>
+	<span class="badge" style="font-size: 1.1em; float: left;">#${c_dto.tag3 }</span>
 	</div>
 	
 	</div>
 	<%--글작성일 받아오기 --%>
-	<span class="writeday">2022-06-14-03:01 작성</span>
+	<span class="writeday"> <fmt:formatDate value="${c_dto.write_day }" pattern="yyyy-MM-dd"/> 작성 </span>
 	
 
 	<div class="content" style="border: solid 1px #dbdbdb; border-top: solid 2px black; border-bottom: solid 2px black;">
 	
+		<span class=" glyphicon glyphicon-remove"> </span>	
 		<span class="writeicon"><img alt="" src="${root }/element/icon_writecontent_small.png"> </span>
 		
 	
@@ -108,19 +109,19 @@ $(function(){
 	
 	<%--글 제목 받아오기 --%>
 	<div class="contentsubject">
-	<input type="text" value="글제목이 나타납니다" class="subjecttextbox">
+		${c_dto.subject }
 	</div>
 	
 	<%--글 내용 받아오기 --%>
 	<div class="contentarea">
-	<textarea rows="" cols="" class="contenttextarea">글내용이 나타납니다</textarea>
+		${c_dto.content }
 	</div>
 	
 	<%--각 count값 받아오기 --%>
 	<div class="iconcount">
 	<span class="textsms"><img alt="" src="${root }/element/icon_textsms.png">&nbsp;&nbsp;0</span>
 	<span class="likes"><img alt="" src="${root }/element/icon_thumb.png">&nbsp;&nbsp;30</span>
-	<span><img alt="" src="${root }/element/icon_visibil.png">&nbsp;&nbsp;2378</span>
+	<span><img alt="" src="${root }/element/icon_visibil.png">&nbsp;&nbsp;${c_dto.read_count }</span>
 	</div>
 	
 	</div>

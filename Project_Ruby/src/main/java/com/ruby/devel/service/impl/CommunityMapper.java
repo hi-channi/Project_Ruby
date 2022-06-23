@@ -1,0 +1,31 @@
+package com.ruby.devel.service.impl;
+
+import java.util.HashMap;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import com.ruby.devel.model.CommunityDto;
+
+@Mapper
+public interface CommunityMapper {
+	
+	//전체 게시글 수 출력
+	public int getTotalCount();
+	
+	//게시글 insert
+	public void insertCommunity(CommunityDto c_dto);
+	
+	//게시글 출력
+	public List<CommunityDto> getAllDatas();
+	
+	//idx값 갖고오기
+	public CommunityDto getData(String community_idx);
+	
+	//조회수 증가
+	public void updateReadCount(String community_idx);
+	
+
+
+
+}
