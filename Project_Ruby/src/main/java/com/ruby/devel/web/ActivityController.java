@@ -1,10 +1,19 @@
 package com.ruby.devel.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.ruby.devel.model.MemberDto;
+import com.ruby.devel.service.impl.MemberMapper;
 
 @Controller
 public class ActivityController {
+	
+	@Autowired
+	MemberMapper Mmapper;
 
 	@GetMapping("/activity")  // 'activity' 아이콘 선택 시 기본 페이지(모아보기) 이동
 	public String activity_home()
@@ -12,11 +21,24 @@ public class ActivityController {
 		return "a/activity/activity_main";  // /a/activity/(파일명)
 	}
 	
-	@GetMapping("/activity/mypage")  // 나의 정보를 볼 수 있는 마이 페이지
-	public String activity_mypage()
+	
+	//mypage
+	@GetMapping("/activity/mypage")
+	public String activity_mypage(Model model,
+			@RequestParam String id)
 	{
+		MemberDto dto = Mmapper.getData(id);
+		model.addAttribute("dto", dto);
+		
 		return "/activity/activity_myInfo";
 	}
+	
+	//mypage update
+	
+	
+	
+	
+	
 	
 	@GetMapping("/activity/mycommunity")  // 내가 커뮤니티에 작성 한 글을 모아보는 페이지
 	public String activity_write()
