@@ -9,9 +9,9 @@
 
 	<insert id="insertCrewEnroll" parameterType="crewenroll">
 		insert into Team
-		(team_idx, name, info, create_day) values
+		(team_idx, name, info, create_day, color) values
 		(#{team_idx}, #{name},
-		#{info}, now())
+		#{info}, now(), #{color})
 
 	</insert>
 

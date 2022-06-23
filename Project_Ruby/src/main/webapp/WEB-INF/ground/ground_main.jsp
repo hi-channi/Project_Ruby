@@ -34,17 +34,20 @@
 				<table class="table" style="margin-top: 7px;">
 					<c:forEach var="dto" items="${pointlist }" varStatus="i" begin="0"
 						end="4">
+						
 						<tr>
-							<td class="subject1">${dto.name }<c:if test="">
+							<td class="subject1">${dto.name }<c:if test="${i.count == 1}">
 
 									<img src="../image/1.png" style="width: 19px;">
 								</c:if>
+								
 							</td>
 							<!-- 게시글 제목 출력 -->
 							<td></td>
 							<td class="likecount1"><img src="../image/star.png"> <fmt:formatNumber
 									value="${dto.score }" pattern="#,###" /></td>
 						</tr>
+		
 					</c:forEach>
 				</table>
 
