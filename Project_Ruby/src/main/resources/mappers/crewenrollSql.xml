@@ -3,6 +3,9 @@
 
 <mapper namespace="com.ruby.devel.service.impl.crewenrollMapper">
 
+<select id="getTotalCount" resultType="int">
+	select count(*) from Team
+	</select>
 
 	<insert id="insertCrewEnroll" parameterType="crewenroll">
 		insert into Team
@@ -20,6 +23,9 @@
 		select * from Team order by score desc
 	</select>
 	
+	<select id="getList" parameterType="HashMap" resultType="crewenroll">
+	select * from Team order by team_idx desc limit #{startPage}, #{perPage}
+	</select>
 
 
 </mapper>

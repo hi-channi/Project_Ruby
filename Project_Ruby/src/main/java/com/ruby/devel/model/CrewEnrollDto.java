@@ -1,5 +1,7 @@
 package com.ruby.devel.model;
 
+import java.sql.Timestamp;
+
 import org.apache.ibatis.type.Alias;
 
 import lombok.Data;
@@ -12,7 +14,7 @@ public class CrewEnrollDto {
 	private String name;
 	private String info;
 	private String score;
-	private String create_day;
+	private Timestamp create_day;
 	
 	
 }

@@ -474,6 +474,15 @@ input:focus::-webkit-input-placeholder {
 }
 
 
+.crewlisttable {
+	width: 898px;
+	height: 529px;
+	position: relative;
+	top: -1400px;
+	left: 671px;
+
+}
+
 div.secondbox {
   position: relative;
 	top: -1420px;
@@ -594,3 +603,8 @@ tr td div.day{
    font-size: 16px;
 }
 
+.pagination {
+	position: absolute;
+	top: 750px;
+	left: 900px;
+}

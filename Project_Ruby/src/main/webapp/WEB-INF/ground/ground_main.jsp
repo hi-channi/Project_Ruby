@@ -14,6 +14,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+
 <c:set var="root" value="<%=request.getContextPath()%>" />
 <link rel="stylesheet" type="text/css"
 	href="${root }/css/ground/crewlist.css">
@@ -34,15 +35,15 @@
 					<c:forEach var="dto" items="${pointlist }" varStatus="i" begin="0"
 						end="4">
 						<tr>
-							<td class="subject1">${dto.name } <c:if test="">
-							
-							<img src="../image/1.png"
-								style="width: 19px;">
+							<td class="subject1">${dto.name }<c:if test="">
+
+									<img src="../image/1.png" style="width: 19px;">
 								</c:if>
-								</td>
+							</td>
 							<!-- 게시글 제목 출력 -->
 							<td></td>
-							<td class="likecount1"><img src="../image/star.png"><fmt:formatNumber value="${dto.score }" pattern="#,###" /></td>
+							<td class="likecount1"><img src="../image/star.png"> <fmt:formatNumber
+									value="${dto.score }" pattern="#,###" /></td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -56,7 +57,7 @@
 		<div class="newcrewlist"
 			style="border: 1px solid #191919; border-left-color: #dbdbdb; border-right-color: #dbdbdb; border-bottom-color: #dbdbdb;">
 			<table class="table" style="width: 280px; height: 110px;">
-				<c:forEach var="dto" items="${list }" varStatus="i" begin="0"
+				<c:forEach var="dto" items="${newlist }" varStatus="i" begin="0"
 					end="3">
 					<tr>
 						<td>${dto.name }</td>
@@ -76,24 +77,86 @@
 		</div>
 
 
+
+		<%-- <div class="crewlisttable"
+			style="border: 1px solid #191919; border-left-color: #dbdbdb; border-right-color: #dbdbdb; border-bottom-color: #dbdbdb;">
+			<table class="table">
+
+				<thead>
+					<tr>
+						<th scope="col">#크루 번호</th>
+						<th scope="col">크루 이름</th>
+						<th scope="col">크루원 수</th>
+						<th scope="col">크루 점수</th>
+						<th scope="col">개설일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="a" items="${newlist }" end="12">
+						<tr>
+							<th scope="row">${a.team_idx }</th>
+							<td>${a.name }</td>
+							<td><img src="../image/face.png" style="width: 19px;">
+								15/50</td>
+							<td><img src="../image/star.png" style="width: 19px;">
+								25598</td>
+							<td>@mdo</td>
+						</tr>
+
+					</c:forEach>
+				</tbody>
+
+			</table>
+		</div> --%>
+
 		<div class="secondbox">
-			<c:forEach var="1" begin="1" end="7">
+			<c:forEach var="a" items="${newlist }" end="6">
 				<table class="communitylist">
 					<tr align="center">
-						<td colspan="4" width="130">#크루번호</td>
+						<td colspan="4" width="130">${a.team_idx }</td>
 						<td colspan="4" width="220"><button type="button"
-								id="modal_opne_btn2">크루 이름</button></td>
+								id="modal_opne_btn2">${a.name }</button></td>
 						<td colspan="4" width="120"><img alt=""
 							src="../image/face.png" style="width: 20px">3/50</td>
 						<td colspan="4" width="220"><img alt=""
-							src="../image/star.png" style="width: 20px">2582</td>
-						<td colspan="4" width="220">2022-06-10</td>
+							src="../image/star.png" style="width: 20px"><fmt:formatNumber
+									value="${a.score }" pattern="#,###" /></td>
+						<td colspan="4" width="220"><fmt:formatDate value="${a.create_day }" pattern="yyyy-MM-dd"/></td>
 						<tr>
 				
 				</table>
 			</c:forEach>
 
 		</div>
+
+
+
+		<!-- 페이징 -->
+
+		<div style="width: 800px; text-align: center;">
+			<ul class="pagination">
+				<!-- 이전 -->
+				<c:if test="${startPage>1}">
+					<li><a href="ground?currentPage=${startPage-1}">이전</a></li>
+				</c:if>
+
+				<c:forEach var="pp" begin="${startPage}" end="${endPage}">
+					<c:if test="${currentPage==pp}">
+						<li class="active"><a href="ground?currentPage=${pp}">${pp}</a></li>
+					</c:if>
+					<c:if test="${currentPage!=pp}">
+						<li><a href="ground?currentPage=${pp}">${pp}</a></li>
+					</c:if>
+				</c:forEach>
+
+				<!-- 다음 -->
+				<c:if test="${endPage<totalPage}">
+					<li><a href="ground?currentPage=${endPage+1}">다음</a></li>
+				</c:if>
+			</ul>
+		</div>
+
+
 
 
 		<div id="modal2">
@@ -151,10 +214,12 @@
 			<div class="modal_layer2"></div>
 		</div>
 
+
+
+
 	</div>
-	<!-- 테이블 밑에 페이징 처리 넣어야 함 -->
-	
-	
+
+
 
 	<div class="search">
 		<input type="text" class="text_search" placeholder="검색하실 크루명을 입력하세요"
@@ -162,36 +227,16 @@
 		<span class="icon glyphicon glyphicon-search"></span>
 	</div>
 
+
+
 	<div class="check" style="width: 210px;">
 		<input type="checkbox" name="check" id="check1" value="crewsearch"
 			style="font-family: 'Noto Sans KR';"> 신청 가능한 크루만 보기
 	</div>
-	
-	<!-- 페이징 -->
-	<c:if test="${totalCount>0}">
-		<div style="width: 800px; text-align: center;">
-			<ul class="pagination">
-				<!-- 이전 -->
-				<c:if test="${startPage>1}">
-					<li><a href="list?currentPage=${startPage-1}">이전</a></li>
-				</c:if>
 
-				<c:forEach var="pp" begin="${startPage}" end="${endPage}">
-					<c:if test="${currentPage==pp}">
-						<li class="active"><a href="list?currentPage=${pp}">${pp}</a></li>
-					</c:if>
-					<c:if test="${currentPage!=pp}">
-						<li><a href="list?currentPage=${pp}">${pp}</a></li>
-					</c:if>
-				</c:forEach>
 
-				<!-- 다음 -->
-				<c:if test="${endPage<totalPage}">
-					<li><a href="list?currentPage=${endPage+1}">다음</a></li>
-				</c:if>
-			</ul>
-		</div>
-	</c:if>
+
+
 
 
 
@@ -205,5 +250,5 @@
 			document.getElementById("modal2").style.display = "none";
 		}
 	</script>
-	</body>
+</body>
 </html>
