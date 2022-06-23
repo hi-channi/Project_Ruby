@@ -603,8 +603,18 @@ tr td div.day{
    font-size: 16px;
 }
 
-.pagination {
+.pagesort {
 	position: absolute;
 	top: 750px;
 	left: 1050px;
+}
+
+#pagecnum {
+	color: #ff4b4e;
+}
+#pagenum,#pagecnum {
+	margin: 0 10px 0 10px;
+}
+#pagebtn {
+	margin: 0 5px 0 5px;
 }

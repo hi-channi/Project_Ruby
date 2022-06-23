@@ -24,7 +24,7 @@
 	</select>
 	
 	<select id="getList" parameterType="HashMap" resultType="crewenroll">
-	select * from Team order by team_idx desc limit #{startPage}, #{perPage}
+	select * from Team order by team_idx desc limit #{start}, #{perPage}
 	</select>
 
 

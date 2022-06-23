@@ -22,8 +22,9 @@ public class GroundController {
 	crewenrollMapper Cmapper;
 
 	@GetMapping("/ground") // 메뉴 선택 시 이동하는 기본 페이지
-	//ModelAndView!!
-	public ModelAndView ground_home(Model model, @RequestParam(value = "currentPage", defaultValue = "1") int currentPage) {
+	// ModelAndView!!
+	public ModelAndView ground_home(Model model,
+			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage) {
 		ModelAndView mview = new ModelAndView();
 
 		int totalCount = Cmapper.getTotalCount();
@@ -55,12 +56,16 @@ public class GroundController {
 		// service 안 넣을 경우
 		// 데이타 가져오기..map처리
 		HashMap<String, Integer> map = new HashMap<>();
-		map.put("startPage", startPage);
+		map.put("start", start);
 		map.put("perPage", perPage);
+		
 
 		// 각페이지에서 필요한 게시글 가져오기
 		List<CrewEnrollDto> list = Cmapper.getList(map);
 
+		// 각 글앞에 붙일 시작번호 구하기
+		// 총글이 20개면? 1페이지 20 2페이지 15부터 출력해서 1씩 감소
+		int no = totalCount - (currentPage - 1) * perPage;
 
 		// 출력에 필요한 변수들을 request 에 저장
 		mview.addObject("list", list);
@@ -70,7 +75,7 @@ public class GroundController {
 		mview.addObject("endPage", endPage);
 		mview.addObject("totalPage", totalPage);
 		mview.addObject("totalCount", totalCount);
-		
+		mview.addObject("no", no);
 		mview.addObject("currentPage", currentPage);
 		mview.addObject("totalCount", totalCount);
 
@@ -78,8 +83,8 @@ public class GroundController {
 		List<CrewEnrollDto> pointlist = Cmapper.getCrewPointDatas();
 		model.addAttribute("newlist", newlist);
 		model.addAttribute("pointlist", pointlist);
-		
-		//System.out.println(newlist);
+
+		// System.out.println(newlist);
 		System.out.println(list);
 		mview.setViewName("/ground/ground_main");
 

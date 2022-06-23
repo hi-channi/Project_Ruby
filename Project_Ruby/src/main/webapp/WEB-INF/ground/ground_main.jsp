@@ -113,7 +113,7 @@
 			<c:forEach var="a" items="${list }">
 				<table class="communitylist">
 					<tr align="center">
-						<td colspan="4" width="130">${a.team_idx }</td>
+						<td colspan="4" width="130">${a.team_idx } </td>
 						<td colspan="4" width="220"><button type="button"
 								id="modal_opne_btn2">${a.name }</button></td>
 						<td colspan="4" width="120"><img alt=""
@@ -132,29 +132,35 @@
 
 
 		<!-- 페이징 -->
-
-		<div style="width: 800px; text-align: center;">
-			<ul class="pagination">
-				<!-- 이전 -->
-				<c:if test="${startPage>1}">
-					<li><a href="ground?currentPage=${startPage-1}">이전</a></li>
-				</c:if>
-
-				<c:forEach var="pp" begin="${startPage}" end="${endPage}">
-					<c:if test="${currentPage==pp}">
-						<li class="active"><a href="ground?currentPage=${pp}">${pp}</a></li>
-					</c:if>
-					<c:if test="${currentPage!=pp}">
-						<li><a href="ground?currentPage=${pp}">${pp}</a></li>
-					</c:if>
-				</c:forEach>
-
-				<!-- 다음 -->
-				<c:if test="${endPage<totalPage}">
-					<li><a href="ground?currentPage=${endPage+1}">다음</a></li>
-				</c:if>
-			</ul>
-		</div>
+    <div class="pagesort">
+    <c:if test="${totalCount>0}">
+        <div class="page" align="center" style="margin-top: 50px;"> 
+            <!-- 이전 -->
+            <c:if test="${startPage>1}">
+                <a href="ground?currentPage=${startPage-1}">
+                    <img id="pagebtn" src="${root }/activity/icon_activity_move2.png">
+                </a>
+            </c:if>
+            
+            <c:forEach var="pp" begin="${startPage}" end="${endPage}">
+                <c:if test="${currentPage==pp}">
+                    <a id="pagecnum" href="ground?currentPage=${pp}"><b>${pp}</b></a>
+                </c:if>
+                <c:if test="${currentPage!=pp}">
+                    <a id="pagenum" href="ground?currentPage=${pp}">${pp}</a>
+                </c:if>
+            </c:forEach>
+            
+            <!-- 다음 -->
+            <c:if test="${endPage<totalPage}">
+                <a href="ground?currentPage=${endPage+1}">
+                    <img id="pagebtn" src="${root }/activity/icon_activity_move1.png">
+                </a>
+            </c:if>
+            
+        </div>
+    </c:if>
+    </div>
 
 
 
