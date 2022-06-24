@@ -59,7 +59,20 @@ $(function(){
 		
 		alert("댓글 등록 되어야해요!");
 	});
+	
+	
+	
 });
+
+/* 삭제시 컨펌창 */
+function delcontent() {
+	var c_idx=$("#c_idx").val();
+	var currentPage=$("#currentPage").val();
+	
+	if(confirm("게시글을 삭제하시겠습니까?")){
+		location.href='del_content?community_idx='+c_idx+'&currentPage='+currentPage;
+	}
+};
 
 </script>
 </head>
@@ -68,7 +81,7 @@ $(function(){
 
 <div class="detailsubject" style="border: 0px solid black;">
 	<%--글번호 받아오기 --%>
-	<span class="contentnum">#${c_dto.community_idx }</span>
+	<span class="contentnum">#<span id="delnum"> ${c_dto.community_idx } </span></span>
 	
 	<%--태그1 받아오기 --%>
 	<div class="tag" style="border: solid 0px #dbdbdb;">
@@ -91,15 +104,18 @@ $(function(){
 	
 
 	<div class="content" style="border: solid 1px #dbdbdb; border-top: solid 2px black; border-bottom: solid 2px black;">
-	
-		<span class=" glyphicon glyphicon-remove"> </span>	
-		<span class="writeicon"><img alt="" src="${root }/element/icon_writecontent_small.png"> </span>
-		
+		<!--게시글 삭제,수정 버튼 -->
+		<c:if test="${sessionScope.loginOK!=null and sessionScope.userKey==c_dto.member_idx}">
+			<button type="button" class="btndel glyphicon glyphicon-remove" style="border: none; background-color: #fff" onclick="delcontent()"></button>
+			<span class="writeicon"><img alt="" src="${root }/element/icon_writecontent_small.png"> </span>
+		</c:if>
+	<input type="hidden" value="${c_dto.community_idx }" id="c_idx">	
+	<input type="hidden" value="${currentPage }" id="currentPage">	
 	
 	<%--작성자 및 프로필 사진 받아오기 --%>
 	<div class="contentname">
 	<span><img alt="" src="${root }/element/icon_profile.png"></span>
-	<span class="spanwriter">작성자</span>
+	<span class="spanwriter">${writer }</span>
 	
 	<%--팀명 받아오기 --%>
 	<div class="teamname">

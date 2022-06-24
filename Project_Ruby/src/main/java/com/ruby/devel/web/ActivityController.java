@@ -27,9 +27,6 @@ public class ActivityController {
 	public String activity_mypage(Model model,
 			@RequestParam String id)
 	{
-		MemberDto dto = Mmapper.getData(id);
-		model.addAttribute("dto", dto);
-		
 		return "/activity/activity_myInfo";
 	}
 	

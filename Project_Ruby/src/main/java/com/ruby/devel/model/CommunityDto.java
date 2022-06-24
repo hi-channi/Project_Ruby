@@ -26,5 +26,6 @@ public class CommunityDto {
 	private Timestamp write_day; //작성날짜
 	
 	private int mcount; //댓글 수
+	private String writer; //작성자 받아오기
 	
 }

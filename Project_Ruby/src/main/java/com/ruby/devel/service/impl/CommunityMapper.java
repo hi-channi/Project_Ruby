@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.ruby.devel.model.CommunityDto;
+import com.ruby.devel.model.MemberDto;
 
 @Mapper
 public interface CommunityMapper {
@@ -25,7 +26,12 @@ public interface CommunityMapper {
 	//조회수 증가
 	public void updateReadCount(String community_idx);
 	
-
+	//페이징 처리
+	public List<CommunityDto> getList(HashMap<String, Integer> map);
+	
+	//게시글 삭제
+	public void deleteCommunity(String community_idx);
+	
 
 
 }

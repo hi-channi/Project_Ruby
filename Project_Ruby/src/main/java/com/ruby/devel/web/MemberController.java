@@ -1,5 +1,10 @@
 package com.ruby.devel.web;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -108,12 +113,14 @@ public class MemberController {
 			session.setAttribute("userID", id);
 			session.setAttribute("loginOK", "yes");
 			session.setAttribute("saveid", saveid); //체크안하면 null, 체크하면 on
-			
-			String name=Mmapper.getName(id);
-			String nickname=Mmapper.getNickname(id);
+			String userKey=Mmapper.getUserKey(id);
+			String name=Mmapper.getName(userKey);
+			String nickname=Mmapper.getNickname(userKey);
 			session.setAttribute("userName", name);
 			session.setAttribute("userNickname", nickname);
+			session.setAttribute("userKey", userKey);
 			
+			System.out.println("userkey"+userKey+name+nickname);
 			System.out.println("Login ID: "+id);
 			System.out.println("saveID?: "+saveid);
 			return "redirect:main";

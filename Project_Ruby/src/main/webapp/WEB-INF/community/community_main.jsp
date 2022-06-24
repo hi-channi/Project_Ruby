@@ -12,6 +12,23 @@
 <c:set var="root" value="<%=request.getContextPath()%>" />
  <link rel="stylesheet" type="text/css" href="${root }/css/community/community_main.css">
 <title>Insert title here</title>
+<style type="text/css">
+.pagesort{
+	position: absolute;
+	top: 850px;
+	left: 780px;
+}
+
+#pagecnum {
+   color: #ff4b4e;
+}
+#pagenum,#pagecnum {
+   margin: 0 10px 0 10px;
+}
+#pagebtn {
+   margin: 0 5px 0 5px;
+}
+</style>
 
 <script type="text/javascript">
 	$(function () {
@@ -48,25 +65,17 @@
 			      }
 			});
 		    /* end scrap button change */
+		    	 
 	});
-</script>
+	
+	//비회원 커뮤니티 글쓰기 방지
+	function writecontent() {
+		alert("글쓰기는 로그인 후 이용가능합니다.");
+		location.href="${root}/login";
 
-<style type="text/css">
-	.scrap{
-   /*하트 이미지 배경 처리중  사진 안불러와 짐 다시 돌아가려면 메인에 하트 특수문자 넣고  백그라운드 지우고 위치 다시 조정*/
-   width: 26px;
-   height: 26px;
-   content : '2661';
-   box-sizing: border-box;
-   cursor: pointer;   
-   font-size: 20pt;
-   left: 200px;
-   
-}
-#chk{
-   display: none;
-}
-</style>
+	};
+	
+</script>
 
 </head>
 <body>
@@ -135,10 +144,18 @@
 				 		</div>
 				 </div>						
 				 	  
-					<!-- 글쓰기 버튼  -->
+			<!-- 글쓰기 버튼  -->
+				<c:if test="${sessionScope.loginOK!=null }">
 				 <div class="writebutton" style="margin-left: 186px;" align="right">
-					  <button type="button" class="btn-small" onclick="location.href='/community/contentadd'">글쓰기</button>
-				 </div>	   	
+					  <button type="button" class="writebtn btn-small" onclick="location.href='/community/contentadd'">글쓰기</button>
+				 </div>
+				 </c:if>
+				
+				 <c:if test="${sessionScope.loginOK==null }">
+				 	<div class="writebutton" style="margin-left: 186px;" align="right">
+					  	<button type="button" class="writebtn2 btn-small" onclick="writecontent()">글쓰기</button>
+				 	</div>
+				 </c:if>
 			</div>
 			
 		<%-- <div> 총 ${totalCount }개의 글이 있습니다.</div> --%>
@@ -175,7 +192,7 @@
 						</td>
 						<td rowspan="2" width="230" style="padding-bottom: 7px;">
 							<div class="personphoto" style="width: 126px;"> <img src="${root }/element/icon_person1.png"> </div>
-							<div class="writer" style="margin: 7px 0 0 130px;">작성자</div>
+							<div class="writer" style="margin: 7px 0 0 130px;">${c.writer }</div>
 							<div class="crew"> </div>   <!-- 크루 네임 및 색상 로고 -->
 						</td>
 					</tr>
@@ -197,7 +214,39 @@
 				</c:forEach>
 			</div>
 			</c:if>	
+		
 		</div>
+		
+		<!-- 페이징 -->
+    <div class="pagesort">
+    <c:if test="${totalCount>0}">
+        <div class="page" align="center" style="margin-top: 50px;"> 
+            <!-- 이전 -->
+            <c:if test="${startPage>1}">
+                <a href="?currentPage=${startPage-1}">
+                    <img id="pagebtn" src="${root }/activity/icon_activity_move2.png">
+                </a>
+            </c:if>
+            
+            <c:forEach var="pp" begin="${startPage}" end="${endPage}">
+                <c:if test="${currentPage==pp}">
+                    <a id="pagecnum" href="?currentPage=${pp}"><b>${pp}</b></a>
+                </c:if>
+                <c:if test="${currentPage!=pp}">
+                    <a id="pagenum" href="?currentPage=${pp}">${pp}</a>
+                </c:if>
+            </c:forEach>
+            
+            <!-- 다음 -->
+            <c:if test="${endPage<totalPage}">
+                <a href="?currentPage=${endPage+1}">
+                    <img id="pagebtn" src="${root }/activity/icon_activity_move1.png">
+                </a>
+            </c:if>
+            
+        </div>
+    </c:if>
+    </div>
 	
 	</div>
 </body>

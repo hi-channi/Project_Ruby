@@ -3,6 +3,7 @@ package com.ruby.devel.web;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -19,12 +20,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ruby.devel.model.CommunityDto;
 import com.ruby.devel.service.impl.CommunityMapper;
+import com.ruby.devel.service.impl.MemberMapper;
+
 
 @Controller
 public class CommunityController {
 	
 	@Autowired
 	CommunityMapper Cmapper;
+	
+	@Autowired
+	MemberMapper Mmapper;
 	
 	@GetMapping("/community")  // 메뉴 선택 시 이동하는 기본 페이지
 	public ModelAndView main(
@@ -33,15 +39,72 @@ public class CommunityController {
 		
 		ModelAndView mview=new ModelAndView();
 		int totalCount=Cmapper.getTotalCount(); //총 글의 수
-		List<CommunityDto> list=Cmapper.getAllDatas(); //리스트 출력
 		
-		//글번호 설정
-		int no=totalCount;	
+		// 페이징처리에 필요한 변수
+	      int totalPage; // 총 페이지수
+	      int startPage; // 각블럭의 시작페이지
+	      int endPage; // 각블럭의 끝페이지
+	      int start; // 각페이지의 시작번호
+	      int perPage = 9; // 한페이지에 보여질 글 갯수
+	      int perBlock = 5; // 한블럭당 보여지는 페이지 개수
+
+	      // 총페이지 개수구하기
+	      totalPage = totalCount / perPage + (totalCount % perPage == 0 ? 0 : 1);
+
+	      // 각블럭의 시작페이지
+	      // 예:현재페이지가 3인경우 startpage=1,endpage= 5
+	      // 현재페이지가 6인경우 startpage=6,endpage= 10
+	      startPage = (currentPage - 1) / perBlock * perBlock + 1;
+	      endPage = startPage + perBlock - 1;
+
+	      // 만약 총페이지가 8 -2번째블럭: 6-10 ..이럴경우는 endpage가 8로 수정되어야함
+	      if (endPage > totalPage)
+	         endPage = totalPage;
+
+	      // 각페이지에서 불러올 시작번호
+	      start = (currentPage - 1) * perPage;
+
+	      // service 안 넣을 경우
+	      // 데이타 가져오기..map처리
+	      HashMap<String, Integer> map = new HashMap<>();
+	      map.put("start", start);
+	      map.put("perPage", perPage);
+
+	    //리스트 출력
+	      List<CommunityDto> list = Cmapper.getList(map);
 		
-		mview.addObject("totalCount", totalCount);
-		mview.addObject("list", list);
-		mview.addObject("no", no);
+	    //list에 각글에 대하 작성자 추가하기..board db에 작성자 안넣으므로
+			for(CommunityDto c:list)
+			{
+				String nickName = Mmapper.getNickname(c.getMember_idx());
+				c.setWriter(nickName);
+
+			} 
+	      
+	      
+	      // 각 글앞에 붙일 시작번호 구하기
+	      // 총글이 20개면? 1페이지 20 2페이지 15부터 출력해서 1씩 감소
+	      int no = totalCount - (currentPage - 1) * perPage;
+
+	      // 출력에 필요한 변수들을 request 에 저장
+	      mview.addObject("list", list);
+	      mview.addObject("startPage", startPage);
+	      System.out.println(startPage);
+	      System.out.println(endPage);
+	      mview.addObject("endPage", endPage);
+	      mview.addObject("totalPage", totalPage);
+	      mview.addObject("totalCount", totalCount);
+	      mview.addObject("no", no);
+	      mview.addObject("currentPage", currentPage);
+	      mview.addObject("totalCount", totalCount);
+	      
+	      
+	      //작성자 이름, 닉네임 갖고오기
+	      System.out.println(list);
+	      String userKey=list.get(0).getMember_idx();
+	      String nickName=Mmapper.getNickname(null);
 		
+	    mview.addObject("nickName", nickName); 
 		mview.setViewName("/community/community_main");
 		
 		return mview;
@@ -49,7 +112,7 @@ public class CommunityController {
 	
 	
 	//insert
-	@PostMapping("/community/insert")
+	@PostMapping("/community/insert") //매핑주소 수정필요
 	public String insert(@ModelAttribute CommunityDto c_dto, 
 			@RequestParam ArrayList<MultipartFile> upload, 
 			HttpSession session ) {
@@ -60,7 +123,6 @@ public class CommunityController {
 		
 		//임시
 		
-		c_dto.setContent_type(path);
 		
 		//포토명 구해서 넣기
 		String communityimage="";
@@ -94,22 +156,26 @@ public class CommunityController {
 	}
 
 	@GetMapping("/community/contentdetail")  // 일반글 상세 페이지
-	public ModelAndView community_contentdetail(@RequestParam String community_idx, @RequestParam (required = false) String key)
+	public ModelAndView community_contentdetail(
+			@RequestParam String community_idx, 
+			@RequestParam (value = "currentPage",defaultValue = "1") int currentPage
+			)
 	{
 		ModelAndView mview =new ModelAndView();
 		List<CommunityDto> list= Cmapper.getAllDatas();
 		
 		//조회수 증가
-		if(key!=null) {
-		Cmapper.updateReadCount(community_idx);}
-		
-		
+		Cmapper.updateReadCount(community_idx);
+
 		//idx에 해당 dto 얻기
 		CommunityDto c_dto= Cmapper.getData(community_idx);
 		
+		//의 name에 작성자 이름 넣기
+		String writer = Mmapper.getNickname(c_dto.getMember_idx());
 		mview.addObject("c_dto", c_dto);
 		mview.addObject("list", list);
-		
+		mview.addObject("writer", writer);
+		mview.addObject("currentPage", currentPage);
 		
 		
 		//포워드 
@@ -119,7 +185,30 @@ public class CommunityController {
 	}
 	
 	
-	
+		//게시글 삭제
+		@GetMapping("/community/del_content")
+		public String delete(
+				@RequestParam String community_idx,
+				@RequestParam String currentPage,
+				HttpSession session)
+		{
+			//업로드 할 폴더 지정
+			String path = session.getServletContext().getRealPath("/communityimage");
+			System.out.println(path);		
+			
+			//업로드된 파일명 구하기
+			String uploadfile = Cmapper.getData(community_idx).getPhoto();
+			
+			//파일객체 생성
+			File file = new File(path+"\\"+uploadfile);
+			
+			//해당 파일 삭제
+			file.delete();
+			
+			//DB 삭제
+			Cmapper.deleteCommunity(community_idx);
+			return "redirect:?currentPage="+currentPage;
+		}
 	
 	
 	

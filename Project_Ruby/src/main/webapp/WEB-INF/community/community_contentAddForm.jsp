@@ -78,6 +78,7 @@ function setContentType(){
 </head>
 <body>
 <form action="insert" method="post" enctype="multipart/form-data">
+<input type="hidden" value="${userKey }" name="member_idx">
 <div class="title">
 글쓰기
 </div> 
@@ -120,7 +121,7 @@ function setContentType(){
 	 			<td class="text1"><div style="padding-bottom: 20px; width: 70px; margin-left: 50px;">작성자</div></td>
 	 			<td>
 	 				<div class="wrapper">
-           				 <input type="text" class="input" name="writer" readonly="readonly" style="width: 120px;">
+           				 <input type="text" class="input" name="writer" readonly="readonly" value="${userNickname }" style="width: 120px;">
            				 <span class="underline" style="width: 120px; "></span>
 					</div>
 	 			</td>
