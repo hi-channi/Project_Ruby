@@ -33,4 +33,7 @@ public interface MemberMapper {
 	public String findIdByEmail(HashMap<String, String> finder);
 	
 	public String findIdByContactNumber(HashMap<String, String> finder);
+	
+	// 비밀번호 찾기 (작업 중)
+	public String resetPassword(String reset);
 }

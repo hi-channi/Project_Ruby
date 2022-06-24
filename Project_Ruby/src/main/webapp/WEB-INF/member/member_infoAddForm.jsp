@@ -31,9 +31,15 @@ $(function() {
         $("span.age_placeholder").css("color", "#505050");
     });
     /*End Dropdown Menu*/
-    
-    /* 연령대 선택 하지 않았을 경우 페이지 이동 방지 스크립트 추가하기 */
 });
+
+function checkPass(form) {
+	// 연렁대 선택 확인
+	if (form.age.value="") {
+		alert("연령대를 선택해주세요.");
+		return false;
+	}
+}
 </script>
 
 <title>Insert title here</title>
@@ -47,7 +53,7 @@ $(function() {
 			<div style="text-align: center; margin-bottom: 30px; color: #505050; ">
 				<b>회원가입을 환영합니다.</b><br> 몇가지 추가정보를 입력하면 활동이 가능합니다.
 			</div>
-			<form action="memberinfoadd" method="post">
+			<form action="memberinfoadd" method="post" onsubmit="return checkPass(this)">
 				<div class="wrapper">
 				<input type="hidden" name="member_idx" id="idx" required="required" readonly="readonly" value="${member_idx }"> 
 					직업&nbsp;&nbsp;
@@ -56,11 +62,11 @@ $(function() {
 				</div>
 				<div class="wrapper">
 					연령&nbsp;&nbsp;
-					<div class="dropdown">
+					<div class="dropdown" >
 						<div class="select">
 							<span class="age_placeholder">연령대를 선택하세요</span> <i class="fa fa-chevron-left"></i>
 						</div>
-						<input type="hidden" name="age" value="empty">
+						<input type="hidden" name="age" value="">
 						<ul class="dropdown-menu">
 							<li id="10-">10대-</li>
 							<li id="20">20대</li>

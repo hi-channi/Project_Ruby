@@ -1,5 +1,10 @@
 package com.ruby.devel.web;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ruby.devel.model.MemberDto;
-import com.ruby.devel.service.impl.MemberMapper;
-
 import com.ruby.devel.service.impl.MemberMapper;
 
 @Controller
@@ -91,6 +94,13 @@ public class MemberController {
 		return "redirect:login";
 	}
 	
+	// 로그인 페이지
+	@GetMapping("/login")  
+	public String member_login()
+	{
+		return "/member/member_loginForm";
+	}
+	
 	// 회원 로그인
 	@PostMapping("/loginprocess")
 	public String loginProc(@RequestParam(required = false) String saveid,
@@ -118,8 +128,7 @@ public class MemberController {
 			System.out.println("saveID?: "+saveid);
 			return "redirect:main";
 		}else {
-			// 수정 필요
-			return "/login/passfail";
+			return "/member/member_loginFailForm";
 		}
 	}
 	
@@ -132,20 +141,12 @@ public class MemberController {
 			return "redirect:main";
 		}
 	
-		
 	/*
 	 * 작업 해야할 것
 	 * - 회원가입 페이지에서 회원 가입 이후 뒤로가기 시 중복 회원가입 되는 문제 수정
 	 * - 회원 추가정보 입력 안되었을 경우 로그인 시 바로 추가정보 입력 페이지로 이동되게 수정
 	 * - 비밀번호 재설정 페이지 구현
 	 */
-	
-	// 이하 작업 필요
-	@GetMapping("/signupinfo")  // 회원가입 추가정보 페이지
-	public String member_signupinfo()
-	{
-		return "/member/member_infoAddForm";
-	}
 	
 	@GetMapping("/findaccount")  // 계정 정보 찾기 페이지
 	public String member_findaccount()
@@ -183,17 +184,16 @@ public class MemberController {
 		return "/member/member_findIdResult";
 	}
 	
+	@GetMapping("/pwreset")  // 비밀번호 재설정 페이지
+	public String member_userpwreset()
+	{
+		return "/member/member_userPwReset";
+	}
+	
 	@PostMapping("/pwresetprocess")  // 비밀번호 재설정 하기
 	public String pwresetprocess()
 	{
 		return "/member/member_accountFindForm";
-	}
-	
-	
-	@GetMapping("/login")  // 로그인 페이지
-	public String member_login()
-	{
-		return "/member/member_loginForm";
 	}
 	
 	@GetMapping("/findidresult")  // 아이디 찾기 결과 페이지
@@ -201,11 +201,4 @@ public class MemberController {
 	{
 		return "/member/member_findIdResult";
 	}
-	
-	@GetMapping("/pwreset")  // 비밀번호 재설정 페이지
-	public String member_userpwreset()
-	{
-		return "/member/member_userPwReset";
-	}
-	
 }
