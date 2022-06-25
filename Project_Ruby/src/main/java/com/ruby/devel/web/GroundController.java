@@ -10,10 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ruby.devel.model.CrewEnrollDto;
 import com.ruby.devel.service.impl.crewenrollMapper;
+
+
 
 @Controller
 public class GroundController {
@@ -70,8 +73,8 @@ public class GroundController {
 		// 출력에 필요한 변수들을 request 에 저장
 		mview.addObject("list", list);
 		mview.addObject("startPage", startPage);
-		System.out.println(startPage);
-		System.out.println(endPage);
+		//System.out.println(startPage);
+		//System.out.println(endPage);
 		mview.addObject("endPage", endPage);
 		mview.addObject("totalPage", totalPage);
 		mview.addObject("totalCount", totalCount);
@@ -85,7 +88,7 @@ public class GroundController {
 		model.addAttribute("pointlist", pointlist);
 
 		// System.out.println(newlist);
-		System.out.println(list);
+		//System.out.println(list);
 		mview.setViewName("/ground/ground_main");
 
 		return mview; // /ground/(파일명)
@@ -108,4 +111,22 @@ public class GroundController {
 		return "redirect:/ground";
 	}
 
+	
+	@PostMapping("/ground/test123")
+	@ResponseBody
+	public CrewEnrollDto updateform(@RequestParam String team_idx) {
+		ModelAndView model = new ModelAndView();
+		
+		//System.out.println(team_idx);
+		
+		CrewEnrollDto dto = Cmapper.getData(team_idx);
+		model.addObject("dto", dto);
+		
+		//System.out.println(dto);
+		
+		model.setViewName("/ground/ground_main");
+
+		return dto;
+
+	}
 }

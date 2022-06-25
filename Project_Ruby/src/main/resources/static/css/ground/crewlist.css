@@ -278,7 +278,7 @@ td {
 	border-radius: 20px;
 	box-shadow: 20px 20px 40px 0 rgba(0, 0, 0, 0.1);
 	background-color: #fff;
-	position: relative;
+
 }
 
 #modal2 .modal_layer2 {
@@ -291,9 +291,41 @@ td {
 	z-index: -1;
 }
 
-#modal_opne_btn2{
+.modal_opne_btn2{
 	background-color: #fff; 
-	border: none;
+	border: 0px solid black;
+	
+}
+
+.modal_opne_btn2 {
+   width: 100px; /* 넓이 수정 가능 */
+   font-size: 16px;
+   font-weight: 400; /* 글씨 Bold 수정 가능 */
+   color: #fff;
+   cursor: pointer;
+   height: 33px; /* 높이 수정 가능 */
+   text-align: center;
+   border: none;
+   background-size: 300% 100%;
+   border-radius: 20px; /* 테두리 곡률 수정 가능 */
+   moz-transition: all .4s ease-in-out;
+   -o-transition: all .4s ease-in-out;
+   -webkit-transition: all .4s ease-in-out;
+   transition: all .4s ease-in-out;
+   background-image: linear-gradient(to right, #ff4b4e, #f15e64, #e14e53, #e2373f);
+   box-shadow: 0 5px 15px rgba(242, 97, 103, .4);
+}
+
+.modal_opne_btn2:hover {
+   background-position: 100% 0;
+   moz-transition: all .4s ease-in-out;
+   -o-transition: all .4s ease-in-out;
+   -webkit-transition: all .4s ease-in-out;
+   transition: all .4s ease-in-out;
+}
+
+.modal_opne_btn2:focus {
+   outline: none;
 }
 
 #modal_close_btn2 {

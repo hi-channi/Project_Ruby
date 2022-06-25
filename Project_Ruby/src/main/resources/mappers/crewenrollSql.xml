@@ -26,6 +26,10 @@
 	<select id="getList" parameterType="HashMap" resultType="crewenroll">
 	select * from Team order by team_idx desc limit #{start}, #{perPage}
 	</select>
+	
+	<select id="getData" parameterType="String" resultType="crewenroll">
+	select * from Team where team_idx =#{team_idx}
+	</select>
 
 
 </mapper>

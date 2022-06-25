@@ -34,20 +34,21 @@
 				<table class="table" style="margin-top: 7px;">
 					<c:forEach var="dto" items="${pointlist }" varStatus="i" begin="0"
 						end="4">
-						
+
 						<tr>
-							<td class="subject1">${dto.name }<c:if test="${i.count == 1}">
+							<td class="subject1">${dto.name }<c:if
+									test="${i.count == 1}">
 
 									<img src="../image/1.png" style="width: 19px;">
 								</c:if>
-								
+
 							</td>
 							<!-- 게시글 제목 출력 -->
 							<td></td>
 							<td class="likecount1"><img src="../image/star.png"> <fmt:formatNumber
 									value="${dto.score }" pattern="#,###" /></td>
 						</tr>
-		
+
 					</c:forEach>
 				</table>
 
@@ -81,52 +82,27 @@
 
 
 
-		<%-- <div class="crewlisttable"
-			style="border: 1px solid #191919; border-left-color: #dbdbdb; border-right-color: #dbdbdb; border-bottom-color: #dbdbdb;">
-			<table class="table">
-
-				<thead>
-					<tr>
-						<th scope="col">#크루 번호</th>
-						<th scope="col">크루 이름</th>
-						<th scope="col">크루원 수</th>
-						<th scope="col">크루 점수</th>
-						<th scope="col">개설일</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="a" items="${newlist }" end="12">
-						<tr>
-							<th scope="row">${a.team_idx }</th>
-							<td>${a.name }</td>
-							<td><img src="../image/face.png" style="width: 19px;">
-								15/50</td>
-							<td><img src="../image/star.png" style="width: 19px;">
-								25598</td>
-							<td>@mdo</td>
-						</tr>
-
-					</c:forEach>
-				</tbody>
-
-			</table>
-		</div> --%>
-
 		<div class="secondbox">
 			<c:forEach var="a" items="${list }">
 				<table class="communitylist">
 					<tr align="center">
-						<td colspan="4" width="130">${a.team_idx } </td>
-						<td colspan="4" width="220"><button type="button"
-								id="modal_opne_btn2">${a.name }</button></td>
-						<td colspan="4" width="120"><img alt=""
+						<td colspan="4" width="50">${a.team_idx }</td>
+						<td colspan="4" width="240">${a.name }</td>
+						<td colspan="4" width="110"><img alt=""
 							src="../image/face.png" style="width: 20px">3/50</td>
-						<td colspan="4" width="220"><img alt=""
-							src="../image/star.png" style="width: 20px"><fmt:formatNumber
-									value="${a.score }" pattern="#,###" /></td>
-						<td colspan="4" width="220"><fmt:formatDate value="${a.create_day }" pattern="yyyy-MM-dd"/></td>
-						<tr>
-				
+						<td colspan="4" width="200"><img alt=""
+							src="../image/star.png" style="width: 20px"> <fmt:formatNumber
+								value="${a.score }" pattern="#,###" /></td>
+						<td colspan="4" width="200"><fmt:formatDate
+								value="${a.create_day }" pattern="yyyy-MM-dd" /></td>
+						<td width="120">
+
+
+							<button type="button" class="modal_opne_btn2"
+								onclick="transferTId(${a.team_idx})">신청하기</button>
+
+						</td>
+					<tr>
 				</table>
 			</c:forEach>
 
@@ -135,35 +111,35 @@
 
 
 		<!-- 페이징 -->
-    <div class="pagesort">
-    <c:if test="${totalCount>0}">
-        <div class="page" align="center" style="margin-top: 50px;"> 
-            <!-- 이전 -->
-            <c:if test="${startPage>1}">
-                <a href="ground?currentPage=${startPage-1}">
-                    <img id="pagebtn" src="${root }/activity/icon_activity_move2.png">
-                </a>
-            </c:if>
-            
-            <c:forEach var="pp" begin="${startPage}" end="${endPage}">
-                <c:if test="${currentPage==pp}">
-                    <a id="pagecnum" href="ground?currentPage=${pp}"><b>${pp}</b></a>
-                </c:if>
-                <c:if test="${currentPage!=pp}">
-                    <a id="pagenum" href="ground?currentPage=${pp}">${pp}</a>
-                </c:if>
-            </c:forEach>
-            
-            <!-- 다음 -->
-            <c:if test="${endPage<totalPage}">
-                <a href="ground?currentPage=${endPage+1}">
-                    <img id="pagebtn" src="${root }/activity/icon_activity_move1.png">
-                </a>
-            </c:if>
-            
-        </div>
-    </c:if>
-    </div>
+		<div class="pagesort">
+			<c:if test="${totalCount>0}">
+				<div class="page" align="center" style="margin-top: 50px;">
+					<!-- 이전 -->
+					<c:if test="${startPage>1}">
+						<a href="ground?currentPage=${startPage-1}"> <img id="pagebtn"
+							src="${root }/activity/icon_activity_move2.png">
+						</a>
+					</c:if>
+
+					<c:forEach var="pp" begin="${startPage}" end="${endPage}">
+						<c:if test="${currentPage==pp}">
+							<a id="pagecnum" href="ground?currentPage=${pp}"><b>${pp}</b></a>
+						</c:if>
+						<c:if test="${currentPage!=pp}">
+							<a id="pagenum" href="ground?currentPage=${pp}">${pp}</a>
+						</c:if>
+					</c:forEach>
+
+					<!-- 다음 -->
+					<c:if test="${endPage<totalPage}">
+						<a href="ground?currentPage=${endPage+1}"> <img id="pagebtn"
+							src="${root }/activity/icon_activity_move1.png">
+						</a>
+					</c:if>
+
+				</div>
+			</c:if>
+		</div>
 
 
 
@@ -171,16 +147,16 @@
 		<div id="modal2">
 
 			<div class="modal_content2">
-				<h4 style="text-align: center; font-family: 'Noto Sans KR';">크루
-					신청하기</h4>
+				<h4 style="text-align: center; font-family: 'Noto Sans KR';">
+					크루 신청하기</h4>
 
+				<form action="/ground/test123" method="post">
 
-				<div class="crewname_">crew</div>
-				<span class="inwon"><img alt="" src="../image/face.png"
-					style="width: 19px;">15/50</span>
-				<div class="crewprone" style="border: 0px solid black;">크루 한 줄
-					소개 란입니다. 크루 한 줄 소개 란입니다. 크루 한 줄 소개 란입니다.크루 한 줄 소개 란입니다.</div>
-
+					<div class="crewname_"></div>
+					<span class="inwon"><img alt="" src="../image/face.png"
+						style="width: 19px;">15/50</span>
+					<div class="crewprone" style="border: 0px solid black;"></div>
+				</form>
 				<div class="mypricrew" style="height: 395px;">
 					<span class="title">내 개인정보</span>
 					<div class="listbox1">
@@ -190,14 +166,14 @@
 								<td class="subject1">이름</td>
 								<!-- 게시글 제목 출력 -->
 								<td></td>
-								<td class="likecount1">김쌍용</td>
+								<td class="likecount1">${sessionScope.userName }</td>
 							</tr>
 
 							<tr>
 								<td class="subject1">연령대</td>
 								<!-- 게시글 제목 출력 -->
 								<td></td>
-								<td class="likecount1">20대 초반</td>
+								<td class="likecount1"></td>
 							</tr>
 						</table>
 					</div>
@@ -251,13 +227,47 @@
 
 
 	<script type="text/javascript">
-		document.getElementById("modal_opne_btn2").onclick = function() {
+
+	    var buttons = document.querySelectorAll('.modal_opne_btn2');
+	    
+	    buttons.forEach(function(button) {
+			button.addEventListener('click', test1);
+		});
+	    
+	    function test1() {
 			document.getElementById("modal2").style.display = "block";
-		}
+			} 
+	    
 
 		document.getElementById("modal_close_btn2").onclick = function() {
 			document.getElementById("modal2").style.display = "none";
 		}
-	</script>
+		
+		
+		function transferTId(team_idx) { //transferId를 통해 전달받은 team_idx를 
+			$('#Tidx').val(team_idx); //모달 영역의 input 태그에 넣어준다
+			
+			
+			//모달창 안에 값 넣어줌
+			$.ajax({  
+				type: 'POST',  
+				url: '/ground/test123',  
+				data:{ 'team_idx':team_idx},
+				success:function(data) {   
+					console.log(data.name)     
+					 $(".crewname_").text(data.name)
+					 $(".crewprone").text(data.info)			
+					},
+				});
+			
+		}
+		
+	
+		
+			
+			
+			
+			
+</script>
 </body>
 </html>
