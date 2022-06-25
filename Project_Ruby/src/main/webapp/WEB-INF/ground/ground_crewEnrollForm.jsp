@@ -95,12 +95,15 @@
 					</tr>
 				</table>
 
-				<br> <span class="crew_pr">크루 소개</span>
+				<br> <span class="crew_pr">크루 소개  </span> 
+				
+				
 				
 			<div class="wrapper">
-					<textarea class="select" name="info" style="resize: none;" placeholder="50자 이내"></textarea>
+					<textarea class="info" name="info" style="resize: none;" placeholder="50자 이내"></textarea>
 					<div id="text_iii" style="font-size:12px; letter-spacing :-0.1em; position: relative; margin-bottom: 65px; color: #505050">
-					* 운영정책에 위배되는 내용 기입 시 서비스 이용이 제한될 수 있습니다.</div>
+					* 운영정책에 위배되는 내용 기입 시 서비스 이용이 제한될 수 있습니다. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span id="realByte">0 / 190 byte</span></div>
+					
 				</div>
 
 				<button type="submit" class="btn-large">
@@ -120,6 +123,49 @@
 		$(this).css("border", "3px solid #ff4b4e");
 		$(this).siblings().css({"border": "1px solid black"});
  	});
+	
+	$(document).ready(function() {
+	$(".info").keyup(function(event){
+		console.log('sssss');
+		   var maxByte = 190; //최대 입력 바이트 수
+		   var str = $(".info").val();
+		   var str_len = str.length; //입력한 길이
+
+		   var rbyte = 0;
+		   var rlen = 0;
+		   var one_char = "";
+		   var str2 = "";
+		   console.log(rbyte);
+		   for (var i = 0; i < str_len; i++) {
+		       one_char = str.charAt(i);
+
+		       if (escape(one_char).length > 4) {
+		           rbyte += 2; //한글2Byte
+		       } else {
+		           rbyte++; //영문 등 나머지 1Byte
+		           
+		       }
+		       console.log(rbyte);
+
+		       if (rbyte <= maxByte) {
+		           rlen = i + 1; //return할 문자열 갯수
+		       }
+		   }
+		   console.log(rbyte);
+
+		   $("#realByte").text(rbyte + ' / 190byte');	         
+		   if (rbyte > maxByte) {
+		       alert("한글 " + (maxByte / 2) + "자 / 영문 " + maxByte + "자를 초과 입력할 수 없습니다.");
+		       str2 = str.substr(0, rlen); //문자열 자르기
+		       $("#realByte").text('190 / 190byte');
+		       //$("#DS_CONT").val(str2);
+		       //fnChkByte( maxByte);
+		   } 
+		});
+
+	});
+
+	
 	</script>
 </body>
 </html>

@@ -228,6 +228,27 @@
 
 	<script type="text/javascript">
 
+	//마이 크루,,, 로그인 안 되어 있을 때 alert창
+	$('.mycrew').click(function () {
+     if(${sessionScope.loginOK==null})
+    {
+          alert("로그인 후 사용이 가능합니다.");
+        location.href="/login"; //로그인 폼으로 이동
+    
+      }
+});
+	
+	$('.makecrew').click(function () {
+	     if(${sessionScope.loginOK==null})
+	    {
+	          alert("로그인 후 사용이 가능합니다.");
+	        location.href="/login"; //로그인 폼으로 이동
+	    
+	      }
+	});
+	
+	
+	//반복문으로 입력되는 버튼
 	    var buttons = document.querySelectorAll('.modal_opne_btn2');
 	    
 	    buttons.forEach(function(button) {
@@ -235,17 +256,24 @@
 		});
 	    
 	    function test1() {
+	    	if(${sessionScope.loginOK==null})
+		    {
+		          alert("로그인 후 사용이 가능합니다.");
+		        location.href="/login"; //로그인 폼으로 이동
+		    
+		      }else{
 			document.getElementById("modal2").style.display = "block";
 			} 
-	    
+	    }
 
 		document.getElementById("modal_close_btn2").onclick = function() {
 			document.getElementById("modal2").style.display = "none";
 		}
 		
 		
+		
 		function transferTId(team_idx) { //transferId를 통해 전달받은 team_idx를 
-			$('#Tidx').val(team_idx); //모달 영역의 input 태그에 넣어준다
+			$('#Tidx').val(team_idx); //모달 영역의 input 태그에 넣어준다!
 			
 			
 			//모달창 안에 값 넣어줌
@@ -261,6 +289,9 @@
 				});
 			
 		}
+		
+		
+		
 		
 	
 		
