@@ -170,7 +170,7 @@
 							</tr>
 
 							<tr>
-								<td class="subject1">연령대</td>
+								<td class="subject1">${sessionScope. }</td>
 								<!-- 게시글 제목 출력 -->
 								<td></td>
 								<td class="likecount1"></td>
