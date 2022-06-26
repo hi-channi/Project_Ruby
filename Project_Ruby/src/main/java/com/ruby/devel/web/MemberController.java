@@ -1,11 +1,11 @@
 package com.ruby.devel.web;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.tiles.jsp.taglib.UseAttributeTag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,26 +25,19 @@ public class MemberController {
 	@Autowired
 	MemberMapper Mmapper;
 	
-	@GetMapping("/signup")  // 회원가입 페이지
-	public String member_signup()
-	{
-		return "/member/member_addForm";  // m/member/(파일명)
+	/* 회원가입 페이지 */
+	@GetMapping("/signup")  
+	public String member_signup() {
+		return "/member/member_addForm";  // member/(파일명)
 	}
 	
-	// 회원가입 처리
+	/* 회원가입 처리 */
 	@PostMapping("/memberadd")
 	public String memberadd(Model model,
 			@ModelAttribute MemberDto m_dto,
-			@RequestParam String id,
-			@RequestParam String password,
-			@RequestParam String name,
-			@RequestParam String nickname,
 			@RequestParam String addr1,
 			@RequestParam String addr2,
 			@RequestParam String zipcode,
-			@RequestParam String birth,
-			@RequestParam String contact_number,
-			@RequestParam String email,
 			RedirectAttributes redirectAttributes) {
 		// 주소 및 우편번호 병합저장
 		m_dto.setAddress(addr1+" "+addr2+" ("+zipcode+")");
@@ -57,14 +50,13 @@ public class MemberController {
 		return "redirect:addinfo";
 	}
 	
-	// 추가정보 입력
+	/* 추가정보 입력 */
 	@GetMapping("/addinfo")  
-	public String addmemberinfo()
-	{
+	public String addmemberinfo() {
 		return "/member/member_infoAddForm";
 	}
 	
-	// id 검증(중복확인)
+	/* id 검증(중복확인) */
 	@ResponseBody
 	@GetMapping("/idcheck")
 	public Map<String, Integer> idCheckProcess(@RequestParam String id) {
@@ -75,7 +67,7 @@ public class MemberController {
 		return map;
 	}
 	
-	// nickname 검증(중복확인)
+	/* nickname 검증(중복확인) */
 	@ResponseBody
 	@GetMapping("/nicknamecheck")
 	public Map<String, Integer> nicknameCheckProcess(@RequestParam String nickname) {
@@ -86,143 +78,171 @@ public class MemberController {
 		return map;
 	}
 	
-	// 회원가입 추가정보
-	@PostMapping("/memberinfoadd")  // 회원가입 추가정보 페이지
+	/* 회원가입 추가정보 */
+	@PostMapping("/memberinfoadd") 
 	public String memberinfoadd(
 			@ModelAttribute MemberDto m_dto,
 			@RequestParam String member_idx,
 			@RequestParam String job,
 			@RequestParam String age,
 			@RequestParam String hobby1,
-			@RequestParam (required=false, defaultValue= "") String hobby2,
-			@RequestParam (required=false, defaultValue= "") String hobby3,
+			@RequestParam (required=false, defaultValue="") String hobby2,
+			@RequestParam (required=false, defaultValue="") String hobby3,
 			@RequestParam String pr,
 			@RequestParam (required=false, defaultValue="http://") String link
 			) {
 		Mmapper.addMemberInfo(m_dto);
 		Mmapper.signupComplete(member_idx);
 		
-		return "redirect:login";
+		return "/member/member_signupComplete";
 	}
 	
-	// 로그인 페이지
+	/* 로그인 페이지 */
 	@GetMapping("/login")  
-	public String member_login()
-	{
-		return "/member/member_loginForm";
+	public String member_login(HttpSession session,
+			Model model) {
+		String userID=(String)session.getAttribute("userID");
+		String loginOK=(String)session.getAttribute("loginOK");
+		String loginTime=(String)session.getAttribute("loginTime");
+		
+		// 세션 중복 방지
+		if(loginOK==null) {	// 로그아웃 상태에서 접근(평시)
+			return "/member/member_loginForm";
+		} else {	// 로그인 상태에서 접근
+			String nickname=Mmapper.getNickname(userID);
+			model.addAttribute("nickname", nickname);
+			model.addAttribute("loginTime", loginTime);
+			return "/member/member_logoutConfirm";
+		}
 	}
 	
-	// 회원 로그인
+	/* 로그인 처리 */
 	@PostMapping("/loginprocess")
-	public String loginProc(@RequestParam(required = false) String saveid,
+	public String loginProc(@RequestParam(required=false) String saveid,
 			@RequestParam String id,
 			@RequestParam String password,
 			HttpSession session,
 			RedirectAttributes redirectAttributes) {
-		
 		HashMap<String, String> user=new HashMap<>();
 		user.put("id", id);
 		user.put("password", password);
 		
-		int check_login=Mmapper.login(user);
-		int signup_complete=Mmapper.checkVaildSignup(user);
-		if(check_login==1) {
+		int check_login=Mmapper.login(user);	// 로그인 요청 반환값
+		
+		if(check_login==1) {	// 로그인 성공
+			int signup_complete=Mmapper.checkVaildSignup(user);		// 회원가입 추가정보 입력 여부 검증값
 			if(signup_complete==1) {
 				// 로그인 세션 부여
+				// ** 세션에서 보유하는 정보: 로그인 여부, 로그인 아이디, 로그인 시각, 로그인 유저 닉네임 및 고유 키 **
+				long timesource = System.currentTimeMillis();
+		        SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 aa hh:mm:ss");
+		        String time=sdf.format(timesource);
+		        
+		        session.setAttribute("loginTime", time);
 				session.setAttribute("userID", id);
 				session.setAttribute("loginOK", "yes");
-				session.setAttribute("saveid", saveid); //체크안하면 null, 체크하면 on
+				session.setAttribute("saveid", saveid); // 체크 할 경우 null, 체크하면 on
 				
-				String name=Mmapper.getName(id);
 				String nickname=Mmapper.getNickname(id);
 				String userKey=Mmapper.getUserKey(id);
-				session.setAttribute("userName", name);
+
 				session.setAttribute("userNickname", nickname);
 		        session.setAttribute("userKey", userKey);
 		        
-				System.out.println("Login ID: "+id);
-				System.out.println("saveID?: "+saveid);
+				System.out.println("Login ID: "+id+" / saveID? "+saveid);
+				System.out.println("MESSAGE: 로그인 성공!\n로그인 시각: "+time);
 				return "redirect:main";
-			} else {
+			} else {	// 추가정보 입력하지 않았을 경우(signup_complete==0)
  				String userKey=Mmapper.getUserKey(id);
 		        redirectAttributes.addFlashAttribute("member_idx", userKey);
 				return "redirect:addinfo";
 			}
-				
-		}else {
-			return "/member/member_loginFailForm";
+		} else {	// 로그인 실패
+			return "/member/member_loginFail";
 		}
 	}
 	
-	// 회원 로그아웃
-		@GetMapping("/logout")
-		public String logout(HttpSession session)
-		{
-			session.removeAttribute("loginOK");
-			System.out.println("로그아웃이 성공적으로 수행되었습니다.");
-			return "redirect:main";
-		}
+	/* 회원 로그아웃 */
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("loginOK");
+		System.out.println("MESSAGE: 로그아웃이 성공적으로 수행되었습니다.");
+		return "redirect:main";
+	}
 	
-	/*
-	 * 작업 해야할 것
-	 * - 회원가입 페이지에서 회원 가입 이후 뒤로가기 시 중복 회원가입 되는 문제 수정(완료)
-	 * - 회원 추가정보 입력 안되었을 경우 로그인 시 바로 추가정보 입력 페이지로 이동되게 수정(완료)
-	 * - 비밀번호 재설정 페이지 구현
-	 * - 로그인 실패 페이지 구현
-	 * - 로그인 아이디 저장 구현
-	 */
-	
-	@GetMapping("/findaccount")  // 계정 정보 찾기 페이지
-	public String member_findaccount()
-	{
+	/* 계정 정보 찾기 페이지 */
+	@GetMapping("/findaccount")  
+	public String member_findaccount() {
 		return "/member/member_accountFindForm";
 	}
 	
-	@PostMapping("/findid_email")  // 이메일로 아이디 찾기
+	/* 이메일로 아이디 찾기 */
+	@PostMapping("/findid_email")  
 	public String findid_email(Model model,
 			@RequestParam String name,
-			@RequestParam String email) 
-	{
+			@RequestParam String email) {
 		HashMap<String, String> finder=new HashMap<>();
 		finder.put("name", name);
 		finder.put("email", email);
 		
 		String finderResult=Mmapper.findIdByEmail(finder);
-		model.addAttribute("finderResult", finderResult);
-		
-		return "/member/member_findIdResult";
+		if(finderResult==null ) {
+			return "/member/member_findIdFail";
+		} else {
+			model.addAttribute("finderResult", finderResult);
+			return "/member/member_findIdResult";
+		}
 	}
 	
-	@PostMapping("/findid_number")  // 연락처로 아이디 찾기
+	/* 연락처로 아이디 찾기 */
+	@PostMapping("/findid_number")  
 	public String findid_number(Model model,
 			@RequestParam String name,
-			@RequestParam String contact_number) 
-	{
+			@RequestParam String contact_number) {
 		HashMap<String, String> finder=new HashMap<>();
 		finder.put("name", name);
 		finder.put("contact_number", contact_number);
 		
 		String finderResult=Mmapper.findIdByContactNumber(finder);
-		model.addAttribute("finderResult", finderResult);
-		
+		if(finderResult==null ) {
+			return "/member/member_findIdFail";
+		} else {
+			model.addAttribute("finderResult", finderResult);
+			return "/member/member_findIdResult";
+		}
+	}
+	
+	/* 아이디 찾기 결과 페이지 */
+	@GetMapping("/findidresult")  
+	public String member_findidresult() {
 		return "/member/member_findIdResult";
 	}
 	
-	@GetMapping("/pwreset")  // 비밀번호 재설정 페이지
-	public String member_userpwreset()
-	{
+	/* 비밀번호 찾기 */
+	@PostMapping("/findpw")  
+	public String findpw(@ModelAttribute MemberDto m_dto,
+			Model model,
+			RedirectAttributes redirectAttributes) {
+
+		String member_idx=Mmapper.searchForResetPw(m_dto);
+		redirectAttributes.addFlashAttribute("resetMember_idx",member_idx);
+		
+		return "redirect:userpwreset";
+	}
+	
+	/* 비밀번호 재설정 페이지 */
+	@GetMapping("/userpwreset")  
+	public String userPwReset(@ModelAttribute MemberDto m_dto) {
+		
+		Mmapper.modMemberPw(m_dto);
 		return "/member/member_userPwReset";
 	}
 	
-	@PostMapping("/pwresetprocess")  // 비밀번호 재설정 하기
-	public String pwresetprocess()
-	{
-		return "/member/member_accountFindForm";
-	}
-	
-	@GetMapping("/findidresult")  // 아이디 찾기 결과 페이지
-	public String member_findidresult()
-	{
-		return "/member/member_findIdResult";
+	/* 비밀번호 재설정 처리 */
+	@PostMapping("/pwresetprocess")  
+	public String pwresetprocess(@ModelAttribute MemberDto m_dto) {
+		
+		Mmapper.modMemberPw(m_dto);
+		return "/member/member_pwChangeComplete";
 	}
 }

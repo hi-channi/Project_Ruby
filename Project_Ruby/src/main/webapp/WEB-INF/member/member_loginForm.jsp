@@ -14,9 +14,10 @@
 <link rel="stylesheet" type="text/css" href="${root }/css/member/member_loginform.css">
 
 <script type="text/javascript">
-// 아이디 저장 스크립트 추가
-
-//비밀번호 보이기/숨기기 토글
+function checkPass(form) {
+	$("#pw").attr('type','password');
+}
+// 비밀번호 보이기/숨기기 토글
 $(document).ready(function(){
     $('.wrapper i').on('click',function(){
         $('input').toggleClass('active');
@@ -39,19 +40,19 @@ $(document).ready(function(){
 </div>
 <div class="container">
 		<div class="box">
-			<form action="loginprocess" method="post" name="frm" onsubmit="return check(this)">
+			<form action="loginprocess" method="post" name="frm" onsubmit="checkPass(this)">
 			<div class="wrapper">
-				<input type="text" class="input" name="id" placeholder="아이디를 입력하세요" required="required" style="width: 360px;">
+				<input type="text" class="input" name="id" placeholder="아이디를 입력하세요" required="required" value="${sessionScope.saveid==null?"":sessionScope.userID }" style="width: 360px;" >
 				<span class="underline"></span>
 			</div>
 			<div class="wrapper">
-				<input type="password" class="input" name="password" placeholder="비밀번호를 입력하세요" required="required" autocomplete="off" style="width: 360px;">
+				<input type="password" class="input" name="password" id="pw" placeholder="비밀번호를 입력하세요" required="required" autocomplete="off" style="width: 360px;">
 				<span class="underline"></span>
 				<i class="glyphicon glyphicon-eye-close" id="pwtoggle" style="font-size: 16pt; color: #999999"></i>
 			</div>
 			<ul>
 				<li>
-				<input type="checkbox" id="saveid" name="saveid" onchange="setDisplay()">
+				<input type="checkbox" id="saveid" name="saveid" onchange="setDisplay()" ${sessionScope.saveid==null?"":"checked" }>
 				<label for="saveid">아이디 저장</label>
 				<div class="check"></div>
 				</li>
@@ -68,7 +69,7 @@ $(document).ready(function(){
 				<img alt="" src="${root }/element/icon_googlelogin.png" class="">&emsp;
 				<img alt="" src="${root }/element/icon_naverlogin.png" class="">
 			</div>
-			<button class="btn-large2" style="margin-top: 37px;" type="button">회원가입</button>
+			<button class="btn-large2" style="margin-top: 37px;" type="button" onclick="location.href='/signup'">회원가입</button>
 			</form>
 		</div>
 	</div>

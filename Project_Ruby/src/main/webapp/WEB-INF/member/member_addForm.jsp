@@ -14,18 +14,18 @@
 <link rel="stylesheet" type="text/css" href="${root }/css/member/member_addform.css">
 
 <script type="text/javascript">
-// 뒤로가기(history.back()) 감지 시 메인 페이지 이
+/* 뒤로가기(history.back()) 감지 시 메인 페이지 이동 */
 window.onpageshow = function(event) {
     if (event.persisted || (window.performance && window.performance.navigation.type == 2)) {
-    	alert("회원가입 과정에서 페이지 뒤로가기가 감지되었습니다. \n입력하신 정보로 이미 회원가입이 완료되었으니 로그인 하셔서 추가 정보를 입력해 주세요.");
-    	//$("#id_check").val("");
-    	//$("#nickname_check").val("");
+    	alert("이미 회원가입 처리 되었거나 잘못된 접근입니다.\n[확인] 을 클릭 시 메인 페이지로 이동합니다.");
+    	$("#id_check").val("");
+    	$("#nickname_check").val("");
     	location.href="/login";
     }
 }
 
 $(function() {
-	// 중복 아이디 검증: ajax
+	/* 중복 아이디 검증: ajax */
 	$("#idCheck").click(
 		function() {
 			var id = $("#id").val();
@@ -35,9 +35,9 @@ $(function() {
 				url : "idcheck",
 				data : {"id" : id},
 				success : function(data) {
-					if(id=="") {
+					if(id=="") {	// 아무것도 입력하지 않았을 경우
 						alert("사용할 아이디를 입력해주세요.");
-						$("#id").focus();
+						$("#id").focus();	
 					} else {
 						if (data.vaildId == 0) {
 							alert("사용 가능한 아이디 입니다.");
@@ -51,13 +51,12 @@ $(function() {
 				},
 				error : function(request, error) {
 					alert("fail!");
-					// error 발생 원인 출력
 					alert("code:" + request.status + "\n"+ "error message:" + request.responseText+ "\n" + "error:" + error);
 				}
 			});
 		});
 		
-	// 중복 닉네임 검증: ajax
+	/* 중복 닉네임 검증: ajax */
 	$("#nicknameCheck").click(
 		function() {
 			var nickname = $("#nickname").val();
@@ -67,7 +66,7 @@ $(function() {
 				url : "nicknamecheck",
 				data : {"nickname" : nickname},
 				success : function(data) {
-					if(nickname=="") {
+					if(nickname=="") {	// 아무것도 입력하지 않았을 경우
 						alert("사용할 닉네임을 입력해주세요.");
 						$("#nickname").focus();
 					} else {
@@ -83,15 +82,16 @@ $(function() {
 				},
 				error : function(request, error) {
 					alert("fail!");
-					// error 발생 원인 출력
 					alert("code:" + request.status + "\n"+ "error message:" + request.responseText+ "\n" + "error:" + error);
 				}
 			});
 		});
 });
 
-// 회원가입 데이터 검증
+/* 회원가입 데이터 검증 */
 function checkPass(form) {
+	$("#pw").attr('type','password');
+	$("#pw_check").attr('type','password');
 	// 비밀번호 일치 검증
 	if (form.password.value !== form.password_check.value) {
 		alert("비밀번호가 일치하지 않습니다.");
@@ -111,7 +111,7 @@ function checkPass(form) {
 	}
 }
 
-// 비밀번호 보이기/숨기기 토글
+/* 비밀번호 보이기/숨기기 토글 */
 $(document).ready(function(){
     $('.wrapper i').on('click',function(){
         $('input').toggleClass('active');
@@ -184,17 +184,17 @@ function search_DaumPostcode() {
 		<form action="memberadd" method="post" onsubmit="return checkPass(this)">
 			<div class="wrapper">
 				<input type="text" class="input" name="id" id="id" placeholder="아이디 입력하세요" required="required" style="width: 280px;">
-				<input type="hidden" class="input" name="id_check" id="id_check">
 				<span class="underline_id"></span>
+				<input type="hidden" class="input" name="id_check" id="id_check">
 				<button type="button" class="btn-small" id="idCheck" style="position: absolute; float: left; margin: 10px 0 0 10px;">중복확인</button>
 			</div>
 			<div class="wrapper">
-				<input type="password" class="input" name="password" placeholder="비밀번호를 입력하세요" required="required" autocomplete="off" style="width: 360px;">
+				<input type="password" class="input" name="password" id="pw" placeholder="비밀번호를 입력하세요" required="required" autocomplete="off" style="width: 360px;">
 				<span class="underline"></span>
 				<i class="glyphicon glyphicon-eye-close" id="pwtoggle" style="font-size: 16pt; color: #999999"></i>
 			</div>
 			<div class="wrapper">
-				<input type="password" class="input" name="password_check" placeholder="비밀번호 확인" required="required" style="width: 360px;">
+				<input type="password" class="input" name="password_check" id="pw_check" placeholder="비밀번호 확인" required="required" style="width: 360px;">
 				<span class="underline"></span>
 				<i class="glyphicon glyphicon-eye-close" id="pwtoggle" style="font-size: 16pt; color: #999999"></i>
 			</div>
@@ -204,13 +204,13 @@ function search_DaumPostcode() {
 			</div>
 			<div class="wrapper">
 				<input type="text" class="input" name="nickname" id="nickname" placeholder="닉네임을 입력하세요" required="required" style="width: 280px;">
-				<input type="hidden" class="input" name="nickname_check" id="nickname_check">
 				<span class="underline_id"></span>
+				<input type="hidden" class="input" name="nickname_check" id="nickname_check">
 				<button type="button" class="btn-small" id="nicknameCheck" style="position: absolute; float: left; margin: 10px 0 0 10px;">중복확인</button>
 			</div>
 			<div class="wrapper">
 				<input type="date" class="input" name="birth" required="required" data-placeholder="생년월일을 입력하세요" style="width: 360px; color: #505050;">
-				<span class="underline"></span>
+				<span class="underline" style="margin-top: 3px;"></span>
 			</div>
 			<div class="wrapper">
 				<input type="text" class="input" name="addr1" id="addr1" placeholder="찾기를 클릭해 주소를 입력하세요" readonly="readonly" style="width: 300px;">
