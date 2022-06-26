@@ -14,15 +14,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ruby.devel.model.CrewEnrollDto;
+import com.ruby.devel.service.impl.MemberMapper;
 import com.ruby.devel.service.impl.crewenrollMapper;
-
-
 
 @Controller
 public class GroundController {
 
 	@Autowired
 	crewenrollMapper Cmapper;
+
+	@Autowired
+	MemberMapper Mmapper;
 
 	@GetMapping("/ground") // 메뉴 선택 시 이동하는 기본 페이지
 	// ModelAndView!!
@@ -61,7 +63,6 @@ public class GroundController {
 		HashMap<String, Integer> map = new HashMap<>();
 		map.put("start", start);
 		map.put("perPage", perPage);
-		
 
 		// 각페이지에서 필요한 게시글 가져오기
 		List<CrewEnrollDto> list = Cmapper.getList(map);
@@ -73,8 +74,8 @@ public class GroundController {
 		// 출력에 필요한 변수들을 request 에 저장
 		mview.addObject("list", list);
 		mview.addObject("startPage", startPage);
-		//System.out.println(startPage);
-		//System.out.println(endPage);
+		// System.out.println(startPage);
+		// System.out.println(endPage);
 		mview.addObject("endPage", endPage);
 		mview.addObject("totalPage", totalPage);
 		mview.addObject("totalCount", totalCount);
@@ -87,8 +88,15 @@ public class GroundController {
 		model.addAttribute("newlist", newlist);
 		model.addAttribute("pointlist", pointlist);
 
+		// 작성자 이름, 닉네임 갖고오기
+		System.out.println(list);
+		String userKey = list.get(0).getMember_idx(); // userKey가 member의 member_idx
+		String memberidx = Mmapper.getUserKey(null);
+
+		mview.addObject("memberidx", memberidx);
+
 		// System.out.println(newlist);
-		//System.out.println(list);
+		// System.out.println(list);
 		mview.setViewName("/ground/ground_main");
 
 		return mview; // /ground/(파일명)
@@ -105,25 +113,28 @@ public class GroundController {
 	}
 
 	@PostMapping("/ground/crewinsert") // 크루 등록
-	public String insert(@ModelAttribute CrewEnrollDto dto) {
+	public String insert(@ModelAttribute CrewEnrollDto dto, @RequestParam String userKey) {
+
+
+		dto.setMember_idx(userKey);
+
 		Cmapper.insertCrewEnroll(dto);
 
 		return "redirect:/ground";
 	}
 
-	
 	@PostMapping("/ground/test123")
 	@ResponseBody
 	public CrewEnrollDto updateform(@RequestParam String team_idx) {
 		ModelAndView model = new ModelAndView();
-		
-		//System.out.println(team_idx);
-		
+
+		// System.out.println(team_idx);
+
 		CrewEnrollDto dto = Cmapper.getData(team_idx);
 		model.addObject("dto", dto);
-		
-		//System.out.println(dto);
-		
+
+		// System.out.println(dto);
+
 		model.setViewName("/ground/ground_main");
 
 		return dto;

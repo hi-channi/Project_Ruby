@@ -166,11 +166,11 @@
 								<td class="subject1">이름</td>
 								<!-- 게시글 제목 출력 -->
 								<td></td>
-								<td class="likecount1">${sessionScope.userName }</td>
+								<td class="likecount1"></td>
 							</tr>
 
 							<tr>
-								<td class="subject1">${sessionScope. }</td>
+								<td class="subject1">연령대</td>
 								<!-- 게시글 제목 출력 -->
 								<td></td>
 								<td class="likecount1"></td>

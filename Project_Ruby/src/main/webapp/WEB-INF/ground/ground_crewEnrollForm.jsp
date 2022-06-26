@@ -35,6 +35,7 @@
 
 
 				<span class="crew_name">크루 이름</span>
+				<input type="hidden" value="${userKey }" name="userKey">
 
 				<div class="wrapper">
 					<input type="text" class="input" name="name"
