@@ -17,6 +17,10 @@ public class CrewEnrollDto {
 	private String color;
 	private String member_idx;
 	private Timestamp create_day;
+	private String team_member_idx;
+	private Timestamp regist_day;
+	private String accept_status;
+	private String mypr;
 	
 	
 }

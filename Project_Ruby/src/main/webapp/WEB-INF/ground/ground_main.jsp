@@ -234,10 +234,8 @@
     {
           alert("로그인 후 사용이 가능합니다.");
         location.href="/login"; //로그인 폼으로 이동
-        //로그인 완료고 member_idx의 값이 크루 등록할 때의 dto의 member_idx와 일치할 때 팀장
-      } else if(${sessionScope.loginOK!=null and sessionScope.userKey==dto.member_idx}) {
-    	
-    }
+        //Team table의 member_idx(=userKey)에 해당하는 id와 세션에 저장된 id가 일치하면 팀장
+      }
 });
 	
 	$('.makecrew').click(function () {

@@ -83,6 +83,7 @@ public class GroundController {
 		mview.addObject("currentPage", currentPage);
 		mview.addObject("totalCount", totalCount);
 
+	
 		
 		
 		List<CrewEnrollDto> newlist = Cmapper.getNewCrewDatas();
@@ -90,12 +91,13 @@ public class GroundController {
 		model.addAttribute("newlist", newlist);
 		model.addAttribute("pointlist", pointlist);
 
-		// 작성자 이름, 닉네임 갖고오기
-		System.out.println(list);
-		String userKey = list.get(0).getMember_idx(); // userKey가 member의 member_idx
-		String memberidx = Mmapper.getUserKey(null);
-
-		mview.addObject("memberidx", memberidx);
+		/*
+		 * // 작성자 이름, 닉네임 갖고오기 System.out.println(list); String userKey =
+		 * list.get(0).getMember_idx(); // userKey가 member의 member_idx String memberidx
+		 * = Mmapper.getUserKey(null);
+		 * 
+		 * mview.addObject("memberidx", memberidx);
+		 */
 
 		// System.out.println(newlist);
 		// System.out.println(list);
@@ -115,12 +117,14 @@ public class GroundController {
 	}
 
 	@PostMapping("/ground/crewinsert") // 크루 등록
-	public String insert(@ModelAttribute CrewEnrollDto dto, @RequestParam String userKey) {
-
+	public String insert(@ModelAttribute CrewEnrollDto dto, 
+			@RequestParam String userKey
+			) {
 
 		dto.setMember_idx(userKey);
-
-		Cmapper.insertCrewEnroll(dto);
+		Cmapper.insertCrewEnroll(dto); //크루 등록
+		Cmapper.insertCrewleader(dto); //크루 리더 등록
+		Cmapper.crewleaderupdate(dto); //리더는 자동으로 수락 y
 
 		return "redirect:/ground";
 	}

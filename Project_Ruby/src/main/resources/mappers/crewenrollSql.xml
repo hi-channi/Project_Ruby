@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTDMapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <mapper namespace="com.ruby.devel.service.impl.crewenrollMapper">
-
-<select id="getTotalCount" resultType="int">
-	select count(*) from Team
+	<select id="getTotalCount" resultType="int">
+		select count(*) from Team
 	</select>
 
 	<insert id="insertCrewEnroll" parameterType="crewenroll">
@@ -12,24 +10,44 @@
 		(team_idx, name, info, create_day, color, member_idx) values
 		(#{team_idx}, #{name},
 		#{info}, now(), #{color}, #{member_idx})
-
 	</insert>
 
+	<!-- 크루 등록과 동시에 팀장도 팀원 테이블 insert(Team 테이블의 team_idx 뽑아서 TeamMember테이블에 
+		동시 주입 -->
+	<insert id="insertCrewleader" parameterType="crewenroll">
+		<selectKey resultType="String" keyProperty="team_idx"
+			order="BEFORE">
+			SELECT MAX(team_idx) FROM Team
+		</selectKey>
+		insert into TeamMember(team_member_idx, team_idx, member_idx,
+		regist_day)
+		values (#{team_member_idx}, #{team_idx}, #{member_idx}, now())
+	</insert>
+	
+	<!-- 팀장은 무조건 TeamMember에 수락여부 y, 팀 테이블의 member_idx와 팀멤버 테이블의 member_idx가 같다면 수락 여부 y로 업데이트
+	 -->
+	<update id="crewleaderupdate" parameterType="crewenroll" >
+	UPDATE TeamMember tm INNER JOIN Team te ON tm.member_idx = te.member_idx SET
+		tm.accept_status = 'Y'
+	</update>
+
 	<select id="getNewCrewDatas" resultType="crewenroll">
-		select * from Team order by team_idx desc
+		select * from Team order
+		by team_idx desc
 	</select>
 
 	<select id="getCrewPointDatas" resultType="crewenroll">
-		select * from Team order by score desc
-	</select>
-	
-	<select id="getList" parameterType="HashMap" resultType="crewenroll">
-	select * from Team order by team_idx desc limit #{start}, #{perPage}
-	</select>
-	
-	<select id="getData" parameterType="String" resultType="crewenroll">
-	select * from Team where team_idx =#{team_idx}
+		select * from Team
+		order by score desc
 	</select>
 
+	<select id="getList" parameterType="HashMap"
+		resultType="crewenroll">
+		select * from Team order by team_idx desc limit #{start}, #{perPage}
+	</select>
 
+	<select id="getData" parameterType="String"
+		resultType="crewenroll">
+		select * from Team where team_idx =#{team_idx}
+	</select>
 </mapper>
