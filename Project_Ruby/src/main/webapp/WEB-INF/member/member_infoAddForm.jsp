@@ -14,7 +14,18 @@
 <link rel="stylesheet" type="text/css" href="${root }/css/member/member_infoaddform.css">
 
 <script type="text/javascript">
+window.onpageshow = function(event) {
+    if (event.persisted || (window.performance && window.performance.navigation.type == 1)) {
+    	$("#idx").val("");
+    }
+}
+
 $(function() {
+	if($("#idx").val()=="") {
+		alert("잘못된 접근입니다.");
+		location.href="/";
+	}
+		
 	/* start Dropdown Menu*/		
 	$('.dropdown').click(function () {
         $(this).attr('tabindex', 1).focus();
@@ -55,9 +66,9 @@ function checkPass(form) {
 			</div>
 			<form action="memberinfoadd" method="post" onsubmit="return checkPass(this)">
 				<div class="wrapper">
-				<input type="hidden" name="member_idx" id="idx" required="required" readonly="readonly" value="${member_idx }"> 
+				<input type="text" name="member_idx" id="idx" required="required" readonly="readonly" value="${member_idx }"> 
 					직업&nbsp;&nbsp;
-					<input type="text" class="input" name="job" id="addr2" placeholder="직업을 입력하세요" required="required" style="width: 320px;"> 
+					<input type="text" class="input" name="job" id="job" placeholder="직업을 입력하세요" required="required" style="width: 320px;"> 
 					<span class="underline"></span> 
 				</div>
 				<div class="wrapper">
@@ -85,6 +96,11 @@ function checkPass(form) {
 					<span class="underline" style="margin-left: 165px; width: 90px;"></span>
 					<input type="text" class="input" name="hobby3" placeholder="관심분야3" style="width: 90px;"> 
 					<span class="underline" style="margin-left: 259px; width: 90px;"></span>
+				</div>
+				<div class="wrapper">
+					링크&nbsp;&nbsp;
+					<input type="text" class="input" name="link" id="link" placeholder="개인 홈페이지 주소를 입력하세요.(선택)" style="width: 320px;"> 
+					<span class="underline"></span> 
 				</div>
 				<div class="wrapper">
 					<div style="position:relative; margin-bottom: 10px;">소개글</div>

@@ -10,18 +10,20 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<% 
-response.setHeader("Cache-Control","no-store"); 
-response.setHeader("Pragma","no-cache"); 
-response.setDateHeader("Expires",0); 
-if (request.getProtocol().equals("HTTP/1.1"))
-        response.setHeader("Cache-Control", "no-cache");
-%> 
-
 <c:set var="root" value="<%=request.getContextPath() %>"/>
 <link rel="stylesheet" type="text/css" href="${root }/css/member/member_addform.css">
 
 <script type="text/javascript">
+// 뒤로가기(history.back()) 감지 시 메인 페이지 이
+window.onpageshow = function(event) {
+    if (event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+    	alert("회원가입 과정에서 페이지 뒤로가기가 감지되었습니다. \n입력하신 정보로 이미 회원가입이 완료되었으니 로그인 하셔서 추가 정보를 입력해 주세요.");
+    	//$("#id_check").val("");
+    	//$("#nickname_check").val("");
+    	location.href="/login";
+    }
+}
+
 $(function() {
 	// 중복 아이디 검증: ajax
 	$("#idCheck").click(
@@ -33,13 +35,18 @@ $(function() {
 				url : "idcheck",
 				data : {"id" : id},
 				success : function(data) {
-					if (data.vaildId == 0) {
-						alert("사용 가능한 아이디 입니다.");
-						$("#id_check").val(id);
-					} else {
-						alert("이미 존재하는 아이디 입니다.\n다른 아이디를 입력해주세요.");
-						$("#id").val("");
+					if(id=="") {
+						alert("사용할 아이디를 입력해주세요.");
 						$("#id").focus();
+					} else {
+						if (data.vaildId == 0) {
+							alert("사용 가능한 아이디 입니다.");
+							$("#id_check").val(id);
+						} else {
+							alert("이미 존재하는 아이디 입니다.\n다른 아이디를 입력해주세요.");
+							$("#id").val("");
+							$("#id").focus();
+						}
 					}
 				},
 				error : function(request, error) {
@@ -60,13 +67,18 @@ $(function() {
 				url : "nicknamecheck",
 				data : {"nickname" : nickname},
 				success : function(data) {
-					if (data.vaildNickname == 0) {
-						alert("사용 가능한 닉네임 입니다.");
-						$("#nickname_check").val(nickname);
-					} else {
-						alert("이미 사용 중인 닉네임 입니다.\n다른 닉네임을 입력해주세요.");
-						$("#nickname").val("");
+					if(nickname=="") {
+						alert("사용할 닉네임을 입력해주세요.");
 						$("#nickname").focus();
+					} else {
+						if (data.vaildNickname == 0) {
+							alert("사용 가능한 닉네임 입니다.");
+							$("#nickname_check").val(nickname);
+						} else {
+							alert("이미 사용 중인 닉네임 입니다.\n다른 닉네임을 입력해주세요.");
+							$("#nickname").val("");
+							$("#nickname").focus();
+						}
 					}
 				},
 				error : function(request, error) {
@@ -88,12 +100,12 @@ function checkPass(form) {
 		return false;
 	}
 	// 아이디 중복확인 체크
-	if (form.id.value !== form.id_check.value) {
+	if (form.id.value!==form.id_check.value || form.id.value=="" || form.id_check.value=="") {
 		alert("아이디 중복확인이 필요합니다.");
 		return false;
 	}
 	// 닉네임 중복확인 체크
-	if (form.nickname.value !== form.nickname_check.value) {
+	if (form.nickname.value!==form.nickname_check.value || form.nickname.value=="" || form.nickname_check.value=="") {
 		alert("닉네임 중복확인이 필요합니다.");
 		return false;
 	}
@@ -172,7 +184,7 @@ function search_DaumPostcode() {
 		<form action="memberadd" method="post" onsubmit="return checkPass(this)">
 			<div class="wrapper">
 				<input type="text" class="input" name="id" id="id" placeholder="아이디 입력하세요" required="required" style="width: 280px;">
-				<input type="hidden" class="input" name="id_check" id="id_check" required="required">
+				<input type="hidden" class="input" name="id_check" id="id_check">
 				<span class="underline_id"></span>
 				<button type="button" class="btn-small" id="idCheck" style="position: absolute; float: left; margin: 10px 0 0 10px;">중복확인</button>
 			</div>
@@ -192,7 +204,7 @@ function search_DaumPostcode() {
 			</div>
 			<div class="wrapper">
 				<input type="text" class="input" name="nickname" id="nickname" placeholder="닉네임을 입력하세요" required="required" style="width: 280px;">
-				<input type="hidden" class="input" name="nickname_check" id="nickname_check" required="required">
+				<input type="hidden" class="input" name="nickname_check" id="nickname_check">
 				<span class="underline_id"></span>
 				<button type="button" class="btn-small" id="nicknameCheck" style="position: absolute; float: left; margin: 10px 0 0 10px;">중복확인</button>
 			</div>

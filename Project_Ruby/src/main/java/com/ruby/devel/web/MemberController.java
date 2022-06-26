@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.tiles.jsp.taglib.UseAttributeTag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ruby.devel.model.MemberDto;
 import com.ruby.devel.service.impl.MemberMapper;
@@ -42,15 +44,23 @@ public class MemberController {
 			@RequestParam String zipcode,
 			@RequestParam String birth,
 			@RequestParam String contact_number,
-			@RequestParam String email
-			) {
+			@RequestParam String email,
+			RedirectAttributes redirectAttributes) {
 		// 주소 및 우편번호 병합저장
 		m_dto.setAddress(addr1+" "+addr2+" ("+zipcode+")");
 		Mmapper.addMember(m_dto);
 		
 		System.out.println("발급된 member_idx: "+m_dto.getMember_idx());
-		model.addAttribute("member_idx", m_dto.getMember_idx());
+		// 1회만 전송
+		redirectAttributes.addFlashAttribute("member_idx",m_dto.getMember_idx());
 		
+		return "redirect:addinfo";
+	}
+	
+	// 추가정보 입력
+	@GetMapping("/addinfo")  
+	public String addmemberinfo()
+	{
 		return "/member/member_infoAddForm";
 	}
 	
@@ -87,9 +97,10 @@ public class MemberController {
 			@RequestParam (required=false, defaultValue= "") String hobby2,
 			@RequestParam (required=false, defaultValue= "") String hobby3,
 			@RequestParam String pr,
-			@RequestParam (value="test", required=false, defaultValue="http://") String link
+			@RequestParam (required=false, defaultValue="http://") String link
 			) {
 		Mmapper.addMemberInfo(m_dto);
+		Mmapper.signupComplete(member_idx);
 		
 		return "redirect:login";
 	}
@@ -106,27 +117,38 @@ public class MemberController {
 	public String loginProc(@RequestParam(required = false) String saveid,
 			@RequestParam String id,
 			@RequestParam String password,
-			HttpSession session) {
+			HttpSession session,
+			RedirectAttributes redirectAttributes) {
 		
 		HashMap<String, String> user=new HashMap<>();
 		user.put("id", id);
 		user.put("password", password);
 		
-		int check=Mmapper.login(user);
-		if(check==1) {
-			// 로그인 세션 부여
-			session.setAttribute("userID", id);
-			session.setAttribute("loginOK", "yes");
-			session.setAttribute("saveid", saveid); //체크안하면 null, 체크하면 on
-			
-			String name=Mmapper.getName(id);
-			String nickname=Mmapper.getNickname(id);
-			session.setAttribute("userName", name);
-			session.setAttribute("userNickname", nickname);
-			
-			System.out.println("Login ID: "+id);
-			System.out.println("saveID?: "+saveid);
-			return "redirect:main";
+		int check_login=Mmapper.login(user);
+		int signup_complete=Mmapper.checkVaildSignup(user);
+		if(check_login==1) {
+			if(signup_complete==1) {
+				// 로그인 세션 부여
+				session.setAttribute("userID", id);
+				session.setAttribute("loginOK", "yes");
+				session.setAttribute("saveid", saveid); //체크안하면 null, 체크하면 on
+				
+				String name=Mmapper.getName(id);
+				String nickname=Mmapper.getNickname(id);
+				String userKey=Mmapper.getUserKey(id);
+				session.setAttribute("userName", name);
+				session.setAttribute("userNickname", nickname);
+		        session.setAttribute("userKey", userKey);
+		        
+				System.out.println("Login ID: "+id);
+				System.out.println("saveID?: "+saveid);
+				return "redirect:main";
+			} else {
+ 				String userKey=Mmapper.getUserKey(id);
+		        redirectAttributes.addFlashAttribute("member_idx", userKey);
+				return "redirect:addinfo";
+			}
+				
 		}else {
 			return "/member/member_loginFailForm";
 		}
@@ -143,9 +165,11 @@ public class MemberController {
 	
 	/*
 	 * 작업 해야할 것
-	 * - 회원가입 페이지에서 회원 가입 이후 뒤로가기 시 중복 회원가입 되는 문제 수정
-	 * - 회원 추가정보 입력 안되었을 경우 로그인 시 바로 추가정보 입력 페이지로 이동되게 수정
+	 * - 회원가입 페이지에서 회원 가입 이후 뒤로가기 시 중복 회원가입 되는 문제 수정(완료)
+	 * - 회원 추가정보 입력 안되었을 경우 로그인 시 바로 추가정보 입력 페이지로 이동되게 수정(완료)
 	 * - 비밀번호 재설정 페이지 구현
+	 * - 로그인 실패 페이지 구현
+	 * - 로그인 아이디 저장 구현
 	 */
 	
 	@GetMapping("/findaccount")  // 계정 정보 찾기 페이지
