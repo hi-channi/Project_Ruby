@@ -166,7 +166,7 @@
 								<td class="subject1">이름</td>
 								<!-- 게시글 제목 출력 -->
 								<td></td>
-								<td class="likecount1"></td>
+								<td class="likecount1">${sessionScope.userName }</td>
 							</tr>
 
 							<tr>
