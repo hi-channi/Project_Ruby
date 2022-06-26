@@ -83,6 +83,8 @@ public class GroundController {
 		mview.addObject("currentPage", currentPage);
 		mview.addObject("totalCount", totalCount);
 
+		
+		
 		List<CrewEnrollDto> newlist = Cmapper.getNewCrewDatas();
 		List<CrewEnrollDto> pointlist = Cmapper.getCrewPointDatas();
 		model.addAttribute("newlist", newlist);
