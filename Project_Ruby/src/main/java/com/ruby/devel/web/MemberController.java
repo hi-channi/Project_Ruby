@@ -158,7 +158,7 @@ public class MemberController {
 				session.setAttribute("userNickname", nickname);
 		        session.setAttribute("userKey", userKey);
 		        
-				System.out.println("Login ID: "+id+" / saveID? "+saveid);
+				System.out.println(saveid==null?"Login ID: "+id+" / saveID? NO":"Login ID: "+id+" / saveID? YES");
 				System.out.println("MESSAGE: 로그인 성공!\n로그인 시각: "+time);
 				return "redirect:main";
 			} else {	// 추가정보 입력하지 않았을 경우(signup_complete==0)
