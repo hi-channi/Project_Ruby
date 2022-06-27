@@ -25,75 +25,102 @@ window.onpageshow = function(event) {
 }
 
 $(function() {
+	// 아이디 입력 폼 focus 시 규칙 노출
+	$('#id').on("focus", function () {
+	    $("div.idRule").css("display","inline-block");
+	});	
+	$('#id').on("blur", function () {
+		$("div.idRule").css("display","none");
+	});
 	// 비밀번호 입력 폼 focus 시 규칙 노출
 	$('#pw').on("focus", function () {
-	    $("div.pwrule").css("display","inline-block")
+	    $("div.pwRule").css("display","inline-block");
 	});	
 	$('#pw').on("blur", function () {
-		$("div.pwrule").css("display","none")
+		$("div.pwRule").css("display","none");
+	});
+	// 닉네임 입력 폼 focus 시 규칙 노출
+	$('#nickname').on("focus", function () {
+	    $("div.nicknameRule").css("display","inline-block");
+	});	
+	$('#nickname').on("blur", function () {
+		$("div.nicknameRule").css("display","none");
 	});
 	
-	/* 중복 아이디 검증: ajax */
+	/* 아이디 정규식 체크, 중복 아이디 검증: ajax */
 	$("#idCheck").click(
 		function() {
-			var id = $("#id").val();
-			$.ajax({
-				type : "get",
-				dataType : "json",
-				url : "idcheck",
-				data : {"id" : id},
-				success : function(data) {
-					if(id=="") {	// 아무것도 입력하지 않았을 경우
-						alert("사용할 아이디를 입력해주세요.");
-						$("#id").focus();	
-					} else {
-						if (data.vaildId == 0) {
-							alert("사용 가능한 아이디 입니다.");
-							$("#id_check").val(id);
+			var inputID = $("#id").val();
+			var idCheck = /^[A-Za-z]{1}[A-Za-z0-9_]{5,14}$/g.test(inputID);
+			if(!idCheck) {
+				alert("아이디는 6~15자의 영문, 숫자, 특수기호(_)만 사용 가능합니다.\n(첫글자는 영문만 가능)");
+				$("#id").focus();
+			} else {
+				$.ajax({
+					type : "get",
+					dataType : "json",
+					url : "idcheck",
+					data : {"id" : inputID},
+					success : function(data) {
+						if(inputID=="") {	// 아무것도 입력하지 않았을 경우
+							alert("사용할 아이디를 입력해주세요.");
+							$("#id").focus();	
 						} else {
-							alert("이미 존재하는 아이디 입니다.\n다른 아이디를 입력해주세요.");
-							$("#id").val("");
-							$("#id").focus();
+							if (data.vaildId == 0) {
+								alert("사용 가능한 아이디 입니다.");
+								$("#id_check").val(id);
+							} else {
+								alert("이미 존재하는 아이디 입니다.\n다른 아이디를 입력해주세요.");
+								$("#id").val("");
+								$("#id").focus();
+							}
 						}
+					},
+					error : function(request, error) {
+						alert("fail!");
+						alert("code:" + request.status + "\n"+ "error message:" + request.responseText+ "\n" + "error:" + error);
 					}
-				},
-				error : function(request, error) {
-					alert("fail!");
-					alert("code:" + request.status + "\n"+ "error message:" + request.responseText+ "\n" + "error:" + error);
-				}
-			});
-		});
-		
-	/* 중복 닉네임 검증: ajax */
+				});
+			}	
+		}
+	);
+	/* 닉네임 정규식 체크, 중복 닉네임 검증: ajax */
 	$("#nicknameCheck").click(
 		function() {
-			var nickname = $("#nickname").val();
-			$.ajax({
-				type : "get",
-				dataType : "json",
-				url : "nicknamecheck",
-				data : {"nickname" : nickname},
-				success : function(data) {
-					if(nickname=="") {	// 아무것도 입력하지 않았을 경우
-						alert("사용할 닉네임을 입력해주세요.");
-						$("#nickname").focus();
-					} else {
-						if (data.vaildNickname == 0) {
-							alert("사용 가능한 닉네임 입니다.");
-							$("#nickname_check").val(nickname);
-						} else {
-							alert("이미 사용 중인 닉네임 입니다.\n다른 닉네임을 입력해주세요.");
-							$("#nickname").val("");
+			var inputNickname = $("#nickname").val();
+			var nicknameCheck = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,8}$/g.test(inputNickname);
+			if(!nicknameCheck) {
+				alert("닉네임은 2~8자의 한글, 영문, 숫자만 사용 가능합니다.");
+				$("#nickname").focus();
+			} else {
+				$.ajax({
+					type : "get",
+					dataType : "json",
+					url : "nicknamecheck",
+					data : {"nickname" : inputNickname},
+					success : function(data) {
+						if(inputNickname=="") {	// 아무것도 입력하지 않았을 경우
+							alert("사용할 닉네임을 입력해주세요.");
 							$("#nickname").focus();
+						} else {
+							if (data.vaildNickname == 0) {
+								alert("사용 가능한 닉네임 입니다.");
+								$("#nickname_check").val(nickname);
+							} else {
+								alert("이미 사용 중인 닉네임 입니다.\n다른 닉네임을 입력해주세요.");
+								$("#nickname").val("");
+								$("#nickname").focus();
+							}
 						}
+					},
+					error : function(request, error) {
+						alert("fail!");
+						alert("code:" + request.status + "\n"+ "error message:" + request.responseText+ "\n" + "error:" + error);
 					}
-				},
-				error : function(request, error) {
-					alert("fail!");
-					alert("code:" + request.status + "\n"+ "error message:" + request.responseText+ "\n" + "error:" + error);
-				}
-			});
-		});
+				});
+			}
+		}
+	);
 });
 
 /* 회원가입 데이터 검증 */
@@ -101,9 +128,9 @@ function checkPass(form) {
 	// 비밀번호 정규식 검증
 	var inputID = $("#id").val();		// id 입력
 	var inputPW = $("#pw").val();	// pw 입력
-	var check1 = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,12}$/.test(inputPW);		// 영문, 숫자
-	var check2 = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{8,12}$/.test(inputPW);		// 영문, 특수문자
-	var check3 = /^(?=.*[^a-zA-Z0-9])(?=.*[0-9]).{8,12}$/.test(inputPW);		// 특수문자, 숫자
+	var check1 = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,15}$/.test(inputPW);		// 영문, 숫자
+	var check2 = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{8,15}$/.test(inputPW);		// 영문, 특수문자
+	var check3 = /^(?=.*[^a-zA-Z0-9])(?=.*[0-9]).{8,15}$/.test(inputPW);		// 특수문자, 숫자
 	if(!(check1||check2||check3)){
 		alert("비밀번호는 8~12자리의 영문(대/소문자)+숫자+특수문자 중 2가지 이상을 조합해야 합니다.");
 		$("#pw").focus();
@@ -230,7 +257,7 @@ function search_DaumPostcode() {
 				<i class="glyphicon glyphicon-eye-close" id="pwtoggle" style="font-size: 16pt; color: #999999"></i>
 			</div>
 			<div class="wrapper">
-				<input type="text" class="input" name="name" placeholder="이름을 입력하세요" required="required" style="width: 360px;">
+				<input type="text" class="input" name="name" placeholder="이름을 입력하세요" required="required" maxlength="15" style="width: 360px;">
 				<span class="underline"></span>
 			</div>
 			<div class="wrapper">
@@ -263,10 +290,18 @@ function search_DaumPostcode() {
 			 <button class="btn-large" style="margin-top: 25px;" type="submit">회원가입</button>
 		</form>
 	</div>
-	<div class="pwrule">
-		✔️ 8~12자리 영문, 숫자, 특수문자 중 2가지 이상 조합<br>
-		✔️ 아이디와 중복되는 패스워드는 사용 불가<br>
-		✔️ 동일한 숫자 또는 문자 3번 이상 연속 사용 불가
+	<div class="idRule">
+		&ensp;•&nbsp; 첫 글자 영문 시작<br>
+		&ensp;•&nbsp; 6~15자리 영문, 숫자, _ 조합<br>
+	</div>
+	<div class="pwRule">
+		&ensp;•&nbsp; 8~15자리 영문, 숫자, 특수문자 중 2가지 이상 조합<br>
+		&ensp;•&nbsp; 아이디와 중복되는 문자 사용 불가<br>
+		&ensp;•&nbsp; 동일한 숫자 또는 문자 3번 이상 연속 사용 불가
+	</div>
+	<div class="nicknameRule">
+		&ensp;•&nbsp; 2~8자리 영어, 숫자, 한글만 사용 가능<br>
+		&ensp;•&nbsp; 한글 초성 및 모음 사용 불가
 	</div>
 </div>
 </body>
