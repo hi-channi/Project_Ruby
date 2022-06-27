@@ -15,18 +15,22 @@
 
 <script type="text/javascript">
 function checkPass(form) {
-	$("#pw").attr('type','password');
+	$("#pw_see").attr("type","password");
+	var inputPassword = $("#pw_see").val();
+	$("#pw").val(inputPassword);
+	$("#pw_see").val("");
+	
 }
 // 비밀번호 보이기/숨기기 토글
 $(document).ready(function(){
-    $('.wrapper i').on('click',function(){
-        $('input').toggleClass('active');
-        if($('input').hasClass('active')){
-            $(this).attr('class',"glyphicon glyphicon-eye-open")
-            .prev('span').prev('input').attr('type',"text");
+    $(".wrapper i").on("click",function(){
+        $("input").toggleClass("active");
+        if($("input").hasClass("active")){
+            $(this).attr("class","glyphicon glyphicon-eye-open")
+            .prev("span").prev("input").attr("type","text");
         }else{
-            $(this).attr('class',"glyphicon glyphicon-eye-close")
-            .prev('span').prev('input').attr('type','password');
+            $(this).attr("class","glyphicon glyphicon-eye-close")
+            .prev("span").prev("input").attr("type","password");
         }
     });
 });
@@ -46,10 +50,11 @@ $(document).ready(function(){
 				<span class="underline"></span>
 			</div>
 			<div class="wrapper">
-				<input type="password" class="input" name="password" id="pw" placeholder="비밀번호를 입력하세요" required="required" autocomplete="off" style="width: 360px;">
+				<input type="password" class="input" name="password_see" id="pw_see" placeholder="비밀번호를 입력하세요" required="required" autocomplete="off" style="width: 360px;">
 				<span class="underline"></span>
 				<i class="glyphicon glyphicon-eye-close" id="pwtoggle" style="font-size: 16pt; color: #999999"></i>
 			</div>
+				<input type="hidden" name="password" id="pw" autocomplete="off" style="width: 360px;">
 			<ul>
 				<li>
 				<input type="checkbox" id="saveid" name="saveid" onchange="setDisplay()" ${sessionScope.saveid==null?"":"checked" }>

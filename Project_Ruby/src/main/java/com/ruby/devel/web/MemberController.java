@@ -27,8 +27,17 @@ public class MemberController {
 	
 	/* 회원가입 페이지 */
 	@GetMapping("/signup")  
-	public String member_signup() {
-		return "/member/member_addForm";  // member/(파일명)
+	public String member_signup(HttpSession session) {
+		String loginOK=(String)session.getAttribute("loginOK");
+		
+		System.out.println("MESSAGE: 로그아웃(force)이 성공적으로 수행되었습니다.");
+		
+		if(loginOK==null) {	// 로그아웃 상태에서 접근(평시)
+			return "/member/member_addForm";
+		} else {	// 로그인 상태에서 접근
+			session.removeAttribute("loginOK");
+			return "/member/member_addForm";	// member/(파일명)
+		}
 	}
 	
 	/* 회원가입 처리 */
