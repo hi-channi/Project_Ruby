@@ -13,7 +13,7 @@
 <c:set var="root" value="<%=request.getContextPath()%>"/>
 <link rel="stylesheet" type="text/css" href="${root }/css/member/member_userpwreset.css">
 
-<title>Insert title here</title>
+<title>DEVEL :: 비밀번호 재설정</title>
 
 <script type="text/javascript">
 /* 뒤로가기(history.back()) 감지 시 메인 페이지 이동 */

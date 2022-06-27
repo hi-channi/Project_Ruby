@@ -32,7 +32,7 @@ $(document).ready(function(){
 });
 </script>
 
-<title>Insert title here</title>
+<title>DEVEL :: 회원 로그인</title>
 </head>
 <body>
 <div class="title">

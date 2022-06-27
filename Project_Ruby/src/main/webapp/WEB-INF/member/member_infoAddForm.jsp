@@ -47,7 +47,7 @@ function checkPass(form) {
 }
 </script>
 
-<title>Insert title here</title>
+<title>DEVEL :: 추가정보 입력</title>
 </head>
 <body>
 <div class="title">
@@ -56,15 +56,9 @@ function checkPass(form) {
 <div class="container">
 		<div class="box">
 			<div style="text-align: center; margin-bottom: 30px; color: #505050; ">
-				<b>회원가입을 환영합니다.</b><br> 몇가지 추가정보를 입력하면 활동이 가능합니다.
+				<b>회원가입을 환영합니다.</b><br> 활동을 위한 추가정보를 입력하면 회원가입이 완료됩니다.
 			</div>
 			<form action="memberinfoadd" method="post" onsubmit="return checkPass(this)">
-				<div class="wrapper">
-				<input type="hidden" name="member_idx" id="idx" required="required" readonly="readonly" value="${member_idx }"> 
-					직업&nbsp;&nbsp;
-					<input type="text" class="input" name="job" id="job" placeholder="직업을 입력하세요" required="required" style="width: 320px;"> 
-					<span class="underline"></span> 
-				</div>
 				<div class="wrapper">
 					연령&nbsp;&nbsp;
 					<div class="dropdown">
@@ -83,6 +77,17 @@ function checkPass(form) {
 					</div>
 				</div>
 				<div class="wrapper">
+				<input type="hidden" name="member_idx" id="idx" required="required" readonly="readonly" value="${member_idx }"> 
+					직업&nbsp;&nbsp;
+					<input type="text" class="input" name="job" id="job" placeholder="직업을 입력하세요" required="required" style="width: 320px;"> 
+					<span class="underline"></span> 
+				</div>
+				<div class="wrapper" style="margin-top: -5px;">
+					링크&nbsp;&nbsp;
+					<input type="text" class="input" name="link" id="link" placeholder="개인 홈페이지 주소를 입력하세요(선택)" style="width: 320px;"> 
+					<span class="underline"></span> 
+				</div>
+				<div class="wrapper" style="margin-top: -7px;">
 					관심분야&nbsp;&nbsp;&nbsp;&nbsp; 
 					<input type="text" class="input" name="hobby1" placeholder="관심분야1" required="required" style="width: 90px;"> 
 					<span class="underline" style="margin-left: 71px; width: 90px;"></span>
@@ -90,11 +95,6 @@ function checkPass(form) {
 					<span class="underline" style="margin-left: 165px; width: 90px;"></span>
 					<input type="text" class="input" name="hobby3" placeholder="관심분야3" style="width: 90px;"> 
 					<span class="underline" style="margin-left: 259px; width: 90px;"></span>
-				</div>
-				<div class="wrapper">
-					링크&nbsp;&nbsp;
-					<input type="text" class="input" name="link" id="link" placeholder="개인 홈페이지 주소를 입력하세요.(선택)" style="width: 320px;"> 
-					<span class="underline"></span> 
 				</div>
 				<div class="wrapper">
 					<div style="position:relative; margin-bottom: 10px;">소개글</div>

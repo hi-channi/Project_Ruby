@@ -25,6 +25,14 @@ window.onpageshow = function(event) {
 }
 
 $(function() {
+	// 비밀번호 입력 폼 focus 시 규칙 노출
+	$('#pw').on("focus", function () {
+	    $("div.pwrule").css("display","inline-block")
+	});	
+	$('#pw').on("blur", function () {
+		$("div.pwrule").css("display","none")
+	});
+	
 	/* 중복 아이디 검증: ajax */
 	$("#idCheck").click(
 		function() {
@@ -90,25 +98,48 @@ $(function() {
 
 /* 회원가입 데이터 검증 */
 function checkPass(form) {
-	$("#pw").attr('type','password');
-	$("#pw_check").attr('type','password');
+	// 비밀번호 정규식 검증
+	var inputID = $("#id").val();		// id 입력
+	var inputPW = $("#pw").val();	// pw 입력
+	var check1 = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,12}$/.test(inputPW);		// 영문, 숫자
+	var check2 = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{8,12}$/.test(inputPW);		// 영문, 특수문자
+	var check3 = /^(?=.*[^a-zA-Z0-9])(?=.*[0-9]).{8,12}$/.test(inputPW);		// 특수문자, 숫자
+	if(!(check1||check2||check3)){
+		alert("비밀번호는 8~12자리의 영문(대/소문자)+숫자+특수문자 중 2가지 이상을 조합해야 합니다.");
+		$("#pw").focus();
+		return false;
+	}
+	if(/(\w)\1\1/.test(inputPW)){
+		alert('같은 문자를 3번 이상 사용하실 수 없습니다.');
+		$("#pw").focus();
+		return false;
+	}
+	if(inputPW.search(inputID)>-1 && inputID!=null){
+		alert("비밀번호에 아이디가 포함되어 있습니다.");
+		$("#pw").focus();
+		return false;
+	}
 	// 비밀번호 일치 검증
-	if (form.password.value !== form.password_check.value) {
+	if(form.password.value !== form.password_check.value) {
 		alert("비밀번호가 일치하지 않습니다.");
 		form.password.value = "";
 		form.password_check.value = "";
 		return false;
 	}
 	// 아이디 중복확인 체크
-	if (form.id.value!==form.id_check.value || form.id.value=="" || form.id_check.value=="") {
+	if(form.id.value!==form.id_check.value || form.id.value=="" || form.id_check.value=="") {
 		alert("아이디 중복확인이 필요합니다.");
 		return false;
 	}
 	// 닉네임 중복확인 체크
-	if (form.nickname.value!==form.nickname_check.value || form.nickname.value=="" || form.nickname_check.value=="") {
+	if(form.nickname.value!==form.nickname_check.value || form.nickname.value=="" || form.nickname_check.value=="") {
 		alert("닉네임 중복확인이 필요합니다.");
 		return false;
 	}
+	// 폼 전송 시 password 가리기
+	$("#pwtoggle").attr('class',"glyphicon glyphicon-eye-close")
+	$("#pw").attr('type','password');
+	$("#pw_check").attr('type','password');
 }
 
 /* 비밀번호 보이기/숨기기 토글 */
@@ -173,7 +204,7 @@ function search_DaumPostcode() {
 }
 </script>
 
-<title>Insert title here</title>
+<title>DEVEL :: 회원가입</title>
 </head>
 <body>
 <div class="title">
@@ -189,7 +220,7 @@ function search_DaumPostcode() {
 				<button type="button" class="btn-small" id="idCheck" style="position: absolute; float: left; margin: 10px 0 0 10px;">중복확인</button>
 			</div>
 			<div class="wrapper">
-				<input type="password" class="input" name="password" id="pw" placeholder="비밀번호를 입력하세요" required="required" autocomplete="off" style="width: 360px;">
+				<input type="password" class="input" name="password" id="pw" placeholder="비밀번호를 입력하세요" required="required" autocomplete="off" onblur="chekPassword();" style="width: 360px;">
 				<span class="underline"></span>
 				<i class="glyphicon glyphicon-eye-close" id="pwtoggle" style="font-size: 16pt; color: #999999"></i>
 			</div>
@@ -213,7 +244,7 @@ function search_DaumPostcode() {
 				<span class="underline" style="margin-top: 3px;"></span>
 			</div>
 			<div class="wrapper">
-				<input type="text" class="input" name="addr1" id="addr1" placeholder="찾기를 클릭해 주소를 입력하세요" readonly="readonly" style="width: 300px;">
+				<input type="text" class="input" name="addr1" id="addr1" required="required" placeholder="찾기를 클릭해 주소를 입력하세요" readonly="readonly" style="width: 300px;">
 				<button type="button" class="btn-small" style="width: 50px; margin: 0 0 0 6px;" onclick="search_DaumPostcode()">찾기</button><br>
 			</div>
 			<div class="wrapper">
@@ -231,6 +262,11 @@ function search_DaumPostcode() {
 			</div>
 			 <button class="btn-large" style="margin-top: 25px;" type="submit">회원가입</button>
 		</form>
+	</div>
+	<div class="pwrule">
+		✔️ 8~12자리 영문, 숫자, 특수문자 중 2가지 이상 조합<br>
+		✔️ 아이디와 중복되는 패스워드는 사용 불가<br>
+		✔️ 동일한 숫자 또는 문자 3번 이상 연속 사용 불가
 	</div>
 </div>
 </body>

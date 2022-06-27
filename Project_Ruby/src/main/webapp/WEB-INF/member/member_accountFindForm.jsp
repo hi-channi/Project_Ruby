@@ -38,7 +38,7 @@ function setFindformType(){
 }
 </script>
 
-<title>Insert title here</title>
+<title>DEVEL :: 회원정보 찾기</title>
 </head>
 <body>
 <div class="title">

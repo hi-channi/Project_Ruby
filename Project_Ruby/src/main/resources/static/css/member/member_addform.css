@@ -30,6 +30,20 @@ div.box {
 	background-color: #fff;
 }
 
+div.pwrule {
+	position: absolute; 
+	width: 310px; 
+	height: 65px; 
+	top: 240px; 
+	left: 1175px; 
+	background-color: #fff; 
+	padding: 5px; 
+	border-radius: 15px; 
+	font-size: 0.9em; 
+	display: none; 
+	box-shadow: 0 1px 5px #dbdbdb ;
+}
+
 tr {
 	padding: 10px;
 }
