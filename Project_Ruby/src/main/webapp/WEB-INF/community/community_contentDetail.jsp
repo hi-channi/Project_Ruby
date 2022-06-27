@@ -60,11 +60,95 @@ $(function(){
 		alert("댓글 등록 되어야해요!");
 	});
 	
-	
+  	community_idx=$("#c_idx").val();
+  	loginOK="${sessionScope.loginOK}";
+  	userKey="${sessionScope.userKey}"; 
+	list();
+  	
+	/* 댓글 ajax */	
+	$("#btncommentadd").click(function() {
+		var content=$("#content").val();
+		if(content.trim().length==0){
+			alert("내용을 입력해주세요.");
+			return;
+		}
+		
+		$.ajax({
+			type: "post",
+			dataType: "text",
+			url: "commentinsert",
+			data:{"community_idx":community_idx, "content": content},
+			success:function(data){
+				list();
+				$("#content").val("");
+			},
+			error : function(request, error) {
+				alert("fail!");
+				alert("code:" + request.status + "\n"+ "error message:" + request.responseText+ "\n" + "error:" + error);
+			}	
+		});  
+	});  
 	
 });
 
-/* 삭제시 컨펌창 */
+/* 댓글 삭제 */
+$(document).on("click","span.adel",function(){
+		
+		var idx=$(this).attr("idx");
+		/* alert(idx); */
+		
+		var a=confirm("해당 댓글을 삭제하시겠습니까?");
+		
+		if(a){
+			$.ajax({
+				type:"get",
+				dataType:"text", //return값 없을땐 text!
+				url:"deletecomment",
+				data:{"community_comment_idx":idx},
+				success:function(data){
+					list();
+				}
+			});
+		}	
+	});
+
+
+/* 댓글 리스트 출력 */
+function list() {
+	 $.ajax({
+			type:"get",
+			dataType:"json",
+			url:"commentlist",
+			data:{"community_idx":community_idx},
+			success:function(data){
+				$("span.textsms").text(data.length); //댓글 개수
+				
+				var s="";
+				$.each(data,function(i,cm_dto){
+					
+					s+="<div>";
+					s+="<img alt='' src='${root }/element/icon_profile.png'>";
+					s+="<span class='commentuser'>"+cm_dto.member_idx+"</span>";
+					s+="<input type='text' class='commentwritetext' value='"+cm_dto.content+"' readonly='readonly'>";
+					s+="<br>";
+					s+="<span class='commentwriteday'>"+cm_dto.write_day+"</span>";
+					
+					
+					if(loginOK=="yes" && userKey==cm_dto.member_idx){
+						s+="<span class='glyphicon glyphicon-pencil amod' id='amod' idx='"+cm_dto.community_comment_idx+"'></span>";
+						s+="&nbsp;";
+						s+="<span class='glyphicon glyphicon-trash adel' id='adel' idx='"+cm_dto.community_comment_idx+"'></span>";
+					}
+					
+					s+="</div>";
+				});
+				
+				$("div.commentdiv").html(s);
+			}
+		});  
+}
+
+/* 게시글 삭제시 컨펌창 */
 function delcontent() {
 	var c_idx=$("#c_idx").val();
 	var currentPage=$("#currentPage").val();
@@ -72,7 +156,12 @@ function delcontent() {
 	if(confirm("게시글을 삭제하시겠습니까?")){
 		location.href='del_content?community_idx='+c_idx+'&currentPage='+currentPage;
 	}
-};
+}
+
+/* 비회원 댓글 등록 제한 */
+function writecomment() {
+	alert("댓글 쓰기는 로그인 후 이용 가능합니다.");
+}
 
 </script>
 </head>
@@ -104,6 +193,7 @@ function delcontent() {
 	
 
 	<div class="content" style="border: solid 1px #dbdbdb; border-top: solid 2px black; border-bottom: solid 2px black;">
+		
 		<!--게시글 삭제,수정 버튼 -->
 		<c:if test="${sessionScope.loginOK!=null and sessionScope.userKey==c_dto.member_idx}">
 			<button type="button" class="btndel glyphicon glyphicon-remove" style="border: none; background-color: #fff" onclick="delcontent()"></button>
@@ -136,7 +226,7 @@ function delcontent() {
 	<%--각 count값 받아오기 --%>
 	<div class="iconcount">
 	<span class="textsms"><img alt="" src="${root }/element/icon_textsms.png">&nbsp;&nbsp;0</span>
-	<span class="likes"><img alt="" src="${root }/element/icon_thumb.png">&nbsp;&nbsp;30</span>
+	<span class="likes"> <button type="button" class="btnthumb glyphicon glyphicon-thumbs-up" style="border: none; background-color: #fff; width: 28.1px; height: 25.6px;"></button> </span>
 	<span><img alt="" src="${root }/element/icon_visibil.png">&nbsp;&nbsp;${c_dto.read_count }</span>
 	</div>
 	
@@ -144,22 +234,19 @@ function delcontent() {
 	
 	<div class="addcomment" style="border: solid 1px #dbdbdb;">
 	
-	<input type="text" value="댓글을 입력하세요" class="commenttext">
-	<button type="button" class="btn-small">댓글등록</button>
-	</div>
+	<!-- 댓글쓰기 버튼 -->
+		<c:if test="${sessionScope.loginOK!=null }">
+			<input type="text" placeholder="댓글을 입력하세요" class="commenttext" id="content" >
+			<button type="button" class="btn-small" id="btncommentadd">댓글등록</button>
+		</c:if>
 	
+		<c:if test="${sessionScope.loginOK==null }">
+			<input type="text" value="댓글을 입력하세요" class="commenttext">
+			<button type="button" class="btncommentadd2 btn-small" onclick="writecomment()">댓글등록</button>
+		</c:if>
+	</div>
 	
 	<div class="commentdiv" style="border: solid 1px #dbdbdb;">
-	
-	<c:forEach var="i" begin="1" end="3">
-	<div>
-		<img alt="" src="${root }/element/icon_profile.png">
-		<span class="commentuser">유저</span>
-		<input type="text" class="commentwritetext" value="댓글1" readonly="readonly">
-		<br>
-		<span class="commentwriteday">2022-06-14 05:03</span>
-	</div>
-	</c:forEach>
 	
 	</div>
 </div>
