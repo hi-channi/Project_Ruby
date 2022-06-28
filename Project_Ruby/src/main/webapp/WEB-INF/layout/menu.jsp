@@ -60,7 +60,7 @@ $(function () {
 	</div>
 	<div class="menuitem">
 		<span class="menu">
-		<a href="/marketplace" style="text-decoration: none;">중고장터</a>
+		<a href="/marketplace/market_main" style="text-decoration: none;">중고장터</a>
 		</span>
 	</div>
 	<div class="menuitem">
@@ -110,7 +110,7 @@ $(function () {
 					<li><a href="#">내 작성글 관리</a>
 				</ul>
 			</li>
-			<li><a class="dm_main" href="/marketplace">중고장터</a></li>
+			<li><a class="dm_main" href="/marketplace/market_main">중고장터</a></li>
 			<li><a class="dm_main" href="/challenge">챌린지</a>
 				<ul>
 					<li><a href="/challenge">진행중인 챌린지</a>
