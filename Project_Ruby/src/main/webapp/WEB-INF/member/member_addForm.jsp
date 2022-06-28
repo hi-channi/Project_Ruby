@@ -68,7 +68,7 @@ $(function() {
 						} else {
 							if (data.vaildId == 0) {
 								alert("사용 가능한 아이디 입니다.");
-								$("#id_check").val(id);
+								$("#id_check").val(inputID);
 							} else {
 								alert("이미 존재하는 아이디 입니다.\n다른 아이디를 입력해주세요.");
 								$("#id").val("");
@@ -105,7 +105,7 @@ $(function() {
 						} else {
 							if (data.vaildNickname == 0) {
 								alert("사용 가능한 닉네임 입니다.");
-								$("#nickname_check").val(nickname);
+								$("#nickname_check").val(inputNickname);
 							} else {
 								alert("이미 사용 중인 닉네임 입니다.\n다른 닉네임을 입력해주세요.");
 								$("#nickname").val("");
