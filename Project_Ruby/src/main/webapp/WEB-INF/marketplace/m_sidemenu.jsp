@@ -140,21 +140,20 @@ $(function () {
 	 /*완료 버튼*/
 	 $("#successbtn").click(function(){
 		
-		var i = $('input[name="subtitle"]:checked').val();
-		var j = $('input[name="colorradio"]:checked').val();
+		var subtitle = $('input[name="subtitle"]:checked').val();
+		var colorradio = $('input[name="colorradio"]:checked').val();
 		//후에 가격대 밸류값 정해서 넘기면 됨
-		var k = $('input[name="marketprice"]:checked').val();
+		var marketprice = $('input[name="marketprice"]:checked').val();
 		 
-		 alert(i+","+j+","+k);
+		if(subtitle == null || colorradio == null || marketprice == null)
+		{
+			alert("카테고리, 컬러, 가격대 모두 입력해 주세요!");
+			return false;
+		}
 	 });
 	 
 	 
 	 
-	/*  $(".menudown1").click(function(){
-		 
-		$(this).attr("class",""); 
-		 
-	 }); */
 	 
 });
 </script>
@@ -163,6 +162,7 @@ $(function () {
 <body>
 <span class="sidemenubarname">중고장터</span>
 <div class="sidemenu" style="border: solid 1px #dbdbdb; border-top: solid 2px black;">
+<form action="/marketplace/sidesearchtest">
  	<ul>
  		<li class="marketmenu">
  			<div class="marketmenutitle" id="carte1"><b id="side_control">카테고리</b><span class="glyphicon glyphicon-menu-down menudown1" id="menudownicon"></span></div>
@@ -171,39 +171,36 @@ $(function () {
  				<ul class="sub1-1">
  					<li class="submenutitle"><a href="#" id="selectionmenu">
 	 					<label class="cglabel">
-	 					<input type="radio" id="cartegorisubmenu" class="submenucartegori" name="subtitle" value="노트북">
-	 					&nbsp;&nbsp;&nbsp;&nbsp;· 노트북
+	 					<input type="radio" id="cartegorisubmenu" class="submenucartegori" name="subtitle" value="notebook">
+	 					&nbsp;&nbsp;&nbsp;&nbsp;노트북
 	 					</label>
  					</a></li>
  					
  					<li class="submenutitle"><a href="#" id="selectionmenu">
 	 					<label class="cglabel">
-		 				<input type="radio" id="cartegorisubmenu" class="submenucartegori" name="subtitle" value="모니터">
-	 					&nbsp;&nbsp;&nbsp;&nbsp;· 모니터
+		 				<input type="radio" id="cartegorisubmenu" class="submenucartegori" name="subtitle" value="monitor">
+	 					&nbsp;&nbsp;&nbsp;&nbsp;모니터
 	 					</label>
  					</a></li>
  					
- 					
  					<li class="submenutitle"><a href="#" id="selectionmenu">
  					<label class="cglabel">
-		 			<input type="radio" id="cartegorisubmenu" class="submenucartegori" name="subtitle" value="키보드">
- 					&nbsp;&nbsp;&nbsp;&nbsp;· 키보드
+		 			<input type="radio" id="cartegorisubmenu" class="submenucartegori" name="subtitle" value="keyboard">
+ 					&nbsp;&nbsp;&nbsp;&nbsp;키보드
  					</label>
  					</a></li>
  					
- 					
  					<li class="submenutitle"><a href="#" id="selectionmenu">
  					<label class="cglabel">
-		 			<input type="radio" id="cartegorisubmenu" class="submenucartegori" name="subtitle" value="마우스">
- 					&nbsp;&nbsp;&nbsp;&nbsp;· 마우스
+		 			<input type="radio" id="cartegorisubmenu" class="submenucartegori" name="subtitle" value="mouse">
+ 					&nbsp;&nbsp;&nbsp;&nbsp;마우스
  					</label>
  					</a></li>
  					
- 					
  					<li class="submenutitle"><a href="#" id="selectionmenu">
  					<label class="cglabel">
-		 			<input type="radio" id="cartegorisubmenu" class="submenucartegori" name="subtitle" value="스피커">
- 					&nbsp;&nbsp;&nbsp;&nbsp;· 스피커
+		 			<input type="radio" id="cartegorisubmenu" class="submenucartegori" name="subtitle" value="speaker">
+ 					&nbsp;&nbsp;&nbsp;&nbsp;스피커
  					</label>
  					</a></li>
  				</ul>
@@ -303,10 +300,10 @@ $(function () {
  			<div class="marketmenutitle" id="carte3" style="border-top: solid 1px #dbdbdb;"><b id="side_control">가격대</b><span class="glyphicon glyphicon-menu-down  menudown3" id="menudownicon"></span></div>
  			<ul class="sub3">
 			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn" value="10000"><b class="radioimg"></b>10,000원 이하</label></li>
-			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn" value="10000 ~ 50000"><b class="radioimg"></b>10,000원 ~ 50,000원</label></li>
-			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn" value="50000 ~ 100000"><b class="radioimg"></b>50,000원 ~ 100,000원</label></li>
-			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn" value="100000 ~ 200000"><b class="radioimg"></b>100,000원 ~ 200,000원</label></li>
-			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn" value="200000이상"><b class="radioimg"></b>200,000원 이상</label></li>
+			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn" value="50000"><b class="radioimg"></b>10,000원 ~ 50,000원</label></li>
+			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn" value="100000"><b class="radioimg"></b>50,000원 ~ 100,000원</label></li>
+			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn" value="200000"><b class="radioimg"></b>100,000원 ~ 200,000원</label></li>
+			<li class="submenutitle"><label class="pricelabel"><input type="radio" name="marketprice" class="marketpriceselect" id="radiobtn" value="100000000000"><b class="radioimg"></b>200,000원 이상</label></li>
 			</ul>
 			
 		<!-- 	<label for="colorchk">
@@ -318,9 +315,10 @@ $(function () {
  		</li>
  	</ul>
  	<div class="btnarea" style="border: 0px solid black;">
- 		<button type="button" class="btn-marketsub" id="successbtn">검색</button>
+ 		<button type="submit" class="btn-marketsub" id="successbtn">검색</button>
  		<button type="button" class="btn-marketsub" id="resetbtn">초기화</button>
  	</div>
+ </form>
 </div>
 </body>
 </html>

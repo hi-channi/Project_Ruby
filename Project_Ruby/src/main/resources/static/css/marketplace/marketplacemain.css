@@ -1,8 +1,7 @@
 @charset "UTF-8";
 
- div.container{
+div.container{
 position: absolute;
-
 } 
 
 
@@ -14,7 +13,7 @@ div.marketfirst {
 
 div.marketfirst2{
   position : relative;
-  width: 170px;
+  width: 450px;
   height: 20px;
   margin: 0px 7px 20px 45px;
   left: -40px;
@@ -25,28 +24,20 @@ div.marketfirst2{
 span.sangpumcount {
   width: 46px;
   height: 18px;
-  margin: 2px 2px 0 0;
+  margin: 2px 2px 0 29px;
   font-family: Roboto;
   font-size: 15px;
   font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
   text-align: left;
   color: #ff4b4e;
 }
 
 span.sangpumcountcomment {
-  width: 122px;
+  width: 400px;
   height: 20px;
   margin: 0 0 0 2px;
   font-family: Noto Sans KR;
   font-size: 14px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
   letter-spacing: -0.35px;
   text-align: left;
   color: #191919;
@@ -57,8 +48,8 @@ div.search {
   position : relative;
   width: 300px;
   height: 36px;
-  margin: 52px 16px 20px 82px;
-  padding: 9px 12px 8px;
+  margin: 52px 16px 20px 90px;
+  padding: 7px 12px 7px;
   border: solid 1px #dbdbdb;
   background-color: #fff;
   left: 560px;
@@ -87,6 +78,7 @@ span.searchicon {
 div.changelist{
 	position: absolute;
 	margin-top: -58px;
+	margin-left: 10px;
 	left: 963px;
 	
 }
@@ -111,7 +103,7 @@ span.listicon{
 
 /*연관 검색어*/
 div.relatedsearch{
-  width: 1024px;
+  width: 1005px;
   height: 85px;
   left : 100px;
   padding: 8px 0 32px;
@@ -174,9 +166,9 @@ span.morelookicon{
 div.selectbox{
 	position : relative;
 	width: 200px;
-	height: 30px;
+	height: 50px;
 	left: 0px;
-	top : 100px;
+	top : 40px;
 	
 }
 
@@ -257,8 +249,6 @@ span.spanpagingnumber{
   
 }
 
-
-
 .addbtnimg{
   position : relative;
   width: 91px;
@@ -282,10 +272,10 @@ marketmenutitle li{
 /*전체테이블 하트 아이콘*/
 #chk{
 	position: absolute;
-	 left: -999em;  
+	left: -999em;  
 }
 .heart{
-	/*하트 이미지 배경 처리중  사진 안불러와 짐 다시 돌아가려면 메인에 하트 특수문자 넣고  백그라운드 지우고 위치 다시 조정*/
+	/*하트 이미지 배경 처리중 사진 안불러와 짐 다시 돌아가려면 메인에 하트 특수문자 넣고 백그라운드 지우고 위치 다시 조정*/
 	display: inline-block;
 	width: 40px;
 	height: 40px;
@@ -295,7 +285,6 @@ marketmenutitle li{
 	font-size: 20pt;
 	position: relative;
 	left: 200px;
-	
 }
 
 /*거래가능 제품 보기*/
@@ -305,8 +294,6 @@ marketmenutitle li{
 	top: -15px;
 }
 
-
-
 /*전체 테이블 */
 .sangpumdiv{
 	width: 220px;
@@ -314,31 +301,42 @@ marketmenutitle li{
 	float: left;
 	position: relative;
 	margin-left: 30px;
-    margin-top: 100px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    margin-right: 15px;
     left: 0px;
     top: -52px;
 }
+
 /*테이블 사진영역*/
 .sangpumphoto{
   width: 220px;
-  height: 170px;
-  padding-top: 35px;
+  height: 220px;
 }
+
 /*테이블 하트 아이콘 영역*/
 .lab{
 	position: relative;
 	top: 50px;
-	left: -20px;
+	left: -25px;
 }
 /*테이블 상품 설명 부분*/
 .sangpumdetail{
 	width: 220px;
-	height: 100px;
+	height: 70px;
+	margin-top: 5px;
 }
+
+/* 브랜드 이름 */
+.brandname{
+	font-family: "Noto Sans KR";
+	font-size: 13px;
+}
+
 
 /*상품 이름*/
 .subject{
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-size: 14px;
   font-weight: 500;
   font-stretch: normal;
@@ -351,7 +349,7 @@ marketmenutitle li{
 
 /*상품 콘텐트*/
 .content{
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
@@ -362,21 +360,29 @@ marketmenutitle li{
   color: #505050;
 		
 }
+
+/* 상품가격 */
+.price{
+  margin-top: 10px;
+  font-family: "Noto Sans KR";
+  font-size: 17px;
+  letter-spacing: -0.35px;
+  text-align: left;
+}
+
 /*상품 오리지널 가격*/
 .original_price{
-  font-family: Roboto;
-  font-size: 14px;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
+  font-family: 'Roboto';
+  font-size: 15px;
   letter-spacing: -0.35px;
   text-align: left;
   color: #767676;
   text-decoration:line-through;
 }
+
 /*지역 */
 .region{
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-size: 11px;
   font-weight: normal;
   font-stretch: normal;
@@ -389,42 +395,39 @@ marketmenutitle li{
 
 /*리스트 상품 테이블*/
 .sangpumlistdiv{
-	width: 450px;
+	width: 470px;
 	height: 150px;
-	margin-top: 40px;
-	margin-left : 100px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	margin-left : 60px;
 	float: left;
 	position: relative;
-	top: 50px;
-	left: -90px;
-	
+	top: 40px;
+	left: -30px;
 }
 
 /*리스트 상품 테이블 사진부분*/
 .sangpumlistphoto{
-	width: 150px;
-	height: 150px;
-	padding-top: 40px;  
-	
+	width: 148px;
+	height: 148px;
 }
+
 .sangpumlistdetail{
 	width: 300px;
 	height: 150px;
 	position: relative;
 	left: 150px;
 	top: -150px;
-	margin-top: 30px;
 	margin-left: 10px;
-	
-	
+	margin-top: 15px;
 }
+
 
 /*리스트 에서의 하트 아이콘*/
 .lablist{
 	position: relative;
-	left: 20px;
-	top: -90px;
-	
+	margin-left: 200px;
+	top: -210px;
 }
 
 
@@ -441,11 +444,11 @@ marketmenutitle li{
   background: transparent;
   cursor: pointer;
   transition: all 0.3s ease;
-  position: relative;
+  position: absolute;
   display: inline-block;
   
-  left: 880px;
-  top: -50px;
+  left: 915px;
+  top: -20px;
 }
 
 .btn-addsangpum {
@@ -475,4 +478,38 @@ marketmenutitle li{
     inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
 }
 
+/* 정렬 */
+div.pagesort {
+	position: absolute;
+	left: 45%;
+	bottom: -10%;
+}
 
+
+/* 페이징 */
+.page {
+	position: relative;
+}
+#pagelbtn,#pagerbtn {
+	text-decoration: none;
+}
+#pagecnum {
+	color: #ff4b4e;
+}
+#pagenum,#pagecnum {
+	margin: 0 10px 0 10px;
+	text-decoration: none;
+}
+#pagebtn {
+	margin: 0 5px 0 5px;
+}
+
+
+/*검색 submit 버튼*/
+.searchbtn{
+	position: absolute;
+	top: 7px;
+	border: 0;
+	outline: 0;
+	background: #fff;
+}

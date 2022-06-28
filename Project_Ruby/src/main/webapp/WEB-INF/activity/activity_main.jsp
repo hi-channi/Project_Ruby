@@ -41,6 +41,7 @@ span.side_main_span_main {
 	</div>
 	
 	
+	
 	<!-- 나의 작성글 목록 -->
 	<div class="main_name2">
 		<span class="main_span_write">나의 작성글 목록</span>
@@ -48,16 +49,13 @@ span.side_main_span_main {
 	</div>
 	<div class="main_detail2">
 		<!-- 내 작성글 글 제목 값 가져오기 -->
-		<div class="detail_write">
-		작성글이입력됩니다.작성글이입력됩니다.작성글이입력됩니다.작성글이입력됩니다.작성글이입력됩니다.작성글이입력됩니다.작성글이입력됩니다.
-		</div>
-		<hr style="border: solid 0.5px #767676;">
-		<div class="detail_write">내 작성글2</div>
-		<hr style="border: solid 0.5px #767676;">
-		<div class="detail_write">내 작성글3</div>
-		<hr style="border: solid 0.5px #767676;">
+		<c:forEach var="dto" items="${clist}" begin="0" end="2">
+			<div class="detail_write">${dto.subject}</div>
+			<hr style="border: solid 0.5px #767676;">
+		</c:forEach>
 	</div>
 	<a href="../activity/mycommunity"><img src="${root }/element/icon_activity_add.png" class="icon_activity_add"></a>
+	
 	
 	
 	<!-- 나의 거래 목록 -->
@@ -66,23 +64,33 @@ span.side_main_span_main {
 		<hr style="border: solid 1px #191919;">
 	</div>
 	<div class="main_detail3">
-		<!-- 나의 거래 목록 보이기 -->		
-		<div class="detail_market">
-			<img id="mimg" src="${root }/activity/img_activity_key1.jpg">
-			<div id="mname">한성컴퓨터 블루투스 무접점 한글 영문 무선키보드</div>
-		</div>
-		<div class="detail_market">
-			<img id="mimg" src="${root }/element/icon_noimg.png">
-			<div id="mname">제품명</div>
-		</div>
-		<div class="detail_market">
-			<img id="mimg" src="${root }/element/icon_noimg.png">
-			<div id="mname">제품명</div>
-		</div>
+		<!-- 나의 거래 목록 보이기 -->
+		<c:forEach var="dto" items="${mplist}" begin="0" end="2">
+			<div class="detail_market">
+				<!-- 이미지 있을 경우 상품이미지 중 첫번째 이미지 보이기 -->
+				<c:if test="${dto.photo!='no'}">
+					<c:forTokens var="p" items="${dto.photo}" delims="," begin="0" end="0">
+						<a href="${root }/marketplace/productdetail?market_place_idx=${dto.market_place_idx}&currentPage=1">
+							<img id="mimg" src="${root }/photo/${p}">
+						</a>
+					</c:forTokens>
+				</c:if>
+				
+				<!-- 이미지 없을 경우 기본 이미지 -->
+				<c:if test="${dto.photo=='no'}">
+					<a href="${root}/marketplace/productdetail?market_place_idx=${dto.market_place_idx}&currentPage=1">
+						<img id="mimg" src="${root}/element/icon_noimg.png">
+					</a>
+		  		</c:if>
+				<div id="mname">${dto.subject}</div>
+			</div>
+		</c:forEach>
+		
 	</div>
 	<a href="../activity/mymarketplace"><img src="${root }/element/icon_activity_add.png" class="icon_activity_add"></a>
 	
-	
+
+
 	<!-- 나의 챌린지 목록 -->
 	<div class="main_name4">
 		<span class="main_span_challenge">나의 챌린지 목록</span>

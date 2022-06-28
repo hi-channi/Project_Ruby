@@ -23,9 +23,9 @@ div.title {
 div.box {
 	position: absolute;
 	width: 460px;
-	height: 760px;
+	height: 820px;
 	margin: 150px 730px 170px;
-	padding: 50px 48px 40px;
+	padding: 40px 48px 40px;
 	border-radius: 20px;
 	background-color: #fff;
 }
