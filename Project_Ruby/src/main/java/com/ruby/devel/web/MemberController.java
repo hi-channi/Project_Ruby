@@ -30,12 +30,11 @@ public class MemberController {
 	public String member_signup(HttpSession session) {
 		String loginOK=(String)session.getAttribute("loginOK");
 		
-		System.out.println("MESSAGE: 로그아웃(force)이 성공적으로 수행되었습니다.");
-		
 		if(loginOK==null) {	// 로그아웃 상태에서 접근(평시)
 			return "/member/member_addForm";
 		} else {	// 로그인 상태에서 접근
 			session.removeAttribute("loginOK");
+			System.out.println("MESSAGE: 로그아웃(force)이 성공적으로 수행되었습니다.");	// 강제 로그아웃
 			return "/member/member_addForm";	// member/(파일명)
 		}
 	}
@@ -174,7 +173,12 @@ public class MemberController {
 	/* 회원 로그아웃 */
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
-		session.removeAttribute("loginOK");
+		// 세션 회원 정보 삭제
+		session.removeAttribute("loginTime");	// 로그인 시각
+		session.removeAttribute("userID");	// 로그인 아이디
+		session.removeAttribute("loginOK");	// 로그인 여부
+		session.removeAttribute("userNickname");	// 로그인 닉네임
+		session.removeAttribute("userKey");		// 로그인 Key
 		System.out.println("MESSAGE: 로그아웃이 성공적으로 수행되었습니다.");
 		return "redirect:main";
 	}
