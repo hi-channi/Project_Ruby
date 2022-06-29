@@ -8,17 +8,21 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ruby.devel.model.CommunityDto;
+import com.ruby.devel.service.impl.CommunityCommentMapper;
 import com.ruby.devel.service.impl.CommunityMapper;
 import com.ruby.devel.service.impl.MemberMapper;
 
@@ -31,6 +35,9 @@ public class CommunityController {
 	
 	@Autowired
 	MemberMapper Mmapper;
+	
+	@Autowired
+	CommunityCommentMapper CMmapper;
 	
 	@GetMapping("/community")  // 메뉴 선택 시 이동하는 기본 페이지
 	public ModelAndView main(
@@ -78,6 +85,8 @@ public class CommunityController {
 			{
 				String nickName = Mmapper.getNickname(c.getMember_idx());
 				c.setWriter(nickName);
+				
+				c.setMcount(CMmapper.getAllComments(c.getCommunity_idx()).size());
 
 			} 
 	      
@@ -100,7 +109,7 @@ public class CommunityController {
 	      
 	      
 	      //작성자 이름, 닉네임 갖고오기
-	      System.out.println(list);
+		/* System.out.println(list); */
 	      String userKey=list.get(0).getMember_idx();
 	      String nickName=Mmapper.getNickname(null);
 		
@@ -182,8 +191,7 @@ public class CommunityController {
 		mview.setViewName("/community/community_contentDetail");
 		
 		return mview;
-	}
-	
+	}	
 	
 		//게시글 삭제
 		@GetMapping("/community/del_content")
@@ -210,7 +218,21 @@ public class CommunityController {
 			return "redirect:?currentPage="+currentPage;
 		}
 	
-	
+		//추천수 증가
+		@PostMapping("/community/likecount")
+		@ResponseBody
+		public int recommend(@RequestParam String community_idx) {
+			
+			HashMap<String, Integer> hashMap= new HashMap<>();
+			Cmapper.updateLikeCount(community_idx);
+			/* CommunityDto c_dto=new CommunityDto(); */
+			int like_cnt=Cmapper.getData(community_idx).getLike_count();
+			hashMap.put("like_cnt", like_cnt);
+			System.out.println(like_cnt);
+			
+			return like_cnt;
+
+		}
 	
 	
 	

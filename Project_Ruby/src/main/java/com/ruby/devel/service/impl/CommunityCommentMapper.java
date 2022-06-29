@@ -11,6 +11,7 @@ import com.ruby.devel.model.CommunityCommentDto;
 
 
 
+
 @Mapper
 public interface CommunityCommentMapper {
 	
@@ -23,5 +24,10 @@ public interface CommunityCommentMapper {
 	//댓글 삭제
 	public void deleteComment(String community_comment_idx);
 	
+	//댓글 넘버 갖고오기
+	public CommunityCommentDto getComment(String community_comment_idx);
+	
+	//댓글 수정
+	public void updateComment(CommunityCommentDto cm_dto);
 	
 }

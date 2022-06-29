@@ -48,6 +48,7 @@ public class CommunityCommentRestController {
 		//list에 대한 반환이 json으로 반환해준것
 		return CMmapper.getAllComments(community_idx);
 	}
+
 	
 	//삭제
 	@GetMapping("/community/deletecomment")
@@ -56,6 +57,18 @@ public class CommunityCommentRestController {
 			CMmapper.deleteComment(community_comment_idx);
 	}
 	
+	//하나의 idx에 관한 dto 반환
+	@GetMapping("/community/commentdata")
+	public CommunityCommentDto data(String community_comment_idx) {
+		
+		return CMmapper.getComment(community_comment_idx);
+	}
+	
+	//수정
+	@PostMapping("/community/updatecomment")
+	public void commentupdate(@ModelAttribute CommunityCommentDto cm_dto) {
+		CMmapper.updateComment(cm_dto);
+	}
 	
 	
 	

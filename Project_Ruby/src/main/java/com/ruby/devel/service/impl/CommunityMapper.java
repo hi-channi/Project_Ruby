@@ -32,6 +32,9 @@ public interface CommunityMapper {
 	//게시글 삭제
 	public void deleteCommunity(String community_idx);
 	
+	//추천수 증가
+	public void updateLikeCount(String community_idx);
+	
 
 
 }

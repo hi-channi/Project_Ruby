@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Hubballi&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <c:set var="root" value="<%=request.getContextPath() %>"/>
 <link rel="stylesheet" type="text/css" href="${root }/css/community/community_detail_normal_login.css">
 <title>Insert title here</title>
@@ -17,26 +17,35 @@
 div.main {
 background-color: #fff !important;
 }
+span.adel{
+cursor: pointer;
+}
+
 </style>
 
 <script type="text/javascript">
 $(function(){
 	
-	$(".subjecttextbox").click(function(){
-		//var i=$(this).val();
-		//alert(i);
-		
-		$(this).val("");
-		
-	});
+	community_idx=$("#c_idx").val();
+  	loginOK="${sessionScope.loginOK}";
+  	userKey="${sessionScope.userKey}"; 
+	list();
 	
-	$(".commenttext").click(function(){
+	 $(".subjecttextbox").click(function(){
 		//var i=$(this).val();
 		//alert(i);
 		
 		$(this).val("");
 		
-	});
+	}); 
+	
+	 $(".commenttext").click(function(){
+		//var i=$(this).val();
+		//alert(i);
+		
+		$(this).val("");
+		
+	}); 
 	
 	$(".contenttextarea").click(function(){
 		//var i=$(this).val();
@@ -44,26 +53,7 @@ $(function(){
 		
 		$(this).val("");
 		
-	});
-	
-	
-	<%--추천수 이벤트--%>
-	$(".likes img").click(function(){
-		
-		alert("추천수가 올라야해요!");
-		
-	});
-	
-	<%--댓글 추가--%>
-	$(".commentaddimg").click(function(){
-		
-		alert("댓글 등록 되어야해요!");
-	});
-	
-  	community_idx=$("#c_idx").val();
-  	loginOK="${sessionScope.loginOK}";
-  	userKey="${sessionScope.userKey}"; 
-	list();
+	}); 
   	
 	/* 댓글 ajax */	
 	$("#btncommentadd").click(function() {
@@ -87,7 +77,35 @@ $(function(){
 				alert("code:" + request.status + "\n"+ "error message:" + request.responseText+ "\n" + "error:" + error);
 			}	
 		});  
-	});  
+	}); 
+	
+	/* 추천수 증가 */
+	
+	$("#btnthumb").click(function() {
+		
+		var idx=$("#c_idx").val();
+		
+		var b=confirm("게시글을 추천하시겠습니까?");
+		
+		if(b){
+		$.ajax({
+			type:"post",
+			dataType:"html", //return값 없을땐 text!
+			url:"likecount",
+			data:{"community_idx":idx},
+			success:function(data){
+		
+			alert("추천 됐습니다.");
+			$("span.likes").html(data);
+			},
+			error : function(request, error) {
+				alert("fail!");
+				alert("code:" + request.status + "\n"+ "error message:" + request.responseText+ "\n" + "error:" + error);
+			}
+		});
+		}
+	});
+	
 	
 });
 
@@ -107,11 +125,12 @@ $(document).on("click","span.adel",function(){
 				data:{"community_comment_idx":idx},
 				success:function(data){
 					list();
+				alert("삭제 됐습니다.");
 				}
 			});
 		}	
 	});
-
+		
 
 /* 댓글 리스트 출력 */
 function list() {
@@ -163,14 +182,23 @@ function writecomment() {
 	alert("댓글 쓰기는 로그인 후 이용 가능합니다.");
 }
 
+
 </script>
 </head>
 <body>
 <div class="container">
-
+<input type="hidden" value="${c_dto.community_idx }" id="c_idx">	
+<input type="hidden" value="${currentPage }" id="currentPage">
+<input type="text" value="${c_dto.content_type }" id="content_type">
 <div class="detailsubject" style="border: 0px solid black;">
 	<%--글번호 받아오기 --%>
 	<span class="contentnum">#<span id="delnum"> ${c_dto.community_idx } </span></span>
+	<!-- qna글 일 경우 -->
+	<c:if test="${c_dto.content_type==1 }">
+		<div class="tag" style="border: solid 0px #dbdbdb;">
+			<span class="badge" style="font-size: 1.1em; float: left; background-color: black;">#Q&A</span>
+		</div>
+	</c:if>
 	
 	<%--태그1 받아오기 --%>
 	<div class="tag" style="border: solid 0px #dbdbdb;">
@@ -198,9 +226,7 @@ function writecomment() {
 		<c:if test="${sessionScope.loginOK!=null and sessionScope.userKey==c_dto.member_idx}">
 			<button type="button" class="btndel glyphicon glyphicon-remove" style="border: none; background-color: #fff" onclick="delcontent()"></button>
 			<span class="writeicon"><img alt="" src="${root }/element/icon_writecontent_small.png"> </span>
-		</c:if>
-	<input type="hidden" value="${c_dto.community_idx }" id="c_idx">	
-	<input type="hidden" value="${currentPage }" id="currentPage">	
+		</c:if>	
 	
 	<%--작성자 및 프로필 사진 받아오기 --%>
 	<div class="contentname">
@@ -225,14 +251,21 @@ function writecomment() {
 	
 	<%--각 count값 받아오기 --%>
 	<div class="iconcount">
-	<span class="textsms"><img alt="" src="${root }/element/icon_textsms.png">&nbsp;&nbsp;0</span>
-	<span class="likes"> <button type="button" class="btnthumb glyphicon glyphicon-thumbs-up" style="border: none; background-color: #fff; width: 28.1px; height: 25.6px;"></button> </span>
-	<span><img alt="" src="${root }/element/icon_visibil.png">&nbsp;&nbsp;${c_dto.read_count }</span>
+		<span><img alt="" src="${root }/element/icon_textsms.png"><span class="textsms"></span> </span>
+			<button type="button" id="btnthumb" style="border: none; background-color: #fff;">
+				<img alt="" src="${root }/element/icon_thumb.png">
+			</button> 
+			<span class="likes"> 
+				${c_dto.like_count}
+			</span>
+		
+		<span><img alt="" src="${root }/element/icon_visibil.png">&nbsp;&nbsp;${c_dto.read_count }</span>
 	</div>
 	
 	</div>
 	
 	<div class="addcomment" style="border: solid 1px #dbdbdb;">
+	
 	
 	<!-- 댓글쓰기 버튼 -->
 		<c:if test="${sessionScope.loginOK!=null }">
@@ -245,10 +278,29 @@ function writecomment() {
 			<button type="button" class="btncommentadd2 btn-small" onclick="writecomment()">댓글등록</button>
 		</c:if>
 	</div>
+	<c:if test="${c_dto.content_type==0 }">
+		<div class="commentdiv" style="border: solid 1px #dbdbdb;">
 	
-	<div class="commentdiv" style="border: solid 1px #dbdbdb;">
+		</div>
+	</c:if>
 	
-	</div>
-</div>
+	<c:if test="${c_dto.content_type==1 }">
+		<div class="commentdiv2" style="border: solid 1px #dbdbdb;">
+			<c:forEach var="i" begin="1" end="1">
+				<div>
+					<img alt="" src="${root }/element/icon_profile.png">
+					<span class="commentuser">유저1</span>
+		
+					<br>
+					<span class="commentwriteday">2022-06-14 05:03</span>
+					<textarea rows="" cols="" class="cocomment" readonly="readonly" style="resize: none;">??</textarea>
+					<img alt="" src="${root }/element/button_selection.png" class="selectionbtn">
+				</div>
+			</c:forEach>
+		</div>
+ 	</c:if>
+ 
+ </div>
+      
 </body>
 </html>

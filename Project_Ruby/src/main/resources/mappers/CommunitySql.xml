@@ -4,7 +4,7 @@
 	
 	<!-- 게시글 전체 수 출력 -->
 	<select id="getTotalCount" resultType="int">
-		select count(*) from Community
+		SELECT count(*) FROM Community
 	</select>
 	
 	<!-- 게시글 insert -->
@@ -33,12 +33,16 @@
   	
   	<!-- 조회수 증가 -->
   	<update id="updateReadCount" parameterType="String">
-  		UPDATE Community SET read_count=read_count+1 where community_idx=#{community_idx}
+  		UPDATE Community SET read_count=read_count+1 WHERE community_idx=#{community_idx}
   	</update>
   	
   	<!-- 페이징 -->
   	<select id="getList" parameterType="HashMap" resultType="community">
   		 select * from Community order by community_idx desc limit #{start}, #{perPage}
  	</select>
-	
+ 	
+ 	<!-- 추천수 증가 -->
+	<update id="updateLikeCount" parameterType="String">
+		UPDATE Community SET like_count= like_count+1 WHERE community_idx=#{community_idx}
+	</update>
 </mapper>

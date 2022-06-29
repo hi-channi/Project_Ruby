@@ -75,6 +75,8 @@
 
 	};
 	
+	
+	
 </script>
 
 </head>
@@ -176,19 +178,28 @@
 							<div class="contentnumber1">#${no }</div>
 							<c:set var="no" value="${no-1 }"></c:set>  <!-- 글번호 -->
 							<div class="tagbox" style="margin-top: 4px;">
-								<span class="tag badge">#${c.tag1 }</span>
-								<span class="tag badge">#${c.tag2 }</span>
-								<span class="tag badge">#${c.tag3 }</span>
+									<c:if test="${c.content_type==1 }">
+										<span class="tag badge" style="background-color: black;">#Q&A</span>
+									</c:if>
+									<span class="tag badge">#${c.tag1 }</span>
+									<span class="tag badge">#${c.tag2 }</span>
+									<span class="tag badge">#${c.tag3 }</span>
 							</div>
 						</td>  
 	
 						<td class="count" width="320" style="padding-top: 7px;"> <!-- width="340" -->
-							<div> <img alt="" src="${root }/element/icon_comment.png" style="margin-left: 135px;"> </div>
-							<div class="word">3</div>
-							<div> <img alt="" src="${root }/element/icon_thumb.png" style="margin-left: 23px;"> </div>
-							<div class="word">30</div>
-							<div> <img alt="" src="${root }/element/icon_visibility.png" style="margin-left: 15px;"> </div>
-							<div class="word" > ${c.read_count } </div>
+							<c:if test="${c.mcount==0 }">
+								<div> <img alt="" src="${root }/element/icon_comment.png" style="margin-left: 135px;"></div>
+								<div class="word"> ${c.mcount} </div>
+							</c:if>
+							<c:if test="${c.mcount>0 }">
+								<div> <img alt="" src="${root }/element/icon_comment.png" style="margin-left: 135px;"> </div>
+								<div class="word"> ${c.mcount} </div>
+							</c:if>
+								<div> <img alt="" src="${root }/element/icon_thumb.png" style="margin-left: 13px;"> </div>
+								<div class="word">${c.like_count }</div>
+								<div> <img alt="" src="${root }/element/icon_visibility.png" style="margin-left: 8px;"> </div>
+								<div class="word" > ${c.read_count } </div>
 						</td>
 						<td rowspan="2" width="230" style="padding-bottom: 7px;">
 							<div class="personphoto" style="width: 126px;"> <img src="${root }/element/icon_person1.png"> </div>
@@ -200,7 +211,13 @@
 					<tr>
 						<td colspan="3"> 
 							<div class="contentnumber2">
-								<a href="${root }/community/contentdetail?community_idx=${c.community_idx }&key=list">${c.subject}</a>
+								<c:if test="${c.content_type==0}"> <!-- 값에 따라 일반, 질문글 나뉨 -->
+									<a href="${root }/community/contentdetail?community_idx=${c.community_idx }">${c.subject}</a>
+								</c:if>
+								
+								<c:if test="${c.content_type==1 }">
+									<a href="${root }/community/contentdetail?community_idx=${c.community_idx }">${c.subject}</a>
+								</c:if>
 							</div> 
 						</td>
 						<td> 
