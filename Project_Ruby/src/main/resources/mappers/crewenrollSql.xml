@@ -87,4 +87,11 @@
 	<select id="crewApplyList" parameterType="String" resultType="teammember">
 	select * from TeamMember where team_idx = #{team_idx} and accept_status = 'N'
 	</select>
+	
+	<update id="crewMemberAccept" parameterType="String">
+	update TeamMember set accept_status ='Y' where member_idx =#{member_idx}
+	</update>
+	<delete id="crewMemberReject" parameterType="String">
+	delete from TeamMember where member_idx =#{member_idx}
+	</delete>
 </mapper>

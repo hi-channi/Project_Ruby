@@ -29,5 +29,7 @@ public interface crewenrollMapper {
 	public String selectTeamIdx(String member_idx);
 	public void insertIntoMyCrew (CrewMemberDto cm_dto);
 	public List<CrewMemberDto> crewApplyList (String team_idx);
+	public void crewMemberAccept (String member_idx);
+	public void crewMemberReject (String member_idx);
 }
 

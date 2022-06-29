@@ -480,7 +480,7 @@ font-family: 'Noto Sans KR';
   color: #505050;
 }
 
-#check{
+.check1, .check2{
 	background-color: white ; 
 	border: none;
 	margin-left: 15px;

@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -143,7 +142,8 @@ public class GroundController {
 
 	@PostMapping("/ground/mycrew") // 나의 크루 페이지
 
-	public ModelAndView ground_mycrew(@RequestParam String team_idx) {
+	public ModelAndView ground_mycrew(@RequestParam String team_idx,
+			Model model) {
 
 		// 나의 크루니까 내 팀 정보 가지고 옴 (마이크루 페이지에 크루명, 크루 소개 머 이런 거)
 		CrewEnrollDto dto = Cmapper.getTeamInfo(team_idx);
@@ -171,22 +171,14 @@ public class GroundController {
 		System.out.println("m_dto=======>"+m_dto);
 		
 		
-		//크루 신청현황 불러오기
-	   List<CrewMemberDto> cm_list =  Cmapper.crewApplyList(team_idx);
-	   System.out.println("cm_list=======>"+cm_list);
-	   
-	   
-	   List<MemberDto> m_dto_n = new ArrayList<>();
-	   for (int i = 0; i < cm_list.size(); i++) {
-		   m_dto_n.add(Mmapper.getMemberDatas(cm_list.get(i).getMember_idx()));
-	   }
-	   
-	   System.out.println("m_dto_n=======>"+m_dto_n);
+		
+	
 	   
 		ModelAndView mview = new ModelAndView();
 		mview.addObject("dto", dto);
 		mview.addObject("cm_dto", cm_dto);
 		mview.addObject("m_dto", m_dto);
+	
 
 		mview.setViewName("/ground/ground_myCrew");
 
@@ -234,5 +226,37 @@ public class GroundController {
 
 		return dto;
 
+	}
+	
+	@PostMapping("/ground/memberapplylist")
+	@ResponseBody
+	public List<MemberDto> memberApplyList(@RequestParam String team_idx) {
+		
+		//크루 신청현황 불러오기
+	   List<CrewMemberDto> cm_list =  Cmapper.crewApplyList(team_idx);
+	   System.out.println("cm_list=======>"+cm_list);
+	   
+	   
+	   List<MemberDto> m_dto_n = new ArrayList<>();
+	   for (int i = 0; i < cm_list.size(); i++) {
+		   m_dto_n.add(Mmapper.getMemberDatas(cm_list.get(i).getMember_idx()));
+	   }
+	   
+	   return m_dto_n;
+	}
+	
+	
+	@PostMapping("/ground/memberaccept")
+	@ResponseBody
+	public void memberAccept(@RequestParam String member_idx) {
+		
+		Cmapper.crewMemberAccept(member_idx);
+	}
+	
+	@PostMapping("/ground/memberreject")
+	@ResponseBody
+	public void memberReject(@RequestParam String member_idx) {
+		
+		Cmapper.crewMemberReject(member_idx);
 	}
 }
