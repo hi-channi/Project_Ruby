@@ -38,4 +38,8 @@ public interface MemberMapper {
 	// 비밀번호 재설정
 	public String searchForResetPw(MemberDto m_dto);
 	public void modMemberPw(MemberDto m_dto);
+	
+	public MemberDto getMemberDatas(String member_idx);
+	public String getMemberAge(String member_idx);
+  
 }

@@ -31,6 +31,7 @@ public class MemberDto {
 	// 폼이 아직 없는 항목들
 	private String link;	// 웹페이지
 	private String photo;	// 프로필사진
+	private String team_idx;
 	
 
 }
