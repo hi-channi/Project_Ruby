@@ -23,6 +23,21 @@ span.side_main_span_write {
 	border-bottom: 1.5px solid #ff4b4e;
 }
 </style>
+
+<script type="text/javascript">
+$(function() {
+	
+	/* 전체선택 체크박스 이벤트 */
+	var chkList = $("input[name=cnum]");
+	$("#allcheck").click(function(){
+		if($(this).is(":checked")){
+			chkList.prop("checked", true);
+		}else
+			chkList.prop("checked", false);
+	});
+	
+});
+</script>
 </head>
 
 <body>
@@ -34,65 +49,51 @@ span.side_main_span_write {
 	<div class="main_write">
 		<!-- 체크박스 -->
 		<div class="write_ck">
-			<input type="checkbox" id="allcheck" checked="checked">
-			전체선택
+			<input type="checkbox" id="allcheck">전체선택
 		</div>
 		
-		<!-- 내 작성글 글 제목 값 가져오기 -->
-		<div class="write_sub">
-			<input type="checkbox" id="check" name="cnum" checked="checked">
-			작성글이입력됩니다.작성글이입력됩니다.작성글이입력됩니다.작성글이입력됩니다.작성글이입력됩니다.작성글이입력됩니다.작성글이입력됩니다.
-		</div>
-		<hr style="border: solid 0.5px #767676;">
-
-		<div class="write_sub">
-			<input type="checkbox" id="check" name="cnum" checked="checked">
-			내 작성글 제목
-		</div>
-		<hr style="border: solid 0.5px #767676;">
-		
-		<div class="write_sub">
-			<input type="checkbox" id="check" name="cnum" checked="checked">
-			내 작성글 제목
-		</div>
-		<hr style="border: solid 0.5px #767676;">
-		
-		<div class="write_sub">
-			<input type="checkbox" id="check" name="cnum" checked="checked">
-			내 작성글 제목
-		</div>
-		<hr style="border: solid 0.5px #767676;">
-		
-		<div class="write_sub">
-			<input type="checkbox" id="check" name="cnum" checked="checked">
-			내 작성글 제목
-		</div>
-		<hr style="border: solid 0.5px #767676;">
-		
-		<div class="write_sub">
-			<input type="checkbox" id="check" name="cnum" checked="checked">
-			내 작성글 제목
-		</div>
-		<hr style="border: solid 0.5px #767676;">
-		
-		<div class="write_sub">
-			<input type="checkbox" id="check" name="cnum" checked="checked">
-			내 작성글 제목
-		</div>
-		<hr style="border: solid 0.5px #767676;">
-		
-		<button type="button" class="btn_delete">삭제하기</button>
-		
+		<!-- 내 작성글 Data 가져오기 -->
+		<form action="writeDel" method="post" enctype="multipart/form-data">
+			<c:forEach var="dto" items="${clist}">
+				<div class="write_sub">
+					<input type="checkbox" id="check" name="cnum"
+					value="${dto.community_idx}">${dto.subject}
+				</div>
+				<hr style="border: solid 0.5px #767676;">
+			</c:forEach>
+			
+			<button type="submit" class="btn_delete">삭제하기</button>
+		</form>		
 		
 		<!-- 페이징 -->
-		<div class="page" align="center" style="margin-top: 20px;">
-			<img src="${root }/activity/icon_activity_move2.png">
-			<span id="num1">1</span>
-			<span id="num2">2</span>
-			<span id="num3">3</span>
-			<span id="num4">4</span>
-			<span id="num5">5</span>
-			<img src="${root }/activity/icon_activity_move1.png">
+		<div class="pagesort">
+		<c:if test="${totalCount>0}">
+			<div class="page" align="center" style="margin-top: 20px;">
+				<!-- 이전 -->
+	            <c:if test="${startPage>1}">
+	                <a id="pagelbtn" href="mycommunity?currentPage=${startPage-1}">
+	                    <img id="pagebtn" src="${root }/activity/icon_activity_move2.png">
+	                </a>
+	            </c:if>
+				
+				<c:forEach var="pp" begin="${startPage}" end="${endPage}">
+	                <c:if test="${currentPage==pp}">
+	                    <a id="pagecnum" href="mycommunity?currentPage=${pp}"><b>${pp}</b></a>
+	                </c:if>
+	                <c:if test="${currentPage!=pp}">
+	                    <a id="pagenum" href="mycommunity?currentPage=${pp}">${pp}</a>
+	                </c:if>
+	            </c:forEach>
+				
+				<!-- 다음 -->
+	            <c:if test="${endPage<totalPage}">
+	                <a id="pagerbtn" href="mycommunity?currentPage=${endPage+1}">
+	                    <img id="pagebtn" src="${root }/activity/icon_activity_move1.png">
+	                </a>
+	            </c:if>
+	            
+			</div>
+		</c:if>
 		</div>
 	</div>
 </div>
