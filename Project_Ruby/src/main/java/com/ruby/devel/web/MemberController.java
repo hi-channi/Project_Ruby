@@ -135,6 +135,8 @@ public class MemberController {
 		public String logout(HttpSession session)
 		{
 			session.removeAttribute("loginOK");
+			session.removeAttribute("userID");
+			session.removeAttribute("userKey");
 			System.out.println("로그아웃이 성공적으로 수행되었습니다.");
 			return "redirect:main";
 		}

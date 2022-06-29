@@ -73,8 +73,12 @@
 
 		<span class="crewlist">크루 리스트</span>
 		<div class="btns">
-			<button class="mycrew" onclick="location.href='/ground/mycrew'">마이
-				크루</button>
+			<form action="/ground/mycrew" method="post" onsubmit="return chklogin(this)">
+			
+			<!-- 마이크루 페이지로 넘겨줌 -->
+				<input type="hidden" name="team_idx" value="${team_idx}" id="teamidx">
+				<button type="submit" class="mycrew">마이 크루</button>
+			</form>
 			<button class="makecrew" onclick="location.href='/ground/crewenroll'">
 				<span class="makecrew1">크루 만들기</span>
 			</button>
@@ -99,7 +103,7 @@
 
 
 							<button type="button" class="modal_opne_btn2"
-								onclick="transferTId(${a.team_idx})">신청하기</button>
+								onclick="transferTId(${a.team_idx})" }>신청하기</button>
 
 						</td>
 					<tr>
@@ -173,7 +177,7 @@
 								<td class="subject1">연령대</td>
 								<!-- 게시글 제목 출력 -->
 								<td></td>
-								<td class="likecount1"></td>
+								<td class="ageage">${age } 대</td>
 							</tr>
 						</table>
 					</div>
@@ -181,14 +185,20 @@
 				</div>
 
 				<div class="wrapper">
-					<input type="text" class="input" name="crew_name_text"
+				<form action="/ground/mymm" method="post">
+				
+				<input type="text" name="team_idx" id="t_idx" >
+			
+					<input type="text" class="input" name="mypr"
 						placeholder="자기소개 한 줄" required="required" style="width: 360px;">
 					<span class="underline"></span>
+				
 				</div>
 
 				<button type="submit" class="btn-large">
 					<span class="crew_enroll_btn">신청하기</span>
-				</button>
+					
+				</button> </form>
 
 
 				<button type="button" id="modal_close_btn2"
@@ -229,14 +239,19 @@
 	<script type="text/javascript">
 
 	//마이 크루,,, 로그인 안 되어 있을 때 alert창
-	$('.mycrew').click(function () {
-     if(${sessionScope.loginOK==null})
-    {
-          alert("로그인 후 사용이 가능합니다.");
-        location.href="/login"; //로그인 폼으로 이동
-        //Team table의 member_idx(=userKey)에 해당하는 id와 세션에 저장된 id가 일치하면 팀장
-      }
-});
+	function chklogin(form) {
+		//alert(${team_idx});
+	     if(${sessionScope.loginOK==null})
+	    {
+	          alert("로그인 후 사용이 가능합니다.");
+	        location.href="/login"; //로그인 폼으로 이동
+	        return false;
+
+	      }	
+	}
+	
+
+
 	
 	$('.makecrew').click(function () {
 	     if(${sessionScope.loginOK==null})
@@ -283,20 +298,15 @@
 				data:{ 'team_idx':team_idx},
 				success:function(data) {   
 					console.log(data.name)     
-					 $(".crewname_").text(data.name)
-					 $(".crewprone").text(data.info)			
+					 $(".crewname_").text(data.name);
+					 $(".crewprone").text(data.info);
+					$("#t_idx").val(data.team_idx);
 					},
 				});
 			
 		}
 		
 		
-		
-		
-	
-		
-			
-			
 			
 			
 </script>

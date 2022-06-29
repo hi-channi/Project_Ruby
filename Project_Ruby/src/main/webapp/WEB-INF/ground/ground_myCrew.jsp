@@ -29,7 +29,7 @@
 	<div class="container">
 
 		<div class="crewname">
-			<span class="crew_name">크루명 &nbsp;
+			<span class="crew_name">${dto.name} &nbsp;
 				<button type="button" id="modal_opne_btn1"
 					style="background-color: white; border: none;">
 					<img alt="" src="../image/crewadd.png"
@@ -45,7 +45,7 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td colspan="5">크루 소개글이 보여지는 란입니다</td>
+						<td colspan="5">${dto.info}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -87,26 +87,33 @@
 		</div>
 
 
+
 		<span class="face"
 			style="font-family: 'Noto Sans KR'; font-size: 12.5pt;"><img
 			alt="" src="../image/face.png">&nbsp;&nbsp;1</span>
 
-		<div class="crewlistaddadd" style="border: 1px solid #ededed;">
-			<div class="crewone">
-				<div class="img_profile">
-					<img alt="" src="../image/pro2.png"> <a
-						href="https://github.com/hi-channi"><img alt=""
-						src="../image/git2.png" class="img_git"></a>
+		<div class="crewlistaddadd"
+			style="border: 1px solid #ededed;">
+			<c:forEach var="m_dto" items="${m_dto }">
+				<div class="crewone" style="float: left;">
+					<div class="img_profile">
+						<img alt="" src="../image/pro2.png"> <a
+							href="${m_dto.link }"><img alt=""
+							src="../image/git2.png" class="img_git"></a>
+					</div>
+					<br> <span class="crewone_name">${m_dto.name}&nbsp;&nbsp;
+					<c:if test="${m_dto.member_idx==dto.member_idx }">
+					<img alt="" src="../image/lee.png ">
+					</c:if>
+					</span>
+					<br> <span
+						class="crewone_pr">${m_dto.pr }</span><br> <br>
+					<button type="button" id="modal_opne_btn2"
+						style="background-color: white; border: none;">
+						<span class="crewone_profile modal_opne_btn2">프로필 보기</span>
+					</button>
 				</div>
-				<br> <span class="crewone_name">김주찬&nbsp;&nbsp;<img
-					alt="" src="../image/lee.png "></span><br> <span
-					class="crewone_pr">한 줄 소개를 입력하세요</span><br> <br>
-				<button type="button" id="modal_opne_btn2"
-					style="background-color: white; border: none;">
-					<span class="crewone_profile modal_opne_btn2">프로필 보기</span>
-				</button>
-			</div>
-			<!-- 나머지 차후에 ajax로 구현 예정 -->
+			</c:forEach>
 		</div>
 
 
@@ -155,7 +162,8 @@
 				<h4 style="text-align: center; font-family: 'Noto Sans KR';">신청현황
 				</h4>
 
-				<table class="table crewadd_table" border="1" style="width: 500px; height: 100px;">
+				<table class="table crewadd_table" border="1"
+					style="width: 500px; height: 100px;">
 
 					<thead>
 						<tr>
@@ -173,14 +181,14 @@
 							<td>열심히 하겠습니다.</td>
 							<td>2022-06-30</td>
 							<td>
-							<button id="check">
-							<img alt="" src="../image/check.png">
-							</button>
-							<button id="check">
-							<img alt="" src="../image/x.png">
-							</button>
+								<button id="check">
+									<img alt="" src="../image/check.png">
+								</button>
+								<button id="check">
+									<img alt="" src="../image/x.png">
+								</button>
 							</td>
-							
+
 						</tr>
 						<tr>
 							<td>이쌍용</td>
@@ -188,7 +196,7 @@
 							<td>열심히 하겠습니다.</td>
 							<td>2022-06-30</td>
 							<td></td>
-						
+
 						</tr>
 						<tr>
 							<td>박쌍용</td>
@@ -196,7 +204,7 @@
 							<td>열심히!</td>
 							<td>2022-01-30</td>
 							<td></td>
-						
+
 						</tr>
 					</tbody>
 
@@ -221,7 +229,7 @@
 
 				<div>
 					<img alt="" src="../image/face2.png" class="crew_proface"> <span
-						class="crewproname">김주찬</span>
+						class="crewproname">김주찬</span> <!-- name, pr,age, job, hobby1, -->
 					<div class="crewcolorbox">크루명</div>
 
 					<span class="crewoneprr">한 줄 소개를 입력하세요</span>
