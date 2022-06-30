@@ -30,9 +30,6 @@
 		//alert(team_idx);
 		list();
 
-
-		
-
 	});
 
 	function list() {
@@ -62,8 +59,12 @@
 													+ "</td><td>" + m_dto_n.age
 													+ "</td><td>" + m_dto_n.pr
 													+ "</td>";
-											l += "<td> <button class='check1' onclick='acceptMember("+m_dto_n.member_idx+")'> <img src='../image/check.png'></button>";
-											l += "<button class='check2' onclick='rejectMember("+m_dto_n.member_idx+")'> <img src='../image/x.png'></button>";
+											l += "<td> <button class='check1' onclick='acceptMember("
+													+ m_dto_n.member_idx
+													+ ")'> <img src='../image/check.png'></button>";
+											l += "<button class='check2' onclick='rejectMember("
+													+ m_dto_n.member_idx
+													+ ")'> <img src='../image/x.png'></button>";
 											l += "</td></tr>";
 										});
 						l += "</tbody></table>";
@@ -167,7 +168,8 @@
 						</c:if>
 					</span> <br> <span class="crewone_pr">${m_dto.pr }</span><br> <br>
 					<button type="button" id="modal_opne_btn2"
-						style="background-color: white; border: none;">
+						style="background-color: white; border: none;"
+						onclick="transfer(${m_dto.member_idx})">
 						<span class="crewone_profile modal_opne_btn2">프로필 보기</span>
 					</button>
 				</div>
@@ -231,40 +233,43 @@
 		<!-- 프로필 보기 모달 -->
 		<div id="modal2">
 
+
 			<div class="modal_content2">
 				<h4 style="text-align: center; font-family: 'Noto Sans KR';">프로필
 				</h4>
 
-				<div>
-					<img alt="" src="../image/face2.png" class="crew_proface"> <span
-						class="crewproname">김주찬</span>
-					<!-- name, pr,age, job, hobby1, -->
-					<div class="crewcolorbox">크루명</div>
+				<form action="/ground/memberprofile" method="post">
+					<div>
+						<img alt="" src="../image/face2.png" class="crew_proface"> <span
+							class="crewproname">이름</span> <input type="text"
+							name="member_idx" id="m_idx">
+						<!-- name, pr,age, job, hobby1, -->
+				
+							<div class="crewcolorbox">팀장</div>
+						<span class="crewoneprr">한 줄 소개를 입력하세요</span>
 
-					<span class="crewoneprr">한 줄 소개를 입력하세요</span>
-
-					<table class="privacy_table" border="0" style="width: 155px;">
-						<tbody>
-							<tr>
-								<th align="center">연령</th>
-								<td align="right">20대 후반</td>
-							</tr>
+						<table class="privacy_table" border="0" style="width: 155px;">
+							<tbody>
+								<tr>
+									<th align="center">연령</th>
+									<td align="right" class="crewm_age">20대 후반</td>
+								</tr>
 
 
-							<tr>
-								<th align="center">직업</th>
-								<td align="right">비공개</td>
-							</tr>
-							<tr>
-								<th align="center">관심분야</th>
-								<td align="right">게임 낚시</td>
-							</tr>
-						</tbody>
-					</table>
+								<tr>
+									<th align="center">직업</th>
+									<td align="right" class="crewm_job">비공개</td>
+								</tr>
+								<tr>
+									<th align="center">관심분야</th>
+									<td align="right" class="crewm_hobby">게임 낚시</td>
+								</tr>
+							</tbody>
+						</table>
 
-					<button id="privacy_my">정보 수정</button>
-				</div>
-
+						<button id="privacy_my">정보 수정</button>
+					</div>
+				</form>
 
 
 				<button type="button" id="modal_close_btn2"
@@ -280,7 +285,26 @@
 
 
 	<script type="text/javascript">
-		    document.getElementById("modal_opne_btn").onclick = function() {
+	
+	
+	//반복문으로 입력되는 버튼, 크루원 프로필 보기
+    var buttons = document.querySelectorAll('.modal_opne_btn2');
+    
+    buttons.forEach(function(button) {
+		button.addEventListener('click', test1);
+	});
+    
+    function test1() {
+		document.getElementById("modal2").style.display = "block";
+		}
+
+	document.getElementById("modal_close_btn2").onclick = function() {
+		document.getElementById("modal2").style.display = "none";
+	}
+	
+	
+		//공지사항
+		document.getElementById("modal_opne_btn").onclick = function() {
 			document.getElementById("modal").style.display = "block";
 		}
 
@@ -297,55 +321,71 @@
 			document.getElementById("modal1").style.display = "none";
 		}
 
-		//프로필 보기
-		document.getElementById("modal_opne_btn2").onclick = function() {
-			document.getElementById("modal2").style.display = "block";
-		}
-
-		document.getElementById("modal_close_btn2").onclick = function() {
-			document.getElementById("modal2").style.display = "none";
-		}
-
 		function acceptMember(idx) {
-			
+
 			alert(idx);
-			
+
 			var msg = confirm("가입 신청을 수락하시겠습니까?");
-			if (msg){
-			$.ajax({
-				type : "post",
-				dataType : "text",
-				url : "memberaccept",
-				data : {
-					"member_idx" : idx
-				},
-				success : function(data) {
-					list();
-				alert("수락되었습니다.");
-				}
-			});
+			if (msg) {
+				$.ajax({
+					type : "post",
+					dataType : "text",
+					url : "memberaccept",
+					data : {
+						"member_idx" : idx
+					},
+					success : function(data) {
+						list();
+						alert("수락되었습니다.");
+					}
+				});
+			}
+		}
+
+		function rejectMember(idx) {
+
+			var msg = confirm("가입 신청을 거절하시겠습니까?");
+			if (msg) {
+				$.ajax({
+					type : "post",
+					dataType : "text",
+					url : "memberreject",
+					data : {
+						"member_idx" : idx
+					},
+					success : function(data) {
+						list();
+						alert("거절되었습니다.");
+
+					}
+				});
 			}
 		}
 		
-		function rejectMember(idx) {
+		
+		
+		function transfer(member_idx) { //transfer를 통해 전달받은 member_idx를 
+			$('#m_idx').val(member_idx); //모달 영역의 input 태그에 넣어준다!
 			
-			var msg = confirm("가입 신청을 거절하시겠습니까?");
-			if (msg){
-			$.ajax({
-				type : "post",
-				dataType : "text",
-				url : "memberreject",
-				data : {
-					"member_idx" : idx
-				},
-				success : function(data) {
-					list();
-					alert("거절되었습니다.");
 			
-				}
-			});
-			}
+			//모달창 안에 값 넣어줌
+			$.ajax({  
+				type: 'POST',  
+				url: '/ground/memberprofile',  
+				data:{ 'member_idx':member_idx},
+				success:function(data) {   
+					console.log(data)     
+					 $(".crewproname").text(data.name); //크루원 이름
+					$(".crewoneprr").text(data.pr); //한줄 소개
+					$(".crewm_age").text(data.age); //나이
+					$(".crewm_job").text(data.job); //직업
+					$(".crewm_hobby").text(data.hobby);
+					},
+				});
+			
 		}
+		
+		
 	</script>
 
 

@@ -288,7 +288,7 @@
 		
 		
 		function transferTId(team_idx) { //transferId를 통해 전달받은 team_idx를 
-			$('#Tidx').val(team_idx); //모달 영역의 input 태그에 넣어준다!
+			//$('#Tidx').val(team_idx); //모달 영역의 input 태그에 넣어준다!
 			
 			
 			//모달창 안에 값 넣어줌

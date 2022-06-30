@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ruby.devel.model.CrewEnrollDto;
@@ -125,14 +127,13 @@ public class GroundController {
 	}
 
 	@PostMapping("/ground/mymm")
-	public String mycrewpr(@ModelAttribute CrewMemberDto cm_dto, HttpSession session, 
-			@RequestParam String team_idx) {
+	public String mycrewpr(@ModelAttribute CrewMemberDto cm_dto, HttpSession session, @RequestParam String team_idx) {
 		String userKey = (String) session.getAttribute("userKey");
 		cm_dto.setMember_idx(userKey);
 		cm_dto.setTeam_idx(team_idx);
 		Cmapper.insertIntoMyCrew(cm_dto);
 		return "/ground/ground_crewApplySuccess";
-	
+
 	}
 
 	@GetMapping("/ground/crewenroll") // 크루 등록 페이지
@@ -141,9 +142,7 @@ public class GroundController {
 	}
 
 	@PostMapping("/ground/mycrew") // 나의 크루 페이지
-
-	public ModelAndView ground_mycrew(@RequestParam String team_idx,
-			Model model) {
+	public ModelAndView ground_mycrew(@RequestParam String team_idx, Model model) {
 
 		// 나의 크루니까 내 팀 정보 가지고 옴 (마이크루 페이지에 크루명, 크루 소개 머 이런 거)
 		CrewEnrollDto dto = Cmapper.getTeamInfo(team_idx);
@@ -168,17 +167,14 @@ public class GroundController {
 
 		}
 
-		System.out.println("m_dto=======>"+m_dto);
-		
-		
-		
-	
-	   
+		System.out.println("m_dto=======>" + m_dto);
+
 		ModelAndView mview = new ModelAndView();
 		mview.addObject("dto", dto);
 		mview.addObject("cm_dto", cm_dto);
 		mview.addObject("m_dto", m_dto);
-	
+
+		System.out.println("m_dto: =====> " + m_dto);
 
 		mview.setViewName("/ground/ground_myCrew");
 
@@ -191,8 +187,8 @@ public class GroundController {
 
 		dto.setMember_idx(userKey);
 		Cmapper.insertCrewEnroll(dto); // 크루 생성+팀장 등록
-		
-		//System.out.println("발급된 team_idx: " + dto.getTeam_idx());
+
+		// System.out.println("발급된 team_idx: " + dto.getTeam_idx());
 
 		HashMap<String, String> map = new HashMap<>();
 		map.put("team_idx", dto.getTeam_idx());
@@ -200,9 +196,7 @@ public class GroundController {
 
 		Cmapper.updateTeamIdx(map);
 
-	
-		
-		//System.out.println("dto 등록123: "+dto.getMember_idx());
+		// System.out.println("dto 등록123: "+dto.getMember_idx());
 		cm_dto.setMember_idx(dto.getMember_idx());
 		Cmapper.insertCrewleader(cm_dto); // 팀 멤버 테이블에 추가
 		Cmapper.crewleaderupdate(dto); // 리더는 자동으로 수락 y
@@ -220,43 +214,68 @@ public class GroundController {
 		CrewEnrollDto dto = Cmapper.getData(team_idx);
 		model.addObject("dto", dto);
 
-		 System.out.println("dto....."+dto);
+		System.out.println("dto....." + dto);
 
 		model.setViewName("/ground/ground_main");
 
 		return dto;
 
 	}
+
+	// 크루원 프로필 보기
+	@PostMapping("/ground/memberprofile")
+	@ResponseBody
+	public MemberDto memberprofile(@RequestParam String member_idx) {
+
+		MemberDto m_dto = Mmapper.getMemberDatas(member_idx);
+		
+		//ModelAndView mview = new ModelAndView();
+		
+		//CrewEnrollDto dto = Cmapper.getTeamInfo(team_idx);
+		//mview.addObject("dto", dto);
+		
+		return m_dto;
+		/*
+		 * List<MemberDto> m_idx = new ArrayList<>(); // 여기는 member_idx들만 있음 for (int i
+		 * = 0; i < m_idx.size(); i++) { // 쿼리문에 보면 select * ~ 다 가지고 오는 것들 중에
+		 * member_idx가 있음 // member 테이블을 가지고 올 거면 member_idx가 필요
+		 * 
+		 * m_idx.add(Mmapper.getMemberDatas(member_idx)); // 빈 리스트에 넣는 이유는 여러 개 가져와야 해서
+		 * }
+		 * 
+		 * return m_idx;
+		 */
+	}
 	
+	
+
 	@PostMapping("/ground/memberapplylist")
 	@ResponseBody
 	public List<MemberDto> memberApplyList(@RequestParam String team_idx) {
-		
-		//크루 신청현황 불러오기
-	   List<CrewMemberDto> cm_list =  Cmapper.crewApplyList(team_idx);
-	   System.out.println("cm_list=======>"+cm_list);
-	   
-	   
-	   List<MemberDto> m_dto_n = new ArrayList<>();
-	   for (int i = 0; i < cm_list.size(); i++) {
-		   m_dto_n.add(Mmapper.getMemberDatas(cm_list.get(i).getMember_idx()));
-	   }
-	   
-	   return m_dto_n;
+
+		// 크루 신청현황 불러오기
+		List<CrewMemberDto> cm_list = Cmapper.crewApplyList(team_idx);
+		// System.out.println("cm_list=======>"+cm_list);
+
+		List<MemberDto> m_dto_n = new ArrayList<>();
+		for (int i = 0; i < cm_list.size(); i++) {
+			m_dto_n.add(Mmapper.getMemberDatas(cm_list.get(i).getMember_idx()));
+		}
+
+		return m_dto_n;
 	}
-	
-	
+
 	@PostMapping("/ground/memberaccept")
 	@ResponseBody
 	public void memberAccept(@RequestParam String member_idx) {
-		
+
 		Cmapper.crewMemberAccept(member_idx);
 	}
-	
+
 	@PostMapping("/ground/memberreject")
 	@ResponseBody
 	public void memberReject(@RequestParam String member_idx) {
-		
+
 		Cmapper.crewMemberReject(member_idx);
 	}
 }
