@@ -96,6 +96,6 @@
 	</delete>
 	
 	<select id="selectCrewMem" parameterType="String" resultType="int">
-	select count(*) from TeamMember where team_idx =#{team_idx}
+	select count(*) from TeamMember where team_idx =#{team_idx} and accept_status = 'Y'
 	</select>
 </mapper>

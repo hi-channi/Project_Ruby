@@ -113,8 +113,10 @@ public class GroundController {
 		// team_idx를 ground_main 페이지에 붙여
 		model.addAttribute("team_idx", team_idx);
 		
-		MemberDto team_idx1 = Mmapper.getMemberDatas(userKey);
-		 model.addAttribute("team_idx1", team_idx1);
+		 
+		//String team_idx = Mmapper.getMemberDatas(userKey).getTeam_idx();
+		 //model.addAttribute("team_idx1", team_idx);
+		 //System.out.println("sysout=========>"+team_idx);
 
 		String age = Mmapper.getMemberAge(userKey);
 		System.out.println("연령대" + age);

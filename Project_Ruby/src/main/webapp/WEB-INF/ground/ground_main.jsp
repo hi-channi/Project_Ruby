@@ -79,7 +79,10 @@
 				<!-- 마이크루 페이지로 넘겨줌 -->
 				<input type="hidden" name="team_idx" value="${team_idx}"
 					id="teamidx">
+
+
 				<button type="submit" class="mycrew">마이 크루</button>
+
 			</form>
 			<button class="makecrew" onclick="location.href='/ground/crewenroll'">
 				<span class="makecrew1">크루 만들기</span>
@@ -102,12 +105,10 @@
 								value="${a.score }" pattern="#,###" /></td>
 						<td colspan="4" width="200"><fmt:formatDate
 								value="${a.create_day }" pattern="yyyy-MM-dd" /></td>
-						<td width="120">
-						<c:if test="${team_idx1 == null }">
+						<td width="120"><c:if test="${team_idx == null }">
 								<button type="button" class="modal_opne_btn2"
 									onclick="transferTId(${a.team_idx})"}>신청하기</button>
-							</c:if>
-							</td>
+							</c:if></td>
 					<tr>
 				</table>
 			</c:forEach>
@@ -240,7 +241,7 @@
 	<script type="text/javascript">
 
 	//마이 크루,,, 로그인 안 되어 있을 때 alert창
-	function chklogin(form) {
+		function chklogin(form) {
 		//alert(${team_idx});
 	     if(${sessionScope.loginOK==null})
 	    {
@@ -248,8 +249,15 @@
 	        location.href="/login"; //로그인 폼으로 이동
 	        return false;
 
-	      }	
+	      }	else {
+	    	if(${team_idx == null}){
+	    		alert("가입한 크루가 없습니다.");
+	    		return false;
+	    	}
+	    }
+
 	}
+	 
 	
 
 

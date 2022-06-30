@@ -258,11 +258,14 @@
 
 								<tr>
 									<th align="center">직업</th>
-									<td align="right" class="crewm_job">비공개</td>
+									<td align="right" class="crewm_job"></td>
 								</tr>
 								<tr>
 									<th align="center">관심분야</th>
-									<td align="right" class="crewm_hobby">게임 낚시</td>
+									
+									<td align="right" class="crewm_hobby"></td>
+									
+								
 								</tr>
 							</tbody>
 						</table>
@@ -379,7 +382,7 @@
 					$(".crewoneprr").text(data.pr); //한줄 소개
 					$(".crewm_age").text(data.age); //나이
 					$(".crewm_job").text(data.job); //직업
-					$(".crewm_hobby").text(data.hobby);
+					$(".crewm_hobby").text(data.hobby1+"  "+data.hobby2+"  "+data.hobby3);
 					},
 				});
 			
