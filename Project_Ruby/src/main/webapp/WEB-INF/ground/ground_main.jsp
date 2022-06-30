@@ -73,10 +73,12 @@
 
 		<span class="crewlist">크루 리스트</span>
 		<div class="btns">
-			<form action="/ground/mycrew" method="post" onsubmit="return chklogin(this)">
-			
-			<!-- 마이크루 페이지로 넘겨줌 -->
-				<input type="hidden" name="team_idx" value="${team_idx}" id="teamidx">
+			<form action="/ground/mycrew" method="post"
+				onsubmit="return chklogin(this)">
+
+				<!-- 마이크루 페이지로 넘겨줌 -->
+				<input type="hidden" name="team_idx" value="${team_idx}"
+					id="teamidx">
 				<button type="submit" class="mycrew">마이 크루</button>
 			</form>
 			<button class="makecrew" onclick="location.href='/ground/crewenroll'">
@@ -87,25 +89,25 @@
 
 
 		<div class="secondbox">
-			<c:forEach var="a" items="${list }">
+			<c:forEach var="a" items="${list }" varStatus="status">
 				<table class="communitylist">
 					<tr align="center">
-						<td colspan="4" width="50">${a.team_idx }</td>
+						<td colspan="4" width="50">${list.size() -status.index}</td>
 						<td colspan="4" width="240">${a.name }</td>
 						<td colspan="4" width="110"><img alt=""
-							src="../image/face.png" style="width: 20px">/50</td>
+							src="../image/face.png" style="width: 20px">
+							${a.member_count}/50</td>
 						<td colspan="4" width="200"><img alt=""
 							src="../image/star.png" style="width: 20px"> <fmt:formatNumber
 								value="${a.score }" pattern="#,###" /></td>
 						<td colspan="4" width="200"><fmt:formatDate
 								value="${a.create_day }" pattern="yyyy-MM-dd" /></td>
 						<td width="120">
-
-
-							<button type="button" class="modal_opne_btn2"
-								onclick="transferTId(${a.team_idx})" }>신청하기</button>
-
-						</td>
+						<c:if test="${team_idx1 == null }">
+								<button type="button" class="modal_opne_btn2"
+									onclick="transferTId(${a.team_idx})"}>신청하기</button>
+							</c:if>
+							</td>
 					<tr>
 				</table>
 			</c:forEach>
@@ -177,7 +179,7 @@
 								<td class="subject1">연령대</td>
 								<!-- 게시글 제목 출력 -->
 								<td></td>
-								<td class="ageage">${age } 대</td>
+								<td class="ageage">${age }대</td>
 							</tr>
 						</table>
 					</div>
@@ -185,20 +187,19 @@
 				</div>
 
 				<div class="wrapper">
-				<form action="/ground/mymm" method="post">
-				
-				<input type="text" name="team_idx" id="t_idx" >
-			
-					<input type="text" class="input" name="mypr"
-						placeholder="자기소개 한 줄" required="required" style="width: 360px;">
-					<span class="underline"></span>
-				
+					<form action="/ground/mymm" method="post">
+
+						<input type="text" name="team_idx" id="t_idx"> <input
+							type="text" class="input" name="mypr" placeholder="자기소개 한 줄"
+							required="required" style="width: 360px;"> <span
+							class="underline"></span>
 				</div>
 
 				<button type="submit" class="btn-large">
 					<span class="crew_enroll_btn">신청하기</span>
-					
-				</button> </form>
+
+				</button>
+				</form>
 
 
 				<button type="button" id="modal_close_btn2"

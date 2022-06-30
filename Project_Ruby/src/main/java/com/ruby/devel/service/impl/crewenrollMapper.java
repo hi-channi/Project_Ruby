@@ -31,5 +31,7 @@ public interface crewenrollMapper {
 	public List<CrewMemberDto> crewApplyList (String team_idx);
 	public void crewMemberAccept (String member_idx);
 	public void crewMemberReject (String member_idx);
+	public int selectCrewMem (String team_idx);
+
 }
 

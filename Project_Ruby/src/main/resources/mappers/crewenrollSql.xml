@@ -94,4 +94,8 @@
 	<delete id="crewMemberReject" parameterType="String">
 	delete from TeamMember where member_idx =#{member_idx}
 	</delete>
+	
+	<select id="selectCrewMem" parameterType="String" resultType="int">
+	select count(*) from TeamMember where team_idx =#{team_idx}
+	</select>
 </mapper>

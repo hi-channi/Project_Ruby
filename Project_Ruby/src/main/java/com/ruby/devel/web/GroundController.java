@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ruby.devel.model.CommunityDto;
 import com.ruby.devel.model.CrewEnrollDto;
 import com.ruby.devel.model.CrewMemberDto;
 import com.ruby.devel.model.MemberDto;
@@ -73,8 +74,16 @@ public class GroundController {
 		map.put("perPage", perPage);
 
 		// 각페이지에서 필요한 게시글 가져오기
+		
 		List<CrewEnrollDto> list = Cmapper.getList(map);
 
+		for(CrewEnrollDto c:list)
+		{
+			int membercount = Cmapper.selectCrewMem(c.getTeam_idx());
+			c.setMember_count(membercount);
+		
+		} 
+		
 		// 각 글앞에 붙일 시작번호 구하기
 		// 총글이 20개면? 1페이지 20 2페이지 15부터 출력해서 1씩 감소
 		int no = totalCount - (currentPage - 1) * perPage;
@@ -103,6 +112,9 @@ public class GroundController {
 		// Model 객체는 Controller 에서 생성된 데이터를 담아 View 로 전달할 때 사용하는 객체
 		// team_idx를 ground_main 페이지에 붙여
 		model.addAttribute("team_idx", team_idx);
+		
+		MemberDto team_idx1 = Mmapper.getMemberDatas(userKey);
+		 model.addAttribute("team_idx1", team_idx1);
 
 		String age = Mmapper.getMemberAge(userKey);
 		System.out.println("연령대" + age);

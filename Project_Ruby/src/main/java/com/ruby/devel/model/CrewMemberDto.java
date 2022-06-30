@@ -16,4 +16,5 @@ public class CrewMemberDto {
 	private Timestamp regist_day;
 	private String accept_status;
 	private String mypr;
+	
 }

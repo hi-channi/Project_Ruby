@@ -17,6 +17,7 @@ public class CrewEnrollDto {
 	private String color;
 	private String member_idx;
 	private Timestamp create_day;
+	private int member_count;
 	
 	
 }
