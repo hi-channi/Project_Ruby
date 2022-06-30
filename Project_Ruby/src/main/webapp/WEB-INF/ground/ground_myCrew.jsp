@@ -152,7 +152,7 @@
 
 		<span class="face"
 			style="font-family: 'Noto Sans KR'; font-size: 12.5pt;"><img
-			alt="" src="../image/face.png">&nbsp;&nbsp;1</span>
+			alt="" src="../image/face.png">&nbsp;&nbsp;${cm_dto.size()}</span>
 
 		<div class="crewlistaddadd" style="border: 1px solid #ededed;">
 			<c:forEach var="m_dto" items="${m_dto }">
@@ -245,7 +245,7 @@
 							name="member_idx" id="m_idx">
 						<!-- name, pr,age, job, hobby1, -->
 				
-							<div class="crewcolorbox">팀장</div>
+							<!-- <div class="crewcolorbox">팀장</div>-->
 						<span class="crewoneprr">한 줄 소개를 입력하세요</span>
 
 						<table class="privacy_table" border="0" style="width: 155px;">

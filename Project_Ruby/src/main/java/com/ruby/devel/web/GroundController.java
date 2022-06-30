@@ -79,6 +79,8 @@ public class GroundController {
 		// 총글이 20개면? 1페이지 20 2페이지 15부터 출력해서 1씩 감소
 		int no = totalCount - (currentPage - 1) * perPage;
 
+		
+		
 		// 출력에 필요한 변수들을 request 에 저장
 		mview.addObject("list", list);
 		mview.addObject("startPage", startPage);
