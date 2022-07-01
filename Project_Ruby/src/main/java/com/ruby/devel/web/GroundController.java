@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ruby.devel.model.CrewEnrollDto;
-import com.ruby.devel.model.CrewMemberDto;
+import com.ruby.devel.model.TeamEnrollDto;
+import com.ruby.devel.model.TeamMemberDto;
 import com.ruby.devel.model.MemberDto;
 import com.ruby.devel.service.impl.MemberMapper;
 import com.ruby.devel.service.impl.TeamMapper;
@@ -34,8 +34,8 @@ public class GroundController {
 	@GetMapping("/ground") // 메뉴 선택 시 이동하는 기본 페이지
 	// ModelAndView!!
 	public ModelAndView ground_home(Model model,
-			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage, @ModelAttribute CrewEnrollDto crew_dto,
-			@ModelAttribute CrewMemberDto cm_dto, @ModelAttribute MemberDto m_dto, HttpSession session) {
+			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage, @ModelAttribute TeamEnrollDto crew_dto,
+			@ModelAttribute TeamMemberDto cm_dto, @ModelAttribute MemberDto m_dto, HttpSession session) {
 		ModelAndView mview = new ModelAndView();
 
 		int totalCount = Cmapper.getTotalCount();
@@ -72,9 +72,9 @@ public class GroundController {
 
 		// 각페이지에서 필요한 게시글 가져오기
 		
-		List<CrewEnrollDto> list = Cmapper.getList(map);
+		List<TeamEnrollDto> list = Cmapper.getList(map);
 
-		for(CrewEnrollDto c:list)
+		for(TeamEnrollDto c:list)
 		{
 			int membercount = Cmapper.selectCrewMem(c.getTeam_idx());
 			c.setMember_count(membercount);
@@ -124,8 +124,8 @@ public class GroundController {
 		System.out.println("연령대" + age);
 		model.addAttribute("age", age);
 
-		List<CrewEnrollDto> newlist = Cmapper.getNewCrewDatas();
-		List<CrewEnrollDto> pointlist = Cmapper.getCrewPointDatas();
+		List<TeamEnrollDto> newlist = Cmapper.getNewCrewDatas();
+		List<TeamEnrollDto> pointlist = Cmapper.getCrewPointDatas();
 		model.addAttribute("newlist", newlist);
 		model.addAttribute("pointlist", pointlist);
 	
@@ -147,7 +147,7 @@ public class GroundController {
 	}
 
 	@PostMapping("/ground/mymm")
-	public String mycrewpr(@ModelAttribute CrewMemberDto cm_dto, HttpSession session, @RequestParam String team_idx) {
+	public String mycrewpr(@ModelAttribute TeamMemberDto cm_dto, HttpSession session, @RequestParam String team_idx) {
 		String userKey = (String) session.getAttribute("userKey");
 		cm_dto.setMember_idx(userKey);
 		cm_dto.setTeam_idx(team_idx);
@@ -165,11 +165,11 @@ public class GroundController {
 	public ModelAndView ground_mycrew(@RequestParam String team_idx, Model model) {
 
 		// 나의 크루니까 내 팀 정보 가지고 옴 (마이크루 페이지에 크루명, 크루 소개 머 이런 거)
-		CrewEnrollDto crew_dto = Cmapper.getTeamInfo(team_idx);
+		TeamEnrollDto crew_dto = Cmapper.getTeamInfo(team_idx);
 		System.out.println("CrewEnrollDto:  " + crew_dto);
 
 		// 팀의 멤버를 나타낼 칸을 뽑아내려고... 글서 cm_dto.size() 뽑으면 인원 수임
-		List<CrewMemberDto> cm_dto = Cmapper.getTeamMember(team_idx);
+		List<TeamMemberDto> cm_dto = Cmapper.getTeamMember(team_idx);
 		System.out.println("cm_dto:   " + cm_dto);
 
 		List<String> m_idx = new ArrayList<>(); // 여기는 member_idx들만 있음
@@ -204,8 +204,8 @@ public class GroundController {
 	}
 
 	@PostMapping("/ground/crewinsert") // 크루 등록
-	public String insert(@ModelAttribute CrewEnrollDto crew_dto, @RequestParam String userKey,
-			@ModelAttribute CrewMemberDto cm_dto) {
+	public String insert(@ModelAttribute TeamEnrollDto crew_dto, @RequestParam String userKey,
+			@ModelAttribute TeamMemberDto cm_dto) {
 
 		crew_dto.setMember_idx(userKey);
 		Cmapper.insertCrewEnroll(crew_dto); // 크루 생성+팀장 등록
@@ -228,12 +228,12 @@ public class GroundController {
 
 	@PostMapping("/ground/test123")
 	@ResponseBody
-	public CrewEnrollDto updateform(@RequestParam String team_idx) {
+	public TeamEnrollDto updateform(@RequestParam String team_idx) {
 		ModelAndView model = new ModelAndView();
 
 		// System.out.println(team_idx);
 
-		CrewEnrollDto crew_dto = Cmapper.getData(team_idx);
+		TeamEnrollDto crew_dto = Cmapper.getData(team_idx);
 		model.addObject("dto", crew_dto);
 
 		//System.out.println("dto....." + dto);
@@ -276,7 +276,7 @@ public class GroundController {
 	public List<MemberDto> memberApplyList(@RequestParam String team_idx) {
 
 		// 크루 신청현황 불러오기
-		List<CrewMemberDto> cm_list = Cmapper.crewApplyList(team_idx);
+		List<TeamMemberDto> cm_list = Cmapper.crewApplyList(team_idx);
 		// System.out.println("cm_list=======>"+cm_list);
 
 		List<MemberDto> m_dto_n = new ArrayList<>();

@@ -6,7 +6,7 @@
 	</select>
 
 
-	<insert id="insertCrewEnroll" parameterType="crewenroll"
+	<insert id="insertCrewEnroll" parameterType="TeamEnroll"
 		useGeneratedKeys="true" keyProperty="team_idx">
 		insert into Team
 		(name, info,
@@ -45,36 +45,36 @@
 
 	<!-- 팀장은 무조건 TeamMember에 수락여부 y, 팀 테이블의 member_idx와 팀멤버 테이블의 member_idx가 
 		같다면 수락 여부 y로 업데이트 -->
-	<update id="crewleaderupdate" parameterType="crewenroll">
+	<update id="crewleaderupdate" parameterType="TeamEnroll">
 		UPDATE TeamMember tm
 		INNER JOIN Team te ON tm.member_idx = te.member_idx SET
 		tm.accept_status = 'Y'
 	</update>
 
-	<select id="getNewCrewDatas" resultType="crewenroll">
+	<select id="getNewCrewDatas" resultType="TeamEnroll">
 		select * from Team order
 		by team_idx desc
 	</select>
 
-	<select id="getCrewPointDatas" resultType="crewenroll">
+	<select id="getCrewPointDatas" resultType="TeamEnroll">
 		select * from Team
 		order by score desc
 	</select>
 
 	<select id="getList" parameterType="HashMap"
-		resultType="crewenroll">
+		resultType="TeamEnroll">
 		select * from Team order by team_idx desc limit #{start},
 		#{perPage}
 	</select>
 
 	<select id="getData" parameterType="String"
-		resultType="crewenroll">
+		resultType="TeamEnroll">
 		select * from Team where team_idx =#{team_idx}
 	</select>
 
 	<!-- 내 팀 정보 가져오기... #{team_idx} 객체는 member테이블의 team_idx -->
 	<select id="getTeamInfo" parameterType="String"
-		resultType="crewenroll">
+		resultType="TeamEnroll">
 		select * from Team where team_idx =#{team_idx}
 	</select>
 

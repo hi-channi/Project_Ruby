@@ -7,8 +7,8 @@ import org.apache.ibatis.type.Alias;
 import lombok.Data;
 
 @Data
-@Alias("crewenroll")
-public class CrewEnrollDto {
+@Alias("TeamEnroll")
+public class TeamEnrollDto {
 
 	private String team_idx;
 	private String name;
