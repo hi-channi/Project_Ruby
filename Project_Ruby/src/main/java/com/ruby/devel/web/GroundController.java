@@ -2,7 +2,10 @@ package com.ruby.devel.web;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
@@ -176,6 +179,8 @@ public class GroundController {
 			m_idx.add(new String(member_idx)); // 빈 리스트에 넣는 이유는 여러 개 가져와야 해서
 		}
 
+		//System.out.println("...."+m_idx);
+		
 		List<MemberDto> m_dto = new ArrayList<>(); // m_dto라는 리스트에는 member_idx를 넣어서 가지고 온 member 테이블의 정보가 담김
 		for (int j = 0; j < m_idx.size(); j++) // 위에서 member_idx를 찾아서 빈 리스트에 넣어줬으니 그 빈 리스트를 가지고 와서
 		{
@@ -189,8 +194,8 @@ public class GroundController {
 		mview.addObject("dto", dto);
 		mview.addObject("cm_dto", cm_dto);
 		mview.addObject("m_dto", m_dto);
-
-		System.out.println("m_dto: =====> " + m_dto);
+		
+		
 
 		mview.setViewName("/ground/ground_myCrew");
 
@@ -230,7 +235,7 @@ public class GroundController {
 		CrewEnrollDto dto = Cmapper.getData(team_idx);
 		model.addObject("dto", dto);
 
-		System.out.println("dto....." + dto);
+		//System.out.println("dto....." + dto);
 
 		model.setViewName("/ground/ground_main");
 
@@ -286,6 +291,7 @@ public class GroundController {
 	public void memberAccept(@RequestParam String member_idx) {
 
 		Cmapper.crewMemberAccept(member_idx);
+		Cmapper.updateTeamidxY(member_idx);
 	}
 
 	@PostMapping("/ground/memberreject")

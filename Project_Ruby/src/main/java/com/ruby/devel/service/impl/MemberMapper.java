@@ -41,5 +41,7 @@ public interface MemberMapper {
 	
 	public MemberDto getMemberDatas(String member_idx);
 	public String getMemberAge(String member_idx);
+
+
   
 }

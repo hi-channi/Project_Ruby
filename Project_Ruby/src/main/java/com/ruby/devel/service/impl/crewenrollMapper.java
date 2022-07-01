@@ -32,6 +32,7 @@ public interface crewenrollMapper {
 	public void crewMemberAccept (String member_idx);
 	public void crewMemberReject (String member_idx);
 	public int selectCrewMem (String team_idx);
+	public void updateTeamidxY(String member_idx);
 
 }
 
