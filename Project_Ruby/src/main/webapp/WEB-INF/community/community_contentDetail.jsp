@@ -31,7 +31,7 @@ $(function(){
   	userKey="${sessionScope.userKey}"; 
 	list();
 	
-	 $(".subjecttextbox").click(function(){
+	/*  $(".subjecttextbox").click(function(){
 		//var i=$(this).val();
 		//alert(i);
 		
@@ -53,7 +53,7 @@ $(function(){
 		
 		$(this).val("");
 		
-	}); 
+	});  */
   	
 	/* 댓글 ajax */	
 	$("#btncommentadd").click(function() {
@@ -132,39 +132,77 @@ $(document).on("click","span.adel",function(){
 	});
 		
 
-/* 댓글 리스트 출력 */
+/* 일반글 댓글 리스트 출력 */
 function list() {
-	 $.ajax({
-			type:"get",
-			dataType:"json",
-			url:"commentlist",
-			data:{"community_idx":community_idx},
-			success:function(data){
-				$("span.textsms").text(data.length); //댓글 개수
-				
-				var s="";
-				$.each(data,function(i,cm_dto){
+	var c_type=$("#content_type").val(); 
+	if(c_type==0){
+		$.ajax({
+				type:"get",
+				dataType:"json",
+				url:"commentlist",
+				data:{"community_idx":community_idx},
+				success:function(data){
+					$("span.textsms").text(data.length); //댓글 개수
 					
-					s+="<div>";
-					s+="<img alt='' src='${root }/element/icon_profile.png'>";
-					s+="<span class='commentuser'>"+cm_dto.member_idx+"</span>";
-					s+="<input type='text' class='commentwritetext' value='"+cm_dto.content+"' readonly='readonly'>";
-					s+="<br>";
-					s+="<span class='commentwriteday'>"+cm_dto.write_day+"</span>";
+					var s="";
+					$.each(data,function(i,cm_dto){
+						
+						s+="<div>";
+						s+="<img alt='' src='${root }/element/icon_profile.png'>";
+						s+="<span class='commentuser'>"+cm_dto.member_idx+"</span>";
+						s+="<input type='text' class='commentwritetext' value='"+cm_dto.content+"' readonly='readonly'>";
+						s+="<br>";
+						s+="<span class='commentwriteday'>"+cm_dto.write_day+"</span>";
+						
+						
+						if(loginOK=="yes" && userKey==cm_dto.member_idx){
+							s+="<span class='glyphicon glyphicon-pencil amod' id='amod' idx='"+cm_dto.community_comment_idx+"'></span>";
+							s+="&nbsp;";
+							s+="<span class='glyphicon glyphicon-trash adel' id='adel' idx='"+cm_dto.community_comment_idx+"'></span>";
+						}
+						
+						s+="</div>";
+					});
 					
+					$("div.commentdiv").html(s);
+				}
+			});  
+		} else {
+			$.ajax({
+				type:"get",
+				dataType:"json",
+				url:"commentlist",
+				data:{"community_idx":community_idx},
+				success:function(data){
+					$("span.textsms").text(data.length); //댓글 개수
 					
-					if(loginOK=="yes" && userKey==cm_dto.member_idx){
-						s+="<span class='glyphicon glyphicon-pencil amod' id='amod' idx='"+cm_dto.community_comment_idx+"'></span>";
-						s+="&nbsp;";
-						s+="<span class='glyphicon glyphicon-trash adel' id='adel' idx='"+cm_dto.community_comment_idx+"'></span>";
-					}
+					var s="";
+					$.each(data,function(i,cm_dto){
+						
+						s+="<div>";
+						s+="<img alt='' src='${root }/element/icon_profile.png'>";
+						s+="<span class='commentuser'>"+cm_dto.member_idx+"</span>";
+						s+="<textarea class='cocomment' readonly='readonly' style='resize:none;'>"+cm_dto.content+"</textarea>";
+						s+="<br>";
+						s+="<span class='commentwriteday'>"+cm_dto.write_day+"</span>";
+					 	s+="<c:if test='${c_dto.content_type==1 }'>";
+						s+="<img src='${root }/element/button_selection.png' class='selectionbtn' onclick='answerchoose("+cm_dto.community_comment_idx+")'>";
+					 	s+="</c:if>"; 
+						if(loginOK=="yes" && userKey==cm_dto.member_idx){
+							s+="<span class='glyphicon glyphicon-pencil amod' id='amod' idx='"+cm_dto.community_comment_idx+"'></span>";
+							s+="&nbsp;";
+							s+="<span class='glyphicon glyphicon-trash adel' id='adel' idx='"+cm_dto.community_comment_idx+"'></span>";
+						}
+						
+						s+="</div>";
+
+					});
 					
-					s+="</div>";
-				});
-				
-				$("div.commentdiv").html(s);
-			}
-		});  
+					$("div.commentdiv2").html(s);
+					
+				}
+			});
+	}
 }
 
 /* 게시글 삭제시 컨펌창 */
@@ -182,7 +220,27 @@ function writecomment() {
 	alert("댓글 쓰기는 로그인 후 이용 가능합니다.");
 }
 
+/* qna 답변 채택 */
+	function answerchoose(cm_idx) {
+		var c_idx = $("#c_idx").val();
+		var a = confirm("해당 답변을 채택하시겠습니까?");
 
+		if (a) {
+			$.ajax({
+				type : "post",
+				dataType : "text", //return값 없을땐 text!
+				url : "answerchoose",
+				data : {
+					"community_idx" : c_idx,
+					"community_comment_idx" : cm_idx
+				},
+				success : function(data) {
+					alert("채택 되었습니다.");
+					list();
+				}
+			});
+		}
+	}
 </script>
 </head>
 <body>
@@ -269,34 +327,41 @@ function writecomment() {
 	
 	<!-- 댓글쓰기 버튼 -->
 		<c:if test="${sessionScope.loginOK!=null }">
-			<input type="text" placeholder="댓글을 입력하세요" class="commenttext" id="content" >
-			<button type="button" class="btn-small" id="btncommentadd">댓글등록</button>
+			<c:if test="${c_dto.content_type==0 }">
+				<input type="text" placeholder="댓글을 입력하세요" class="commenttext" id="content" >
+				<button type="button" class="btn-small" id="btncommentadd">댓글등록</button>
+			</c:if>	
+		
+			<c:if test="${c_dto.content_type==1 || c_dto.content_type==2 }">
+				<input type="text" placeholder="댓글을 입력하세요" class="commenttext" id="content" >
+				<button type="button" class="btn-small" id="btncommentadd">답변등록</button>
+			</c:if>	
 		</c:if>
 	
-		<c:if test="${sessionScope.loginOK==null }">
+	<!-- 비회원 일반게시글 댓글 -->
+		<c:if test="${sessionScope.loginOK==null && c_dto.content_type==0}">
 			<input type="text" value="댓글을 입력하세요" class="commenttext">
 			<button type="button" class="btncommentadd2 btn-small" onclick="writecomment()">댓글등록</button>
 		</c:if>
+	
+	<!-- 비회원 qna게시글 댓글 -->	
+		<c:if test="${sessionScope.loginOK==null && (c_dto.content_type==1 || c_dto.content_type==2)}">
+			<input type="text" value="답변을 입력하세요" class="commenttext">
+			<button type="button" class="btncommentadd2 btn-small" onclick="writecomment()">답변등록</button>
+		</c:if>
 	</div>
+	
+	<!-- 일반글 출력 div -->
 	<c:if test="${c_dto.content_type==0 }">
 		<div class="commentdiv" style="border: solid 1px #dbdbdb;">
 	
 		</div>
 	</c:if>
 	
-	<c:if test="${c_dto.content_type==1 }">
+	<!-- 질문글 출력 div -->
+	<c:if test="${c_dto.content_type==1 || c_dto.content_type==2  }">
 		<div class="commentdiv2" style="border: solid 1px #dbdbdb;">
-			<c:forEach var="i" begin="1" end="1">
-				<div>
-					<img alt="" src="${root }/element/icon_profile.png">
-					<span class="commentuser">유저1</span>
-		
-					<br>
-					<span class="commentwriteday">2022-06-14 05:03</span>
-					<textarea rows="" cols="" class="cocomment" readonly="readonly" style="resize: none;">??</textarea>
-					<img alt="" src="${root }/element/button_selection.png" class="selectionbtn">
-				</div>
-			</c:forEach>
+			
 		</div>
  	</c:if>
  

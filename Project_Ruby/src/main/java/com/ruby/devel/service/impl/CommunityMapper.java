@@ -35,6 +35,15 @@ public interface CommunityMapper {
 	//추천수 증가
 	public void updateLikeCount(String community_idx);
 	
+	//qna타입 증가
+	public void updateQnaType(String community_idx);
+	
+	//베스트게시글 출력
+	public List<CommunityDto> bestList();
+	
+	//최신 qna 출력
+	public List<CommunityDto> recentList();
+	
 
 
 }

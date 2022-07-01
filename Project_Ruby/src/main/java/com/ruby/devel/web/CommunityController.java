@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -114,7 +115,18 @@ public class CommunityController {
 	      String nickName=Mmapper.getNickname(null);
 		
 	    mview.addObject("nickName", nickName); 
-		mview.setViewName("/community/community_main");
+	    
+	    
+	    //추천게시글 갖고오기
+	    List<CommunityDto> b_list= Cmapper.bestList();
+	    System.out.println(b_list);
+	    
+	    //최신 qna 갖고오기
+	    List<CommunityDto> r_list=Cmapper.recentList();
+	    
+		mview.addObject("r_list", r_list);
+	    mview.addObject("b_list", b_list);
+	    mview.setViewName("/community/community_main");
 		
 		return mview;
 	}
@@ -164,7 +176,8 @@ public class CommunityController {
 		return "redirect:";
 	}
 
-	@GetMapping("/community/contentdetail")  // 일반글 상세 페이지
+	// 일반글 상세 페이지	
+	@GetMapping("/community/contentdetail") 
 	public ModelAndView community_contentdetail(
 			@RequestParam String community_idx, 
 			@RequestParam (value = "currentPage",defaultValue = "1") int currentPage
@@ -233,7 +246,19 @@ public class CommunityController {
 			return like_cnt;
 
 		}
-	
+		
+		//qna 타입 +1 증가 (채택글인지 아닌지 확인용)
+		@PostMapping("/community/answerchoose")
+		@ResponseBody
+		public void answerChoose(
+				@RequestParam String community_idx,
+				@RequestParam String community_comment_idx) {
+			
+			Cmapper.updateQnaType(community_idx);
+			CMmapper.answerChoose(community_comment_idx);
+			
+		}
+		
 	
 	
 	

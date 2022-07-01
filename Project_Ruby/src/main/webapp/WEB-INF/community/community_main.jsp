@@ -12,24 +12,6 @@
 <c:set var="root" value="<%=request.getContextPath()%>" />
  <link rel="stylesheet" type="text/css" href="${root }/css/community/community_main.css">
 <title>Insert title here</title>
-<style type="text/css">
-.pagesort{
-	position: absolute;
-	top: 850px;
-	left: 780px;
-}
-
-#pagecnum {
-   color: #ff4b4e;
-}
-#pagenum,#pagecnum {
-   margin: 0 10px 0 10px;
-}
-#pagebtn {
-   margin: 0 5px 0 5px;
-}
-</style>
-
 <script type="text/javascript">
 	$(function () {
 		
@@ -87,12 +69,16 @@
 				<span class="title">BEST 게시글</span>
 				<div class="listbox1"> 
 						<table class="list1" style="margin-top: 7px;">
-							<c:forEach var="i" begin="1" end="5">
+							<c:forEach var="i" items="${b_list}">
 								<tr>
 									<!-- 게시글 제목 출력 -->
-									<td class="subject1"> <div style="cursor: pointer;"> 글제목이 나타납니다. </div> </td>   
+									<td class="subject1"> 
+										<div class="besttitle" style="width: 200px;">
+									 		<a href="${root }/community/contentdetail?community_idx=${i.community_idx }">${i.subject}</a>
+										</div> 
+									</td>   
 									<td></td>
-									<td class="likecount1"><img src="${root }/element/icon_thumb.png">1,234</td>
+									<td class="likecount1"><img src="${root }/element/icon_thumb.png">${i.like_count }</td>
 								</tr>
 							</c:forEach>
 						</table>
@@ -104,16 +90,30 @@
 				<span class="title">최신 Q&A</span>
 				<div class="listbox2"> 
 						<table class="list2">
-							<c:forEach var="i" begin="1" end="5">
+							<c:forEach var="i" items="${r_list }">
 								<tr>
-									<td rowspan="2" class="img2" width="90"> <img src="${root }/element/icon_Q&A2.png" class="Qimg"> </td>
+									<td rowspan="2" class="img2" width="90"> 
+										<c:if test="${i.content_type==1}">
+											<span class="tag badge" style="background-color: #6BCB77;">OPEN</span>
+										</c:if>
+										<c:if test="${i.content_type==2}">
+											<span class="tag badge" style="background-color: #ff4b4e;">CLOSED</span>
+										</c:if>
+									</td>
 										 <!-- 게시글 제목 출력 -->
-									<td class="subject1" style="padding-top:11px; border-bottom: 0px;"> <div style="cursor: pointer;"> 글제목이 나타납니다. </div></td> 
+									<td class="subject1" style="padding-top:11px; border-bottom: 0px;"> 
+										<c:if test="${i.content_type==1 || i.content_type==2}">
+											<div class="qnatitle" style="width: 200px;"> 
+												<a href="${root }/community/contentdetail?community_idx=${i.community_idx }">${i.subject}</a>
+											</div>
+										</c:if>	
+									</td> 
 								</tr>
+								
 								<tr>
 									<td class="date2"> 
 									<!-- 게시글 등록 날짜 출력 -->
-										<div>2022-06-10 09:00</div> 
+										<div style="text-align: left: ;"><fmt:formatDate value="${i.write_day }" pattern="yyyy-MM-dd HH:mm"/></div> 
 									</td>	
 								</tr>
 							</c:forEach>
@@ -174,12 +174,15 @@
          					 <img alt="" src="${root }/element/icon_scrap.png" class="scrap">
 						</label>
 						</td>
-						<td width="550" colspan="2"> 
+						<td width="580" colspan="2"> 
 							<div class="contentnumber1">#${no }</div>
 							<c:set var="no" value="${no-1 }"></c:set>  <!-- 글번호 -->
 							<div class="tagbox" style="margin-top: 4px;">
-									<c:if test="${c.content_type==1 }">
-										<span class="tag badge" style="background-color: black;">#Q&A</span>
+									<c:if test="${c.content_type==1}">
+										<span class="tag badge" style="background-color: #6BCB77;">OPEN</span>
+									</c:if>
+									<c:if test="${c.content_type==2}">
+										<span class="tag badge" style="background-color: #ff4b4e;">CLOSED</span>
 									</c:if>
 									<span class="tag badge">#${c.tag1 }</span>
 									<span class="tag badge">#${c.tag2 }</span>
@@ -187,13 +190,13 @@
 							</div>
 						</td>  
 	
-						<td class="count" width="320" style="padding-top: 7px;"> <!-- width="340" -->
+						<td class="count" width="270" style="padding-top: 7px; text-align: right;"> <!-- width="340" -->
 							<c:if test="${c.mcount==0 }">
-								<div> <img alt="" src="${root }/element/icon_comment.png" style="margin-left: 135px;"></div>
+								<div> <img alt="" src="${root }/element/icon_comment.png" style="margin-left: 88px;"></div>
 								<div class="word"> ${c.mcount} </div>
 							</c:if>
 							<c:if test="${c.mcount>0 }">
-								<div> <img alt="" src="${root }/element/icon_comment.png" style="margin-left: 135px;"> </div>
+								<div> <img alt="" src="${root }/element/icon_comment.png" style="margin-left: 88px;"> </div>
 								<div class="word"> ${c.mcount} </div>
 							</c:if>
 								<div> <img alt="" src="${root }/element/icon_thumb.png" style="margin-left: 13px;"> </div>
@@ -212,17 +215,21 @@
 						<td colspan="3"> 
 							<div class="contentnumber2">
 								<c:if test="${c.content_type==0}"> <!-- 값에 따라 일반, 질문글 나뉨 -->
-									<a href="${root }/community/contentdetail?community_idx=${c.community_idx }">${c.subject}</a>
+									<div>
+										<a href="${root }/community/contentdetail?community_idx=${c.community_idx }">${c.subject}</a>
+									</div>
 								</c:if>
 								
-								<c:if test="${c.content_type==1 }">
-									<a href="${root }/community/contentdetail?community_idx=${c.community_idx }">${c.subject}</a>
+								<c:if test="${c.content_type==1 || c.content_type==2}"><!-- qna중 채택, 채택x -->
+									<div>
+										<a href="${root }/community/contentdetail?community_idx=${c.community_idx }">${c.subject}</a>
+									</div>
 								</c:if>
 							</div> 
 						</td>
 						<td> 
 							<div class="day">
-								<fmt:formatDate value="${c.write_day }" pattern="yyyy-MM-dd"/>
+								<fmt:formatDate value="${c.write_day }" pattern="yyyy-MM-dd HH:mm"/>
 							</div>
 						</td>
 						<td></td>

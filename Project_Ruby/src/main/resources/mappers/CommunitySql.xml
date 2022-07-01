@@ -45,4 +45,21 @@
 	<update id="updateLikeCount" parameterType="String">
 		UPDATE Community SET like_count= like_count+1 WHERE community_idx=#{community_idx}
 	</update>
+	
+	<!-- qnatype 증가 -->
+	<update id="updateQnaType" parameterType="String">
+		UPDATE Community SET content_type=content_type+1 WHERE community_idx=#{community_idx} 
+	</update>
+	
+	<!-- 베스트 게시글 출력 -->
+	<select id="bestList" resultType="community">
+		SELECT * FROM Community WHERE content_type=0 ORDER BY like_count desc limit 5;
+  	</select>
+  	
+  	<!-- 최신 qna 게시글 출력 -->
+  	<select id="recentList" resultType="community">
+  		SELECT * FROM Community WHERE content_type=1 or content_type=2 ORDER BY write_day desc limit 5;
+  	</select>
+	
+	
 </mapper>
