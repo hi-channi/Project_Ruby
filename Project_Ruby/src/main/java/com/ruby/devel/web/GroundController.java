@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ruby.devel.model.TeamEnrollDto;
+import com.ruby.devel.model.TeamDto;
 import com.ruby.devel.model.TeamMemberDto;
 import com.ruby.devel.model.MemberDto;
 import com.ruby.devel.service.impl.MemberMapper;
@@ -34,7 +34,7 @@ public class GroundController {
 	@GetMapping("/ground") // 메뉴 선택 시 이동하는 기본 페이지
 	// ModelAndView!!
 	public ModelAndView ground_home(Model model,
-			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage, @ModelAttribute TeamEnrollDto crew_dto,
+			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage, @ModelAttribute TeamDto crew_dto,
 			@ModelAttribute TeamMemberDto cm_dto, @ModelAttribute MemberDto m_dto, HttpSession session) {
 		ModelAndView mview = new ModelAndView();
 
@@ -72,9 +72,9 @@ public class GroundController {
 
 		// 각페이지에서 필요한 게시글 가져오기
 		
-		List<TeamEnrollDto> list = Cmapper.getList(map);
+		List<TeamDto> list = Cmapper.getList(map);
 
-		for(TeamEnrollDto c:list)
+		for(TeamDto c:list)
 		{
 			int membercount = Cmapper.selectCrewMem(c.getTeam_idx());
 			c.setMember_count(membercount);
@@ -124,8 +124,8 @@ public class GroundController {
 		System.out.println("연령대" + age);
 		model.addAttribute("age", age);
 
-		List<TeamEnrollDto> newlist = Cmapper.getNewCrewDatas();
-		List<TeamEnrollDto> pointlist = Cmapper.getCrewPointDatas();
+		List<TeamDto> newlist = Cmapper.getNewCrewDatas();
+		List<TeamDto> pointlist = Cmapper.getCrewPointDatas();
 		model.addAttribute("newlist", newlist);
 		model.addAttribute("pointlist", pointlist);
 	
@@ -165,7 +165,7 @@ public class GroundController {
 	public ModelAndView ground_mycrew(@RequestParam String team_idx, Model model) {
 
 		// 나의 크루니까 내 팀 정보 가지고 옴 (마이크루 페이지에 크루명, 크루 소개 머 이런 거)
-		TeamEnrollDto crew_dto = Cmapper.getTeamInfo(team_idx);
+		TeamDto crew_dto = Cmapper.getTeamInfo(team_idx);
 		System.out.println("CrewEnrollDto:  " + crew_dto);
 
 		// 팀의 멤버를 나타낼 칸을 뽑아내려고... 글서 cm_dto.size() 뽑으면 인원 수임
@@ -204,7 +204,7 @@ public class GroundController {
 	}
 
 	@PostMapping("/ground/crewinsert") // 크루 등록
-	public String insert(@ModelAttribute TeamEnrollDto crew_dto, @RequestParam String userKey,
+	public String insert(@ModelAttribute TeamDto crew_dto, @RequestParam String userKey,
 			@ModelAttribute TeamMemberDto cm_dto) {
 
 		crew_dto.setMember_idx(userKey);
@@ -228,12 +228,12 @@ public class GroundController {
 
 	@PostMapping("/ground/test123")
 	@ResponseBody
-	public TeamEnrollDto updateform(@RequestParam String team_idx) {
+	public TeamDto updateform(@RequestParam String team_idx) {
 		ModelAndView model = new ModelAndView();
 
 		// System.out.println(team_idx);
 
-		TeamEnrollDto crew_dto = Cmapper.getData(team_idx);
+		TeamDto crew_dto = Cmapper.getData(team_idx);
 		model.addObject("dto", crew_dto);
 
 		//System.out.println("dto....." + dto);
