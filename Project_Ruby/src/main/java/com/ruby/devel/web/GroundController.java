@@ -2,13 +2,9 @@ package com.ruby.devel.web;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,21 +14,19 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ruby.devel.model.CommunityDto;
 import com.ruby.devel.model.CrewEnrollDto;
 import com.ruby.devel.model.CrewMemberDto;
 import com.ruby.devel.model.MemberDto;
 import com.ruby.devel.service.impl.MemberMapper;
-import com.ruby.devel.service.impl.crewenrollMapper;
+import com.ruby.devel.service.impl.TeamMapper;
 
 @Controller
 public class GroundController {
 
 	@Autowired
-	crewenrollMapper Cmapper;
+	TeamMapper Cmapper;
 
 	@Autowired
 	MemberMapper Mmapper;
@@ -40,7 +34,7 @@ public class GroundController {
 	@GetMapping("/ground") // 메뉴 선택 시 이동하는 기본 페이지
 	// ModelAndView!!
 	public ModelAndView ground_home(Model model,
-			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage, @ModelAttribute CrewEnrollDto dto,
+			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage, @ModelAttribute CrewEnrollDto crew_dto,
 			@ModelAttribute CrewMemberDto cm_dto, @ModelAttribute MemberDto m_dto, HttpSession session) {
 		ModelAndView mview = new ModelAndView();
 
@@ -105,6 +99,7 @@ public class GroundController {
 		mview.addObject("currentPage", currentPage);
 		mview.addObject("totalCount", totalCount);
 
+
 		// member에 team_idx를 가지고 오기 위해서 세션에 있는 uesrKey 가지고 옴
 		// member_idx(userKey)를 통해서 member 테이블의 team_idx를 가지고 오려고
 		// 세션에 로그인된 나라는 사람의 member테이블 member_idx에 해당하는 team_idx
@@ -116,12 +111,16 @@ public class GroundController {
 		// team_idx를 ground_main 페이지에 붙여
 		model.addAttribute("team_idx", team_idx);
 		
+		String crewTeam_idx = Mmapper.getTeamidxMember(userKey);
+		model.addAttribute("crewTeam_idx", crewTeam_idx);
+		System.out.println(crewTeam_idx);
 		 
 		//String team_idx = Mmapper.getMemberDatas(userKey).getTeam_idx();
 		 //model.addAttribute("team_idx1", team_idx);
 		 //System.out.println("sysout=========>"+team_idx);
 
 		String age = Mmapper.getMemberAge(userKey);
+	
 		System.out.println("연령대" + age);
 		model.addAttribute("age", age);
 
@@ -129,7 +128,9 @@ public class GroundController {
 		List<CrewEnrollDto> pointlist = Cmapper.getCrewPointDatas();
 		model.addAttribute("newlist", newlist);
 		model.addAttribute("pointlist", pointlist);
-
+	
+		
+		
 		/*
 		 * // 작성자 이름, 닉네임 갖고오기 System.out.println(list); String userKey =
 		 * list.get(0).getMember_idx(); // userKey가 member의 member_idx String memberidx
@@ -164,8 +165,8 @@ public class GroundController {
 	public ModelAndView ground_mycrew(@RequestParam String team_idx, Model model) {
 
 		// 나의 크루니까 내 팀 정보 가지고 옴 (마이크루 페이지에 크루명, 크루 소개 머 이런 거)
-		CrewEnrollDto dto = Cmapper.getTeamInfo(team_idx);
-		System.out.println("CrewEnrollDto:  " + dto);
+		CrewEnrollDto crew_dto = Cmapper.getTeamInfo(team_idx);
+		System.out.println("CrewEnrollDto:  " + crew_dto);
 
 		// 팀의 멤버를 나타낼 칸을 뽑아내려고... 글서 cm_dto.size() 뽑으면 인원 수임
 		List<CrewMemberDto> cm_dto = Cmapper.getTeamMember(team_idx);
@@ -191,7 +192,7 @@ public class GroundController {
 		System.out.println("m_dto=======>" + m_dto);
 
 		ModelAndView mview = new ModelAndView();
-		mview.addObject("dto", dto);
+		mview.addObject("crew_dto", crew_dto);
 		mview.addObject("cm_dto", cm_dto);
 		mview.addObject("m_dto", m_dto);
 		
@@ -203,24 +204,24 @@ public class GroundController {
 	}
 
 	@PostMapping("/ground/crewinsert") // 크루 등록
-	public String insert(@ModelAttribute CrewEnrollDto dto, @RequestParam String userKey,
+	public String insert(@ModelAttribute CrewEnrollDto crew_dto, @RequestParam String userKey,
 			@ModelAttribute CrewMemberDto cm_dto) {
 
-		dto.setMember_idx(userKey);
-		Cmapper.insertCrewEnroll(dto); // 크루 생성+팀장 등록
+		crew_dto.setMember_idx(userKey);
+		Cmapper.insertCrewEnroll(crew_dto); // 크루 생성+팀장 등록
 
 		// System.out.println("발급된 team_idx: " + dto.getTeam_idx());
 
 		HashMap<String, String> map = new HashMap<>();
-		map.put("team_idx", dto.getTeam_idx());
+		map.put("team_idx", crew_dto.getTeam_idx());
 		map.put("member_idx", userKey);
 
 		Cmapper.updateTeamIdx(map);
 
 		// System.out.println("dto 등록123: "+dto.getMember_idx());
-		cm_dto.setMember_idx(dto.getMember_idx());
+		cm_dto.setMember_idx(crew_dto.getMember_idx());
 		Cmapper.insertCrewleader(cm_dto); // 팀 멤버 테이블에 추가
-		Cmapper.crewleaderupdate(dto); // 리더는 자동으로 수락 y
+		Cmapper.crewleaderupdate(crew_dto); // 리더는 자동으로 수락 y
 
 		return "redirect:/ground";
 	}
@@ -232,14 +233,14 @@ public class GroundController {
 
 		// System.out.println(team_idx);
 
-		CrewEnrollDto dto = Cmapper.getData(team_idx);
-		model.addObject("dto", dto);
+		CrewEnrollDto crew_dto = Cmapper.getData(team_idx);
+		model.addObject("dto", crew_dto);
 
 		//System.out.println("dto....." + dto);
 
 		model.setViewName("/ground/ground_main");
 
-		return dto;
+		return crew_dto;
 
 	}
 

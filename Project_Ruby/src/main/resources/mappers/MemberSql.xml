@@ -79,5 +79,7 @@
 		select age from Member where member_idx=#{member_idx}
 	</select>
 	
-	
+	<select id="getTeamidxMember" parameterType="String" resultType="String">
+	select team_idx from Member where member_idx=#{member_idx}
+	</select>
 </mapper>

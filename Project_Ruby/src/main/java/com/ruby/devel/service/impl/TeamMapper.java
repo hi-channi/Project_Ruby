@@ -13,7 +13,7 @@ import com.ruby.devel.model.MemberDto;
 
 
 @Mapper
-public interface crewenrollMapper {
+public interface TeamMapper {
 
 	public int getTotalCount();
 	public void insertCrewEnroll (CrewEnrollDto dto); //크루 등록

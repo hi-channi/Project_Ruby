@@ -90,8 +90,8 @@
 	<div class="container">
 
 		<div class="crewname">
-			<span class="crew_name">${dto.name} &nbsp; <input
-				type="hidden" value="${dto.team_idx }" id="team_idx">
+			<span class="crew_name">${crew_dto.name} &nbsp; <input
+				type="hidden" value="${crew_dto.team_idx }" id="team_idx">
 				<button type="button" id="modal_opne_btn1"
 					style="background-color: white; border: none;">
 					<img alt="" src="../image/crewadd.png"
@@ -107,7 +107,7 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td colspan="5">${dto.info}</td>
+						<td colspan="5">${crew_dto.info}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -163,7 +163,7 @@
 							class="img_git"></a>
 					</div>
 					<br> <span class="crewone_name">${m_dto.name}&nbsp;&nbsp;
-						<c:if test="${m_dto.member_idx==dto.member_idx }">
+						<c:if test="${m_dto.member_idx==crew_dto.member_idx }">
 							<img alt="" src="../image/lee.png ">
 						</c:if>
 					</span> <br> <span class="crewone_pr">${m_dto.pr }</span><br> <br>

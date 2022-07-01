@@ -84,9 +84,11 @@
 				<button type="submit" class="mycrew">마이 크루</button>
 
 			</form>
+
 			<button class="makecrew" onclick="location.href='/ground/crewenroll'">
 				<span class="makecrew1">크루 만들기</span>
 			</button>
+
 		</div>
 
 
@@ -257,18 +259,18 @@
 	    }
 
 	}
-	 
+	
+	
+	
 	
 
-
-	
 	$('.makecrew').click(function () {
 	     if(${sessionScope.loginOK==null})
 	    {
 	          alert("로그인 후 사용이 가능합니다.");
 	        location.href="/login"; //로그인 폼으로 이동
 	    
-	      }
+	     }
 	});
 	
 	
