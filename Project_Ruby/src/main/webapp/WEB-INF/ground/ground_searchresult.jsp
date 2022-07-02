@@ -94,7 +94,7 @@
 
 
 		<div class="secondbox">
-			<c:forEach var="a" items="${list }" varStatus="status">
+			<c:forEach var="a" items="${Searchlist }" varStatus="status">
 				<table class="communitylist">
 					<tr align="center">
 						<td colspan="4" width="50">${list.size() -status.index}</td>
@@ -222,20 +222,18 @@
 
 	<div class="search">
 	<form action="/team/search">
-		<input type="text" class="text_search" name="SearchText" placeholder="검색하실 크루명을 입력하세요"
+		<input type="text" class="text_search" placeholder="검색하실 크루명을 입력하세요"
 			style="width: 300px; height: 36px; font-family: 'Noto Sans KR';">
-		
-		<button type="submit" class="searchbtn" style="border: 0px; background-color: #ffff;"></button>
 		<span class="icon glyphicon glyphicon-search"></span>
 	</form>
 	</div>
 
 
 
-	<!-- <div class="check" style="width: 210px;">
+	<div class="check" style="width: 210px;">
 		<input type="checkbox" name="check" id="check1" value="crewsearch"
 			style="font-family: 'Noto Sans KR';"> 신청 가능한 크루만 보기
-	</div> -->
+	</div>
 
 
 
@@ -265,16 +263,7 @@
 	}
 	
 	
-/* 	$(document).ready(function(){
-		$("#check1").change(function(){
-			if($("#check1").is(":checked")){
-		            //alert("체크박스 체크했음!");
-		           
-		        }else{
-		            alert("체크박스 체크 해제!");
-		        }
-		    });
-		}); */
+	
 	
 
 	$('.makecrew').click(function () {

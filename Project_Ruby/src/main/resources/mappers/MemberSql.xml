@@ -72,10 +72,14 @@
 	</delete>
 	
 	<select id="getMemberDatas" parameterType="String" resultType="member">
-		select member_idx, name, pr, link, age, job, hobby1, hobby2, hobby3 from Member where member_idx=#{member_idx}
+		select member_idx, name, pr, link, age, job, hobby1, hobby2, hobby3, team_idx from Member where member_idx=#{member_idx}
 	</select>
    
 	<select id="getMemberAge" parameterType="String" resultType="String">
 		select age from Member where member_idx=#{member_idx}
+	</select>
+	
+	<select id="getTeamidxMember" parameterType="String" resultType="String">
+	select team_idx from Member where member_idx=#{member_idx}
 	</select>
 </mapper>
