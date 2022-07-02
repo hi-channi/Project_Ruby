@@ -26,12 +26,101 @@ background-color: #fff !important;
 </style>
 
 <script type="text/javascript">
+const $jq = jQuery.noConflict();
+$jq(document).ready(function() {
+	
+	/* like 이벤트 */
+	if(${userKey!=null}) {
+	<%--목록 테이블 하트 이벤트--%>
+	$jq('.chheart').on("change", function(){
+		if($(this).is(':checked'))
+		{
+			let market_place_idx = $(this).attr('market_place_idx');
+			//let member_idx = ${userKey};
+			let like_count = 1;
+			
+			$.ajax({
+				type: "post",
+				url: "marketlike.event",
+				data: {
+					"market_place_idx":market_place_idx,
+					//"member_idx":member_idx,
+					"like_count":like_count,
+					},
+				success: function(data) {
+					document.location.reload(true);
+					alert("성공");
+				}
+			});
+			
+			//하트 바뀜
+			$(this).siblings('.heart').attr('src','${root }/element/icon_bigheart_inback.png');
+		}
+		else
+		{
+			let market_place_idx = $(this).attr('market_place_idx');
+			//let member_idx = ${userKey};
+			let like_count = 0;
+
+			$.ajax({
+				type: "post",
+				url: "marketlike.event",
+				data: {
+					"market_place_idx":market_place_idx,
+					//"member_idx":member_idx,
+					"like_count":like_count,
+					},
+				success: function(data) {
+					document.location.reload(true);
+					alert("성공");
+				}
+			});
+			
+			//하트 바뀜
+			$(this).siblings(".heart").attr("src","${root }/element/icon_bigheart_nobackred.png");
+		}
+	});
+	}
+});
+
+/* 목록형/리스트형 체크박스 쿠키설정 */
+function setCookie(cookieName, value, exdays){
+    var exdate = new Date();
+    exdate.setDate(exdate.getDate() + exdays);
+    var cookieValue = escape(value) + ((exdays==null) ? "" : "; expires=" + exdate.toGMTString());
+    document.cookie = cookieName + "=" + cookieValue;
+}
+function deleteCookie(cookieName){
+    var expireDate = new Date();
+    expireDate.setDate(expireDate.getDate() - 1);
+    document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
+}
+function getCookie(cookieName) {
+    cookieName = cookieName + '=';
+    var cookieData = document.cookie;
+    var start = cookieData.indexOf(cookieName);
+    var cookieValue = '';
+    if(start != -1){
+        start += cookieName.length;
+        var end = cookieData.indexOf(';', start);
+        if(end == -1)end = cookieData.length;
+        cookieValue = cookieData.substring(start, end);
+    }
+    return unescape(cookieValue);
+}
+
 $(function(){
+	
+	var key = getCookie("key");
+    console.log(key);
+	
 	$(".sangpumlistdiv").hide();
 	$(".pagenumlist").hide();
 	
-	<%--목록형 테이블--%>
+	<%--목록형 테이블--%> 
 	$("span.large").click(function(){
+		setCookie("key", "1", "1");
+		
 		$(".sangpumlistdiv").hide();
 		$(".pagenumlist").hide();
 		
@@ -44,8 +133,10 @@ $(function(){
 		$("span.list").css("border","1px solid #dbdbdb");
 	});
 	
-	<%--리스트 테이블--%>
+	<%--리스트 테이블--%> 
 	$("span.list").click(function(){
+		setCookie("key", "2", "1");
+		
 		$(".sangpumdiv").hide();
 		$(".sangpumlistdiv").show();
 		
@@ -55,6 +146,30 @@ $(function(){
 		$("span.list").css("border","1px solid black");
 		$("span.large").css("border","1px solid #dbdbdb");
 	});
+	
+	if(getCookie("key")=="1"){
+		$(".sangpumlistdiv").hide();
+		$(".pagenumlist").hide();
+		
+		$(".sangpumdiv").show();
+		
+		$(".pagenumlist").hide();
+		$(".pagenumall").show();
+		
+		$("span.large").css("border","1px solid black");
+		$("span.list").css("border","1px solid #dbdbdb");
+	}
+	
+	else if(getCookie("key")=="2"){
+		$(".sangpumdiv").hide();
+		$(".sangpumlistdiv").show();
+		
+		$(".pagenumlist").show();
+		$(".pagenumall").hide();
+		
+		$("span.list").css("border","1px solid black");
+		$("span.large").css("border","1px solid #dbdbdb");
+	}
 
 	<%--검색창 클릭시 가이드 문구 없어짐--%>
 	$(".searchtext").click(function(){
@@ -67,74 +182,12 @@ $(function(){
 		if($("#changebox").is(":checked"))
 		{
 			var checkon = 1;	
-			location.href = '/marketplace/market_tradeabletest?checkon='+checkon;
-			
-			
+			location.href = '/marketplace/market_tradeabletest?checkon='+checkon;	
 		}
 		else
 		{
-			
 		}
 	});
-	
-	
-	/* like 이벤트 */		
-	<%--목록 테이블 하트 이벤트--%>
-	$('.chheart').on("change", function(){
-		if($(this).is(':checked'))
-		{								
-			let market_place_idx = $(this).attr('market_place_idx');
-			let member_idx = ${userKey};
-			let like_count = 1;
-			
-			if(member_idx!=null)
-			{
-			$.ajax({
-				type: "post",
-				url: "marketlike.event",
-				data: {
-					"market_place_idx":market_place_idx,
-					"member_idx":member_idx,
-					"like_count":like_count,
-					},
-				success: function(data) {
-					document.location.reload(true);
-					alert("성공");
-				}
-			});
-			}
-			
-			//하트 바뀜
-			$(this).siblings('.heart').attr('src','${root }/element/icon_bigheart_inback.png');
-		}
-		else
-		{
-			let market_place_idx = $(this).attr('market_place_idx');
-			let member_idx = ${userKey};
-			let like_count = 0;
-			
-			if(member_idx!=null)
-			{
-			$.ajax({
-				type: "post",
-				url: "marketlike.event",
-				data: {
-					"market_place_idx":market_place_idx,
-					"member_idx":member_idx,
-					"like_count":like_count,
-					},
-				success: function(data) {
-					document.location.reload(true);
-					alert("성공");
-				}
-			});
-			}
-			
-			//하트 바뀜
-			$(this).siblings(".heart").attr("src","${root }/element/icon_bigheart_nobackred.png");
-		}
-	});
-	
 
 });
 </script>
@@ -164,8 +217,13 @@ $(function(){
 	
 
 	<div class="changelist">
-		<span class="glyphicon glyphicon-th-large largeicon large"></span>
-		<span class="glyphicon glyphicon-list listicon list"></span>
+		<input type="hidden" id="checkValue">
+		<span class="glyphicon glyphicon-th-large largeicon large">
+			<input type="checkbox" hidden="" id="viewlarge" value="1">
+		</span>
+		<span class="glyphicon glyphicon-list listicon list">
+			<input type="checkbox" hidden="" id="viewlist" value="2">
+		</span>
 	</div>
 	
 	<div class="relatedsearch" 
@@ -218,7 +276,7 @@ $(function(){
 				<!-- 이미지 있을 경우 상품이미지 중 첫번째 이미지 보이기 -->
 				<c:if test="${a.photo!='no'}">
 					<c:forTokens var="p" items="${a.photo}" delims="," begin="0" end="0">
-						<a href="${root }/marketplace/productdetail?market_place_idx=${a.market_place_idx}&currentPage=${currentPage}">
+						<a id="imghref" href="${root }/marketplace/productdetail?market_place_idx=${a.market_place_idx}&currentPage=${currentPage}">
 							<img src="${root }/photo/${p}" style="width: 220px; height: 220px;" class="photo">
 						</a>
 					</c:forTokens>
@@ -311,10 +369,21 @@ $(function(){
 				<span class="region">${a.region}</span>
 			</div>
 			
+			<!-- like 이벤트 -->
 			<label class="lablist" id="lab">
-				<input type="checkbox" id="chk" value="${i}" class="chheart">
-				<img alt="" src="${root }/element/icon_bigheart_noback.png" class="heart"
-				style="left: 220px;">
+				<c:forEach var="b" items="${likelist}">
+					<c:if test="${(a.market_place_idx==b.market_place_idx)&&(userKey==b.member_idx)&&(b.like_count==1)}">
+						<input type="checkbox" id="chk"
+						market_place_idx="${a.market_place_idx}" class="chheart" checked="checked">
+						<img alt="" src="${root }/element/icon_bigheart_inback.png" class="heart"
+						style="position: absolute; margin-left: 20px;">
+					</c:if>
+				</c:forEach>
+	
+				<input type="checkbox" id="chk"
+				market_place_idx="${a.market_place_idx}" class="chheart">
+				<img alt="" src="${root }/element/icon_bigheart_nobackred.png" class="heart"
+				style="margin-left: 20px;"">
 			</label>
 		</div>
 	</c:forEach>
