@@ -30,30 +30,6 @@ $(function(){
   	loginOK="${sessionScope.loginOK}";
   	userKey="${sessionScope.userKey}"; 
 	list();
-	
-	/*  $(".subjecttextbox").click(function(){
-		//var i=$(this).val();
-		//alert(i);
-		
-		$(this).val("");
-		
-	}); 
-	
-	 $(".commenttext").click(function(){
-		//var i=$(this).val();
-		//alert(i);
-		
-		$(this).val("");
-		
-	}); 
-	
-	$(".contenttextarea").click(function(){
-		//var i=$(this).val();
-		//alert(i);
-		
-		$(this).val("");
-		
-	});  */
   	
 	/* 댓글 ajax */	
 	$("#btncommentadd").click(function() {

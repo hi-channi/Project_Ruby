@@ -48,6 +48,57 @@
 			});
 		    /* end scrap button change */
 		    	 
+	/* scrap 이벤트 */      
+	   <%--커뮤니티 상세페이지 scrap 이벤트--%>
+	   if(${userKey!=null}) {
+	   $('.chscrap').on("change", function(){
+	      if($(this).is(':checked'))
+	      {                        
+	         let community_idx = $(this).attr('community_idx');
+	         let scrap_count = 1;
+	         
+	         $.ajax({
+	            type: "post",
+	            url: "communityscrap.event",
+	            data: {
+	               "community_idx":community_idx,
+	               "scrap_count":scrap_count,
+	               },
+	            success: function(data) {
+	               document.location.reload(true);
+	               alert("성공");
+	            }
+	         });
+	         
+	         //하트 바뀜
+	         $(this).siblings('.scrap').attr('src','${root }/element/icon_scrap_red.png');
+	      }
+	      else
+	      {
+	         let community_idx = $(this).attr('community_idx');
+	         let scrap_count = 0;
+	         
+	         $.ajax({
+	            type: "post",
+	            url: "communityscrap.event",
+	            data: {
+	               "community_idx":community_idx,
+	               "scrap_count":scrap_count,
+	               },
+	            success: function(data) {
+	               document.location.reload(true);
+	               alert("성공");
+	            }
+	         });
+	         
+	         //하트 바뀜
+	         $(this).siblings(".scrap").attr("src","${root }/element/icon_scrap.png");
+	      }
+	   });
+	   }
+	
+	
+	
 	});
 	
 	//비회원 커뮤니티 글쓰기 방지
@@ -56,6 +107,8 @@
 		location.href="${root}/login";
 
 	};
+	
+	
 	
 	
 	
@@ -169,10 +222,21 @@
 				<table class="communitylist">
 					<tr>
 						<td width="32"> 
-						<label  class="lab" id="lab">
-        					 <input type="checkbox" id="chk" value="${i }" class="chscrap">
-         					 <img alt="" src="${root }/element/icon_scrap.png" class="scrap">
-						</label>
+									<!-- scrap 이벤트 -->
+					         <label class="lab" id="lab">
+					            <c:forEach var="b" items="${scraplist}">
+					               <c:if test="${(c.community_idx==b.community_idx)&&(userKey==b.member_idx)&&(b.scrap_count==1)}">
+					                  <input type="checkbox" id="chk"
+					                  community_idx="${c.community_idx}" class="chscrap" checked="checked">
+					                  <img alt="" src="${root }/element/icon_scrap_red.png" class="scrap"
+					                  style="position: absolute; margin-left: 191.5px;">
+					               </c:if>
+					            </c:forEach>
+					   
+					            <input type="checkbox" id="chk"
+					            community_idx="${c.community_idx}" class="chscrap">
+					            <img alt="" src="${root }/element/icon_scrap.png" class="scrap">
+					         </label>
 						</td>
 						<td width="580" colspan="2"> 
 							<div class="contentnumber1">#${no }</div>

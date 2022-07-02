@@ -62,4 +62,23 @@
   	</select>
 	
 	
+	<!-- scrap -->
+	<select id="getScrapDatas" resultType="communityscrap">
+      select * from CommunityScrap;
+  	</select>
+  	
+  	<insert id="insertCommunityScrap" parameterType="communityscrap">
+      insert into CommunityScrap (community_idx,member_idx,scrap_count) 
+      values (#{community_idx},#{member_idx},'1')
+    </insert>
+   
+	<update id="updateCommunityScrap" parameterType="communityscrap">
+	  update CommunityScrap set scrap_count=#{scrap_count}
+	  where community_idx=#{community_idx} and member_idx=#{member_idx}
+    </update>
+    
+    <select id="getScrapData" parameterType="HashMap" resultType="int">
+      select count(*) from CommunityScrap where community_idx=#{community_idx} and member_idx=#{member_idx}
+    </select>
+		
 </mapper>

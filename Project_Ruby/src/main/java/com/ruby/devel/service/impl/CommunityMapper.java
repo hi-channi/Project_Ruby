@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.ruby.devel.model.CommunityDto;
+import com.ruby.devel.model.CommunityScrapDto;
 import com.ruby.devel.model.MemberDto;
 
 @Mapper
@@ -43,6 +44,15 @@ public interface CommunityMapper {
 	
 	//최신 qna 출력
 	public List<CommunityDto> recentList();
+	
+	//scrap
+	public List<CommunityScrapDto> getScrapDatas();
+	
+	public void insertCommunityScrap(CommunityScrapDto cs_dto);
+	
+	public void updateCommunityScrap(CommunityScrapDto cs_dto);
+	
+	public int getScrapData(HashMap<String, String> map);
 	
 
 

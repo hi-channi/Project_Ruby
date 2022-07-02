@@ -19,10 +19,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ruby.devel.model.CommunityDto;
+import com.ruby.devel.model.CommunityScrapDto;
 import com.ruby.devel.service.impl.CommunityCommentMapper;
 import com.ruby.devel.service.impl.CommunityMapper;
 import com.ruby.devel.service.impl.MemberMapper;
@@ -126,6 +128,12 @@ public class CommunityController {
 	    
 		mview.addObject("r_list", r_list);
 	    mview.addObject("b_list", b_list);
+	    
+	    /* scrap */
+	    List<CommunityScrapDto> scraplist = Cmapper.getScrapDatas();
+	    mview.addObject("scraplist",scraplist);
+	    
+	    
 	    mview.setViewName("/community/community_main");
 		
 		return mview;
@@ -260,7 +268,43 @@ public class CommunityController {
 		}
 		
 	
-	
+		//scrap 이벤트..main
+		   @PostMapping("/communityscrap.event")
+		   public ModelAndView communityscrap(
+		         @RequestParam(value="community_idx", required=false) String community_idx,
+		         @RequestParam(value="scrap_count", required=false) String scrap_count,
+		         @SessionAttribute String userKey,
+		         HttpSession session)
+		   {
+		      ModelAndView mview = new ModelAndView();
+		      
+		      HashMap<String, String> map = new HashMap<>();
+		      map.put("community_idx", community_idx);
+		      map.put("member_idx", userKey);
+		      map.put("scrap_count", scrap_count);
+		      
+		      //data 존재하는지 확인(1일 경우 데이타 있음)
+		      int data = Cmapper.getScrapData(map);
+		            
+		      CommunityScrapDto cs_dto = new CommunityScrapDto();
+		      cs_dto.setCommunity_idx(community_idx);
+		      cs_dto.setMember_idx(userKey);
+		      cs_dto.setScrap_count(scrap_count);
+		      
+		      if(data==0) {
+		         Cmapper.insertCommunityScrap(cs_dto);
+		         System.out.println("insert");
+		      } else if(data==1) {
+		         Cmapper.updateCommunityScrap(cs_dto);
+		         System.out.println("update");
+		      }
+		      
+		      System.out.println("community_idx: "+community_idx+", member_idx: "+userKey);
+		      System.out.println("cs_dto: "+cs_dto);
+		      System.out.println("map: "+map);
+		      
+		      return mview;
+		   }
 	
 	
 	
