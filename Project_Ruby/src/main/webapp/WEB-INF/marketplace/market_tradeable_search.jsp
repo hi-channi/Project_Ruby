@@ -26,13 +26,43 @@ background-color: #fff !important;
 </style>
 
 <script type="text/javascript">
+/* 목록형/리스트형 체크박스 쿠키설정 */
+function setCookie(cookieName, value, exdays){
+    var exdate = new Date();
+    exdate.setDate(exdate.getDate() + exdays);
+    var cookieValue = escape(value) + ((exdays==null) ? "" : "; expires=" + exdate.toGMTString());
+    document.cookie = cookieName + "=" + cookieValue;
+}
+function deleteCookie(cookieName){
+    var expireDate = new Date();
+    expireDate.setDate(expireDate.getDate() - 1);
+    document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
+}
+function getCookie(cookieName) {
+    cookieName = cookieName + '=';
+    var cookieData = document.cookie;
+    var start = cookieData.indexOf(cookieName);
+    var cookieValue = '';
+    if(start != -1){
+        start += cookieName.length;
+        var end = cookieData.indexOf(';', start);
+        if(end == -1)end = cookieData.length;
+        cookieValue = cookieData.substring(start, end);
+    }
+    return unescape(cookieValue);
+}
 $(function(){
+	
+	var key = getCookie("key");
+    console.log(key);
+    
 	$(".sangpumlistdiv").hide();
 	$(".pagenumlist").hide();
 
-	
 	<%--목록형 테이블--%>
 	$("span.large").click(function(){
+		setCookie("key", "1", "1");
+		
 		$(".sangpumlistdiv").hide();
 		$(".pagenumlist").hide();
 		
@@ -47,6 +77,8 @@ $(function(){
 	
 	<%--리스트 테이블--%>
 	$("span.list").click(function(){
+		setCookie("key", "2", "1");
+		
 		$(".sangpumdiv").hide();
 		$(".sangpumlistdiv").show();
 		
@@ -56,6 +88,30 @@ $(function(){
 		$("span.list").css("border","1px solid black");
 		$("span.large").css("border","1px solid #dbdbdb");
 	});
+	
+	if(getCookie("key")=="1"){
+		$(".sangpumlistdiv").hide();
+		$(".pagenumlist").hide();
+		
+		$(".sangpumdiv").show();
+		
+		$(".pagenumlist").hide();
+		$(".pagenumall").show();
+		
+		$("span.large").css("border","1px solid black");
+		$("span.list").css("border","1px solid #dbdbdb");
+	}
+	
+	else if(getCookie("key")=="2"){
+		$(".sangpumdiv").hide();
+		$(".sangpumlistdiv").show();
+		
+		$(".pagenumlist").show();
+		$(".pagenumall").hide();
+		
+		$("span.list").css("border","1px solid black");
+		$("span.large").css("border","1px solid #dbdbdb");
+	}
 
 	<%--검색창 클릭시 가이드 문구 없어짐--%>
 	$(".searchtext").click(function(){
@@ -119,21 +175,20 @@ $(function(){
 	
 	/* like 이벤트 */		
 	<%--목록 테이블 하트 이벤트--%>
+	if(${userKey!=null}) {
 	$('.chheart').on("change", function(){
 		if($(this).is(':checked'))
 		{								
 			let market_place_idx = $(this).attr('market_place_idx');
-			let member_idx = ${userKey};
+			//let member_idx = ${userKey};
 			let like_count = 1;
 			
-			if(member_idx!=null)
-			{
 			$.ajax({
 				type: "post",
 				url: "marketlike.event",
 				data: {
 					"market_place_idx":market_place_idx,
-					"member_idx":member_idx,
+					//"member_idx":member_idx,
 					"like_count":like_count,
 					},
 				success: function(data) {
@@ -141,7 +196,6 @@ $(function(){
 					alert("성공");
 				}
 			});
-			}
 			
 			//하트 바뀜
 			$(this).siblings('.heart').attr('src','${root }/element/icon_bigheart_inback.png');
@@ -149,17 +203,15 @@ $(function(){
 		else
 		{
 			let market_place_idx = $(this).attr('market_place_idx');
-			let member_idx = ${userKey};
+			//let member_idx = ${userKey};
 			let like_count = 0;
 			
-			if(member_idx!=null)
-			{
 			$.ajax({
 				type: "post",
 				url: "marketlike.event",
 				data: {
 					"market_place_idx":market_place_idx,
-					"member_idx":member_idx,
+					//"member_idx":member_idx,
 					"like_count":like_count,
 					},
 				success: function(data) {
@@ -167,26 +219,13 @@ $(function(){
 					alert("성공");
 				}
 			});
-			}
 			
 			//하트 바뀜
 			$(this).siblings(".heart").attr("src","${root }/element/icon_bigheart_nobackred.png");
 		}
 	});
+	}
 		
-		
-	<%--리스트 테이블 하트 이벤트--%>
-	$(".chheart").change(function(){
-		if($(this).is(":checked"))
-		{
-			$(this).parent('.lablist').children(".heart").attr("src","${root }/element/icon_bigheart_inback.png");
-		}
-		else
-		{
-			$(this).parent('.lablist').children(".heart").attr("src","${root }/element/icon_bigheart_noback.png");
-		}
-	});
-
 });
 </script>
 </head>
@@ -363,9 +402,21 @@ $(function(){
 				<span class="region">${a.region}</span>
 			</div>
 			
+			<!-- like 이벤트 -->
 			<label class="lablist" id="lab">
-				<input type="checkbox" id="chk" value="${i}" class="chheart">
-				<img alt="" src="${root }/element/icon_bigheart_noback.png" class="heart">
+				<c:forEach var="b" items="${likelist}">
+					<c:if test="${(a.market_place_idx==b.market_place_idx)&&(userKey==b.member_idx)&&(b.like_count==1)}">
+						<input type="checkbox" id="chk"
+						market_place_idx="${a.market_place_idx}" class="chheart" checked="checked">
+						<img alt="" src="${root }/element/icon_bigheart_inback.png" class="heart"
+						style="position: absolute; margin-left: 20px;">
+					</c:if>
+				</c:forEach>
+	
+				<input type="checkbox" id="chk"
+				market_place_idx="${a.market_place_idx}" class="chheart">
+				<img alt="" src="${root }/element/icon_bigheart_nobackred.png" class="heart"
+				style="margin-left: 20px;"">
 			</label>
 		</div>
 	</c:forEach>
