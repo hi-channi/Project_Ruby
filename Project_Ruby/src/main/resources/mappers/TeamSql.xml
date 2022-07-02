@@ -95,6 +95,11 @@
 		select count(*) from Team where name like concat('%',#{SearchText},'%') order by create_day asc
 	</select>
   	
-  
-
+  <insert id="insertIntoCrewNotice" parameterType="teamnotice">
+		insert into TeamNotice (team_idx, notice, writeday) values (#{team_idx}, #{notice}, now() )
+	</insert>
+	
+	<select id="selectTeamNotice" resultType="teamnotice">
+		select * from TeamNotice
+	</select>
 </mapper>

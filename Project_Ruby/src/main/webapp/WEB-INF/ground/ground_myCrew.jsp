@@ -119,6 +119,11 @@
 				<img alt="" src="../image/plus.png" id="modal_opne_btn"
 					style="cursor: pointer;">
 			</button>
+			
+			<button type="button" id="modal_opne_btn0"
+				style="background-color: white; border: 1px;">
+			<img alt="" src="../image/pen.png" class="model_open_btn0" style="size: 8px;">
+		</button>
 		</span>
 
 
@@ -131,17 +136,11 @@
 				<thead>
 				</thead>
 				<tbody>
+				<c:forEach var="tc" items="${teamnoticelist}" begin="0" end="2">
 					<tr height="35px;">
-						<td colspan="2" style="text-align: left;">싹쓰리1</td>
+						<td colspan="2" style="text-align: left;">${tc.notice }</td>
 					</tr>
-					<tr height="35px;">
-
-						<td colspan="2" style="text-align: left:;">싹쓰리2</td>
-					</tr>
-					<tr height="35px;">
-
-						<td colspan="2" style="text-align: left;">싹쓰리3</td>
-					</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 
@@ -182,26 +181,18 @@
 
 			<div class="modal_content">
 				<h4 style="text-align: center; font-family: 'Noto Sans KR';">공지사항
-				</h4>
+				</h4>		
 
-				<img alt="" src="../image/pen.png" class="mypen" style="size: 8px;">
 				<table class="table notice_table"
 					style="width: 430px; height: 100px;">
 					<thead>
 					</thead>
 					<tbody>
+					<c:forEach var="no" items="${teamnoticelist}">
 						<tr height="35px;">
-							<td colspan="2" style="text-align: left;">텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍
-								스트텍스트텍스트텍스트텍스트텍스트텍스트</td>
+							<td colspan="2" style="text-align: left;">${no.notice }</td>
 						</tr>
-						<tr height="35px;">
-
-							<td colspan="2" style="text-align: left:;">싹쓰리2</td>
-						</tr>
-						<tr height="35px;">
-
-							<td colspan="2" style="text-align: left;">싹쓰리3</td>
-						</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 
@@ -229,6 +220,34 @@
 
 			<div class="modal_layer1"></div>
 		</div>
+		
+		
+		<!-- 공지사항 작성 -->
+		<div id="modal0">
+
+			<div class="modal_content0">
+				<h4 style="text-align: center;">공지사항 작성</h4>
+				<form action="/ground/noticeinsert" method="post">
+				<input type="hidden" value="${crew_dto.team_idx }" id="team_idx" name="team_idx">
+		
+				<div class="wrapper">
+					<textarea class="info" name="notice" style="resize: none;"></textarea>
+					<div id="text_iii" style="font-size:12px; letter-spacing :-0.1em; position: relative; margin-bottom: 65px; color: #505050">
+					</div>
+					
+				</div>
+				<button type="submit" style="text-align: center;" class="btn-small">등록</button>
+				</form>
+				</div>
+
+				<button type='button' id='modal_close_btn0'
+					style='color: gray; background-color: white; border: none; size: 15px;'>X</button>
+			</div>
+
+
+
+			<div class="modal_layer1"></div>
+		</div>
 
 		<!-- 프로필 보기 모달 -->
 		<div id="modal2">
@@ -244,8 +263,8 @@
 							class="crewproname">이름</span> <input type="text"
 							name="member_idx" id="m_idx">
 						<!-- name, pr,age, job, hobby1, -->
-				
-							<!-- <div class="crewcolorbox">팀장</div>-->
+
+						<!-- <div class="crewcolorbox">팀장</div>-->
 						<span class="crewoneprr">한 줄 소개를 입력하세요</span>
 
 						<table class="privacy_table" border="0" style="width: 155px;">
@@ -262,10 +281,10 @@
 								</tr>
 								<tr>
 									<th align="center">관심분야</th>
-									
+
 									<td align="right" class="crewm_hobby"></td>
-									
-								
+
+
 								</tr>
 							</tbody>
 						</table>
@@ -288,6 +307,7 @@
 
 
 	<script type="text/javascript">
+
 	
 	
 	//반복문으로 입력되는 버튼, 크루원 프로필 보기
@@ -313,6 +333,14 @@
 
 		document.getElementById("modal_close_btn").onclick = function() {
 			document.getElementById("modal").style.display = "none";
+		}
+		
+		document.getElementById("modal_opne_btn0").onclick = function() {
+			document.getElementById("modal0").style.display = "block";
+		}
+
+		document.getElementById("modal_close_btn0").onclick = function() {
+			document.getElementById("modal0").style.display = "none";
 		}
 
 		//크루원 추가

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.ruby.devel.model.TeamDto;
 import com.ruby.devel.model.TeamMemberDto;
+import com.ruby.devel.model.TeamNoticeDto;
 import com.ruby.devel.model.MemberDto;
 
 
@@ -35,5 +36,7 @@ public interface TeamMapper {
 	public void updateTeamidxY(String member_idx);
 	public List<TeamDto> SearchGetList(HashMap<String, Object> map);
 	public int getSearchCount(String SearchText);
+	public void insertIntoCrewNotice(TeamNoticeDto tn_dto); //공지 등록
+	public List<TeamNoticeDto> selectTeamNotice(); //공지 리스트
 }
 

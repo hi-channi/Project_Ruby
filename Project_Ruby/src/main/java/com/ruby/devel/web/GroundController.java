@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ruby.devel.model.TeamDto;
 import com.ruby.devel.model.TeamMemberDto;
+import com.ruby.devel.model.TeamNoticeDto;
 import com.ruby.devel.model.MemberDto;
 import com.ruby.devel.service.impl.MemberMapper;
 import com.ruby.devel.service.impl.TeamMapper;
@@ -260,11 +261,15 @@ public class GroundController {
 
 		System.out.println("m_dto=======>" + m_dto);
 
+	
+		
 		ModelAndView mview = new ModelAndView();
 		mview.addObject("crew_dto", crew_dto);
 		mview.addObject("cm_dto", cm_dto);
 		mview.addObject("m_dto", m_dto);
 		
+		List<TeamNoticeDto> teamnoticelist = Cmapper.selectTeamNotice();
+		model.addAttribute("teamnoticelist", teamnoticelist);
 		
 
 		mview.setViewName("/ground/ground_myCrew");
@@ -293,6 +298,19 @@ public class GroundController {
 		Cmapper.crewleaderupdate(crew_dto); // 리더는 자동으로 수락 y
 
 		return "redirect:/ground";
+	}
+	
+	@PostMapping("/ground/noticeinsert")
+		public String noticeinsert(@ModelAttribute TeamNoticeDto tn_dto, @RequestParam String team_idx,
+				@RequestParam String notice) {
+		tn_dto.setTeam_idx(team_idx);
+		tn_dto.setNotice(notice);
+		Cmapper.insertIntoCrewNotice(tn_dto);
+		
+		
+		return "redirect:/ground";
+	
+	
 	}
 
 	@PostMapping("/ground/test123")
