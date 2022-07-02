@@ -33,6 +33,7 @@ public interface TeamMapper {
 	public void crewMemberReject (String member_idx);
 	public int selectCrewMem (String team_idx);
 	public void updateTeamidxY(String member_idx);
-
+	public List<TeamDto> SearchGetList(HashMap<String, Object> map);
+	public int getSearchCount(String SearchText);
 }
 

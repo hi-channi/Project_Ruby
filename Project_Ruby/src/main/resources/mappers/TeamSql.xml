@@ -45,7 +45,7 @@
 		select * from Team order by team_idx desc limit #{start}, #{perPage}
 	</select>
 
-	<select id="getData" parameterType="String" resultType="teamEnroll">
+	<select id="getData" parameterType="String" resultType="teamenroll">
 		select * from Team where team_idx =#{team_idx}
 	</select>
 
@@ -85,5 +85,16 @@
  	<update id="updateTeamidxY" parameterType="String">
       UPDATE Member set team_idx = (SELECT team_idx FROM TeamMember WHERE member_idx = #{member_idx}) Where member_idx = #{member_idx}
    </update>
-	 
+   
+   <!-- 검색 기능 -->
+  	<select id="SearchGetList" parameterType="HashMap" resultType="teamenroll">
+  		select * from Team where name like concat('%',#{SearchText},'%') order by create_day asc limit #{start}, #{perPage}
+  	</select>
+  	
+	<select id="getSearchCount" resultType="int" parameterType="String">
+		select count(*) from Team where name like concat('%',#{SearchText},'%') order by create_day asc
+	</select>
+  	
+  
+
 </mapper>

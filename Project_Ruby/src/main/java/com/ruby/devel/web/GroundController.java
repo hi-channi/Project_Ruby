@@ -145,6 +145,75 @@ public class GroundController {
 
 		return mview; // /ground/(파일명)
 	}
+	
+	  @GetMapping("/team/search")
+	   public ModelAndView TeamSearch(
+	         @RequestParam (value = "currentPage",defaultValue = "1") int currentPage,
+	         @RequestParam(value = "SearchText",required = false) String SearchText,
+	         HttpSession session, Model model)
+	   {
+	      session.setAttribute("SearchText", SearchText);
+	      ModelAndView mview = new ModelAndView();
+	      int totalCount=Cmapper.getSearchCount(SearchText);
+	      
+	      
+	      //페이징처리에 필요한 변수
+	      int totalPage; //총 페이지수
+	      int startPage; //각블럭의 시작페이지
+	      int endPage; //각블럭의 끝페이지
+	      int start; //각페이지의 시작번호..한페이지에서 보여질 시작 글 번호(인덱스에서 보여지는 번호)
+	      int perPage=8; //한페이지에 보여질 글 갯수
+	      int perBlock=2; //한블럭당 보여지는 페이지 개수
+	      
+	      //총페이지 개수구하기
+	      totalPage=totalCount/perPage+(totalCount%perPage==0?0:1);
+	                           
+	      //각블럭의 시작페이지
+	      startPage=(currentPage-1)/perBlock*perBlock+1;
+	      endPage=startPage+perBlock-1;
+	                           
+	      if(endPage>totalPage)
+	         endPage=totalPage;
+	                  
+	      //각페이지에서 불러올 시작번호
+	      start=(currentPage-1)*perPage;
+	      
+	      //데이터 가져오기
+	      HashMap<String, Object> map = new HashMap<>();
+	      map.put("SearchText", SearchText);
+	      map.put("start", start);
+	      map.put("perPage", perPage);
+	      
+	      //각페이지에서 필요한 게시글 가져오기
+	      List<TeamDto> Searchlist=Cmapper.SearchGetList(map);
+	      
+	      //총글이 20개면? 1페이지 20 2페이지 15부터 출력해서 1씩 감소
+	      int no=totalCount-(currentPage-1)*perPage;
+	      
+	      //출력에 필요한 변수들 request 저장
+	      mview.addObject("Searchlist",Searchlist);
+	      mview.addObject("startPage",startPage);
+	      mview.addObject("endPage",endPage);
+	      mview.addObject("totalPage",totalPage);
+	      mview.addObject("totalCount",totalCount);
+	      mview.addObject("no",no);
+	      mview.addObject("currentPage",currentPage);
+	      
+	      mview.addObject("totalCount",totalCount);
+	      
+	      List<TeamDto> newlist = Cmapper.getNewCrewDatas();
+			List<TeamDto> pointlist = Cmapper.getCrewPointDatas();
+			model.addAttribute("newlist", newlist);
+			model.addAttribute("pointlist", pointlist);
+	      
+	      
+	      mview.setViewName("/ground/ground_searchresult");
+	      
+	         
+	      return mview;
+	   }
+	
+	
 
 	@PostMapping("/ground/mymm")
 	public String mycrewpr(@ModelAttribute TeamMemberDto cm_dto, HttpSession session, @RequestParam String team_idx) {
