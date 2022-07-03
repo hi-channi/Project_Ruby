@@ -42,6 +42,10 @@ div.main {
 	padding-left: 15px;
 }
 
+.modal_list{
+	text-align: center;
+}
+
 .crew_pr {
 	width: 1270px;
 	height: 75px;
@@ -138,14 +142,15 @@ div.main {
 
 #modal_close_btn {
 	position: relative;
-	top: -215px;
-	left: 75px;
+	top: -1645px;
+	left: 1094px;
 }
 
 .notice_table {
 	position: relative;
 	top: 10px;
 	left: 68px;
+
 }
 
 .mypen {

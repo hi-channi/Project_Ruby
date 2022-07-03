@@ -95,8 +95,10 @@
 				type="hidden" value="${crew_dto.team_idx }" id="team_idx">
 				<button type="button" id="modal_opne_btn1"
 					style="background-color: white; border: none;">
+					<c:if test="${crew_dto.member_idx ==userKey}">
 					<img alt="" src="../image/crewadd.png"
 						class="img_crewadd modal_opne_btn1">
+						</c:if>
 				</button>
 
 		</div>
@@ -123,7 +125,9 @@
 			
 			<button type="button" id="modal_opne_btn0"
 				style="background-color: white; border: 1px;">
+			<c:if test="${crew_dto.member_idx ==userKey}">
 			<img alt="" src="../image/pen.png" class="model_open_btn0" style="size: 8px;">
+		</c:if>
 		</button>
 		</span>
 
@@ -198,11 +202,10 @@
 				</table>
 
 
-
-				<button type="button" id="modal_close_btn"
-					style="color: gray; background-color: white; border: none; size: 15px;">X</button>
-
 			</div>
+			<button type="button" id="modal_close_btn"
+					style="color: gray; background-color: white; border: none; size: 15px;">X</button>
+			
 
 			<div class="modal_layer"></div>
 		</div>

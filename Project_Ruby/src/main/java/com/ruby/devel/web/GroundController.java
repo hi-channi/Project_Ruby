@@ -263,7 +263,7 @@ public class GroundController {
 
 		// 나의 크루니까 내 팀 정보 가지고 옴 (마이크루 페이지에 크루명, 크루 소개 머 이런 거)
 		TeamDto crew_dto = Cmapper.getTeamInfo(team_idx);
-		System.out.println("CrewEnrollDto:  " + crew_dto);
+		System.out.println("얜가?" + crew_dto);
 
 		// 팀의 멤버를 나타낼 칸을 뽑아내려고... 글서 cm_dto.size() 뽑으면 인원 수임
 		List<TeamMemberDto> cm_dto = Cmapper.getTeamMember(team_idx);

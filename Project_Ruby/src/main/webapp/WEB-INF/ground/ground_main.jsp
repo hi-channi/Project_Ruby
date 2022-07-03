@@ -122,7 +122,7 @@
 								value="${a.create_day }" pattern="yyyy-MM-dd" /></td>
 						<td width="120"><c:if test="${team_idx == null }">
 								<button type="button" class="modal_opne_btn2"
-									onclick="transferTId(${a.team_idx})"}>신청하기</button>
+									onclick="transferTId(${a.team_idx})">신청하기</button>
 							</c:if></td>
 					<tr>
 				</table>
@@ -175,8 +175,7 @@
 				<form action="/ground/test123" method="post">
 
 					<div class="crewname_"></div>
-					<span class="inwon"><img alt="" src="../image/face.png"
-						style="width: 19px;">15/50</span>
+				
 					<div class="crewprone" style="border: 0px solid black;"></div>
 				</form>
 				<div class="mypricrew" style="height: 395px;">
@@ -205,7 +204,7 @@
 				<div class="wrapper">
 					<form action="/ground/mymm" method="post">
 
-						<input type="text" name="team_idx" id="t_idx"> <input
+						<input type="hidden" name="team_idx" id="t_idx"> <input
 							type="text" class="input" name="mypr" placeholder="자기소개 한 줄"
 							required="required" style="width: 360px;"> <span
 							class="underline"></span>
