@@ -16,8 +16,8 @@
 </head>
 <body>
 <div class="headerarea">
-	<a href="/" style="text-decoration: none;">
-		<img alt="" src="${root }/element/logo@2x.png" class="logo">
+	<a style="text-decoration: none;">
+		<img alt="" src="${root }/element/logo@2x.png" class="logo" onclick="location.href='/'" style="cursor: pointer;">
 	</a>
 	
 	<c:if test="${sessionScope.loginOK!=null }">

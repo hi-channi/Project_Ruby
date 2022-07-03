@@ -151,9 +151,9 @@ public class MemberController {
 				session.setAttribute("loginOK", "yes");
 				session.setAttribute("saveid", saveid); // 체크 할 경우 null, 체크하면 on
 				
-				String nickname=Mmapper.getNickname(id);
 				String userKey=Mmapper.getUserKey(id);
-
+				String nickname=Mmapper.getNickname(userKey);
+				
 				session.setAttribute("userNickname", nickname);
 		        session.setAttribute("userKey", userKey);
 		        

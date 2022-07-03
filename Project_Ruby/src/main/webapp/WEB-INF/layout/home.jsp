@@ -23,13 +23,27 @@ div.main {
 }
 </style>
 
+<script type='text/javascript'>
+function lucky() {
+	alert('오늘도 화이팅!');
+}
+
+</script>
+
 </head>
 <body>
 <div class="container1">
 	<img alt="" src="${root }/element/banner_main.png" class="mainbanner">
-		<button class="main_button">
-			<div class="button_content"><p class="button_text" onclick="location.href='/login'">시작하기</p></div>
-		</button>
+		<c:if test="${sessionScope.loginOK==null }">
+			<button class="main_button">
+				<div class="button_content"><p class="button_text" onclick="location.href='/login'">시작하기</p></div>
+			</button>
+		</c:if>
+		<c:if test="${sessionScope.loginOK!=null }">
+			<button class="main_button">
+				<div class="button_content"><p class="button_text" onclick="lucky()">환영해요:)</p></div>
+			</button>
+		</c:if>
 	</div>
 <div class="container2">
 	<div class="vertical_box1" style="float: left;">
