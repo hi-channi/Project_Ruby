@@ -98,7 +98,20 @@
 				<table class="communitylist">
 					<tr align="center">
 						<td colspan="4" width="50">${list.size() -status.index}</td>
-						<td colspan="4" width="240">${a.name }</td>
+						
+						<c:if test="${a.color != '#191919'}">
+						<td colspan="4" width="240" >
+						<div style="background-color: ${a.color}; border-radius: 25px; width: 100px;  ">${a.name }</div>
+						</td>
+						</c:if>
+						
+						<c:if test="${a.color == '#191919'}">
+						<td colspan="4" width="240" >
+						<div style="background-color: ${a.color}; border-radius: 25px; width: 100px; color:#ffffff;  ">${a.name }</div>
+						</td>
+						</c:if>
+						
+						
 						<td colspan="4" width="110"><img alt=""
 							src="../image/face.png" style="width: 20px">
 							${a.member_count}/50</td>

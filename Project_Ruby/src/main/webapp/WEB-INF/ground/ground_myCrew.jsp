@@ -90,14 +90,15 @@
 	<div class="container">
 
 		<div class="crewname">
-			<span class="crew_name">${crew_dto.name} &nbsp; <input
+			<span class="crew_name" style="background-color: ${crew_dto.color}; border-radius: 25px; width: 100px;  " >${crew_dto.name} &nbsp; </span>
+			<input
 				type="hidden" value="${crew_dto.team_idx }" id="team_idx">
 				<button type="button" id="modal_opne_btn1"
 					style="background-color: white; border: none;">
 					<img alt="" src="../image/crewadd.png"
 						class="img_crewadd modal_opne_btn1">
 				</button>
-			</span>
+
 		</div>
 
 		<div class="crew_pr"
@@ -222,7 +223,7 @@
 		</div>
 		
 		
-		<!-- 공지사항 작성 -->
+		 
 		<div id="modal0">
 
 			<div class="modal_content0">
@@ -246,8 +247,8 @@
 
 
 
-			<div class="modal_layer1"></div>
-		</div>
+			<div class="modal_layer0"></div>
+		
 
 		<!-- 프로필 보기 모달 -->
 		<div id="modal2">
@@ -260,7 +261,7 @@
 				<form action="/ground/memberprofile" method="post">
 					<div>
 						<img alt="" src="../image/face2.png" class="crew_proface"> <span
-							class="crewproname">이름</span> <input type="text"
+							class="crewproname">이름</span> <input type="hidden"
 							name="member_idx" id="m_idx">
 						<!-- name, pr,age, job, hobby1, -->
 
@@ -303,9 +304,7 @@
 		</div>
 
 
-	</div>
-
-
+</div>
 	<script type="text/javascript">
 
 	

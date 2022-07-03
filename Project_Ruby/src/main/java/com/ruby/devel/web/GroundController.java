@@ -3,6 +3,7 @@ package com.ruby.devel.web;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -229,6 +230,17 @@ public class GroundController {
 	@GetMapping("/ground/crewenroll") // 크루 등록 페이지
 	public String ground_crewenroll() {
 		return "/ground/ground_crewEnrollForm";
+	}
+	
+	/* crewname 검증(중복확인) */
+	@ResponseBody
+	@GetMapping("/ground/crewnamecheck")
+	public Map<String, Integer> crewnameCheckProcess(@RequestParam String name) {
+		Map<String, Integer> map=new HashMap<>();
+		int check=Cmapper.checkVaildCrewname(name);
+		map.put("vaildCrewname", check);
+		
+		return map;
 	}
 
 	@PostMapping("/ground/mycrew") // 나의 크루 페이지

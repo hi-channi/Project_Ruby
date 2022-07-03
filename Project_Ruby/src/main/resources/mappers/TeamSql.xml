@@ -102,4 +102,9 @@
 	<select id="selectTeamNotice" resultType="teamnotice">
 		select * from TeamNotice
 	</select>
+	
+	<!-- 크루명 검증 -->
+	<select id="checkVaildCrewname" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM Team WHERE name=#{name}
+	</select>
 </mapper>

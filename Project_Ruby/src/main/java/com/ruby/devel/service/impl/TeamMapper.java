@@ -38,5 +38,7 @@ public interface TeamMapper {
 	public int getSearchCount(String SearchText);
 	public void insertIntoCrewNotice(TeamNoticeDto tn_dto); //공지 등록
 	public List<TeamNoticeDto> selectTeamNotice(); //공지 리스트
+	public int checkVaildCrewname (String name);
+	
 }
 

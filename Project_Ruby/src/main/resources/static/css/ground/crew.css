@@ -27,7 +27,7 @@ div.main {
 }
 
 .crew_name {
-	width: 87px;
+	width: 100px;
 	height: 35px;
 	margin: 53px 279px 20px 320px;
 	/*폰트 적용*/
@@ -36,9 +36,10 @@ div.main {
 	font-weight: 500;
 	margin: auto;
 	letter-spacing: -0.6px;
-	text-align: left;
+	text-align: center;
 	color: #191919;
 	letter-spacing: -0.6px;
+	padding-left: 15px;
 }
 
 .crew_pr {
@@ -589,10 +590,9 @@ font-family: 'Noto Sans KR';
 
 /* Textarea 디자인 */
 textarea {
-	width: 90px;
+	width: 230px;
 	height: 460px;
-	margin: 40px 0 40px;
-	padding: 10px 203px 112px 10px;
+	padding: 10px 20px 0px 10px;
 	border-radius: 10px;
 	border: solid 1px #dbdbdb;
 	background-color: #fff;
