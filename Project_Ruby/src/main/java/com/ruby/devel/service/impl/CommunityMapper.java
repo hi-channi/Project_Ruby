@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.ruby.devel.model.CommunityDto;
+import com.ruby.devel.model.CommunityScrapDto;
 import com.ruby.devel.model.MemberDto;
 
 @Mapper
@@ -35,6 +36,28 @@ public interface CommunityMapper {
 	//추천수 증가
 	public void updateLikeCount(String community_idx);
 	
-
+	//qna타입 증가
+	public void updateQnaType(String community_idx);
+	
+	//베스트게시글 출력
+	public List<CommunityDto> bestList();
+	
+	//최신 qna 출력
+	public List<CommunityDto> recentList();
+	
+	//start scrap
+	public List<CommunityScrapDto> getScrapDatas();
+	
+	public void insertCommunityScrap(CommunityScrapDto cs_dto);
+	
+	public void updateCommunityScrap(CommunityScrapDto cs_dto);
+	
+	public int getScrapData(HashMap<String, String> map);	
+	//end scrap
+	
+	//글 type에 따른  출력 
+	public List<CommunityDto> getList_normal(HashMap<String, Integer> map);
+	
+	public List<CommunityDto> getList_qna(HashMap<String, Integer> map);
 
 }

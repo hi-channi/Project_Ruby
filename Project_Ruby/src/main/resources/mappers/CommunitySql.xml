@@ -36,13 +36,61 @@
   		UPDATE Community SET read_count=read_count+1 WHERE community_idx=#{community_idx}
   	</update>
   	
-  	<!-- 페이징 -->
+  	<!-- 전체글 페이징 -->
   	<select id="getList" parameterType="HashMap" resultType="community">
   		 select * from Community order by community_idx desc limit #{start}, #{perPage}
+ 	</select>
+ 	
+ 	<!-- 일반글 페이징 -->
+  	<select id="getList_normal" parameterType="HashMap" resultType="community">
+  		 select * from Community WHERE content_type=0 order by community_idx desc limit #{start}, #{perPage}
+ 	</select>
+ 	
+ 	<!-- qna 페이징 -->
+  	<select id="getList_qna" parameterType="HashMap" resultType="community">
+  		 select * from Community WHERE content_type=1 or content_type=2 order by community_idx desc limit #{start}, #{perPage}
  	</select>
  	
  	<!-- 추천수 증가 -->
 	<update id="updateLikeCount" parameterType="String">
 		UPDATE Community SET like_count= like_count+1 WHERE community_idx=#{community_idx}
 	</update>
+	
+	<!-- qnatype 증가 -->
+	<update id="updateQnaType" parameterType="String">
+		UPDATE Community SET content_type=content_type+1 WHERE community_idx=#{community_idx} 
+	</update>
+	
+	<!-- 베스트 게시글 출력 -->
+	<select id="bestList" resultType="community">
+		SELECT * FROM Community WHERE content_type=0 ORDER BY like_count desc limit 5;
+  	</select>
+  	
+  	<!-- 최신 qna 게시글 출력 -->
+  	<select id="recentList" resultType="community">
+  		SELECT * FROM Community WHERE content_type=1 or content_type=2 ORDER BY write_day desc limit 5;
+  	</select>
+	
+	
+	<!-- scrap -->
+	<select id="getScrapDatas" resultType="communityscrap">
+      select * from CommunityScrap;
+  	</select>
+  	
+  	<insert id="insertCommunityScrap" parameterType="communityscrap">
+      insert into CommunityScrap (community_idx,member_idx,scrap_count) 
+      values (#{community_idx},#{member_idx},'1')
+    </insert>
+   
+	<update id="updateCommunityScrap" parameterType="communityscrap">
+	  update CommunityScrap set scrap_count=#{scrap_count}
+	  where community_idx=#{community_idx} and member_idx=#{member_idx}
+    </update>
+    
+    <select id="getScrapData" parameterType="HashMap" resultType="int">
+      select count(*) from CommunityScrap where community_idx=#{community_idx} and member_idx=#{member_idx}
+    </select>
+    
+    
+		
 </mapper>
