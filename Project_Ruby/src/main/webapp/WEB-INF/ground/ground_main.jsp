@@ -85,7 +85,7 @@
 
 			</form>
 
-			<button class="makecrew" onclick="location.href='/ground/crewenroll'">
+			<button class="makecrew">
 				<span class="makecrew1">크루 만들기</span>
 			</button>
 
@@ -277,18 +277,6 @@
 
 	}
 	
-	
-/* 	$(document).ready(function(){
-		$("#check1").change(function(){
-			if($("#check1").is(":checked")){
-		            //alert("체크박스 체크했음!");
-		           
-		        }else{
-		            alert("체크박스 체크 해제!");
-		        }
-		    });
-		}); */
-	
 
 	$('.makecrew').click(function () {
 	     if(${sessionScope.loginOK==null})
@@ -296,7 +284,11 @@
 	          alert("로그인 후 사용이 가능합니다.");
 	        location.href="/login"; //로그인 폼으로 이동
 	    
-	     }
+	     } else if(${sessionScope.loginOK!=null and crewTeam_idx == null}) {
+	    	location.href="/ground/crewenroll";
+	    } else if(${sessionScope.loginOK!=null and crewTeam_idx != null}) {
+	    	alert("이미 가입된 크루가 존재합니다. \n크루를 만들 수 없습니다.");
+	    }
 	});
 	
 	

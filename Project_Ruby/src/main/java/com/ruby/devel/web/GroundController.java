@@ -115,7 +115,7 @@ public class GroundController {
 		
 		String crewTeam_idx = Mmapper.getTeamidxMember(userKey);
 		model.addAttribute("crewTeam_idx", crewTeam_idx);
-		System.out.println(crewTeam_idx);
+		System.out.println("------->"+crewTeam_idx);
 		 
 		//String team_idx = Mmapper.getMemberDatas(userKey).getTeam_idx();
 		 //model.addAttribute("team_idx1", team_idx);
@@ -131,18 +131,7 @@ public class GroundController {
 		model.addAttribute("newlist", newlist);
 		model.addAttribute("pointlist", pointlist);
 	
-		
-		
-		/*
-		 * // 작성자 이름, 닉네임 갖고오기 System.out.println(list); String userKey =
-		 * list.get(0).getMember_idx(); // userKey가 member의 member_idx String memberidx
-		 * = Mmapper.getUserKey(null);
-		 * 
-		 * mview.addObject("memberidx", memberidx);
-		 */
 
-		// System.out.println(newlist);
-		// System.out.println(list);
 		mview.setViewName("/ground/ground_main");
 
 		return mview; // /ground/(파일명)
@@ -180,14 +169,29 @@ public class GroundController {
 	      //각페이지에서 불러올 시작번호
 	      start=(currentPage-1)*perPage;
 	      
+	   
+
+			// 각페이지에서 필요한 게시글 가져오기
+			
+			
+	      
+	      
 	      //데이터 가져오기
-	      HashMap<String, Object> map = new HashMap<>();
-	      map.put("SearchText", SearchText);
-	      map.put("start", start);
-	      map.put("perPage", perPage);
+	      HashMap<String, Object> map2 = new HashMap<>();
+	      map2.put("SearchText", SearchText);
+	      map2.put("start", start);
+	      map2.put("perPage", perPage);
 	      
 	      //각페이지에서 필요한 게시글 가져오기
-	      List<TeamDto> Searchlist=Cmapper.SearchGetList(map);
+	      List<TeamDto> Searchlist=Cmapper.SearchGetList(map2);
+	     
+
+			for(TeamDto c:Searchlist)
+			{
+				int membercount = Cmapper.selectCrewMem(c.getTeam_idx());
+				c.setMember_count(membercount);
+			
+			} 
 	      
 	      //총글이 20개면? 1페이지 20 2페이지 15부터 출력해서 1씩 감소
 	      int no=totalCount-(currentPage-1)*perPage;
@@ -201,7 +205,18 @@ public class GroundController {
 	      mview.addObject("no",no);
 	      mview.addObject("currentPage",currentPage);
 	      
+	      
 	      mview.addObject("totalCount",totalCount);
+	      
+	      String userKey = (String) session.getAttribute("userKey");
+	      String team_idx = Cmapper.selectTeamIdx(userKey);
+	      model.addAttribute("team_idx", team_idx);
+
+	      String crewTeam_idx = Mmapper.getTeamidxMember(userKey);
+	      model.addAttribute("crewTeam_idx", crewTeam_idx);
+
+	      String age = Mmapper.getMemberAge(userKey);
+	      model.addAttribute("age", age);
 	      
 	      List<TeamDto> newlist = Cmapper.getNewCrewDatas();
 			List<TeamDto> pointlist = Cmapper.getCrewPointDatas();
