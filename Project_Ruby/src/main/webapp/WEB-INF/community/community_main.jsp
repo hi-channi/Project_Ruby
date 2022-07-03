@@ -14,7 +14,11 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	$(function () {
-		
+		  $("#list_type").on("propertychange change keyup paste input", function() {
+			    var currentVal = $(this).val();
+			  
+			    alert(currentVal);
+			});
 		/* start Dropdown Menu*/      
 		   $('.dropdown').click(function () {
 		        $(this).attr('tabindex', 1).focus();
@@ -29,11 +33,21 @@
 		        $(this).parents('.dropdown').find('span').text($(this).text());
 		        $(this).parents('.dropdown').find('input').attr('value', $(this).attr('id'));
 		        $("span.category_placeholder").css("color", "#505050");
+		        
+		     	if($("#list_type").val()=="all") {
+		        	location.href="/community";
+		        }
+		        if($("#list_type").val()=="normal") {
+		        	location.href="/community_n";
+		        }
+		        if($("#list_type").val()=="qna") {
+		        	location.href="/community_q";
+		        }
 		    });
 		    /*End Dropdown Menu*/
 		    
 		   /* scrap button change */
-		    $(".chscrap").change(function(){
+		 /*    $(".chscrap").change(function(){
 			      
 			      if($(this).is(":checked"))
 			      {
@@ -45,7 +59,7 @@
 			         $(this).parent('.lab').children(".scrap").attr("src","${root }/element/icon_scrap.png");
 	   
 			      }
-			});
+			}); */
 		    /* end scrap button change */
 		    	 
 	/* scrap 이벤트 */      
@@ -97,8 +111,6 @@
 	   });
 	   }
 	
-	
-	
 	});
 	
 	//비회원 커뮤니티 글쓰기 방지
@@ -107,8 +119,6 @@
 		location.href="${root}/login";
 
 	};
-	
-	
 	
 	
 	
@@ -184,11 +194,11 @@
                  	 <div class="select" style="margin-top: -9px;">
                      	<span class="category_placeholder" > <div>전체글 보기</div> </span> <i class="fa fa-chevron-left"></i>
                 	 </div>
-                 		 <input type="hidden" name="" value="empty">
+                 		 <input type="hidden" name="list_type" id="list_type" value="">
                   			<ul class="dropdown-menu">
-                    	   		<li id="notebook">전체글 보기</li>
-                     			<li id="monitor">일반글 보기</li>
-				         	    <li id="keyboard">질문글 보기</li>
+                    	   		<li id="all">전체글 보기</li>
+                     			<li id="normal">일반글 보기</li>
+				         	    <li id="qna">질문글 보기</li>
               			    </ul>
              	 </div>	 
 					<!-- 검색어를 입력해주세요 -->
@@ -249,18 +259,22 @@
 										<span class="tag badge" style="background-color: #ff4b4e;">CLOSED</span>
 									</c:if>
 									<span class="tag badge">#${c.tag1 }</span>
-									<span class="tag badge">#${c.tag2 }</span>
-									<span class="tag badge">#${c.tag3 }</span>
+									<c:if test="${c.tag2!=''}">
+										<span class="tag badge">#${c.tag2 }</span>
+									</c:if>
+									<c:if test="${c.tag3!=''}">
+										<span class="tag badge">#${c.tag3 }</span>
+									</c:if>
 							</div>
 						</td>  
 	
-						<td class="count" width="270" style="padding-top: 7px; text-align: right;"> <!-- width="340" -->
+						<td class="count" width="240" style="padding-top: 7px; text-align: right;"> <!-- width="340" -->
 							<c:if test="${c.mcount==0 }">
-								<div> <img alt="" src="${root }/element/icon_comment.png" style="margin-left: 88px;"></div>
+								<div> <img alt="" src="${root }/element/icon_comment.png" style="margin-left: 70px;"></div>
 								<div class="word"> ${c.mcount} </div>
 							</c:if>
 							<c:if test="${c.mcount>0 }">
-								<div> <img alt="" src="${root }/element/icon_comment.png" style="margin-left: 88px;"> </div>
+								<div> <img alt="" src="${root }/element/icon_comment.png" style="margin-left: 70px;"> </div>
 								<div class="word"> ${c.mcount} </div>
 							</c:if>
 								<div> <img alt="" src="${root }/element/icon_thumb.png" style="margin-left: 13px;"> </div>
@@ -268,9 +282,9 @@
 								<div> <img alt="" src="${root }/element/icon_visibility.png" style="margin-left: 8px;"> </div>
 								<div class="word" > ${c.read_count } </div>
 						</td>
-						<td rowspan="2" width="230" style="padding-bottom: 7px;">
+						<td rowspan="2" width="200" style="padding-bottom: 7px;">
 							<div class="personphoto" style="width: 126px;"> <img src="${root }/element/icon_person1.png"> </div>
-							<div class="writer" style="margin: 7px 0 0 130px;">${c.writer }</div>
+							<div class="writer" style="margin: 7px 0 0 118px;">${c.writer }</div>
 							<div class="crew"> </div>   <!-- 크루 네임 및 색상 로고 -->
 						</td>
 					</tr>

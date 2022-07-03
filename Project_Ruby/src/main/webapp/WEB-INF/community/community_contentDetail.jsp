@@ -212,7 +212,7 @@ function writecomment() {
 				},
 				success : function(data) {
 					alert("채택 되었습니다.");
-					list();
+					location.reload();
 				}
 			});
 		}
@@ -223,16 +223,21 @@ function writecomment() {
 <div class="container">
 <input type="hidden" value="${c_dto.community_idx }" id="c_idx">	
 <input type="hidden" value="${currentPage }" id="currentPage">
-<input type="text" value="${c_dto.content_type }" id="content_type">
+<input type="hidden" value="${c_dto.content_type }" id="content_type">
 <div class="detailsubject" style="border: 0px solid black;">
 	<%--글번호 받아오기 --%>
 	<span class="contentnum">#<span id="delnum"> ${c_dto.community_idx } </span></span>
 	<!-- qna글 일 경우 -->
-	<c:if test="${c_dto.content_type==1 }">
-		<div class="tag" style="border: solid 0px #dbdbdb;">
-			<span class="badge" style="font-size: 1.1em; float: left; background-color: black;">#Q&A</span>
+	<%-- <c:if test="${c_dto.content_type==1}">
+		<div class="tag" style="border: solid 0px #dbdbdb; font-size: 1.1em;">
+			<span class="badge" style="background-color: #6BCB77;">OPEN</span>
 		</div>
 	</c:if>
+	<c:if test="${c_dto.content_type==2}">
+		<div class="tag" style="border: solid 0px #dbdbdb;">
+			<span class="badge" style="background-color: #ff4b4e; font-size: 1.1em;">CLOSED</span>
+		</div>	
+	</c:if> --%>
 	
 	<%--태그1 받아오기 --%>
 	<div class="tag" style="border: solid 0px #dbdbdb;">

@@ -36,9 +36,19 @@
   		UPDATE Community SET read_count=read_count+1 WHERE community_idx=#{community_idx}
   	</update>
   	
-  	<!-- 페이징 -->
+  	<!-- 전체글 페이징 -->
   	<select id="getList" parameterType="HashMap" resultType="community">
   		 select * from Community order by community_idx desc limit #{start}, #{perPage}
+ 	</select>
+ 	
+ 	<!-- 일반글 페이징 -->
+  	<select id="getList_normal" parameterType="HashMap" resultType="community">
+  		 select * from Community WHERE content_type=0 order by community_idx desc limit #{start}, #{perPage}
+ 	</select>
+ 	
+ 	<!-- qna 페이징 -->
+  	<select id="getList_qna" parameterType="HashMap" resultType="community">
+  		 select * from Community WHERE content_type=1 or content_type=2 order by community_idx desc limit #{start}, #{perPage}
  	</select>
  	
  	<!-- 추천수 증가 -->
@@ -80,5 +90,7 @@
     <select id="getScrapData" parameterType="HashMap" resultType="int">
       select count(*) from CommunityScrap where community_idx=#{community_idx} and member_idx=#{member_idx}
     </select>
+    
+    
 		
 </mapper>

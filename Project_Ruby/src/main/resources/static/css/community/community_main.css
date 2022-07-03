@@ -317,7 +317,7 @@ tr td div.crew{
 
 /* 작성자 사진 css */
 div.personphoto img{
-	margin:11px 0 0 71px; 
+	margin:11px 0 0 60px; 
 	float: left;
 	cursor: pointer;
 }
@@ -330,7 +330,7 @@ img.scrap {
 
 /* list 작성일 css */
 tr td div.day{
-	margin: 0 0 5px 143px; 
+	margin: 0 0 5px 80px; 
 	color: #505050;
 	font-size: 16px;
 	text-align: right;

@@ -45,15 +45,19 @@ public interface CommunityMapper {
 	//최신 qna 출력
 	public List<CommunityDto> recentList();
 	
-	//scrap
+	//start scrap
 	public List<CommunityScrapDto> getScrapDatas();
 	
 	public void insertCommunityScrap(CommunityScrapDto cs_dto);
 	
 	public void updateCommunityScrap(CommunityScrapDto cs_dto);
 	
-	public int getScrapData(HashMap<String, String> map);
+	public int getScrapData(HashMap<String, String> map);	
+	//end scrap
 	
-
+	//글 type에 따른  출력 
+	public List<CommunityDto> getList_normal(HashMap<String, Integer> map);
+	
+	public List<CommunityDto> getList_qna(HashMap<String, Integer> map);
 
 }
