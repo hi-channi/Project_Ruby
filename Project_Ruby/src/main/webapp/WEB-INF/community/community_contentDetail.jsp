@@ -21,9 +21,22 @@ span.adel{
 cursor: pointer;
 }
 
+button.btndel{
+	float:right;
+	font-size: 13pt;
+}
+
 </style>
 
 <script type="text/javascript">
+/* 뒤로가기(history.back()) 감지 시 메인 페이지 이동 */
+window.onpageshow = function(event) {
+    if (event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+    	var currentPage=$("#currentPage").val();
+       location.href="/community?currentPage="+currentPage;
+    }
+}
+
 $(function(){
 	
 	community_idx=$("#c_idx").val();
@@ -32,6 +45,12 @@ $(function(){
   	userKey="${sessionScope.userKey}"; 
 	list();
   	
+	/* //상세페이지 이미지 클릭시 확대 
+	var img = document.getElementsByTagName("img");
+    for (var x = 0; x < img.length; x++) {
+      img.item(x).onclick=function() {window.open(this.src)}; 
+    }	 */
+	
 	/* 댓글 ajax */	
 	$("#btncommentadd").click(function() {
 		var content=$("#content").val();
@@ -323,6 +342,34 @@ function writecomment() {
 			});
 		}
 	}
+	
+	function doImgPop(img){
+		 img1= new Image();
+		 img1.src=(img);
+		 imgControll(img);
+		}
+		 
+		function imgControll(img){
+		 if((img1.width!=0)&&(img1.height!=0)){
+		    viewImage(img);
+		  }
+		  else{
+		     controller="imgControll('"+img+"')";
+		     intervalID=setTimeout(controller,20);
+		  }
+		}
+
+		function viewImage(img){
+		 W=img1.width;
+		 H=img1.height;
+		 O="width="+W+",height="+H+",scrollbars=yes";
+		 imgWin=window.open("","",O);
+		 imgWin.document.write("<html><head><title>:*:*:*: 이미지상세보기 :*:*:*:*:*:*:</title></head>");
+		 imgWin.document.write("<body topmargin=0 leftmargin=0>");
+		 imgWin.document.write("<img src="+img+" onclick='self.close()' style='cursor:pointer;' title ='클릭하시면 창이 닫힙니다.'>");
+		 imgWin.document.close();
+		}
+	
 </script>
 </head>
 <body>
@@ -336,28 +383,30 @@ function writecomment() {
 	<%--글번호 받아오기 --%>
 	<span class="contentnum">#<span id="delnum"> ${c_dto.community_idx } </span></span>
 	<!-- qna글 일 경우 -->
-	<%-- <c:if test="${c_dto.content_type==1}">
+	 <c:if test="${c_dto.content_type==1}">
 		<div class="tag" style="border: solid 0px #dbdbdb; font-size: 1.1em;">
-			<span class="badge" style="background-color: #6BCB77;">OPEN</span>
+			<span class="badge" style="background-color: #6BCB77; float:left; font-size: 1.1em;">OPEN</span>
 		</div>
 	</c:if>
 	<c:if test="${c_dto.content_type==2}">
 		<div class="tag" style="border: solid 0px #dbdbdb;">
-			<span class="badge" style="background-color: #ff4b4e; font-size: 1.1em;">CLOSED</span>
+			<span class="badge" style="background-color: #ff4b4e; float:left; font-size: 1.1em;">CLOSED</span>
 		</div>	
-	</c:if> --%>
+	</c:if> 
 	
 	<%--태그 받아오기 --%>
 	<span class="badge" style="font-size: 1.1em; float: left;">#${c_dto.tag1 }</span>
 	
 	
 	<%--태그 받아오기 --%>
-	<span class="badge" style="font-size: 1.1em; float: left;">#${c_dto.tag2 }</span>
-	
+	<c:if test="${c_dto.tag2!=''}">
+		<span class="badge" style="font-size: 1.1em; float: left;">#${c_dto.tag2 }</span>
+	</c:if>
 	
 	<%--태그 받아오기 --%>
-	<span class="badge" style="font-size: 1.1em; float: left;">#${c_dto.tag3 }</span>
-	
+	<c:if test="${c_dto.tag3!=''}">	
+		<span class="badge" style="font-size: 1.1em; float: left;">#${c_dto.tag3 }</span>
+	</c:if>
 	
 	<%--글작성일 받아오기 --%>
 	<span class="writeday"> <fmt:formatDate value="${c_dto.write_day }" pattern="yyyy-MM-dd"/> 작성 </span>
@@ -367,39 +416,48 @@ function writecomment() {
 
 	<div class="content" style="border: solid 0px #dbdbdb; border-top: solid 2px black; border-bottom: solid 2px black;">
 	<div class="contentfirstdiv" style="border: 0px solid black;">
-		<!--게시글 삭제,수정 버튼 -->
-		<c:if test="${sessionScope.loginOK!=null and sessionScope.userKey==c_dto.member_idx}">
-			<div class="iflogindiv">
-			<button type="button" class="btndel glyphicon glyphicon-remove" style="border: none; background-color: #fff" onclick="delcontent()"></button>
-			<span class="writeicon"><img alt="" src="${root }/element/icon_writecontent_small.png"> </span>
+			<!--게시글 삭제,수정 버튼 -->
+			<c:if test="${sessionScope.loginOK!=null and sessionScope.userKey==c_dto.member_idx}">
+				<div class="iflogindiv" style="text-align: right; margin-top: 5px;">
+					<button type="button" class="btndel glyphicon glyphicon-remove" onclick="delcontent()" title="삭제"></button>
+					<button type="button" class="btnmod glyphicon glyphicon-pencil" onclick="location.href='update_content?community_idx=${c_dto.community_idx}&currentPage=${currentPage}'" title="수정"></button>
+				</div>
+			</c:if>	
+		
+		<%--작성자 및 프로필 사진 받아오기 --%>
+		<div class="contentname">
+			<span><img alt="" src="${root }/element/icon_profile.png"></span>
+			<span class="spanwriter">${writer }</span>
+			
+		<%--팀명 받아오기 --%>
+			<div class="teamname">
+				<span class="spanteamname">싹스리</span>
 			</div>
-		</c:if>	
-	
-	<%--작성자 및 프로필 사진 받아오기 --%>
-	<div class="contentname">
-	<span><img alt="" src="${root }/element/icon_profile.png"></span>
-	<span class="spanwriter">${writer }</span>
-	
-	<%--팀명 받아오기 --%>
-	<div class="teamname">
-		<span class="spanteamname">싹스리</span>
-	</div>
-	</div>
+		</div>
 	</div>	
 	
 	<%--글 제목 받아오기 --%>
-	<div class="contentsubject" style="border: 0px solid black;">
+	<div class="contentsubject" style="border: 0px solid black;" >
 		${c_dto.subject }
 	</div>
 	<div class="lineblack" style="border: solid 1px #505050;"></div>
-	<%--글 내용 받아오기 --%>
+	<%--글 내용, 사진 받아오기 --%>
 	<div class="contentarea" style="border:  0px solid black;">
+		<c:if test="${c_dto.photo!='no'}">
+			<div class="contentphoto">
+				<c:forTokens var="p" items="${c_dto.photo}" delims="," >
+					<img src="${root }/communityimage/${p}" id="photo" class="photo" style="max-width: 150px; max-height: 150px; cursor: pointer;" onclick="doImgPop('${root }/communityimage/${p}')">			
+				</c:forTokens>
+				${p.photo }
+			</div>
+		</c:if> 
 		${c_dto.content }
 	</div>
+
 	
 	<%--각 count값 받아오기 --%>
 	<div class="iconcount">
-		<span><img alt="" src="${root }/element/icon_textsms.png"><span class="textsms"></span> </span>
+		<span><img alt="" src="${root }/element/icon_textsms.png"><span class="textsms"></span>${c_dto.mcount } </span>
 			<button type="button" id="btnthumb" style="border: none; background-color: #fff;">
 				<img alt="" src="${root }/element/icon_thumb.png">
 			</button> 

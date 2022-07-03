@@ -114,6 +114,14 @@ div.teamname{
   left: 300px;
   top: -35px;	
 }
+
+/* 수정 삭제 버튼 */
+div.iflogindiv button{
+	border: none;
+	background-color: #fff;
+	font-size: 14pt;
+}
+
 /*팀 이름 스판*/
 span.spanteamname{
 	

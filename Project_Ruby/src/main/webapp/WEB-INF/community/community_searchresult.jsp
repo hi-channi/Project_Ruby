@@ -45,7 +45,23 @@
 		        }
 		    });
 		    /*End Dropdown Menu*/
-		    		    	 
+		    
+		   /* scrap button change */
+		 /*    $(".chscrap").change(function(){
+			      
+			      if($(this).is(":checked"))
+			      {
+			         $(this).parent('.lab').children(".scrap").attr("src","${root }/element/icon_scrap_red.png");
+			        
+			      }
+			      else
+			      {
+			         $(this).parent('.lab').children(".scrap").attr("src","${root }/element/icon_scrap.png");
+	   
+			      }
+			}); */
+		    /* end scrap button change */
+		    	 
 	/* scrap 이벤트 */      
 	   <%--커뮤니티 상세페이지 scrap 이벤트--%>
 	   if(${userKey!=null}) {
@@ -63,14 +79,13 @@
 	               "scrap_count":scrap_count,
 	               },
 	            success: function(data) {
-	            	document.location.reload(true);
-	            	
+	               document.location.reload(true);
+	               alert("성공");
 	            }
 	         });
 	         
 	         //하트 바뀜
 	         $(this).siblings('.scrap').attr('src','${root }/element/icon_scrap_red.png');
-	         alert("해당 게시글이 채택되었습니다.");
 	      }
 	      else
 	      {
@@ -92,7 +107,6 @@
 	         
 	         //하트 바뀜
 	         $(this).siblings(".scrap").attr("src","${root }/element/icon_scrap.png");
-	         alert("채택이 해제되었습니다.");
 	      }
 	   });
 	   }
@@ -188,15 +202,14 @@
               			    </ul>
              	 </div>	 
 					<!-- 검색어를 입력해주세요 -->
-					<form action="community/search">
+				 <form action="/community/search">
 					 <div class="search" style="float: left; margin-left: 123px;">
 						  	<input type="text" class="search2" placeholder="검색어를 입력해주세요." style="float: left;" name="SearchText">
 					 		<div class="searchbox">
 					 			<img src="${root }/element/icon_search.png" class="searchimg">
 					 		</div>
-					 <button type="submit" class="searchbtn" style="border: 0px; background-color: #ffff;"></button>		
 					 </div>						
-				  	</form>
+				 </form>	  
 			<!-- 글쓰기 버튼  -->
 				<c:if test="${sessionScope.loginOK!=null }">
 				 <div class="writebutton" style="margin-left: 186px;" align="right">
@@ -216,7 +229,7 @@
 				<!-- 커뮤니티 리스트 출력 화면 -->
 		<c:if test="${totalCount>0 }">	
 			<div class="secondbox">
-				<c:forEach var="c" items="${list }">	
+				<c:forEach var="c" items="${Searchlist }">	
 				<table class="communitylist">
 					<tr>
 						<td width="32"> 
@@ -283,18 +296,12 @@
 								<c:if test="${c.content_type==0}"> <!-- 값에 따라 일반, 질문글 나뉨 -->
 									<div>
 										<a href="${root }/community/contentdetail?community_idx=${c.community_idx }">${c.subject}</a>
-										<c:if test="${c.photo!='no' }">
-											 <span class="glyphicon glyphicon-picture" style="color: #505050;"></span>
-										</c:if>
 									</div>
 								</c:if>
 								
 								<c:if test="${c.content_type==1 || c.content_type==2}"><!-- qna중 채택, 채택x -->
 									<div>
 										<a href="${root }/community/contentdetail?community_idx=${c.community_idx }">${c.subject}</a>
-										<c:if test="${c.photo!='no' }">
-											 <span class="glyphicon glyphicon-picture" style="color: #505050;"></span>
-										</c:if>
 									</div>
 								</c:if>
 							</div> 
