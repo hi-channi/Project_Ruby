@@ -16,7 +16,7 @@ public class CommunityCommentDto {
 	private String member_idx;
 	private String content;
 	private String choose_status;
-	
+	private String comment_writer;
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "Asia/Seoul" )
 	private Timestamp write_day;
 }

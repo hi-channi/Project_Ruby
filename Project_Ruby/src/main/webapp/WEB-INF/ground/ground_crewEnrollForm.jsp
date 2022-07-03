@@ -54,31 +54,31 @@
 								<input type="text" hidden="" class="color" name="color" value="">
 
 								<div style="background-color: #191919;">
-									<input type="text" hidden="" value="블랙">
+									<input type="text" hidden="" value="#191919">
 								</div>
 								<div style="background-color: #dbdbdb;">
-									<input type="text" hidden="" value="회색">
+									<input type="text" hidden="" value="#dbdbdb">
 								</div>
 								<div style="background-color: #5172de;">
-									<input type="text" hidden="" value="블루">
+									<input type="text" hidden="" value="#5172de">
 								</div>
 								<div style="background-color: #ffd93d;">
-									<input type="text" hidden="" value="노랑">
+									<input type="text" hidden="" value="#ffd93d">
 								</div>
 								<div style="background-color: #72138e;">
-									<input type="text" hidden="" value="보라">
+									<input type="text" hidden="" value="#72138e">
 								</div>
 								<div style="background-color: #ffffff;">
-									<input type="text" hidden="" value="흰색">
+									<input type="text" hidden="" value="#ffffff">
 								</div>
 								<div style="background-color: #f62020;">
-									<input type="text" hidden="" value="빨강">
+									<input type="text" hidden="" value="#f62020">
 								</div>
 								<div style="background-color: #095a19;">
-									<input type="text" hidden="" value="초록">
+									<input type="text" hidden="" value="#095a19">
 								</div>
 								<div style="background-color: #541f1f;">
-									<input type="text" hidden="" value="갈색">
+									<input type="text" hidden="" value="#541f1f">
 								</div>
 							</div>
 						</td>

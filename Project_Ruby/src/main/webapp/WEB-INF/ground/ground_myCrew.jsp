@@ -30,9 +30,6 @@
 		//alert(team_idx);
 		list();
 
-
-		
-
 	});
 
 	function list() {
@@ -62,8 +59,12 @@
 													+ "</td><td>" + m_dto_n.age
 													+ "</td><td>" + m_dto_n.pr
 													+ "</td>";
-											l += "<td> <button class='check1' onclick='acceptMember("+m_dto_n.member_idx+")'> <img src='../image/check.png'></button>";
-											l += "<button class='check2' onclick='rejectMember("+m_dto_n.member_idx+")'> <img src='../image/x.png'></button>";
+											l += "<td> <button class='check1' onclick='acceptMember("
+													+ m_dto_n.member_idx
+													+ ")'> <img src='../image/check.png'></button>";
+											l += "<button class='check2' onclick='rejectMember("
+													+ m_dto_n.member_idx
+													+ ")'> <img src='../image/x.png'></button>";
 											l += "</td></tr>";
 										});
 						l += "</tbody></table>";
@@ -89,8 +90,8 @@
 	<div class="container">
 
 		<div class="crewname">
-			<span class="crew_name">${dto.name} &nbsp; <input
-				type="hidden" value="${dto.team_idx }" id="team_idx">
+			<span class="crew_name">${crew_dto.name} &nbsp; <input
+				type="hidden" value="${crew_dto.team_idx }" id="team_idx">
 				<button type="button" id="modal_opne_btn1"
 					style="background-color: white; border: none;">
 					<img alt="" src="../image/crewadd.png"
@@ -106,7 +107,7 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td colspan="5">${dto.info}</td>
+						<td colspan="5">${crew_dto.info}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -118,6 +119,11 @@
 				<img alt="" src="../image/plus.png" id="modal_opne_btn"
 					style="cursor: pointer;">
 			</button>
+			
+			<button type="button" id="modal_opne_btn0"
+				style="background-color: white; border: 1px;">
+			<img alt="" src="../image/pen.png" class="model_open_btn0" style="size: 8px;">
+		</button>
 		</span>
 
 
@@ -130,17 +136,11 @@
 				<thead>
 				</thead>
 				<tbody>
+				<c:forEach var="tc" items="${teamnoticelist}" begin="0" end="2">
 					<tr height="35px;">
-						<td colspan="2" style="text-align: left;">싹쓰리1</td>
+						<td colspan="2" style="text-align: left;">${tc.notice }</td>
 					</tr>
-					<tr height="35px;">
-
-						<td colspan="2" style="text-align: left:;">싹쓰리2</td>
-					</tr>
-					<tr height="35px;">
-
-						<td colspan="2" style="text-align: left;">싹쓰리3</td>
-					</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 
@@ -151,7 +151,7 @@
 
 		<span class="face"
 			style="font-family: 'Noto Sans KR'; font-size: 12.5pt;"><img
-			alt="" src="../image/face.png">&nbsp;&nbsp;1</span>
+			alt="" src="../image/face.png">&nbsp;&nbsp;${cm_dto.size()}</span>
 
 		<div class="crewlistaddadd" style="border: 1px solid #ededed;">
 			<c:forEach var="m_dto" items="${m_dto }">
@@ -162,12 +162,13 @@
 							class="img_git"></a>
 					</div>
 					<br> <span class="crewone_name">${m_dto.name}&nbsp;&nbsp;
-						<c:if test="${m_dto.member_idx==dto.member_idx }">
+						<c:if test="${m_dto.member_idx==crew_dto.member_idx }">
 							<img alt="" src="../image/lee.png ">
 						</c:if>
 					</span> <br> <span class="crewone_pr">${m_dto.pr }</span><br> <br>
 					<button type="button" id="modal_opne_btn2"
-						style="background-color: white; border: none;">
+						style="background-color: white; border: none;"
+						onclick="transfer(${m_dto.member_idx})">
 						<span class="crewone_profile modal_opne_btn2">프로필 보기</span>
 					</button>
 				</div>
@@ -180,26 +181,18 @@
 
 			<div class="modal_content">
 				<h4 style="text-align: center; font-family: 'Noto Sans KR';">공지사항
-				</h4>
+				</h4>		
 
-				<img alt="" src="../image/pen.png" class="mypen" style="size: 8px;">
 				<table class="table notice_table"
 					style="width: 430px; height: 100px;">
 					<thead>
 					</thead>
 					<tbody>
+					<c:forEach var="no" items="${teamnoticelist}">
 						<tr height="35px;">
-							<td colspan="2" style="text-align: left;">텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍
-								스트텍스트텍스트텍스트텍스트텍스트텍스트</td>
+							<td colspan="2" style="text-align: left;">${no.notice }</td>
 						</tr>
-						<tr height="35px;">
-
-							<td colspan="2" style="text-align: left:;">싹쓰리2</td>
-						</tr>
-						<tr height="35px;">
-
-							<td colspan="2" style="text-align: left;">싹쓰리3</td>
-						</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 
@@ -227,44 +220,78 @@
 
 			<div class="modal_layer1"></div>
 		</div>
+		
+		
+		<!-- 공지사항 작성 -->
+		<div id="modal0">
+
+			<div class="modal_content0">
+				<h4 style="text-align: center;">공지사항 작성</h4>
+				<form action="/ground/noticeinsert" method="post">
+				<input type="hidden" value="${crew_dto.team_idx }" id="team_idx" name="team_idx">
+		
+				<div class="wrapper">
+					<textarea class="info" name="notice" style="resize: none;"></textarea>
+					<div id="text_iii" style="font-size:12px; letter-spacing :-0.1em; position: relative; margin-bottom: 65px; color: #505050">
+					</div>
+					
+				</div>
+				<button type="submit" style="text-align: center;" class="btn-small">등록</button>
+				</form>
+				</div>
+
+				<button type='button' id='modal_close_btn0'
+					style='color: gray; background-color: white; border: none; size: 15px;'>X</button>
+			</div>
+
+
+
+			<div class="modal_layer1"></div>
+		</div>
 
 		<!-- 프로필 보기 모달 -->
 		<div id="modal2">
+
 
 			<div class="modal_content2">
 				<h4 style="text-align: center; font-family: 'Noto Sans KR';">프로필
 				</h4>
 
-				<div>
-					<img alt="" src="../image/face2.png" class="crew_proface"> <span
-						class="crewproname">김주찬</span>
-					<!-- name, pr,age, job, hobby1, -->
-					<div class="crewcolorbox">크루명</div>
+				<form action="/ground/memberprofile" method="post">
+					<div>
+						<img alt="" src="../image/face2.png" class="crew_proface"> <span
+							class="crewproname">이름</span> <input type="text"
+							name="member_idx" id="m_idx">
+						<!-- name, pr,age, job, hobby1, -->
 
-					<span class="crewoneprr">한 줄 소개를 입력하세요</span>
+						<!-- <div class="crewcolorbox">팀장</div>-->
+						<span class="crewoneprr">한 줄 소개를 입력하세요</span>
 
-					<table class="privacy_table" border="0" style="width: 155px;">
-						<tbody>
-							<tr>
-								<th align="center">연령</th>
-								<td align="right">20대 후반</td>
-							</tr>
+						<table class="privacy_table" border="0" style="width: 155px;">
+							<tbody>
+								<tr>
+									<th align="center">연령</th>
+									<td align="right" class="crewm_age">20대 후반</td>
+								</tr>
 
 
-							<tr>
-								<th align="center">직업</th>
-								<td align="right">비공개</td>
-							</tr>
-							<tr>
-								<th align="center">관심분야</th>
-								<td align="right">게임 낚시</td>
-							</tr>
-						</tbody>
-					</table>
+								<tr>
+									<th align="center">직업</th>
+									<td align="right" class="crewm_job"></td>
+								</tr>
+								<tr>
+									<th align="center">관심분야</th>
 
-					<button id="privacy_my">정보 수정</button>
-				</div>
+									<td align="right" class="crewm_hobby"></td>
 
+
+								</tr>
+							</tbody>
+						</table>
+
+						<button id="privacy_my">정보 수정</button>
+					</div>
+				</form>
 
 
 				<button type="button" id="modal_close_btn2"
@@ -280,12 +307,40 @@
 
 
 	<script type="text/javascript">
-		    document.getElementById("modal_opne_btn").onclick = function() {
+
+	
+	
+	//반복문으로 입력되는 버튼, 크루원 프로필 보기
+    var buttons = document.querySelectorAll('.modal_opne_btn2');
+    
+    buttons.forEach(function(button) {
+		button.addEventListener('click', test1);
+	});
+    
+    function test1() {
+		document.getElementById("modal2").style.display = "block";
+		}
+
+	document.getElementById("modal_close_btn2").onclick = function() {
+		document.getElementById("modal2").style.display = "none";
+	}
+	
+	
+		//공지사항
+		document.getElementById("modal_opne_btn").onclick = function() {
 			document.getElementById("modal").style.display = "block";
 		}
 
 		document.getElementById("modal_close_btn").onclick = function() {
 			document.getElementById("modal").style.display = "none";
+		}
+		
+		document.getElementById("modal_opne_btn0").onclick = function() {
+			document.getElementById("modal0").style.display = "block";
+		}
+
+		document.getElementById("modal_close_btn0").onclick = function() {
+			document.getElementById("modal0").style.display = "none";
 		}
 
 		//크루원 추가
@@ -297,55 +352,71 @@
 			document.getElementById("modal1").style.display = "none";
 		}
 
-		//프로필 보기
-		document.getElementById("modal_opne_btn2").onclick = function() {
-			document.getElementById("modal2").style.display = "block";
-		}
-
-		document.getElementById("modal_close_btn2").onclick = function() {
-			document.getElementById("modal2").style.display = "none";
-		}
-
 		function acceptMember(idx) {
-			
+
 			alert(idx);
-			
+
 			var msg = confirm("가입 신청을 수락하시겠습니까?");
-			if (msg){
-			$.ajax({
-				type : "post",
-				dataType : "text",
-				url : "memberaccept",
-				data : {
-					"member_idx" : idx
-				},
-				success : function(data) {
-					list();
-				alert("수락되었습니다.");
-				}
-			});
+			if (msg) {
+				$.ajax({
+					type : "post",
+					dataType : "text",
+					url : "memberaccept",
+					data : {
+						"member_idx" : idx
+					},
+					success : function(data) {
+						list();
+						alert("수락되었습니다.");
+					}
+				});
+			}
+		}
+
+		function rejectMember(idx) {
+
+			var msg = confirm("가입 신청을 거절하시겠습니까?");
+			if (msg) {
+				$.ajax({
+					type : "post",
+					dataType : "text",
+					url : "memberreject",
+					data : {
+						"member_idx" : idx
+					},
+					success : function(data) {
+						list();
+						alert("거절되었습니다.");
+
+					}
+				});
 			}
 		}
 		
-		function rejectMember(idx) {
+		
+		
+		function transfer(member_idx) { //transfer를 통해 전달받은 member_idx를 
+			$('#m_idx').val(member_idx); //모달 영역의 input 태그에 넣어준다!
 			
-			var msg = confirm("가입 신청을 거절하시겠습니까?");
-			if (msg){
-			$.ajax({
-				type : "post",
-				dataType : "text",
-				url : "memberreject",
-				data : {
-					"member_idx" : idx
-				},
-				success : function(data) {
-					list();
-					alert("거절되었습니다.");
 			
-				}
-			});
-			}
+			//모달창 안에 값 넣어줌
+			$.ajax({  
+				type: 'POST',  
+				url: '/ground/memberprofile',  
+				data:{ 'member_idx':member_idx},
+				success:function(data) {   
+					console.log(data)     
+					 $(".crewproname").text(data.name); //크루원 이름
+					$(".crewoneprr").text(data.pr); //한줄 소개
+					$(".crewm_age").text(data.age); //나이
+					$(".crewm_job").text(data.job); //직업
+					$(".crewm_hobby").text(data.hobby1+"  "+data.hobby2+"  "+data.hobby3);
+					},
+				});
+			
 		}
+		
+		
 	</script>
 
 

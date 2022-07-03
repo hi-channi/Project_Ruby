@@ -27,6 +27,7 @@ cursor: pointer;
 $(function(){
 	
 	community_idx=$("#c_idx").val();
+	c_currentPage="${sessionScope.c_currentPage}";
   	loginOK="${sessionScope.loginOK}";
   	userKey="${sessionScope.userKey}"; 
 	list();
@@ -45,8 +46,9 @@ $(function(){
 			url: "commentinsert",
 			data:{"community_idx":community_idx, "content": content},
 			success:function(data){
-				list();
 				$("#content").val("");
+				location.href="contentdetail?community_idx="+community_idx+"&c_currentPage=1";
+				
 			},
 			error : function(request, error) {
 				alert("fail!");
@@ -78,6 +80,7 @@ $(function(){
 				alert("fail!");
 				alert("code:" + request.status + "\n"+ "error message:" + request.responseText+ "\n" + "error:" + error);
 			}
+			
 		});
 		}
 	});
@@ -109,7 +112,7 @@ $(document).on("click","span.adel",function(){
 		
 
 /* 일반글 댓글 리스트 출력 */
-function list() {
+/* function list() {
 	var c_type=$("#content_type").val(); 
 	if(c_type==0){
 		$.ajax({
@@ -138,7 +141,21 @@ function list() {
 						}
 						
 						s+="</div>";
-					});
+					}); */
+
+/* 댓글 리스트 출력 */
+function list_all() {
+	/* $.ajax({
+			type:"get",
+			dataType:"json",
+			url:"commentlist",
+			data:{"community_idx":community_idx},
+			success:function(data){
+				$("span.textsms").text(data.length); //댓글 개수
+				
+				var s="";
+				$.each(data,function(i,cm_dto){
+
 					
 					$("div.commentdiv").html(s);
 				}
@@ -175,11 +192,100 @@ function list() {
 					});
 					
 					$("div.commentdiv2").html(s);
-					
-				}
-			});
-	}
+				
+					s+="</div>";
+				});
+				
+				$("div.commentdiv").html(s);
+			}
+		});  */
 }
+
+function list() {
+	 $.ajax({
+			type:"get",
+			dataType:"json",
+			url:"contentdetailcomment",
+			data:{"community_idx":community_idx,"c_currentPage":c_currentPage},
+			success:function(data){
+				var count=data;
+				var data_length=JSON.stringify(data);
+				var s="";
+				
+				//alert(data_length);
+				
+				$.each(data.commentlist,function(i,cm_dto){
+					
+					s+="<div class='commentarea'>";
+					s+="<img alt='' src='${root }/element/icon_profile.png' class='userimg'>";
+					s+="<span class='commentuser'>"+cm_dto.comment_writer+"</span>";
+					s+="<input type='text' class='commentwritetext' value='"+cm_dto.content+"' readonly='readonly' style='outline : none;'>";
+					s+="<br>";
+					s+="<span class='commentwriteday'>"+cm_dto.write_day+"</span>";
+					s+="</div>";
+			
+					
+					if(loginOK=="yes" && userKey==data.commentlist[i].member_idx){
+						//s+="<span class='glyphicon glyphicon-pencil amod' id='amod' idx='"+data.commentlist[i].community_comment_idx+"'></span>";
+						//s+="&nbsp;";
+						s+="<div class='trashdiv'>";
+						s+="<span class='glyphicon glyphicon-trash adel' id='adel' idx='"+data.commentlist[i].community_comment_idx+"'></span>";
+						s+="</div>";
+					}
+					else{
+						s+="<div class='trashdiv'>";
+						s+="<span class='adel' id='adel'><br></span>"
+						s+="</div>";
+					}
+						
+				});
+				
+				
+				$("div.commentdiv").html(s);
+				//alert(eval(data.totalCount));
+				
+			     var p="";
+				 p+="<div class='pagesort'>";
+				 		 
+				 if(eval(data.totalCount>0)) {
+		
+				    p+="<div class='page' align='center' style='margin-top: 50px; border: 0px solid black;'>"; 
+
+				    	 if(eval(data.startPage>1)) {
+				    		//console.log("test:::")
+				    		p+="<a id='pagelbtn' href='contentdetail?community_idx=92&c_currentPage="+eval(data.startPage-1)+"'>";
+				    		p+="<img id='pagebtn' src='${root }/activity/icon_activity_move2.png'></a>";
+				    	} 
+				    	
+				    	
+					    for(var pp=eval(data.startPage);pp<=eval(data.endPage); pp++) {
+					    	console.log(data)
+					    	console.log(pp)
+					    	if(eval(data.c_currentPage)==pp) {
+			
+					    		p+="<a id='pagecnum' href='contentdetail?community_idx="+data.commentlist[0].community_idx+"&c_currentPage="+pp+"'><b>"+pp+"</b></a>";
+					    	}
+					    	if(eval(data.c_currentPage)!=pp) {
+					  
+					    		p+="<a id='pagenum' href='contentdetail?community_idx="+data.commentlist[0].community_idx+"&c_currentPage="+pp+"'>"+pp+"</a>";
+					    	}
+					    }
+				    	if(eval(data.endPage<data.totalPage)) {
+				    		//console.log(data.endPage)
+				    		//console.log(data.totalPage)				    		
+				    		    		
+					   		p+="<a id='pagerbtn' href='contentdetail?community_idx="+data.commentlist[0].community_idx+"&c_currentPage="+eval(data.endPage+1)+"'>";
+					    	p+="<img id='pagebtn' src='${root }/activity/icon_activity_move1.png'></a>";
+				    	}
+					    	p+="</div></div>";  
+				   }
+				    //alert(p);
+				$("div.pagesort1").html(p);
+			
+			}
+		});  
+}
+
 
 /* 게시글 삭제시 컨펌창 */
 function delcontent() {
@@ -225,6 +331,8 @@ function writecomment() {
 <input type="hidden" value="${currentPage }" id="currentPage">
 <input type="hidden" value="${c_dto.content_type }" id="content_type">
 <div class="detailsubject" style="border: 0px solid black;">
+
+	<div class="firstdiv" style="border: 0px solid black;">
 	<%--글번호 받아오기 --%>
 	<span class="contentnum">#<span id="delnum"> ${c_dto.community_idx } </span></span>
 	<!-- qna글 일 경우 -->
@@ -239,32 +347,32 @@ function writecomment() {
 		</div>	
 	</c:if> --%>
 	
-	<%--태그1 받아오기 --%>
-	<div class="tag" style="border: solid 0px #dbdbdb;">
+	<%--태그 받아오기 --%>
 	<span class="badge" style="font-size: 1.1em; float: left;">#${c_dto.tag1 }</span>
-	</div>
 	
-	<%--태그2 받아오기 --%>
-	<div class="tag" style="border: solid 0px #dbdbdb;">
+	
+	<%--태그 받아오기 --%>
 	<span class="badge" style="font-size: 1.1em; float: left;">#${c_dto.tag2 }</span>
-	</div>
 	
-	<%--태그3 받아오기 --%>
-	<div class="tag" style="border: solid 0px #dbdbdb;">
+	
+	<%--태그 받아오기 --%>
 	<span class="badge" style="font-size: 1.1em; float: left;">#${c_dto.tag3 }</span>
-	</div>
 	
-	</div>
+	
 	<%--글작성일 받아오기 --%>
 	<span class="writeday"> <fmt:formatDate value="${c_dto.write_day }" pattern="yyyy-MM-dd"/> 작성 </span>
+	</div>
+	</div>
 	
 
-	<div class="content" style="border: solid 1px #dbdbdb; border-top: solid 2px black; border-bottom: solid 2px black;">
-		
+	<div class="content" style="border: solid 0px #dbdbdb; border-top: solid 2px black; border-bottom: solid 2px black;">
+	<div class="contentfirstdiv" style="border: 0px solid black;">
 		<!--게시글 삭제,수정 버튼 -->
 		<c:if test="${sessionScope.loginOK!=null and sessionScope.userKey==c_dto.member_idx}">
+			<div class="iflogindiv">
 			<button type="button" class="btndel glyphicon glyphicon-remove" style="border: none; background-color: #fff" onclick="delcontent()"></button>
 			<span class="writeicon"><img alt="" src="${root }/element/icon_writecontent_small.png"> </span>
+			</div>
 		</c:if>	
 	
 	<%--작성자 및 프로필 사진 받아오기 --%>
@@ -277,14 +385,15 @@ function writecomment() {
 		<span class="spanteamname">싹스리</span>
 	</div>
 	</div>
+	</div>	
 	
 	<%--글 제목 받아오기 --%>
-	<div class="contentsubject">
+	<div class="contentsubject" style="border: 0px solid black;">
 		${c_dto.subject }
 	</div>
-	
+	<div class="lineblack" style="border: solid 1px #505050;"></div>
 	<%--글 내용 받아오기 --%>
-	<div class="contentarea">
+	<div class="contentarea" style="border:  0px solid black;">
 		${c_dto.content }
 	</div>
 	
@@ -335,9 +444,12 @@ function writecomment() {
 	<!-- 일반글 출력 div -->
 	<c:if test="${c_dto.content_type==0 }">
 		<div class="commentdiv" style="border: solid 1px #dbdbdb;">
-	
+				
 		</div>
 	</c:if>
+	<div class="pagesort1">
+	
+	</div>
 	
 	<!-- 질문글 출력 div -->
 	<c:if test="${c_dto.content_type==1 || c_dto.content_type==2  }">
@@ -345,7 +457,6 @@ function writecomment() {
 			
 		</div>
  	</c:if>
- 
  </div>
       
 </body>
