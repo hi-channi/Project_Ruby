@@ -256,13 +256,13 @@
 							</div>
 						</td>  
 	
-						<td class="count" width="240" style="padding-top: 7px; text-align: right;"> <!-- width="340" -->
+						<td class="count" width="210" style="padding-top: 7px; text-align: right;"> <!-- width="340" -->
 							<c:if test="${c.mcount==0 }">
-								<div> <img alt="" src="${root }/element/icon_comment.png" style="margin-left: 65px;"></div>
+								<div> <img alt="" src="${root }/element/icon_comment.png" style="margin-left: 30px;"></div>
 								<div class="word"> ${c.mcount} </div>
 							</c:if>
 							<c:if test="${c.mcount>0 }">
-								<div> <img alt="" src="${root }/element/icon_comment.png" style="margin-left: 65px;"> </div>
+								<div> <img alt="" src="${root }/element/icon_comment.png" style="margin-left: 30px;"> </div>
 								<div class="word"> ${c.mcount} </div>
 							</c:if>
 								<div> <img alt="" src="${root }/element/icon_thumb.png" style="margin-left: 13px;"> </div>
@@ -272,7 +272,7 @@
 						</td>
 						<td rowspan="2" width="200" style="padding-bottom: 7px;">
 							<div class="personphoto" style="width: 126px;"> <img src="${root }/element/icon_person1.png"> </div>
-							<div class="writer" style="margin: 7px 0 0 118px;">${c.writer }</div>
+							<div class="writer" style="margin: 7px 0 0 80px;">${c.writer }</div>
 							<div class="crew"> </div>   <!-- 크루 네임 및 색상 로고 -->
 						</td>
 					</tr>

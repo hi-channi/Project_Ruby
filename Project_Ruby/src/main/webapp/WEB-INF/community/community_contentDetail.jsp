@@ -104,6 +104,57 @@ $(function(){
 		}
 	});
 	
+	/* scrap 이벤트 */      
+	   <%--커뮤니티 상세페이지 scrap 이벤트--%>
+	   if(${userKey!=null}) {
+	   $('.chscrap').on("change", function(){
+	      if($(this).is(':checked'))
+	      {                        
+	         let community_idx = ${c_dto.community_idx };
+	         let scrap_count = 1;
+	         
+	         $.ajax({
+	            type: "post",
+	            url: "communityScrapDetail.event",
+	            data: {
+	               "community_idx":community_idx,
+	               "scrap_count":scrap_count,
+	               },
+	            success: function(data) {
+	            	document.location.reload(true);
+	            	
+	            }
+	         });
+	         
+	         //하트 바뀜
+	         $(this).siblings('.scrap').attr('src','${root }/element/icon_scrap_red.png');
+	         alert("해당 게시글이 채택되었습니다.");
+	      }
+	      else
+	      {
+	         let community_idx = ${c_dto.community_idx };
+	         let scrap_count = 0;
+	         
+	         $.ajax({
+	            type: "post",
+	            url: "communityScrapDetail.event",
+	            data: {
+	               "community_idx":community_idx,
+	               "scrap_count":scrap_count,
+	               },
+	            success: function(data) {
+	               document.location.reload(true);
+	               alert("성공");
+	            }
+	         });
+	         
+	         //하트 바뀜
+	         $(this).siblings(".scrap").attr("src","${root }/element/icon_scrap.png");
+	         alert("채택이 해제되었습니다.");
+	      }
+	   });
+	   }
+	
 	
 });
 
@@ -417,8 +468,20 @@ function writecomment() {
 	<div class="content" style="border: solid 0px #dbdbdb; border-top: solid 2px black; border-bottom: solid 2px black;">
 	<div class="contentfirstdiv" style="border: 0px solid black;">
 			<!--게시글 삭제,수정 버튼 -->
+			<label class="lab" id="lab">
+				<c:forEach var="b" items="${scraplist}">
+					<c:if test="${(c_dto.community_idx==b.community_idx)&&(userKey==b.member_idx)&&(b.scrap_count==1)}">
+					    <input type="checkbox" id="chk" class="chscrap" checked="checked">
+					       <img alt="" src="${root }/element/icon_scrap_red.png" class="scrap" style="position: absolute; margin-left: 0px;">
+					</c:if>
+				 </c:forEach>
+				 <input type="checkbox" id="chk" class="chscrap">
+					<img alt="" src="${root }/element/icon_scrap.png" class="scrap">
+			</label>
+			
 			<c:if test="${sessionScope.loginOK!=null and sessionScope.userKey==c_dto.member_idx}">
 				<div class="iflogindiv" style="text-align: right; margin-top: 5px;">
+					<!-- scrap버튼 -->
 					<button type="button" class="btndel glyphicon glyphicon-remove" onclick="delcontent()" title="삭제"></button>
 					<button type="button" class="btnmod glyphicon glyphicon-pencil" onclick="location.href='update_content?community_idx=${c_dto.community_idx}&currentPage=${currentPage}'" title="수정"></button>
 				</div>

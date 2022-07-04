@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndViewDefiningException;
 import com.ruby.devel.model.CommunityCommentDto;
 import com.ruby.devel.model.CommunityDto;
 import com.ruby.devel.model.CommunityScrapDto;
+import com.ruby.devel.model.MarketLikeDto;
 import com.ruby.devel.service.impl.CommunityCommentMapper;
 import com.ruby.devel.service.impl.CommunityMapper;
 import com.ruby.devel.service.impl.MemberMapper;
@@ -93,8 +94,6 @@ public class CommunityController {
 				c.setMcount(CMmapper.getAllComments(c.getCommunity_idx()).size());
 
 			} 
-	      
-	      
 	      // 각 글앞에 붙일 시작번호 구하기
 	      // 총글이 20개면? 1페이지 20 2페이지 15부터 출력해서 1씩 감소
 	      int no = totalCount - (currentPage - 1) * perPage;
@@ -102,8 +101,6 @@ public class CommunityController {
 	      // 출력에 필요한 변수들을 request 에 저장
 	      mview.addObject("list", list);
 	      mview.addObject("startPage", startPage);
-	      System.out.println(startPage);
-	      System.out.println(endPage);
 	      mview.addObject("endPage", endPage);
 	      mview.addObject("totalPage", totalPage);
 	      mview.addObject("totalCount", totalCount);
@@ -119,20 +116,18 @@ public class CommunityController {
 		
 	    mview.addObject("nickName", nickName); 
 	    
+	    /* scrap */
+	    List<CommunityScrapDto> scraplist = Cmapper.getScrapDatas();
+	    mview.addObject("scraplist",scraplist);
 	    
 	    //추천게시글 갖고오기
 	    List<CommunityDto> b_list= Cmapper.bestList();
-	    System.out.println(b_list);
 	    
 	    //최신 qna 갖고오기
 	    List<CommunityDto> r_list=Cmapper.recentList();
 	    
 		mview.addObject("r_list", r_list);
 	    mview.addObject("b_list", b_list);
-	    
-	    /* scrap */
-	    List<CommunityScrapDto> scraplist = Cmapper.getScrapDatas();
-	    mview.addObject("scraplist",scraplist);
 	    
 	    
 	    mview.setViewName("/community/community_main");
@@ -192,7 +187,6 @@ public class CommunityController {
 
 			} 
 	      
-	      
 	      // 각 글앞에 붙일 시작번호 구하기
 	      // 총글이 20개면? 1페이지 20 2페이지 15부터 출력해서 1씩 감소
 	      int no = totalCount - (currentPage - 1) * perPage;
@@ -200,8 +194,6 @@ public class CommunityController {
 	      // 출력에 필요한 변수들을 request 에 저장
 	      mview.addObject("list", list);
 	      mview.addObject("startPage", startPage);
-	      System.out.println(startPage);
-	      System.out.println(endPage);
 	      mview.addObject("endPage", endPage);
 	      mview.addObject("totalPage", totalPage);
 	      mview.addObject("totalCount", totalCount);
@@ -211,16 +203,13 @@ public class CommunityController {
 	      
 	      
 	      //작성자 이름, 닉네임 갖고오기
-		/* System.out.println(list); */
 	      String userKey=list.get(0).getMember_idx();
 	      String nickName=Mmapper.getNickname(null);
 		
 	    mview.addObject("nickName", nickName); 
 	    
-	    
 	    //추천게시글 갖고오기
 	    List<CommunityDto> b_list= Cmapper.bestList();
-	    System.out.println(b_list);
 	    
 	    //최신 qna 갖고오기
 	    List<CommunityDto> r_list=Cmapper.recentList();
@@ -298,8 +287,6 @@ public class CommunityController {
 	      // 출력에 필요한 변수들을 request 에 저장
 	      mview.addObject("list", list);
 	      mview.addObject("startPage", startPage);
-	      System.out.println(startPage);
-	      System.out.println(endPage);
 	      mview.addObject("endPage", endPage);
 	      mview.addObject("totalPage", totalPage);
 	      mview.addObject("totalCount", totalCount);
@@ -314,8 +301,7 @@ public class CommunityController {
 	      String nickName=Mmapper.getNickname(null);
 		
 	    mview.addObject("nickName", nickName); 
-	    
-	    
+	      
 	    //추천게시글 갖고오기
 	    List<CommunityDto> b_list= Cmapper.bestList();
 	    System.out.println(b_list);
@@ -330,7 +316,6 @@ public class CommunityController {
 	    List<CommunityScrapDto> scraplist = Cmapper.getScrapDatas();
 	    mview.addObject("scraplist",scraplist);
 	    
-	    
 	    mview.setViewName("/community/community_main");
 		
 		return mview;
@@ -341,15 +326,13 @@ public class CommunityController {
 	@PostMapping("/community/insert") //매핑주소 수정필요
 	public String insert(@ModelAttribute CommunityDto c_dto, 
 			@RequestParam ArrayList<MultipartFile> upload, 
-			HttpSession session ) {
-		
+			HttpSession session ) {	
 		//업로드 경로
 		String path=session.getServletContext().getRealPath("/communityimage");	
-		System.out.println(path); //경로 확인
 				
 		//포토명 구해서 넣기
 		String communityimage="";
-		
+
 		//첫번째가 빈 문자열이면
 		if(upload.get(0).getOriginalFilename().equals("")) {
 			communityimage="no";
@@ -364,14 +347,10 @@ public class CommunityController {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}
-			
-			communityimage=communityimage.substring(0, communityimage.length()-1);
-			
+			}		
+			communityimage=communityimage.substring(0, communityimage.length()-1);		
 		}
-		
 		c_dto.setPhoto(communityimage);
-		
 		//insert
 		Cmapper.insertCommunity(c_dto);
 		
@@ -400,15 +379,16 @@ public class CommunityController {
 		CommunityDto c_dto= Cmapper.getData(community_idx);
 		
 		c_dto.setMcount(CMmapper.getAllComments(c_dto.getCommunity_idx()).size());
-		
 		//의 name에 작성자 이름 넣기
 		String writer = Mmapper.getNickname(c_dto.getMember_idx());
 		mview.addObject("c_dto", c_dto);
 		mview.addObject("writer", writer);
 		mview.addObject("currentPage", currentPage);
 		
-		
-		
+		/* like */
+		List<CommunityScrapDto> scraplist = Cmapper.getScrapDatas();
+		mview.addObject("scraplist",scraplist);
+
 		//포워드 
 		mview.setViewName("/community/community_contentDetail");
 		
@@ -560,6 +540,47 @@ public class CommunityController {
 		      
 		      return mview;
 		   }
+		
+		   
+	  //scrap 이벤트..datail
+		@PostMapping("/community/communityScrapDetail.event")
+		public ModelAndView CommunityScrapDetail(
+				@RequestParam(value="community_idx", required=false) String community_idx,
+				@RequestParam(value="scrap_count", required=false) String scrap_count,
+				@SessionAttribute String userKey,
+				HttpSession session)
+		{
+			System.out.println("확인");
+				
+			ModelAndView mview = new ModelAndView();
+				
+			HashMap<String, String> map = new HashMap<>();
+			map.put("community_idx", community_idx);
+			map.put("member_idx", userKey);
+			map.put("scrap_count", scrap_count);
+				
+				//data 존재하는지 확인(1일 경우 데이타 있음)
+			int data = Cmapper.getScrapData(map);
+						
+			CommunityScrapDto c_dto = new CommunityScrapDto();
+			c_dto.setCommunity_idx(community_idx);
+			c_dto.setMember_idx(userKey);
+			c_dto.setScrap_count(scrap_count);
+				
+			if(data==0) {
+				Cmapper.insertCommunityScrap(c_dto);
+				System.out.println("insert");
+			} else if(data==1) {
+				Cmapper.updateCommunityScrap(c_dto);
+				System.out.println("update");
+			}
+			
+			System.out.println("community_idx: "+community_idx+", member_idx: "+userKey);
+			System.out.println("map: "+map);
+				
+			return mview;
+		}	   
+		   
 	
 	@GetMapping("/community/contentdetailcomment") // 디테일페이지 댓글 페이징 처리
 	@ResponseBody
