@@ -68,5 +68,7 @@ public interface CommunityMapper {
 	
 	public int getSearchCount(String SearchText);
 
-
+	//홈의 게시글 리스트
+	public List<CommunityDto> getHomeList();
+	
 }

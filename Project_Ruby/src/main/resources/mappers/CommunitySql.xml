@@ -115,6 +115,8 @@
 	  	 select count(*) from Community where subject like concat('%',#{SearchText},'%') order by write_day asc
 	  </select>
     
-    
-		
+    <!-- 메인 리소스 -->
+    <select id="getHomeList" resultType="community">
+    select * from Community order by write_day desc;
+    </select>
 </mapper>

@@ -42,4 +42,5 @@ public interface MarketMapper {
 	public int getTradeSideCount(String subtitle,String colorradio,String marketprice);
 	public List<MarketDto> getTradeSideList(HashMap<String, Object> map);
 	
+	public List<MarketDto> getMarketListAtHome();
 }
