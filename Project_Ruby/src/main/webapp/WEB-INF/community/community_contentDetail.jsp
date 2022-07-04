@@ -437,8 +437,8 @@ function writecomment() {
 			<span class="spanwriter">${writer }</span>
 			
 		<%--팀명 받아오기 --%>
-			<div class="teamname">
-				<span class="spanteamname">싹스리</span>
+			<div class="teamname" style="background-color: ${teamColor}">
+				${teamName }
 			</div>
 		</div>
 	</div>	

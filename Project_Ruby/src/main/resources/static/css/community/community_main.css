@@ -308,11 +308,13 @@ div.writer{
 
 /* 크루 네임, 색상 입력틀 div css */
 tr td div.crew{
-	border: 1px solid #505050; 
+	border: 0px solid #505050; 
 	border-radius: 7.5px; 
-	width: 72px; 
+	width: 100px; 
 	height: 25px; 
-	margin: 6px 0 0 130px;
+	margin: 6px 0 0 80px;
+	text-align: center;
+	padding-top: 2px;
 }
 
 /* 작성자 사진 css */

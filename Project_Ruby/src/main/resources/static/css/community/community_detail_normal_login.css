@@ -121,14 +121,14 @@ div.contentname{
 /*팀 이름*/
 div.teamname{
 	
-  width: 60px;
-  height: 20px;
-  padding: 4px 14px 3px 12px;
+  width: 120px;
+ 
+  margin-top:10px;
   border-radius: 10px;
-  background-color: #ff4b4e;
   position: relative;
   left: 300px;
   top: -35px;	
+  text-align: center;
 }
 
 /* 수정 삭제 버튼 */
