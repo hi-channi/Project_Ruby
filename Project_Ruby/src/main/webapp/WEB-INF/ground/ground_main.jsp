@@ -121,7 +121,7 @@
 						<td colspan="4" width="200"><fmt:formatDate
 								value="${a.create_day }" pattern="yyyy-MM-dd" /></td>
 						<td width="120">
-						<c:if test="${team_idx ==null }">
+						<c:if test="${team_idx ==null}">
 						<button type="button" class="modal_opne_btn2"
 									onclick="transferTId(${a.team_idx})">신청하기</button>
 									</c:if>

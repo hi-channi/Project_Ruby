@@ -136,7 +136,7 @@ public class GroundController {
 		List<TeamDto> pointlist = Cmapper.getCrewPointDatas();
 		model.addAttribute("newlist", newlist);
 		model.addAttribute("pointlist", pointlist);
-	
+		
 
 		mview.setViewName("/ground/ground_main");
 
@@ -239,14 +239,33 @@ public class GroundController {
 	
 
 	@PostMapping("/ground/mymm")
-	public String mycrewpr(@ModelAttribute TeamMemberDto cm_dto, HttpSession session, @RequestParam String team_idx) {
+	public String mycrewpr(@ModelAttribute TeamMemberDto cm_dto, HttpSession session, @RequestParam String team_idx,
+			Model model) {
 		String userKey = (String) session.getAttribute("userKey");
 		cm_dto.setMember_idx(userKey);
 		cm_dto.setTeam_idx(team_idx);
-		Cmapper.insertIntoMyCrew(cm_dto);
-		return "/ground/ground_crewApplySuccess";
-
+		int check_apply = Cmapper.checkVaildInsert(userKey);
+		//System.out.println("vvvv"+userKey);
+		if(check_apply != 0 ) {
+			model.addAttribute("member_idx", userKey);
+			return "/ground/ground_crewApplyFail";
+		} else {
+			Cmapper.insertIntoMyCrew(cm_dto);
+			return "/ground/ground_crewApplySuccess";
+		}
 	}
+	
+	
+	@PostMapping("/ground/mymm_r")
+	public String mycrewpr2(@ModelAttribute TeamMemberDto cm_dto, HttpSession session,
+			Model model) {
+		String userKey = (String) session.getAttribute("userKey");
+		cm_dto.setMember_idx(userKey);
+		Cmapper.deleteCrewMember(userKey);
+
+		
+		return "/ground/ground_crewDeleteSuccess";
+		}
 
 	@GetMapping("/ground/crewenroll") // 크루 등록 페이지
 	public String ground_crewenroll() {
@@ -269,7 +288,7 @@ public class GroundController {
 
 		// 나의 크루니까 내 팀 정보 가지고 옴 (마이크루 페이지에 크루명, 크루 소개 머 이런 거)
 		TeamDto crew_dto = Cmapper.getTeamInfo(team_idx);
-		System.out.println("" + crew_dto);
+		System.out.println("1111111" + crew_dto);
 
 		// 팀의 멤버를 나타낼 칸을 뽑아내려고... 글서 cm_dto.size() 뽑으면 인원 수임
 		List<TeamMemberDto> cm_dto = Cmapper.getTeamMember(team_idx);

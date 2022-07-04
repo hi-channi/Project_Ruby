@@ -41,6 +41,7 @@ public interface TeamMapper {
 	public int checkVaildCrewname (String name);
 	public void deleteCrew(String member_idx);
 	public void deleteCrewMember(String member_idx);
+	public int checkVaildInsert(String member_idx);
 	
 }
 
