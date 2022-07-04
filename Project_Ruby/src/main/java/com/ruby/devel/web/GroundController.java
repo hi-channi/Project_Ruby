@@ -112,12 +112,14 @@ public class GroundController {
 		// Model 객체는 Controller 에서 생성된 데이터를 담아 View 로 전달할 때 사용하는 객체
 		// team_idx를 ground_main 페이지에 붙여
 		model.addAttribute("team_idx", team_idx);
-		System.out.println("team_idx=====>"+team_idx);
 		
 		String crewTeam_idx = Mmapper.getTeamidxMember(userKey);
 		model.addAttribute("crewTeam_idx", crewTeam_idx);
-		//System.out.println("------->"+crewTeam_idx);
-		
+		System.out.println("------->"+crewTeam_idx);
+		 
+		//String team_idx = Mmapper.getMemberDatas(userKey).getTeam_idx();
+		 //model.addAttribute("team_idx1", team_idx);
+		 //System.out.println("sysout=========>"+team_idx);
 
 		String userID = (String) session.getAttribute("userID");
 		
@@ -301,9 +303,6 @@ public class GroundController {
 		
 		List<TeamNoticeDto> teamnoticelist = Cmapper.selectTeamNotice();
 		model.addAttribute("teamnoticelist", teamnoticelist);
-		
-		List<TeamMemberDto> cm_list = Cmapper.crewApplyList(team_idx);
-		model.addAttribute("cm_list", cm_list);
 		
 		
 
