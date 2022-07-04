@@ -19,7 +19,7 @@
 <script type="text/javascript">
 $("img.icon_myscrap").attr("src","${root }/element/icon_myscrap_active.png");
 </script>
-<title>나의활동>스크랩</title>
+<title>DEVEL :: 나의활동>스크랩</title>
 <style type="text/css">
 span.side_main_span_scrap {
 	font-weight: 600;

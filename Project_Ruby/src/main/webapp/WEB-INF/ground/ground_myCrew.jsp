@@ -22,7 +22,7 @@
 <link rel="stylesheet" type="text/css"
 	href="${root }/css/ground/crew.css">
 
-<title>Insert title here</title>
+<title>DEVEL :: 나의 크루</title>
 <script type="text/javascript">
 	$(function() {
 		//alert("123");

@@ -19,7 +19,7 @@
 <link rel="stylesheet" type="text/css"
 	href="${root }/css/ground/crewlist.css">
 
-<title>Insert title here</title>
+<title>DEVEL :: 크루 검색 결과</title>
 </head>
 <body>
 

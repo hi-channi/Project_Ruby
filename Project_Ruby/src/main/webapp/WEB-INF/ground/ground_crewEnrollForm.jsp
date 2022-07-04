@@ -77,7 +77,7 @@ function checkPass(form) {
 </script>
 
 
-<title>Insert title here</title>
+<title>DEVEL :: 크루 생성</title>
 </head>
 <body>
 	<form action="crewinsert" method="post" onsubmit="return checkPass(this)">

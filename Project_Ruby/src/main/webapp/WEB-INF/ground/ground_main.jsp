@@ -19,7 +19,7 @@
 <link rel="stylesheet" type="text/css"
 	href="${root }/css/ground/crewlist.css">
 
-<title>Insert title here</title>
+<title>DEVEL :: 그라운드</title>
 </head>
 <body>
 

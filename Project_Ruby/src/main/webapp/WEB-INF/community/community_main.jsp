@@ -11,7 +11,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <c:set var="root" value="<%=request.getContextPath()%>" />
  <link rel="stylesheet" type="text/css" href="${root }/css/community/community_main.css">
-<title>Insert title here</title>
+<title>DEVEL :: 커뮤니티</title>
 <script type="text/javascript">
 	$(function () {
 		  $("#list_type").on("propertychange change keyup paste input", function() {

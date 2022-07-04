@@ -18,7 +18,7 @@
 <c:set var="root" value="<%=request.getContextPath() %>"/>
 <link rel="stylesheet" type="text/css" href="${root }/css/mypage.css">
 
-<title>Insert title here</title>
+<title>DEVEL :: 마이페이지</title>
 
 <script type="text/javascript">
 <!-- 이미지 파일 업로드 후 이벤트 -->

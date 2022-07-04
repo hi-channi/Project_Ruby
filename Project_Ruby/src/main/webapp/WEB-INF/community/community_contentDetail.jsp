@@ -12,7 +12,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <c:set var="root" value="<%=request.getContextPath() %>"/>
 <link rel="stylesheet" type="text/css" href="${root }/css/community/community_detail_normal_login.css">
-<title>Insert title here</title>
+<title>DEVEL :: ${c_dto.subject }</title>
 <style type="text/css">
 div.main {
 background-color: #fff !important;

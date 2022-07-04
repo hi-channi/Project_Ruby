@@ -16,7 +16,7 @@
 <!-- css  -->
 <c:set var="root" value="<%=request.getContextPath()%>" />
 <link rel="stylesheet" type="text/css" href="${root }/css/marketplace/market_productdetail.css">
-<title>Insert title here</title>
+<title>DEVEL :: 상품 상세정보</title>
 <%
 	String checkon = request.getParameter("checkon");
 %>
