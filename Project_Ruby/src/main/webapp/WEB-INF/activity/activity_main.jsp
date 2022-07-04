@@ -13,6 +13,10 @@
 <c:set var="root" value="<%=request.getContextPath() %>"/>
 <link rel="stylesheet" type="text/css" href="${root }/css/activity.css">
 
+<script type="text/javascript">
+$("img.icon_myactivity").attr("src","${root }/element/icon_myactivity_active.png");
+</script>
+
 <title>나의활동>모아보기</title>
 <style type="text/css">
 span.side_main_span_main {

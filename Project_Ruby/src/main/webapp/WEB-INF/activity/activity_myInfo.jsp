@@ -13,6 +13,10 @@
 <c:set var="root" value="<%=request.getContextPath() %>"/>
 <link rel="stylesheet" type="text/css" href="${root }/css/mypage.css">
 
+<script type="text/javascript">
+$("img.icon_myinfo").attr("src","${root }/element/icon_myinfo_active.png");
+</script>
+
 <title>Insert title here</title>
 
 <script type="text/javascript">

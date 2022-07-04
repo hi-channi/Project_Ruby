@@ -13,18 +13,36 @@
 <c:set var="root" value="<%=request.getContextPath() %>"/>
 <link rel="stylesheet" type="text/css" href="${root }/css/header.css">
 
+<script type="text/javascript">
+$(function () {
+	$('.icon_myinfo').hover(function(){
+	    $(this).attr("src","${root }/element/icon_myinfo_hover.png");
+	}, function() {
+	    $(this).attr("src","${root }/element/icon_myinfo.png");
+	});
+	$('.icon_myactivity').hover(function(){
+	    $(this).attr("src","${root }/element/icon_myactivity_hover.png");
+	}, function() {
+	    $(this).attr("src","${root }/element/icon_myactivity.png");
+	});
+	$('.icon_myscrap').hover(function(){
+	    $(this).attr("src","${root }/element/icon_myscrap_hover.png");
+	}, function() {
+	    $(this).attr("src","${root }/element/icon_myscrap.png");
+	});
+});
+
+</script>
+
 </head>
 <body>
 <div class="headerarea">
-	<a style="text-decoration: none;">
-		<img alt="" src="${root }/element/logo@2x.png" class="logo" onclick="location.href='/'" style="cursor: pointer;">
+	<a href="/" style="text-decoration: none;">
+		<img alt="" src="${root }/element/logo@2x.png" class="logo">
 	</a>
-	
-	<c:if test="${sessionScope.loginOK!=null }">
-		<img alt="" src="${root }/element/icon_myinfo.png" class="icon_myinfo" onclick="location.href='/activity/mypage'">
-		<img alt="" src="${root }/element/icon_inbox.png" class="icon_inbox" onclick="location.href='/activity'">
-		<img alt="" src="${root }/element/icon_favorite.png" class="icon_favorite" onclick="location.href='/activity/myscrap'">
-	</c:if>
+	<img alt="" src="${root }/element/icon_myinfo.png" class="icon_myinfo" onclick="location.href='/activity/mypage'">
+	<img alt="" src="${root }/element/icon_myactivity.png" class="icon_myactivity" onclick="location.href='/activity'">
+	<img alt="" src="${root }/element/icon_myscrap.png" class="icon_myscrap" onclick="location.href='/activity/myscrap'">
 	<hr style="margin: 0;">
 </div>
 </body>

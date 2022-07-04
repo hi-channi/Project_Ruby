@@ -16,7 +16,9 @@
 <!-- 슬라이드 -->
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
+<script type="text/javascript">
+$("img.icon_myscrap").attr("src","${root }/element/icon_myscrap_active.png");
+</script>
 <title>나의활동>스크랩</title>
 <style type="text/css">
 span.side_main_span_scrap {
