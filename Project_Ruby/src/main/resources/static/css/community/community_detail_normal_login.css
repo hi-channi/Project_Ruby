@@ -278,7 +278,7 @@ div.addcomment{
   width: 650px;
   height: 100px;
   margin: 0 20px 0 35px;
-  padding: 10px 0 146px 19px;
+  padding: 10px 0px 146px 19px;
   border-radius: 10px;
   border: solid 1px #dbdbdb;
   background-color: #fff;
@@ -461,4 +461,10 @@ div.addcomment{
 }
 #pagecnum{
 	margin-left: 10px;
+}
+.iflogindiv{
+position: absolute;
+}
+.writeicon{
+margin-left: 175px;
 }

@@ -19,8 +19,11 @@ public interface ActivityMapper {
 	
 	//나의거래목록
 	public List<MarketDto> getMarketDatas(String userKey);
+	public List<MarketDto> getMarketSoldDatas(String userKey);
+	public List<MarketDto> getMarketNotSoldDatas(String userKey);
 	
 	//스크랩
 	public List<MarketDto> ScrapMarketDatas(String userKey);
-
+	public List<CommunityDto> ScrapWriteDatas(HashMap<String, Object> map);
+	public int getScrapWriteCount(String userKey);
 }
