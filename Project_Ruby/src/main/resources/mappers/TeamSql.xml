@@ -102,4 +102,24 @@
 	<select id="selectTeamNotice" resultType="teamnotice">
 		select * from TeamNotice
 	</select>
+	
+	<!-- 크루명 검증 -->
+	<select id="checkVaildCrewname" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM Team WHERE name=#{name}
+	</select>
+	
+	<!-- 크루 삭제 -->
+	<delete id="deleteCrew" parameterType="String">
+		delete from Team where member_idx = #{member_idx};
+	</delete>
+	
+	<!-- 크루원 삭제 -->
+	<delete id="deleteCrewMember" parameterType="String">
+		delete from TeamMember where member_idx = #{member_idx};
+	</delete>
+	
+	<!-- 가입 중복 검증 -->
+	<select id="checkVaildInsert" parameterType="String" resultType="int">
+	select count(*) from TeamMember where member_idx=#{member_idx} and accept_status = 'N'
+	</select>
 </mapper>

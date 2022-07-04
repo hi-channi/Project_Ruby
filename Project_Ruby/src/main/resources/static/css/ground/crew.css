@@ -27,7 +27,7 @@ div.main {
 }
 
 .crew_name {
-	width: 87px;
+	width: 100px;
 	height: 35px;
 	margin: 53px 279px 20px 320px;
 	/*폰트 적용*/
@@ -36,9 +36,14 @@ div.main {
 	font-weight: 500;
 	margin: auto;
 	letter-spacing: -0.6px;
-	text-align: left;
+	text-align: center;
 	color: #191919;
 	letter-spacing: -0.6px;
+	padding-left: 15px;
+}
+
+.modal_list{
+	text-align: center;
 }
 
 .crew_pr {
@@ -137,14 +142,15 @@ div.main {
 
 #modal_close_btn {
 	position: relative;
-	top: -215px;
-	left: 75px;
+	top: -1645px;
+	left: 1094px;
 }
 
 .notice_table {
 	position: relative;
 	top: 10px;
 	left: 68px;
+
 }
 
 .mypen {
@@ -589,10 +595,9 @@ font-family: 'Noto Sans KR';
 
 /* Textarea 디자인 */
 textarea {
-	width: 90px;
+	width: 230px;
 	height: 460px;
-	margin: 40px 0 40px;
-	padding: 10px 203px 112px 10px;
+	padding: 10px 20px 0px 10px;
 	border-radius: 10px;
 	border: solid 1px #dbdbdb;
 	background-color: #fff;
@@ -615,5 +620,61 @@ textarea:focus {
 	border: 1px solid #ff4b4e;
 }
 
+.crewdel{
+	float: right;
+	position: relative;
+	left: 450px;
+	margin: 5px;
+	
+	
+}
 
+.crewdel {
+  outline: none;
+  width: 75px;   /* 넓이 수정 가능 */
+  height: 30px; /* 높이 수정 가능 */
+  border: 2px solid #ff4b4e; 
+  border-radius: 20px;
+  color: #ff4b4e;
+  font-family: 'Noto Sans KR';
+  font-weight: 400;   /* 글씨 Bold 수정 가능 */
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+}
+
+.crewdel {
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+.crewdel:hover {
+   background: #ff4b4e;
+  color: #fff;
+}
+.crewdel:before {
+    position: absolute;
+    content: '';
+    display: inline-block;
+    top: -180px;
+    left: 0;
+    width: 30px;
+    height: 100%;
+    background-color: #fff;
+    animation: shiny-btn1 3s ease-in-out infinite;
+}
+
+.crewdel:active{
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+}
+
+.crewbtndel {
+	border: 0px;
+	background-color: white;
+	margin: 3.5px;
+}
 

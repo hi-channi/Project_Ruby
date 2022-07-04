@@ -85,7 +85,7 @@
 
 			</form>
 
-			<button class="makecrew" onclick="location.href='/ground/crewenroll'">
+			<button class="makecrew">
 				<span class="makecrew1">크루 만들기</span>
 			</button>
 
@@ -97,8 +97,21 @@
 			<c:forEach var="a" items="${Searchlist }" varStatus="status">
 				<table class="communitylist">
 					<tr align="center">
-						<td colspan="4" width="50">${list.size() -status.index}</td>
-						<td colspan="4" width="240">${a.name }</td>
+						<td colspan="4" width="50">${list.size() -status.index+1}</td>
+						
+						<c:if test="${a.color != '#191919'}">
+						<td colspan="4" width="240" >
+						<div style="background-color: ${a.color}; border-radius: 25px; width: 100px;  ">${a.name }</div>
+						</td>
+						</c:if>
+						
+						<c:if test="${a.color == '#191919'}">
+						<td colspan="4" width="240" >
+						<div style="background-color: ${a.color}; border-radius: 25px; width: 100px; color:#ffffff;  ">${a.name }</div>
+						</td>
+						</c:if>
+						
+						
 						<td colspan="4" width="110"><img alt=""
 							src="../image/face.png" style="width: 20px">
 							${a.member_count}/50</td>
@@ -222,18 +235,20 @@
 
 	<div class="search">
 	<form action="/team/search">
-		<input type="text" class="text_search" placeholder="검색하실 크루명을 입력하세요"
+		<input type="text" class="text_search" name="SearchText" placeholder="검색하실 크루명을 입력하세요"
 			style="width: 300px; height: 36px; font-family: 'Noto Sans KR';">
+		
+		<button type="submit" class="searchbtn" style="border: 0px; background-color: #ffff;"></button>
 		<span class="icon glyphicon glyphicon-search"></span>
 	</form>
 	</div>
 
 
 
-	<div class="check" style="width: 210px;">
+	<!-- <div class="check" style="width: 210px;">
 		<input type="checkbox" name="check" id="check1" value="crewsearch"
 			style="font-family: 'Noto Sans KR';"> 신청 가능한 크루만 보기
-	</div>
+	</div> -->
 
 
 
@@ -262,9 +277,6 @@
 
 	}
 	
-	
-	
-	
 
 	$('.makecrew').click(function () {
 	     if(${sessionScope.loginOK==null})
@@ -272,7 +284,11 @@
 	          alert("로그인 후 사용이 가능합니다.");
 	        location.href="/login"; //로그인 폼으로 이동
 	    
-	     }
+	     } else if(${sessionScope.loginOK!=null and crewTeam_idx == null}) {
+	    	location.href="/ground/crewenroll";
+	    } else if(${sessionScope.loginOK!=null and crewTeam_idx != null}) {
+	    	alert("이미 가입된 크루가 존재합니다. \n크루를 만들 수 없습니다.");
+	    }
 	});
 	
 	

@@ -3,6 +3,7 @@ package com.ruby.devel.web;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -114,34 +115,29 @@ public class GroundController {
 		
 		String crewTeam_idx = Mmapper.getTeamidxMember(userKey);
 		model.addAttribute("crewTeam_idx", crewTeam_idx);
-		System.out.println(crewTeam_idx);
+		System.out.println("------->"+crewTeam_idx);
 		 
 		//String team_idx = Mmapper.getMemberDatas(userKey).getTeam_idx();
 		 //model.addAttribute("team_idx1", team_idx);
 		 //System.out.println("sysout=========>"+team_idx);
 
+		String userID = (String) session.getAttribute("userID");
+		
 		String age = Mmapper.getMemberAge(userKey);
+		String name = Mmapper.getName(userID);
 	
-		System.out.println("연령대" + age);
+		
 		model.addAttribute("age", age);
+		model.addAttribute("name", name);
+		System.out.println("name+이름" + name);
+		
 
 		List<TeamDto> newlist = Cmapper.getNewCrewDatas();
 		List<TeamDto> pointlist = Cmapper.getCrewPointDatas();
 		model.addAttribute("newlist", newlist);
 		model.addAttribute("pointlist", pointlist);
-	
 		
-		
-		/*
-		 * // 작성자 이름, 닉네임 갖고오기 System.out.println(list); String userKey =
-		 * list.get(0).getMember_idx(); // userKey가 member의 member_idx String memberidx
-		 * = Mmapper.getUserKey(null);
-		 * 
-		 * mview.addObject("memberidx", memberidx);
-		 */
 
-		// System.out.println(newlist);
-		// System.out.println(list);
 		mview.setViewName("/ground/ground_main");
 
 		return mview; // /ground/(파일명)
@@ -179,14 +175,29 @@ public class GroundController {
 	      //각페이지에서 불러올 시작번호
 	      start=(currentPage-1)*perPage;
 	      
+	   
+
+			// 각페이지에서 필요한 게시글 가져오기
+			
+			
+	      
+	      
 	      //데이터 가져오기
-	      HashMap<String, Object> map = new HashMap<>();
-	      map.put("SearchText", SearchText);
-	      map.put("start", start);
-	      map.put("perPage", perPage);
+	      HashMap<String, Object> map2 = new HashMap<>();
+	      map2.put("SearchText", SearchText);
+	      map2.put("start", start);
+	      map2.put("perPage", perPage);
 	      
 	      //각페이지에서 필요한 게시글 가져오기
-	      List<TeamDto> Searchlist=Cmapper.SearchGetList(map);
+	      List<TeamDto> Searchlist=Cmapper.SearchGetList(map2);
+	     
+
+			for(TeamDto c:Searchlist)
+			{
+				int membercount = Cmapper.selectCrewMem(c.getTeam_idx());
+				c.setMember_count(membercount);
+			
+			} 
 	      
 	      //총글이 20개면? 1페이지 20 2페이지 15부터 출력해서 1씩 감소
 	      int no=totalCount-(currentPage-1)*perPage;
@@ -200,7 +211,18 @@ public class GroundController {
 	      mview.addObject("no",no);
 	      mview.addObject("currentPage",currentPage);
 	      
+	      
 	      mview.addObject("totalCount",totalCount);
+	      
+	      String userKey = (String) session.getAttribute("userKey");
+	      String team_idx = Cmapper.selectTeamIdx(userKey);
+	      model.addAttribute("team_idx", team_idx);
+
+	      String crewTeam_idx = Mmapper.getTeamidxMember(userKey);
+	      model.addAttribute("crewTeam_idx", crewTeam_idx);
+
+	      String age = Mmapper.getMemberAge(userKey);
+	      model.addAttribute("age", age);
 	      
 	      List<TeamDto> newlist = Cmapper.getNewCrewDatas();
 			List<TeamDto> pointlist = Cmapper.getCrewPointDatas();
@@ -217,18 +239,48 @@ public class GroundController {
 	
 
 	@PostMapping("/ground/mymm")
-	public String mycrewpr(@ModelAttribute TeamMemberDto cm_dto, HttpSession session, @RequestParam String team_idx) {
+	public String mycrewpr(@ModelAttribute TeamMemberDto cm_dto, HttpSession session, @RequestParam String team_idx,
+			Model model) {
 		String userKey = (String) session.getAttribute("userKey");
 		cm_dto.setMember_idx(userKey);
 		cm_dto.setTeam_idx(team_idx);
-		Cmapper.insertIntoMyCrew(cm_dto);
-		return "/ground/ground_crewApplySuccess";
-
+		int check_apply = Cmapper.checkVaildInsert(userKey);
+		//System.out.println("vvvv"+userKey);
+		if(check_apply != 0 ) {
+			model.addAttribute("member_idx", userKey);
+			return "/ground/ground_crewApplyFail";
+		} else {
+			Cmapper.insertIntoMyCrew(cm_dto);
+			return "/ground/ground_crewApplySuccess";
+		}
 	}
+	
+	
+	@PostMapping("/ground/mymm_r")
+	public String mycrewpr2(@ModelAttribute TeamMemberDto cm_dto, HttpSession session,
+			Model model) {
+		String userKey = (String) session.getAttribute("userKey");
+		cm_dto.setMember_idx(userKey);
+		Cmapper.deleteCrewMember(userKey);
+
+		
+		return "/ground/ground_crewDeleteSuccess";
+		}
 
 	@GetMapping("/ground/crewenroll") // 크루 등록 페이지
 	public String ground_crewenroll() {
 		return "/ground/ground_crewEnrollForm";
+	}
+	
+	/* crewname 검증(중복확인) */
+	@ResponseBody
+	@GetMapping("/ground/crewnamecheck")
+	public Map<String, Integer> crewnameCheckProcess(@RequestParam String name) {
+		Map<String, Integer> map=new HashMap<>();
+		int check=Cmapper.checkVaildCrewname(name);
+		map.put("vaildCrewname", check);
+		
+		return map;
 	}
 
 	@PostMapping("/ground/mycrew") // 나의 크루 페이지
@@ -236,7 +288,7 @@ public class GroundController {
 
 		// 나의 크루니까 내 팀 정보 가지고 옴 (마이크루 페이지에 크루명, 크루 소개 머 이런 거)
 		TeamDto crew_dto = Cmapper.getTeamInfo(team_idx);
-		System.out.println("CrewEnrollDto:  " + crew_dto);
+		System.out.println("1111111" + crew_dto);
 
 		// 팀의 멤버를 나타낼 칸을 뽑아내려고... 글서 cm_dto.size() 뽑으면 인원 수임
 		List<TeamMemberDto> cm_dto = Cmapper.getTeamMember(team_idx);
@@ -259,7 +311,7 @@ public class GroundController {
 
 		}
 
-		System.out.println("m_dto=======>" + m_dto);
+		//System.out.println("m_dto=======>" + m_dto);
 
 	
 		
@@ -271,10 +323,26 @@ public class GroundController {
 		List<TeamNoticeDto> teamnoticelist = Cmapper.selectTeamNotice();
 		model.addAttribute("teamnoticelist", teamnoticelist);
 		
+		
 
 		mview.setViewName("/ground/ground_myCrew");
 
 		return mview;
+	}
+	
+	@GetMapping("/ground/crewdel")
+	public String crewdel(@RequestParam String member_idx) {
+		Cmapper.deleteCrew(member_idx);
+		Mmapper.updateCrewdelMemberidx(member_idx);
+	
+		return "redirect:/ground";
+	
+	}
+	
+	@GetMapping("/ground/crewmemberdel")
+	public void crewmemberdel(@RequestParam String member_idx) {
+		Cmapper.deleteCrewMember(member_idx);
+		Mmapper.updateCrewdelMemberidx(member_idx);
 	}
 
 	@PostMapping("/ground/crewinsert") // 크루 등록
@@ -290,7 +358,7 @@ public class GroundController {
 		map.put("team_idx", crew_dto.getTeam_idx());
 		map.put("member_idx", userKey);
 
-		Cmapper.updateTeamIdx(map);
+		Cmapper.updateTeamIdx(map); //팀장 team_idx member 테이블에 update
 
 		// System.out.println("dto 등록123: "+dto.getMember_idx());
 		cm_dto.setMember_idx(crew_dto.getMember_idx());

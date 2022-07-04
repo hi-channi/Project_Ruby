@@ -76,10 +76,15 @@
 	</select>
    
 	<select id="getMemberAge" parameterType="String" resultType="String">
-		select age from Member where member_idx=#{member_idx}
+		select age, name from Member where member_idx=#{member_idx}
 	</select>
 	
 	<select id="getTeamidxMember" parameterType="String" resultType="String">
 	select team_idx from Member where member_idx=#{member_idx}
 	</select>
+	
+	<!-- team_idx null로 업데이트 -->
+	<update id="updateCrewdelMemberidx" parameterType="String">
+	update Member set team_idx = null where member_idx = #{member_idx};
+	</update>
 </mapper>

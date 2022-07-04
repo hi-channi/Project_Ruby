@@ -85,7 +85,7 @@
 
 			</form>
 
-			<button class="makecrew" onclick="location.href='/ground/crewenroll'">
+			<button class="makecrew">
 				<span class="makecrew1">크루 만들기</span>
 			</button>
 
@@ -98,7 +98,20 @@
 				<table class="communitylist">
 					<tr align="center">
 						<td colspan="4" width="50">${list.size() -status.index}</td>
-						<td colspan="4" width="240">${a.name }</td>
+						
+						<c:if test="${a.color != '#191919'}">
+						<td colspan="4" width="240" >
+						<div style="background-color: ${a.color}; border-radius: 25px; width: 100px;  ">${a.name }</div>
+						</td>
+						</c:if>
+						
+						<c:if test="${a.color == '#191919'}">
+						<td colspan="4" width="240" >
+						<div style="background-color: ${a.color}; border-radius: 25px; width: 100px; color:#ffffff;  ">${a.name }</div>
+						</td>
+						</c:if>
+						
+						
 						<td colspan="4" width="110"><img alt=""
 							src="../image/face.png" style="width: 20px">
 							${a.member_count}/50</td>
@@ -107,10 +120,13 @@
 								value="${a.score }" pattern="#,###" /></td>
 						<td colspan="4" width="200"><fmt:formatDate
 								value="${a.create_day }" pattern="yyyy-MM-dd" /></td>
-						<td width="120"><c:if test="${team_idx == null }">
-								<button type="button" class="modal_opne_btn2"
-									onclick="transferTId(${a.team_idx})"}>신청하기</button>
-							</c:if></td>
+						<td width="120">
+						<c:if test="${team_idx ==null}">
+						<button type="button" class="modal_opne_btn2"
+									onclick="transferTId(${a.team_idx})">신청하기</button>
+									</c:if>
+								
+							</td>
 					<tr>
 				</table>
 			</c:forEach>
@@ -162,8 +178,7 @@
 				<form action="/ground/test123" method="post">
 
 					<div class="crewname_"></div>
-					<span class="inwon"><img alt="" src="../image/face.png"
-						style="width: 19px;">15/50</span>
+				
 					<div class="crewprone" style="border: 0px solid black;"></div>
 				</form>
 				<div class="mypricrew" style="height: 395px;">
@@ -175,7 +190,7 @@
 								<td class="subject1">이름</td>
 								<!-- 게시글 제목 출력 -->
 								<td></td>
-								<td class="likecount1">${sessionScope.userName }</td>
+								<td class="likecount1">${name }</td>
 							</tr>
 
 							<tr>
@@ -192,7 +207,7 @@
 				<div class="wrapper">
 					<form action="/ground/mymm" method="post">
 
-						<input type="text" name="team_idx" id="t_idx"> <input
+						<input type="hidden" name="team_idx" id="t_idx"> <input
 							type="text" class="input" name="mypr" placeholder="자기소개 한 줄"
 							required="required" style="width: 360px;"> <span
 							class="underline"></span>
@@ -264,18 +279,6 @@
 
 	}
 	
-	
-/* 	$(document).ready(function(){
-		$("#check1").change(function(){
-			if($("#check1").is(":checked")){
-		            //alert("체크박스 체크했음!");
-		           
-		        }else{
-		            alert("체크박스 체크 해제!");
-		        }
-		    });
-		}); */
-	
 
 	$('.makecrew').click(function () {
 	     if(${sessionScope.loginOK==null})
@@ -283,7 +286,11 @@
 	          alert("로그인 후 사용이 가능합니다.");
 	        location.href="/login"; //로그인 폼으로 이동
 	    
-	     }
+	     } else if(${sessionScope.loginOK!=null and crewTeam_idx == null}) {
+	    	location.href="/ground/crewenroll";
+	    } else if(${sessionScope.loginOK!=null and crewTeam_idx != null}) {
+	    	alert("이미 가입된 크루가 존재합니다. \n크루를 만들 수 없습니다.");
+	    }
 	});
 	
 	
