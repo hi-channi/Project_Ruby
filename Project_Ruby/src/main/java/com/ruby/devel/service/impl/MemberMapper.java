@@ -45,5 +45,9 @@ public interface MemberMapper {
 	public String getTeamidxMember(String member_idx);
 	
 	public void updateCrewdelMemberidx(String member_idx);
+	
+	public String getMemberTeamName(String member_idx);
+	
+	public String getMemberTeamColor(String member_idx);
   
 }

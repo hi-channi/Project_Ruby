@@ -8,10 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
 import com.ruby.devel.model.TeamDto;
 import com.ruby.devel.model.TeamMemberDto;
 import com.ruby.devel.model.TeamNoticeDto;
-import com.ruby.devel.model.MemberDto;
-
-
-
 
 @Mapper
 public interface TeamMapper {

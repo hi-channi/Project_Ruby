@@ -251,6 +251,6 @@
   
   <!-- 메인 리소스 -->
   <select id="getMarketListAtHome" resultType="mp_dto">
-	select * from Marketplace order by upload_day asc
+	select * from Marketplace order by upload_day <!-- desc -->
   </select>
 </mapper>

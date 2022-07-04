@@ -1,6 +1,5 @@
 package com.ruby.devel.web;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +44,11 @@ public class HomeController {
 		{
 			String nickName = Mmapper.getNickname(c.getMember_idx());
 			c.setWriter(nickName);
-		}
+			String teamName = Mmapper.getMemberTeamName(c.getMember_idx());
+			c.setTeam_name(teamName);
+			String teamColor = Mmapper.getMemberTeamColor(c.getMember_idx());
+			c.setTeam_color(teamColor);
+		} 
 		
 	    String nickName=Mmapper.getNickname(null);
 		

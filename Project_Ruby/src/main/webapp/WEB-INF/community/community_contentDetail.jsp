@@ -25,8 +25,16 @@ button.btndel{
 	float:right;
 	font-size: 13pt;
 }
-
 </style>
+
+<script type="text/javascript">
+/* container의 내용의 높이에 따라 div.container 높이 자동 조절 */
+$(document).ready(function() {
+	var childHeight = $("div.commentdiv2").height()+800;
+	   //alert(childHeight);      // (영역 높이+100) 값 출력
+	    $('div.main').css({'height':childHeight+'px'});
+});
+</script>
 
 <script type="text/javascript">
 /* 뒤로가기(history.back()) 감지 시 메인 페이지 이동 */
@@ -38,19 +46,17 @@ window.onpageshow = function(event) {
 }
 
 $(function(){
-	
+	c_type=$("#content_type").val(); 
 	community_idx=$("#c_idx").val();
 	c_currentPage="${sessionScope.c_currentPage}";
   	loginOK="${sessionScope.loginOK}";
   	userKey="${sessionScope.userKey}"; 
-	list();
-  	
-	/* //상세페이지 이미지 클릭시 확대 
-	var img = document.getElementsByTagName("img");
-    for (var x = 0; x < img.length; x++) {
-      img.item(x).onclick=function() {window.open(this.src)}; 
-    }	 */
-	
+	if(c_type==0){
+		list();
+	} else {
+		list_q();
+	}
+  		
 	/* 댓글 ajax */	
 	$("#btncommentadd").click(function() {
 		var content=$("#content").val();
@@ -58,7 +64,6 @@ $(function(){
 			alert("내용을 입력해주세요.");
 			return;
 		}
-		
 		$.ajax({
 			type: "post",
 			dataType: "text",
@@ -67,7 +72,6 @@ $(function(){
 			success:function(data){
 				$("#content").val("");
 				location.href="contentdetail?community_idx="+community_idx+"&c_currentPage=1";
-				
 			},
 			error : function(request, error) {
 				alert("fail!");
@@ -79,9 +83,7 @@ $(function(){
 	/* 추천수 증가 */
 	
 	$("#btnthumb").click(function() {
-		
 		var idx=$("#c_idx").val();
-		
 		var b=confirm("게시글을 추천하시겠습니까?");
 		
 		if(b){
@@ -94,19 +96,14 @@ $(function(){
 		
 			alert("추천 됐습니다.");
 			$("span.likes").html(data);
-			},
-			error : function(request, error) {
-				alert("fail!");
-				alert("code:" + request.status + "\n"+ "error message:" + request.responseText+ "\n" + "error:" + error);
-			}
-			
+			}			
 		});
 		}
 	});
 	
 	/* scrap 이벤트 */      
 	   <%--커뮤니티 상세페이지 scrap 이벤트--%>
-	   if(${userKey!=null}) {
+	if(${userKey!=null}) {
 	   $('.chscrap').on("change", function(){
 	      if($(this).is(':checked'))
 	      {                        
@@ -125,13 +122,10 @@ $(function(){
 	            	
 	            }
 	         });
-	         
-	         //하트 바뀜
+	         //스크랩
 	         $(this).siblings('.scrap').attr('src','${root }/element/icon_scrap_red.png');
-	         alert("해당 게시글이 채택되었습니다.");
-	      }
-	      else
-	      {
+	         alert("해당 게시글이 스크랩 되었습니다.");
+	      } else {
 	         let community_idx = ${c_dto.community_idx };
 	         let scrap_count = 0;
 	         
@@ -147,23 +141,17 @@ $(function(){
 	               alert("성공");
 	            }
 	         });
-	         
 	         //하트 바뀜
 	         $(this).siblings(".scrap").attr("src","${root }/element/icon_scrap.png");
-	         alert("채택이 해제되었습니다.");
+	         alert("스크랩이 해제되었습니다.");
 	      }
 	   });
 	   }
-	
-	
 });
 
 /* 댓글 삭제 */
 $(document).on("click","span.adel",function(){
-		
 		var idx=$(this).attr("idx");
-		/* alert(idx); */
-		
 		var a=confirm("해당 댓글을 삭제하시겠습니까?");
 		
 		if(a){
@@ -173,119 +161,30 @@ $(document).on("click","span.adel",function(){
 				url:"deletecomment",
 				data:{"community_comment_idx":idx},
 				success:function(data){
-					list();
-				alert("삭제 됐습니다.");
+					alert("삭제 됐습니다.");
+					if(c_type==0){
+						list();
+					} else {
+						list_q();
+					}
 				}
 			});
 		}	
 	});
-		
 
-/* 일반글 댓글 리스트 출력 */
-/* function list() {
-	var c_type=$("#content_type").val(); 
-	if(c_type==0){
-		$.ajax({
-				type:"get",
-				dataType:"json",
-				url:"commentlist",
-				data:{"community_idx":community_idx},
-				success:function(data){
-					$("span.textsms").text(data.length); //댓글 개수
-					
-					var s="";
-					$.each(data,function(i,cm_dto){
-						
-						s+="<div>";
-						s+="<img alt='' src='${root }/element/icon_profile.png'>";
-						s+="<span class='commentuser'>"+cm_dto.member_idx+"</span>";
-						s+="<input type='text' class='commentwritetext' value='"+cm_dto.content+"' readonly='readonly'>";
-						s+="<br>";
-						s+="<span class='commentwriteday'>"+cm_dto.write_day+"</span>";
-						
-						
-						if(loginOK=="yes" && userKey==cm_dto.member_idx){
-							s+="<span class='glyphicon glyphicon-pencil amod' id='amod' idx='"+cm_dto.community_comment_idx+"'></span>";
-							s+="&nbsp;";
-							s+="<span class='glyphicon glyphicon-trash adel' id='adel' idx='"+cm_dto.community_comment_idx+"'></span>";
-						}
-						
-						s+="</div>";
-					}); */
-
-/* 댓글 리스트 출력 */
-function list_all() {
-	/* $.ajax({
-			type:"get",
-			dataType:"json",
-			url:"commentlist",
-			data:{"community_idx":community_idx},
-			success:function(data){
-				$("span.textsms").text(data.length); //댓글 개수
-				
-				var s="";
-				$.each(data,function(i,cm_dto){
-
-					
-					$("div.commentdiv").html(s);
-				}
-			});  
-		} else {
-			$.ajax({
-				type:"get",
-				dataType:"json",
-				url:"commentlist",
-				data:{"community_idx":community_idx},
-				success:function(data){
-					$("span.textsms").text(data.length); //댓글 개수
-					
-					var s="";
-					$.each(data,function(i,cm_dto){
-						
-						s+="<div>";
-						s+="<img alt='' src='${root }/element/icon_profile.png'>";
-						s+="<span class='commentuser'>"+cm_dto.member_idx+"</span>";
-						s+="<textarea class='cocomment' readonly='readonly' style='resize:none;'>"+cm_dto.content+"</textarea>";
-						s+="<br>";
-						s+="<span class='commentwriteday'>"+cm_dto.write_day+"</span>";
-					 	s+="<c:if test='${c_dto.content_type==1 }'>";
-						s+="<img src='${root }/element/button_selection.png' class='selectionbtn' onclick='answerchoose("+cm_dto.community_comment_idx+")'>";
-					 	s+="</c:if>"; 
-						if(loginOK=="yes" && userKey==cm_dto.member_idx){
-							s+="<span class='glyphicon glyphicon-pencil amod' id='amod' idx='"+cm_dto.community_comment_idx+"'></span>";
-							s+="&nbsp;";
-							s+="<span class='glyphicon glyphicon-trash adel' id='adel' idx='"+cm_dto.community_comment_idx+"'></span>";
-						}
-						
-						s+="</div>";
-
-					});
-					
-					$("div.commentdiv2").html(s);
-				
-					s+="</div>";
-				});
-				
-				$("div.commentdiv").html(s);
-			}
-		});  */
-}
-
+/* 일반 댓글 페이징 처리 */
 function list() {
 	 $.ajax({
 			type:"get",
 			dataType:"json",
 			url:"contentdetailcomment",
-			data:{"community_idx":community_idx,"c_currentPage":c_currentPage},
+			data:{"community_idx":community_idx,"c_currentPage":c_currentPage,"content_type":c_type},
 			success:function(data){
 				var count=data;
 				var data_length=JSON.stringify(data);
 				var s="";
 				
-				//alert(data_length);
-				
-				$.each(data.commentlist,function(i,cm_dto){
-					
+				$.each(data.commentlist,function(i,cm_dto){	
 					s+="<div class='commentarea'>";
 					s+="<img alt='' src='${root }/element/icon_profile.png' class='userimg'>";
 					s+="<span class='commentuser'>"+cm_dto.comment_writer+"</span>";
@@ -293,57 +192,39 @@ function list() {
 					s+="<br>";
 					s+="<span class='commentwriteday'>"+cm_dto.write_day+"</span>";
 					s+="</div>";
-			
 					
 					if(loginOK=="yes" && userKey==data.commentlist[i].member_idx){
-						//s+="<span class='glyphicon glyphicon-pencil amod' id='amod' idx='"+data.commentlist[i].community_comment_idx+"'></span>";
-						//s+="&nbsp;";
 						s+="<div class='trashdiv'>";
 						s+="<span class='glyphicon glyphicon-trash adel' id='adel' idx='"+data.commentlist[i].community_comment_idx+"'></span>";
 						s+="</div>";
-					}
-					else{
+					} else {
 						s+="<div class='trashdiv'>";
 						s+="<span class='adel' id='adel'><br></span>"
 						s+="</div>";
-					}
-						
+					}	
 				});
-				
-				
 				$("div.commentdiv").html(s);
-				//alert(eval(data.totalCount));
-				
+			
 			     var p="";
 				 p+="<div class='pagesort'>";
 				 		 
 				 if(eval(data.totalCount>0)) {
-		
 				    p+="<div class='page' align='center' style='margin-top: 50px; border: 0px solid black;'>"; 
-
 				    	 if(eval(data.startPage>1)) {
 				    		//console.log("test:::")
 				    		p+="<a id='pagelbtn' href='contentdetail?community_idx=92&c_currentPage="+eval(data.startPage-1)+"'>";
 				    		p+="<img id='pagebtn' src='${root }/activity/icon_activity_move2.png'></a>";
 				    	} 
 				    	
-				    	
 					    for(var pp=eval(data.startPage);pp<=eval(data.endPage); pp++) {
-					    	console.log(data)
-					    	console.log(pp)
 					    	if(eval(data.c_currentPage)==pp) {
-			
 					    		p+="<a id='pagecnum' href='contentdetail?community_idx="+data.commentlist[0].community_idx+"&c_currentPage="+pp+"'><b>"+pp+"</b></a>";
 					    	}
 					    	if(eval(data.c_currentPage)!=pp) {
-					  
 					    		p+="<a id='pagenum' href='contentdetail?community_idx="+data.commentlist[0].community_idx+"&c_currentPage="+pp+"'>"+pp+"</a>";
 					    	}
 					    }
-				    	if(eval(data.endPage<data.totalPage)) {
-				    		//console.log(data.endPage)
-				    		//console.log(data.totalPage)				    		
-				    		    		
+				    	if(eval(data.endPage<data.totalPage)) {  		
 					   		p+="<a id='pagerbtn' href='contentdetail?community_idx="+data.commentlist[0].community_idx+"&c_currentPage="+eval(data.endPage+1)+"'>";
 					    	p+="<img id='pagebtn' src='${root }/activity/icon_activity_move1.png'></a>";
 				    	}
@@ -351,11 +232,74 @@ function list() {
 				   }
 				    //alert(p);
 				$("div.pagesort1").html(p);
-			
 			}
 		});  
 }
+/* qna 댓글 페이징 처리 */
+function list_q() {
+	$.ajax({
+		type:"get",
+		dataType:"json",
+		url:"contentdetailcomment",
+		data:{"community_idx":community_idx,"c_currentPage":c_currentPage,"content_type":c_type},
+		success:function(data){
+			var count=data;
+			var data_length=JSON.stringify(data);
+			var s="";
 
+			$.each(data.commentlist,function(i,cm_dto){
+                  s+="<div>";
+                  s+="<img alt='' src='${root }/element/icon_profile.png'>";
+                  s+="<span class='commentuser'>"+cm_dto.comment_writer+"</span>";
+                  s+="<textarea class='cocomment' readonly='readonly' style='resize:none;'>"+cm_dto.content+"</textarea>";
+                  s+="<br>";
+                  s+="<span class='commentwriteday'>"+cm_dto.write_day+"</span>";
+                   s+="<c:if test='${c_dto.content_type==1 }'>";
+                  s+="<img src='${root }/element/button_selection.png' class='selectionbtn' onclick='answerchoose("+data.commentlist[i].community_comment_idx+")'>";
+                   s+="</c:if>"; 
+                  if(loginOK=="yes" && userKey==data.commentlist[i].member_idx){		          
+                	s+="<div class='trashdiv'>";
+					s+="<span class='glyphicon glyphicon-trash adel' id='adel' idx='"+data.commentlist[i].community_comment_idx+"'></span>";
+					s+="</div>";
+                  } else {
+						s+="<div class='trashdiv'>";
+						s+="<span class='adel' id='adel'><br></span>"
+						s+="</div>";
+				}
+			});
+			$("div.commentdiv2").html(s);
+
+		     var p="";
+			 p+="<div class='pagesort'>";
+			 		 
+			 if(eval(data.totalCount>0)) {
+			    p+="<div class='page' align='center' style='margin-top: 50px; border: 0px solid red;'>"; 
+
+			    	 if(eval(data.startPage>1)) {
+			    		p+="<a id='pagelbtn' href='contentdetail?community_idx=92&c_currentPage="+eval(data.startPage-1)+"'>";
+			    		p+="<img id='pagebtn' src='${root }/activity/icon_activity_move2.png'></a>";
+			    	} 
+			    	 
+				    for(var pp=eval(data.startPage);pp<=eval(data.endPage); pp++) {
+				    	console.log(data)
+				    	console.log(pp)
+				    	if(eval(data.c_currentPage)==pp) {
+				    		p+="<a id='pagecnum' href='contentdetail?community_idx="+data.commentlist[0].community_idx+"&c_currentPage="+pp+"'><b>"+pp+"</b></a>";
+				    	}
+				    	if(eval(data.c_currentPage)!=pp) {
+				    		p+="<a id='pagenum' href='contentdetail?community_idx="+data.commentlist[0].community_idx+"&c_currentPage="+pp+"'>"+pp+"</a>";
+				    	}
+				    }
+			    	if(eval(data.endPage<data.totalPage)) {
+				   		p+="<a id='pagerbtn' href='contentdetail?community_idx="+data.commentlist[0].community_idx+"&c_currentPage="+eval(data.endPage+1)+"'>";
+				    	p+="<img id='pagebtn' src='${root }/activity/icon_activity_move1.png'></a>";
+			    	}
+				    	p+="</div></div>";  
+			   }
+			$("div.pagesort1").html(p);
+		}
+	}); 
+}
 
 /* 게시글 삭제시 컨펌창 */
 function delcontent() {
@@ -394,32 +338,32 @@ function writecomment() {
 		}
 	}
 	
-	function doImgPop(img){
-		 img1= new Image();
-		 img1.src=(img);
+	/* 이미지 클릭시 원본 size 팝업  */
+	function ImgPop(img){
+		 contentimg= new Image();
+		 contentimg.src=(img);
 		 imgControll(img);
-		}
+	}
 		 
-		function imgControll(img){
-		 if((img1.width!=0)&&(img1.height!=0)){
+	function imgControll(img){
+		if((contentimg.width!=0)&&(contentimg.height!=0)){
 		    viewImage(img);
-		  }
-		  else{
+		  } else{
 		     controller="imgControll('"+img+"')";
 		     intervalID=setTimeout(controller,20);
 		  }
 		}
 
-		function viewImage(img){
-		 W=img1.width;
-		 H=img1.height;
-		 O="width="+W+",height="+H+",scrollbars=yes";
-		 imgWin=window.open("","",O);
-		 imgWin.document.write("<html><head><title>:*:*:*: 이미지상세보기 :*:*:*:*:*:*:</title></head>");
-		 imgWin.document.write("<body topmargin=0 leftmargin=0>");
-		 imgWin.document.write("<img src="+img+" onclick='self.close()' style='cursor:pointer;' title ='클릭하시면 창이 닫힙니다.'>");
-		 imgWin.document.close();
-		}
+	function viewImage(img){
+		W=contentimg.width;
+		H=contentimg.height;
+		O="width="+W+",height="+H+",scrollbars=yes";
+		imgWin=window.open("","",O);
+		imgWin.document.write("<html><head><title>--이미지상세보기--</title></head>");
+		imgWin.document.write("<body topmargin=0 leftmargin=0>");
+		imgWin.document.write("<img src="+img+" onclick='self.close()' style='cursor:pointer;' title ='클릭하시면 창이 닫힙니다.'>");
+		imgWin.document.close();
+	}
 	
 </script>
 </head>
@@ -465,27 +409,27 @@ function writecomment() {
 	</div>
 	
 
-	<div class="content" style="border: solid 0px #dbdbdb; border-top: solid 2px black; border-bottom: solid 2px black;">
-	<div class="contentfirstdiv" style="border: 0px solid black;">
-			<!--게시글 삭제,수정 버튼 -->
-			<label class="lab" id="lab">
-				<c:forEach var="b" items="${scraplist}">
-					<c:if test="${(c_dto.community_idx==b.community_idx)&&(userKey==b.member_idx)&&(b.scrap_count==1)}">
-					    <input type="checkbox" id="chk" class="chscrap" checked="checked">
-					       <img alt="" src="${root }/element/icon_scrap_red.png" class="scrap" style="position: absolute; margin-left: 0px;">
-					</c:if>
-				 </c:forEach>
-				 <input type="checkbox" id="chk" class="chscrap">
-					<img alt="" src="${root }/element/icon_scrap.png" class="scrap">
-			</label>
-			
-			<c:if test="${sessionScope.loginOK!=null and sessionScope.userKey==c_dto.member_idx}">
-				<div class="iflogindiv" style="text-align: right; margin-top: 5px;">
+	<div class="content" style="border-top: solid 2px black; border-bottom: solid 2px black;">
+	<div class="contentfirstdiv" >
+			<!--게시글 삭제,수정 버튼 -->	
+				<div class="iflogindiv" style="margin-top: 5px;">
+					<label class="lab" id="lab">
+						<c:forEach var="b" items="${scraplist}">
+							<c:if test="${(c_dto.community_idx==b.community_idx)&&(userKey==b.member_idx)&&(b.scrap_count==1)}">
+							    <input type="checkbox" id="chk" class="chscrap" checked="checked">
+							    <img alt="" src="${root }/element/icon_scrap_red.png" class="scrap">
+							</c:if>
+						 </c:forEach>
+						 	<input type="checkbox" id="chk" class="chscrap">
+							<img alt="" src="${root }/element/icon_scrap.png" class="scrap" style="width: 34px; height: 34px; position: absolute; top: -10px; left: 30px;">
+					</label>
 					<!-- scrap버튼 -->
-					<button type="button" class="btndel glyphicon glyphicon-remove" onclick="delcontent()" title="삭제"></button>
-					<button type="button" class="btnmod glyphicon glyphicon-pencil" onclick="location.href='update_content?community_idx=${c_dto.community_idx}&currentPage=${currentPage}'" title="수정"></button>
+					<c:if test="${sessionScope.loginOK!=null and sessionScope.userKey==c_dto.member_idx}">
+						<button type="button" class="btndel glyphicon glyphicon-remove" onclick="delcontent()" title="삭제"></button>
+						<button type="button" class="btnmod glyphicon glyphicon-pencil" onclick="location.href='update_content?community_idx=${c_dto.community_idx}&currentPage=${currentPage}'" title="수정" style="float: right;"></button>
+					</c:if>	
 				</div>
-			</c:if>	
+			
 		
 		<%--작성자 및 프로필 사진 받아오기 --%>
 		<div class="contentname">
@@ -509,7 +453,7 @@ function writecomment() {
 		<c:if test="${c_dto.photo!='no'}">
 			<div class="contentphoto">
 				<c:forTokens var="p" items="${c_dto.photo}" delims="," >
-					<img src="${root }/communityimage/${p}" id="photo" class="photo" style="max-width: 150px; max-height: 150px; cursor: pointer;" onclick="doImgPop('${root }/communityimage/${p}')">			
+					<img src="${root }/communityimage/${p}" id="photo" class="photo" style="max-width: 150px; max-height: 150px; cursor: pointer;" onclick="ImgPop('${root }/communityimage/${p}')">			
 				</c:forTokens>
 				${p.photo }
 			</div>
@@ -567,16 +511,19 @@ function writecomment() {
 		<div class="commentdiv" style="border: solid 1px #dbdbdb;">
 				
 		</div>
-	</c:if>
-	<div class="pagesort1">
+		<div class="pagesort1">
 	
-	</div>
+		</div>
+	</c:if>
 	
 	<!-- 질문글 출력 div -->
 	<c:if test="${c_dto.content_type==1 || c_dto.content_type==2  }">
 		<div class="commentdiv2" style="border: solid 1px #dbdbdb;">
 			
 		</div>
+		<div class="pagesort1">
+	
+	</div>
  	</c:if>
  </div>
       

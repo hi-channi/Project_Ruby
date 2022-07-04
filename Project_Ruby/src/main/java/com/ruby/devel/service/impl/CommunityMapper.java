@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.ruby.devel.model.CommunityDto;
 import com.ruby.devel.model.CommunityScrapDto;
-import com.ruby.devel.model.MemberDto;
 
 @Mapper
 public interface CommunityMapper {

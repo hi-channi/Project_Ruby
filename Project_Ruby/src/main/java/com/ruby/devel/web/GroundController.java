@@ -92,8 +92,6 @@ public class GroundController {
 		// 출력에 필요한 변수들을 request 에 저장
 		mview.addObject("list", list);
 		mview.addObject("startPage", startPage);
-		// System.out.println(startPage);
-		// System.out.println(endPage);
 		mview.addObject("endPage", endPage);
 		mview.addObject("totalPage", totalPage);
 		mview.addObject("totalCount", totalCount);
@@ -115,11 +113,6 @@ public class GroundController {
 		
 		String crewTeam_idx = Mmapper.getTeamidxMember(userKey);
 		model.addAttribute("crewTeam_idx", crewTeam_idx);
-		System.out.println("------->"+crewTeam_idx);
-		 
-		//String team_idx = Mmapper.getMemberDatas(userKey).getTeam_idx();
-		 //model.addAttribute("team_idx1", team_idx);
-		 //System.out.println("sysout=========>"+team_idx);
 
 		String userID = (String) session.getAttribute("userID");
 		
@@ -245,7 +238,6 @@ public class GroundController {
 		cm_dto.setMember_idx(userKey);
 		cm_dto.setTeam_idx(team_idx);
 		int check_apply = Cmapper.checkVaildInsert(userKey);
-		//System.out.println("vvvv"+userKey);
 		if(check_apply != 0 ) {
 			model.addAttribute("member_idx", userKey);
 			return "/ground/ground_crewApplyFail";
@@ -288,11 +280,9 @@ public class GroundController {
 
 		// 나의 크루니까 내 팀 정보 가지고 옴 (마이크루 페이지에 크루명, 크루 소개 머 이런 거)
 		TeamDto crew_dto = Cmapper.getTeamInfo(team_idx);
-		System.out.println("1111111" + crew_dto);
 
 		// 팀의 멤버를 나타낼 칸을 뽑아내려고... 글서 cm_dto.size() 뽑으면 인원 수임
 		List<TeamMemberDto> cm_dto = Cmapper.getTeamMember(team_idx);
-		System.out.println("cm_dto:   " + cm_dto);
 
 		List<String> m_idx = new ArrayList<>(); // 여기는 member_idx들만 있음
 		for (int i = 0; i < cm_dto.size(); i++) {
@@ -301,8 +291,6 @@ public class GroundController {
 			String member_idx = cm_dto.get(i).getMember_idx();
 			m_idx.add(new String(member_idx)); // 빈 리스트에 넣는 이유는 여러 개 가져와야 해서
 		}
-
-		//System.out.println("...."+m_idx);
 		
 		List<MemberDto> m_dto = new ArrayList<>(); // m_dto라는 리스트에는 member_idx를 넣어서 가지고 온 member 테이블의 정보가 담김
 		for (int j = 0; j < m_idx.size(); j++) // 위에서 member_idx를 찾아서 빈 리스트에 넣어줬으니 그 빈 리스트를 가지고 와서
@@ -310,10 +298,6 @@ public class GroundController {
 			m_dto.add(Mmapper.getMemberDatas(m_idx.get(j))); // cm_dto 사이즈랑 m_idx 사이즈는 같음
 
 		}
-
-		//System.out.println("m_dto=======>" + m_dto);
-
-	
 		
 		ModelAndView mview = new ModelAndView();
 		mview.addObject("crew_dto", crew_dto);
@@ -386,12 +370,8 @@ public class GroundController {
 	public TeamDto updateform(@RequestParam String team_idx) {
 		ModelAndView model = new ModelAndView();
 
-		// System.out.println(team_idx);
-
 		TeamDto crew_dto = Cmapper.getData(team_idx);
 		model.addObject("dto", crew_dto);
-
-		//System.out.println("dto....." + dto);
 
 		model.setViewName("/ground/ground_main");
 
@@ -432,7 +412,6 @@ public class GroundController {
 
 		// 크루 신청현황 불러오기
 		List<TeamMemberDto> cm_list = Cmapper.crewApplyList(team_idx);
-		// System.out.println("cm_list=======>"+cm_list);
 
 		List<MemberDto> m_dto_n = new ArrayList<>();
 		for (int i = 0; i < cm_list.size(); i++) {

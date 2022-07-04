@@ -273,7 +273,7 @@
 						<td rowspan="2" width="200" style="padding-bottom: 7px;">
 							<div class="personphoto" style="width: 126px;"> <img src="${root }/element/icon_person1.png"> </div>
 							<div class="writer" style="margin: 7px 0 0 80px;">${c.writer }</div>
-							<div class="crew"> </div>   <!-- 크루 네임 및 색상 로고 -->
+							<div class="crew"> ${c.team_name } ${c.team_color }</div>   <!-- 크루 네임 및 색상 로고 -->
 						</td>
 					</tr>
 					

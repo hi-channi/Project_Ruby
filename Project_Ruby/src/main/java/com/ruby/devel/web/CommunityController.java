@@ -4,12 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,12 +17,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.ModelAndViewDefiningException;
 
 import com.ruby.devel.model.CommunityCommentDto;
 import com.ruby.devel.model.CommunityDto;
 import com.ruby.devel.model.CommunityScrapDto;
-import com.ruby.devel.model.MarketLikeDto;
 import com.ruby.devel.service.impl.CommunityCommentMapper;
 import com.ruby.devel.service.impl.CommunityMapper;
 import com.ruby.devel.service.impl.MemberMapper;
@@ -90,9 +85,12 @@ public class CommunityController {
 			{
 				String nickName = Mmapper.getNickname(c.getMember_idx());
 				c.setWriter(nickName);
+				String teamName = Mmapper.getMemberTeamName(c.getMember_idx());
+				c.setTeam_name(teamName);
+				String teamColor = Mmapper.getMemberTeamColor(c.getMember_idx());
+				c.setTeam_color(teamColor);
 				
 				c.setMcount(CMmapper.getAllComments(c.getCommunity_idx()).size());
-
 			} 
 	      // 각 글앞에 붙일 시작번호 구하기
 	      // 총글이 20개면? 1페이지 20 2페이지 15부터 출력해서 1씩 감소
@@ -110,8 +108,6 @@ public class CommunityController {
 	      
 	      
 	      //작성자 이름, 닉네임 갖고오기
-		/* System.out.println(list); */
-	      String userKey=list.get(0).getMember_idx();
 	      String nickName=Mmapper.getNickname(null);
 		
 	    mview.addObject("nickName", nickName); 
@@ -178,13 +174,16 @@ public class CommunityController {
 	      List<CommunityDto> list = Cmapper.getList_normal(map);
 		
 	    //list에 각글에 대하 작성자 추가하기..board db에 작성자 안넣으므로
-			for(CommunityDto c:list)
+	      for(CommunityDto c:list)
 			{
 				String nickName = Mmapper.getNickname(c.getMember_idx());
 				c.setWriter(nickName);
+				String teamName = Mmapper.getMemberTeamName(c.getMember_idx());
+				c.setTeam_name(teamName);
+				String teamColor = Mmapper.getMemberTeamColor(c.getMember_idx());
+				c.setTeam_color(teamColor);
 				
 				c.setMcount(CMmapper.getAllComments(c.getCommunity_idx()).size());
-
 			} 
 	      
 	      // 각 글앞에 붙일 시작번호 구하기
@@ -203,7 +202,6 @@ public class CommunityController {
 	      
 	      
 	      //작성자 이름, 닉네임 갖고오기
-	      String userKey=list.get(0).getMember_idx();
 	      String nickName=Mmapper.getNickname(null);
 		
 	    mview.addObject("nickName", nickName); 
@@ -270,15 +268,17 @@ public class CommunityController {
 	      List<CommunityDto> list = Cmapper.getList_qna(map);
 		
 	    //list에 각글에 대하 작성자 추가하기..board db에 작성자 안넣으므로
-			for(CommunityDto c:list)
+	      for(CommunityDto c:list)
 			{
 				String nickName = Mmapper.getNickname(c.getMember_idx());
 				c.setWriter(nickName);
+				String teamName = Mmapper.getMemberTeamName(c.getMember_idx());
+				c.setTeam_name(teamName);
+				String teamColor = Mmapper.getMemberTeamColor(c.getMember_idx());
+				c.setTeam_color(teamColor);
 				
 				c.setMcount(CMmapper.getAllComments(c.getCommunity_idx()).size());
-
 			} 
-	      
 	      
 	      // 각 글앞에 붙일 시작번호 구하기
 	      // 총글이 20개면? 1페이지 20 2페이지 15부터 출력해서 1씩 감소
@@ -296,15 +296,12 @@ public class CommunityController {
 	      
 	      
 	      //작성자 이름, 닉네임 갖고오기
-		/* System.out.println(list); */
-	      String userKey=list.get(0).getMember_idx();
 	      String nickName=Mmapper.getNickname(null);
 		
 	    mview.addObject("nickName", nickName); 
 	      
 	    //추천게시글 갖고오기
 	    List<CommunityDto> b_list= Cmapper.bestList();
-	    System.out.println(b_list);
 	    
 	    //최신 qna 갖고오기
 	    List<CommunityDto> r_list=Cmapper.recentList();
@@ -357,7 +354,7 @@ public class CommunityController {
 		return "redirect:";
 	}
 
-	// 일반글 상세 페이지	
+	// 게시글 상세 페이지	
 	@GetMapping("/community/contentdetail") 
 	public ModelAndView community_contentdetail(
 			@RequestParam String community_idx, 
@@ -379,10 +376,15 @@ public class CommunityController {
 		CommunityDto c_dto= Cmapper.getData(community_idx);
 		
 		c_dto.setMcount(CMmapper.getAllComments(c_dto.getCommunity_idx()).size());
-		//의 name에 작성자 이름 넣기
+		//의 name에 작성자 닉네임 넣기
 		String writer = Mmapper.getNickname(c_dto.getMember_idx());
+		String teamName = Mmapper.getMemberTeamName(c_dto.getMember_idx());
+		String teamColor = Mmapper.getMemberTeamColor(c_dto.getMember_idx());
+	
 		mview.addObject("c_dto", c_dto);
 		mview.addObject("writer", writer);
+		mview.addObject("teamName", teamName);
+		mview.addObject("teamColor", teamColor);
 		mview.addObject("currentPage", currentPage);
 		
 		/* like */
@@ -468,7 +470,6 @@ public class CommunityController {
 			
 			//update
 			Cmapper.updateCommunity(c_dto);
-			System.out.println("ㄴㅇㄹㅇㄹ"+c_dto);
 			
 			//update에서 해당 content로 가기
 			return "redirect:contentdetail?community_idx="+c_dto.getCommunity_idx()+"&currentPage="+currentPage;
@@ -484,7 +485,6 @@ public class CommunityController {
 			/* CommunityDto c_dto=new CommunityDto(); */
 			int like_cnt=Cmapper.getData(community_idx).getLike_count();
 			hashMap.put("like_cnt", like_cnt);
-			System.out.println(like_cnt);
 			
 			return like_cnt;
 
@@ -581,27 +581,34 @@ public class CommunityController {
 			return mview;
 		}	   
 		   
-	
-	@GetMapping("/community/contentdetailcomment") // 디테일페이지 댓글 페이징 처리
+	// 디테일페이지 댓글 페이징 처리
+	@GetMapping("/community/contentdetailcomment")
 	@ResponseBody
 	public ModelAndView contentDetailComment(
 			@RequestParam (value = "c_currentPage",defaultValue = "1") int c_currentPage,
 			@RequestParam String community_idx,
+			@RequestParam int content_type,
 			HttpSession session)
 	{
 		session.setAttribute("c_currentPage", c_currentPage);
-		System.out.println("community_idx:::::"+community_idx);
 		ModelAndView mview = new ModelAndView();
 		int totalCount = CMmapper.getTotalCount(community_idx);
-		System.out.println(totalCount);
 		
 		//페이징처리에 필요한 변수
 		int totalPage; //총 페이지수
 		int startPage; //각블럭의 시작페이지
 		int endPage; //각블럭의 끝페이지
 		int start; //각페이지의 시작번호..한페이지에서 보여질 시작 글 번호(인덱스에서 보여지는 번호)
-		int perPage=5; //한페이지에 보여질 글 갯수
-		int perBlock=3; //한블럭당 보여지는 페이지 개수
+		int perPage=0;
+		int perBlock=0;
+		
+		if(content_type==0) {
+			perPage=5; //한페이지에 보여질 글 갯수
+			perBlock=3; //한블럭당 보여지는 페이지 개수
+		} else {
+			perPage=3; //한페이지에 보여질 글 갯수
+			perBlock=3; //한블럭당 보여지는 페이지 개수
+		}
 		
 		
 		//총페이지 개수구하기
@@ -628,7 +635,6 @@ public class CommunityController {
 		
 		for(CommunityCommentDto c:commentlist) {
 			c.setComment_writer(Mmapper.getNickname(c.getMember_idx()));
-			System.out.println(c.getComment_writer());
 		}
 		
 		int no=totalCount-(c_currentPage-1)*perPage;
@@ -714,8 +720,6 @@ public class CommunityController {
 		  
 		  //최신 qna 갖고오기
 		  List<CommunityDto> r_list=Cmapper.recentList();   
-	      
-	      //System.out.println("=====>"+Searchlist);
 	      
 	      //총글이 20개면? 1페이지 20 2페이지 15부터 출력해서 1씩 감소
 	      int no=totalCount-(currentPage-1)*perPage;

@@ -83,7 +83,7 @@ function lucky() {
 						
 							<div class="personphoto" style="width: 126px;"> <img src="${root }/element/icon_person1.png"> </div>
 							<div class="writer" style="margin: 7px 0 0 0;">${c.writer }</div>
-							<div class="crew"> </div>   <!-- 크루 네임 및 색상 로고 -->
+							<div class="crew" style="background-color: ${c.team_color }; font-size: 0.5em;">${c.team_name } </div>   <!-- 크루 네임 및 색상 로고 -->
 						</td>
 					</tr>
 					
@@ -121,7 +121,7 @@ function lucky() {
 	
 	
 	<div class="vertical_box2">
-		<div style="height: 390px;">
+		<div style="height: 390px; margin-bottom: 15px;">
 			<div class="section_title">
 				NEW ITEM
 				<button type="button" class="btn-showAll" id="idcheck" style="position: absolute; float: left; margin: 6px 0 0 167px; font-size: 14px;" onclick="location.href='/marketplace'">전체보기</button>
