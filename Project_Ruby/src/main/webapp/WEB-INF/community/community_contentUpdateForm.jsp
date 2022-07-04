@@ -75,12 +75,22 @@ function setContentType(){
     }
 }
 </script>
+<style type="text/css">
+	div.wrapper div{
+	font-family: 'Noto Sans KR';
+	font-size: 16px;
+	margin-top: 14px;
+	color: #767676;
+	}
+</style>
 </head>
 <body>
-<form action="insert" method="post" enctype="multipart/form-data">
-<input type="hidden" value="${userKey }" name="member_idx">
+<form action="update" method="post" enctype="multipart/form-data">
+<input type="hidden" value="${c_dto.member_idx }" name="member_idx">
+<input type="hidden" name="community_idx" value="${c_dto.community_idx }">
+<input type="hidden" name="currentPage" value="${currentPage }">
 <div class="title">
-글쓰기
+작성글 수정
 </div> 
  
  <div class="container">	
@@ -90,18 +100,7 @@ function setContentType(){
  				<td class="text1"> <div style="padding-bottom: 20px; width: 95px;">글 유형</div></td>
 	 			<td colspan="3" class="text2">
 	 				<div class="wrapper">
-			 			<ul>
-							<li>
-								<input type="radio" id="contentType_normal" value="0" name="content_type" checked="checked" onchange="setContentType()">
-								<label for="contentType_normal">자유</label>
-								<div class="check"></div>
-							</li>
-							<li>
-								<input type="radio" id="contentType_qna" value="1" name="content_type" onchange="setContentType()">
-								<label for="contentType_qna">Q&A</label>
-								<div class="check"><div class="inside"></div></div>
-							</li>
-						</ul>
+	 					<div>글 유형은 변경이 불가합니다.</div>
             		</div>
 	 			</td>
  			</tr>
@@ -109,11 +108,11 @@ function setContentType(){
  				<td class="text1"> <div style="padding-bottom: 20px;">태그</div></td>
 	 			<td class="text2">
 	 				<div class="wrapper" style="width: 270px;">
-					#&nbsp;<input type="text" class="input" name="tag1" placeholder="Tag1" required="required" style="width: 75px;" maxlength="4"> 
+					#&nbsp;<input type="text" class="input" name="tag1" placeholder="Tag1" required="required" style="width: 75px;" maxlength="4" value="${c_dto.tag1 }"> 
 					<span class="underline" style="margin-left: 11px; width: 75px;"></span>
-					#&nbsp;<input type="text" class="input" name="tag2" placeholder="Tag2" style="width: 75px;" maxlength="4"> 
+					#&nbsp;<input type="text" class="input" name="tag2" placeholder="Tag2" style="width: 75px;" maxlength="4" value="${c_dto.tag2 }"> 
 					<span class="underline" style="margin-left: 100px; width: 75px;"></span>
-					#&nbsp;<input type="text" class="input" name="tag3" placeholder="Tag3" style="width: 75px;" maxlength="4"> 
+					#&nbsp;<input type="text" class="input" name="tag3" placeholder="Tag3" style="width: 75px;" maxlength="4" value="${c_dto.tag3 }"> 
 					<span class="underline" style="margin-left: 189px; width: 75px;"></span>
 				</div>
 	 			</td>
@@ -130,7 +129,7 @@ function setContentType(){
  				<td class="text1"><div style="padding-bottom: 20px;">제목</div></td>
 	 			<td colspan="3" class="text2">
 	 				<div class="wrapper">
-           				 <input type="text" class="input" name="subject" placeholder="제목을 입력하세요" required="required" style="width: 520px;">
+           				 <input type="text" class="input" name="subject" placeholder="제목을 입력하세요" required="required" style="width: 520px;" value="${c_dto.subject }">
            				 <span class="underline"></span>
 					</div>
 	 			</td>
@@ -149,7 +148,7 @@ function setContentType(){
 				<td colspan="4">
 					<div class="wrapper_textarea" id="textarea_normal"  style="margin-top: 15px;">
 						<div style="position:relative; margin-bottom: 15px; font-size:16px; font-weight: 500; color: #505050;" >본문</div>
-						<textarea class="select" id="textarea_common" name="content" style="resize: none;" placeholder="본문 내용을 입력하세요"></textarea>
+						<textarea class="select" id="textarea_common" name="content" style="resize: none;" placeholder="본문 내용을 입력하세요">${c_dto.content }</textarea>
 						<div style="font-size:12px; letter-spacing :-0.1em; position: relative; margin-bottom: 10px; color: #505050">
 						</div>
 	          		</div>
@@ -159,7 +158,7 @@ function setContentType(){
 			<tr>
 				<td colspan="4" style="text-align: right;">
 					<button type="button" class="btn-large2" style="margin-right: 20px;" onclick="location.href='/community'">뒤로가기</button>
-					<button type="submit" class="btn-large1" id="btn_submit" style="margin-right: 230px;">등록하기</button>
+					<button type="submit" class="btn-large1" id="btn_submit" style="margin-right: 230px;">수정하기</button>
 				</td>
 			</tr>
 

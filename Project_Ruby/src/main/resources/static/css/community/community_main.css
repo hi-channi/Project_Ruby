@@ -296,7 +296,7 @@ td.count div{
 
 /* 작성자 css */
 div.writer{
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 300;
   font-stretch: normal;
   font-style: normal;
@@ -317,7 +317,7 @@ tr td div.crew{
 
 /* 작성자 사진 css */
 div.personphoto img{
-	margin:11px 0 0 60px; 
+	margin:11px 0 0 30px; 
 	float: left;
 	cursor: pointer;
 }
