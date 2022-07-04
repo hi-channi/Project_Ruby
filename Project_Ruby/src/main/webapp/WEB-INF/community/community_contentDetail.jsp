@@ -437,10 +437,17 @@ function writecomment() {
 			<span class="spanwriter">${writer }</span>
 			
 		<%--팀명 받아오기 --%>
-			<div class="teamname" style="background-color: ${teamColor}">
-				${teamName }
-			</div>
+			<c:if test="${teamName!=null }">
+				<c:if test="${teamColor!='#191919' }">
+					<div class="teamname" style="background-color: ${teamColor}">  ${teamName } </div>   <!-- 크루 네임 및 색상 로고 -->
+				</c:if>	
+								
+				<c:if test="${teamColor=='#191919' }">
+					<div class="teamname" style="background-color: ${teamColor}; color:#ffffff;">  ${teamName } </div>   <!-- 크루 네임 및 색상 로고 -->
+				</c:if>							
+			</c:if>
 		</div>
+		
 	</div>	
 	
 	<%--글 제목 받아오기 --%>

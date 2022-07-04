@@ -82,7 +82,7 @@ $(function () {
 	
 	<div class="menuitem_member" style="width:700px; text-align:right; padding: 18px 5px 10px 0px;">
 		<span class="membermenu_color" style="border-radius: 20px 0 0 20px;">
-		<b>${sessionScope.userNickname }님</b>
+		<b>${sessionScope.userNickname }</b>님
 		</span>
 		<span class="membermenu_color" style="margin-left:3px; border-radius: 0 20px 20px 0;" onclick="location.href='/logout'">
 		로그아웃

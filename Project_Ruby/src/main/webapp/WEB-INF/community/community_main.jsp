@@ -274,10 +274,17 @@
 							<div class="personphoto" style="width: 126px;"> <img src="${root }/element/icon_person1.png"> </div>
 							<div class="writer" style="margin: 7px 0 0 80px;">${c.writer }</div>
 							<c:if test="${c.team_name!=null }">
-								<div class="crew" style="background-color: ${c.team_color}">  ${c.team_name } </div>   <!-- 크루 네임 및 색상 로고 -->
+								<c:if test="${c.team_color!='#191919' }">
+									<div class="crew" style="background-color: ${c.team_color}">  ${c.team_name } </div>   <!-- 크루 네임 및 색상 로고 -->
+								</c:if>	
+								
+								<c:if test="${c.team_color=='#191919' }">
+									<div class="crew" style="background-color: ${c.team_color}; color:#ffffff;">  ${c.team_name } </div>   <!-- 크루 네임 및 색상 로고 -->
+								</c:if>							
 							</c:if>
 						</td>
 					</tr>
+					
 					
 					<tr>
 						<td colspan="3"> 
