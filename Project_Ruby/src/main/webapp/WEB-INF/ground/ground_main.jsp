@@ -120,10 +120,13 @@
 								value="${a.score }" pattern="#,###" /></td>
 						<td colspan="4" width="200"><fmt:formatDate
 								value="${a.create_day }" pattern="yyyy-MM-dd" /></td>
-						<td width="120"><c:if test="${team_idx == null }">
-								<button type="button" class="modal_opne_btn2"
+						<td width="120">
+						<c:if test="${team_idx ==null }">
+						<button type="button" class="modal_opne_btn2"
 									onclick="transferTId(${a.team_idx})">신청하기</button>
-							</c:if></td>
+									</c:if>
+								
+							</td>
 					<tr>
 				</table>
 			</c:forEach>
@@ -187,7 +190,7 @@
 								<td class="subject1">이름</td>
 								<!-- 게시글 제목 출력 -->
 								<td></td>
-								<td class="likecount1">${sessionScope.userName }</td>
+								<td class="likecount1">${name }</td>
 							</tr>
 
 							<tr>

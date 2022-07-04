@@ -100,6 +100,7 @@
 						class="img_crewadd modal_opne_btn1">
 						</c:if>
 				</button>
+				
 
 		</div>
 
@@ -158,8 +159,8 @@
 			style="font-family: 'Noto Sans KR'; font-size: 12.5pt;"><img
 			alt="" src="../image/face.png">&nbsp;&nbsp;${cm_dto.size()}</span>
 
-		<div class="crewlistaddadd" style="border: 1px solid #ededed;">
-			<c:forEach var="m_dto" items="${m_dto }">
+		<div class="crewlistaddadd" style="border: 1px solid #ededed;" id="crewlist">
+			<c:forEach var="m_dto" items="${m_dto }" >
 				<div class="crewone" style="float: left;">
 					<div class="img_profile">
 						<img alt="" src="../image/pro2.png"> <a
@@ -176,9 +177,19 @@
 						onclick="transfer(${m_dto.member_idx})">
 						<span class="crewone_profile modal_opne_btn2">프로필 보기</span>
 					</button>
+					
+					<c:if test="${crew_dto.member_idx ==userKey and m_dto.member_idx != crew_dto.member_idx }">
+					<button class="crewbtndel" onclick="crewmemberdelfun(${m_dto.member_idx})">X</button>
+					</c:if>
 				</div>
 			</c:forEach>
+		
+		
+		
 		</div>
+		<c:if test="${crew_dto.member_idx ==userKey}">
+		<button class="crewdel" onclick="crewdelfun()">크루 삭제</button>&nbsp;
+		</c:if>
 
 
 		<!-- 모달1 공지사항 -->
@@ -418,6 +429,46 @@
 			
 		}
 		
+		function crewdelfun() {
+			if(${cm_dto.size()>1}) {
+				alert("모든 크루원을 내보내야 크루 삭제가 가능합니다.");
+			}
+			
+			else if(confirm("크루를 삭제하시겠습니까?")) {
+				location.href='/ground/crewdel?member_idx=${crew_dto.member_idx}'
+			}else{
+				return false;	
+			}
+				
+		
+		}
+		
+		function crewmemberdelfun(member_idx) {
+			
+			$.ajax({
+				type:'GET',
+				url: '/ground/crewmemberdel',
+				data: {'member_idx':member_idx},
+				dataType: 'text',
+				success:function(data) {
+			          alert("삭제가 완료되었습니다.");
+			          /*새로고침 없이*/
+				}
+			});
+			
+			
+			/* //alert(member_idx);
+		$(".crewbtndel").click(function () {
+			if(confirm("크루원을 내보내시겠습니까?")) {
+				location.href='/ground/crewmemberdel?member_idx=${member_idx}'
+			}else{
+				return false;	
+			}
+			
+		});
+		}
+	 */
+	 }
 		
 	</script>
 

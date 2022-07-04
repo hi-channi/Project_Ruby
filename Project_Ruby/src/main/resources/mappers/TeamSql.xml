@@ -107,4 +107,14 @@
 	<select id="checkVaildCrewname" parameterType="String" resultType="int">
 		SELECT COUNT(*) FROM Team WHERE name=#{name}
 	</select>
+	
+	<!-- 크루 삭제 -->
+	<delete id="deleteCrew" parameterType="String">
+		delete from Team where member_idx = #{member_idx};
+	</delete>
+	
+	<!-- 크루원 삭제 -->
+	<delete id="deleteCrewMember" parameterType="String">
+		delete from TeamMember where member_idx = #{member_idx};
+	</delete>
 </mapper>

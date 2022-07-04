@@ -43,5 +43,7 @@ public interface MemberMapper {
 	public String getMemberAge(String member_idx);
 	
 	public String getTeamidxMember(String member_idx);
+	
+	public void updateCrewdelMemberidx(String member_idx);
   
 }
