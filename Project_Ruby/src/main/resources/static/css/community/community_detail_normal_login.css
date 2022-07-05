@@ -72,7 +72,7 @@ span.tag{
    box-sizing: border-box;
    cursor: pointer;   
    font-size: 20pt;
-   left: 200px;
+   left: -100px;
 }
 
 #chk{
@@ -99,8 +99,8 @@ span.tag{
 /*작성자 이름 프로필 div*/
 div.contentname{
 	position: relative;
-	left: -80px;
-	top: 30px;
+	left: -110px;
+	top: 10px;
 }
 /*작성자 이름*/
 .spanwriter{
@@ -116,18 +116,20 @@ div.contentname{
   text-align: left;
   color: #505050;
   margin-left: 10px;
+  position: relative;
+  top: -10px;
 }
 
 /*팀 이름*/
 div.teamname{
 	
-  width: 120px;
+  width: 110px;
  
   margin-top:10px;
   border-radius: 10px;
   position: relative;
-  left: 300px;
-  top: -35px;	
+  left: 248px;
+  top: -30px;	
   text-align: center;
 }
 
@@ -269,19 +271,20 @@ div.addcomment{
 	top: -350px;
     padding: 28px 180px 28px 70px;
     border: solid 1px #dbdbdb;
+    height: 800px;
 }
 
 .cocomment{
-  width: 650px;
-  height: 100px;
+  width: 700px;
+  height: 50px;
   margin: 0 20px 0 35px;
   padding: 10px 0 146px 19px;
   border-radius: 10px;
   border: solid 1px #dbdbdb;
   background-color: #fff;
   position: relative;
-  left: 130px;
-  top: -80px;
+  left: 20px;
+  top: -20px;
   overflow: hidden;
   font-family: NotoSansKR;
   font-size: 15px;
@@ -299,8 +302,8 @@ div.addcomment{
 /*채택하기 버튼*/
 .selectionbtn{
 	position: relative;
-	left: 840px;
-	top: -120px;
+	left: 665px;
+	top: -60px;
 }
 
 
@@ -458,4 +461,20 @@ div.addcomment{
 }
 #pagecnum{
 	margin-left: 10px;
+}
+
+.q_commentuser{
+	position: relative;
+	left: 10px;
+	top: -10px;
+}
+.q_trashdiv{
+	position: relative;
+	top: -238px;
+	left: 730px;
+}
+.q_commentwriteday{
+	position: relative;
+	left: 600px;
+	top: -210px;
 }

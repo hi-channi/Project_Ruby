@@ -13,6 +13,8 @@
 <c:set var="root" value="<%=request.getContextPath() %>"/>
 <link rel="stylesheet" type="text/css" href="${root }/css/community/community_detail_normal_login.css">
 <title>DEVEL :: ${c_dto.subject }</title>
+
+
 <style type="text/css">
 div.main {
 background-color: #fff !important;
@@ -172,6 +174,30 @@ $(document).on("click","span.adel",function(){
 		}	
 	});
 
+
+/* Q&A 댓글 삭제 */
+$(document).on("click","span.q_adel",function(){
+		var idx=$(this).attr("idx");
+		var a=confirm("해당 댓글을 삭제하시겠습니까?");
+		
+		if(a){
+			$.ajax({
+				type:"get",
+				dataType:"text", //return값 없을땐 text!
+				url:"deletecomment",
+				data:{"community_comment_idx":idx},
+				success:function(data){
+					alert("삭제 됐습니다.");
+					if(c_type==0){
+						list();
+					} else {
+						list_q();
+					}
+				}
+			});
+		}	
+	});
+	
 /* 일반 댓글 페이징 처리 */
 function list() {
 	 $.ajax({
@@ -248,22 +274,22 @@ function list_q() {
 			var s="";
 
 			$.each(data.commentlist,function(i,cm_dto){
-                  s+="<div>";
+                  s+="<div class='p_commentarea'>";
                   s+="<img alt='' src='${root }/element/icon_profile.png'>";
-                  s+="<span class='commentuser'>"+cm_dto.comment_writer+"</span>";
-                  s+="<textarea class='cocomment' readonly='readonly' style='resize:none;'>"+cm_dto.content+"</textarea>";
+                  s+="<span class='q_commentuser'>"+cm_dto.comment_writer+"</span>";
+                  s+="<textarea class='cocomment' id='q_cocomment' readonly='readonly' style='resize:none;'>"+cm_dto.content+"</textarea>";
                   s+="<br>";
-                  s+="<span class='commentwriteday'>"+cm_dto.write_day+"</span>";
-                   s+="<c:if test='${c_dto.content_type==1 }'>";
+                  s+="<span class='q_commentwriteday'>"+cm_dto.write_day+"</span>";
+                  s+="<c:if test='${c_dto.content_type==1}'>";
                   s+="<img src='${root }/element/button_selection.png' class='selectionbtn' onclick='answerchoose("+data.commentlist[i].community_comment_idx+")'>";
                    s+="</c:if>"; 
                   if(loginOK=="yes" && userKey==data.commentlist[i].member_idx){		          
-                	s+="<div class='trashdiv'>";
-					s+="<span class='glyphicon glyphicon-trash adel' id='adel' idx='"+data.commentlist[i].community_comment_idx+"'></span>";
+                	s+="<div class='q_trashdiv'>";
+					s+="<span class='glyphicon glyphicon-trash q_adel' id='adel' idx='"+data.commentlist[i].community_comment_idx+"'></span>";
 					s+="</div>";
                   } else {
-						s+="<div class='trashdiv'>";
-						s+="<span class='adel' id='adel'><br></span>"
+						s+="<div class='q_trashdiv'>";
+						s+="<span class='adel' id='q_adel'><br></span>"
 						s+="</div>";
 				}
 			});
@@ -294,7 +320,7 @@ function list_q() {
 				   		p+="<a id='pagerbtn' href='contentdetail?community_idx="+data.commentlist[0].community_idx+"&c_currentPage="+eval(data.endPage+1)+"'>";
 				    	p+="<img id='pagebtn' src='${root }/activity/icon_activity_move1.png'></a>";
 			    	}
-				    	p+="</div></div>";  
+				    	p+="</div><br><br><br></div>";  
 			   }
 			$("div.pagesort1").html(p);
 		}
@@ -417,7 +443,7 @@ function writecomment() {
 						<c:forEach var="b" items="${scraplist}">
 							<c:if test="${(c_dto.community_idx==b.community_idx)&&(userKey==b.member_idx)&&(b.scrap_count==1)}">
 							    <input type="checkbox" id="chk" class="chscrap" checked="checked">
-							    <img alt="" src="${root }/element/icon_scrap_red.png" class="scrap">
+							    <img alt="" src="${root }/element/icon_scrap_red.png" class="scrap" style="width: 34px; height: 34px; position: absolute; top: -10px; left: 30px;">
 							</c:if>
 						 </c:forEach>
 						 	<input type="checkbox" id="chk" class="chscrap">
@@ -523,7 +549,7 @@ function writecomment() {
 		</div>
 	</c:if>
 	
-	<!-- 질문글 출력 div -->
+	<!— 질문글 출력 div —>
 	<c:if test="${c_dto.content_type==1 || c_dto.content_type==2  }">
 		<div class="commentdiv2" style="border: solid 1px #dbdbdb;">
 			
