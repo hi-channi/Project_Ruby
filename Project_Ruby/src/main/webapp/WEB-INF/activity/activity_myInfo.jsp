@@ -70,7 +70,20 @@ $(function() {
 			modal.open();
 		}).on('click', '#pwcheckbtn', function() {
 			if(${dto.password}==$('.inputpw').val()){
-				location.href="/userpwreset";
+				let member_idx = ${userKey};
+				
+				$.ajax({
+					type: "post",
+					url: "myinfopw",
+					dataType: "text",
+					data: {
+						"member_idx":member_idx
+						},
+					success: function(data) {
+						document.location.replace("userpwreset");
+					}
+				});
+				
 			} else {
 				alert("비밀번호 재확인 후 다시 입력해주세요");
 				$('.inputpw').val('');

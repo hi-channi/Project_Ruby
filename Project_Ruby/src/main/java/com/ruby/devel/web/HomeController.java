@@ -60,7 +60,7 @@ public class HomeController {
 		model.addAttribute("crewlist", crewlist);
 		
 		//중고장터 리스트 출력
-		List<MarketDto> marketlist = MPmapper.getMarketListAtHome();
+		List<MarketDto> marketlist = MPmapper.getAllDatas();
 		model.addAttribute("marketlist", marketlist);
 		
 		mview.setViewName("/layout/home");

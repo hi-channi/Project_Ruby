@@ -253,6 +253,23 @@ public class MemberController {
 		return "redirect:userpwreset";
 	}
 	
+	/* 마이페이지 비밀번호 재설정 */
+	@PostMapping("/myinfopw")  
+	public String myinfopw(
+			@RequestParam String member_idx,
+			@ModelAttribute MemberDto m_dto,
+			Model model,
+			RedirectAttributes redirectAttributes) {
+
+		//String member_idx=Mmapper.searchForResetPw(m_dto);
+		redirectAttributes.addFlashAttribute("resetMember_idx",member_idx);
+		model.addAttribute("resetMember_idx", member_idx);
+		
+		System.out.println(member_idx);
+		
+		return "redirect:userpwreset";
+	}
+	
 	/* 비밀번호 재설정 페이지 */
 	@GetMapping("/userpwreset")  
 	public String userPwReset(@ModelAttribute MemberDto m_dto) {

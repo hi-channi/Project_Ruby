@@ -40,9 +40,12 @@ $(function () {
 	<a href="/" style="text-decoration: none;">
 		<img alt="" src="${root }/element/logo@2x.png" class="logo">
 	</a>
-	<img alt="" src="${root }/element/icon_myinfo.png" class="icon_myinfo" onclick="location.href='/activity/mypage'">
-	<img alt="" src="${root }/element/icon_myactivity.png" class="icon_myactivity" onclick="location.href='/activity'">
-	<img alt="" src="${root }/element/icon_myscrap.png" class="icon_myscrap" onclick="location.href='/activity/myscrap'">
+	
+	<c:if test="${sessionScope.loginOK!=null }">
+		<img alt="" src="${root }/element/icon_myinfo.png" class="icon_myinfo" onclick="location.href='/activity/mypage'">
+		<img alt="" src="${root }/element/icon_myactivity.png" class="icon_myactivity" onclick="location.href='/activity'">
+		<img alt="" src="${root }/element/icon_myscrap.png" class="icon_myscrap" onclick="location.href='/activity/myscrap'">
+	</c:if>
 	<hr style="margin: 0;">
 </div>
 </body>
