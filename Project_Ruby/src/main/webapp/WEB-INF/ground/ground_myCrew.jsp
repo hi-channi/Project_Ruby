@@ -171,7 +171,7 @@
 						</c:if>
 						
 						<c:if test="${m_dto.photo != null}">
-						<img alt="" src="${root }/photo/${m_dto.photo}">
+						<img alt="" src="${root }/photo/${m_dto.photo}" width="90" height="90" style="border-radius: 40px;">
 						</c:if>
 						 
 						<c:if test="${m_dto.link != null }">
@@ -444,9 +444,9 @@
 				url: '/ground/memberprofile',  
 				data:{ 'member_idx':member_idx},
 				success:function(data) {   
-					console.log(data)     
+					console.log(data)
+				  
 					$(".crewproname").text(data.name); //크루원 이름
-					$(".img_profile").val(data.photo);//사진
 					$(".crewoneprr").text(data.pr); //한줄 소개
 					$(".crewm_age").text(data.age); //나이
 					$(".crewm_job").text(data.job); //직업

@@ -303,6 +303,7 @@ public class GroundController {
 		mview.addObject("crew_dto", crew_dto);
 		mview.addObject("cm_dto", cm_dto);
 		mview.addObject("m_dto", m_dto);
+		System.out.println("m_dto===>"+m_dto);
 		
 		List<TeamNoticeDto> teamnoticelist = Cmapper.selectTeamNotice();
 		model.addAttribute("teamnoticelist", teamnoticelist);

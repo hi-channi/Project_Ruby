@@ -76,10 +76,10 @@ function checkPass(form) {
 			<div style="text-align: center; font-size: 1.5em;" >
 				
 				<c:if test="${userKey!=null}">
-					<input type="text" name="member_idx" id="idx" value="${userKey}">
+					<input type="hidden" name="member_idx" id="idx" value="${userKey}">
 				</c:if>
 				<c:if test="${userKey==null}||${userKey==''}">
-					<input type="text" name="member_idx" id="idx" value="${resetMember_idx }">
+					<input type="hidden" name="member_idx" id="idx" value="${resetMember_idx }">
 				</c:if>
 				
 				<div class="wrapper">
