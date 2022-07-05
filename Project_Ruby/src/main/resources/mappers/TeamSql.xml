@@ -100,7 +100,7 @@
 	</insert>
 	
 	<select id="selectTeamNotice" resultType="teamnotice">
-		select * from TeamNotice
+		select * from TeamNotice order by writeday desc
 	</select>
 	
 	<!-- 크루명 검증 -->

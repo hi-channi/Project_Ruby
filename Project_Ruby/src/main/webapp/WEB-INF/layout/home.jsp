@@ -155,7 +155,7 @@ function lucky() {
 				<button type="button" class="btn-showAll" id="idcheck" style="position: absolute; float: left; margin: 6px 0 0 165px; font-size: 14px;" onclick="location.href='/ground'">전체보기</button>
 			</div>
 			<div class="secondbox2" style="width:700px;">
-			<c:forEach var="a" items="${crewlist }" varStatus="i">
+			<c:forEach var="a" items="${crewlist }" varStatus="i" begin="0" end="5">
 				<table class="communitylist">
 					<tr align="center">
 										

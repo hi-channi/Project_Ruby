@@ -90,17 +90,18 @@
 	<div class="container">
 
 		<div class="crewname">
-			<span class="crew_name" style="background-color: ${crew_dto.color}; border-radius: 25px; width: 100px;  " >${crew_dto.name} &nbsp; </span>
-			<input
-				type="hidden" value="${crew_dto.team_idx }" id="team_idx">
-				<button type="button" id="modal_opne_btn1"
-					style="background-color: white; border: none;">
-					<c:if test="${crew_dto.member_idx ==userKey}">
+			<span class="crew_name"
+				style="background-color: ${crew_dto.color}; border-radius: 25px; width: 100px;  ">${crew_dto.name}
+				&nbsp; </span> <input type="hidden" value="${crew_dto.team_idx }"
+				id="team_idx">
+			<button type="button" id="modal_opne_btn1"
+				style="background-color: white; border: none;">
+				<c:if test="${crew_dto.member_idx ==userKey}">
 					<img alt="" src="../image/crewadd.png"
 						class="img_crewadd modal_opne_btn1">
-						</c:if>
-				</button>
-				
+				</c:if>
+			</button>
+
 
 		</div>
 
@@ -123,13 +124,14 @@
 				<img alt="" src="../image/plus.png" id="modal_opne_btn"
 					style="cursor: pointer;">
 			</button>
-			
+
 			<button type="button" id="modal_opne_btn0"
 				style="background-color: white; border: 1px;">
-			<c:if test="${crew_dto.member_idx ==userKey}">
-			<img alt="" src="../image/pen.png" class="model_open_btn0" style="size: 8px;">
-		</c:if>
-		</button>
+				<c:if test="${crew_dto.member_idx ==userKey}">
+					<img alt="" src="../image/pen.png" class="model_open_btn0"
+						style="size: 8px;">
+				</c:if>
+			</button>
 		</span>
 
 
@@ -142,10 +144,10 @@
 				<thead>
 				</thead>
 				<tbody>
-				<c:forEach var="tc" items="${teamnoticelist}" begin="0" end="2">
-					<tr height="35px;">
-						<td colspan="2" style="text-align: left;">${tc.notice }</td>
-					</tr>
+					<c:forEach var="tc" items="${teamnoticelist}" begin="0" end="2">
+						<tr height="35px;">
+							<td colspan="2" style="text-align: left;">${tc.notice }</td>
+						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
@@ -159,36 +161,58 @@
 			style="font-family: 'Noto Sans KR'; font-size: 12.5pt;"><img
 			alt="" src="../image/face.png">&nbsp;&nbsp;${cm_dto.size()}</span>
 
-		<div class="crewlistaddadd" style="border: 1px solid #ededed;" id="crewlist">
-			<c:forEach var="m_dto" items="${m_dto }" >
+		<div class="crewlistaddadd" style="border: 1px solid #ededed;"
+			id="crewlist">
+			<c:forEach var="m_dto" items="${m_dto }">
 				<div class="crewone" style="float: left;">
 					<div class="img_profile">
-						<img alt="" src="../image/pro2.png"> <a
-							href="${m_dto.link }"><img alt="" src="../image/git2.png"
-							class="img_git"></a>
+						<c:if test="${m_dto.photo ==null }">
+						<img alt="" src="../image/pro2.png">
+						</c:if>
+						
+						<c:if test="${m_dto.photo != null}">
+						<img alt="" src="${root }/photo/${m_dto.photo}">
+						</c:if>
+						 
+						<c:if test="${m_dto.link != null }">
+							<a href="${m_dto.link }"><img alt="" src="../image/git2.png"
+								class="img_git"> </a>
+						</c:if>
+
+						<c:if test="${m_dto.link == null }">
+							<a href="#"><img alt="" src="../image/git2.png"
+								class="img_git"> </a>
+						</c:if>
 					</div>
 					<br> <span class="crewone_name">${m_dto.name}&nbsp;&nbsp;
 						<c:if test="${m_dto.member_idx==crew_dto.member_idx }">
 							<img alt="" src="../image/lee.png ">
 						</c:if>
-					</span> <br> <span class="crewone_pr">${m_dto.pr }</span><br> <br>
+					</span> <br>
+					<div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap";>
+						<span class="crewone_pr">${m_dto.pr }</span>
+			
+					</div>
+					<br> <br>
 					<button type="button" id="modal_opne_btn2"
-						style="background-color: white; border: none;"
+						style="background-color: white; border: none; position: relative; top:-10px;"
 						onclick="transfer(${m_dto.member_idx})">
 						<span class="crewone_profile modal_opne_btn2">프로필 보기</span>
 					</button>
-					
-					<c:if test="${crew_dto.member_idx ==userKey and m_dto.member_idx != crew_dto.member_idx }">
-					<button class="crewbtndel" onclick="crewmemberdelfun(${m_dto.member_idx})">X</button>
+
+					<c:if
+						test="${crew_dto.member_idx ==userKey and m_dto.member_idx != crew_dto.member_idx }">
+						<button class="crewbtndel"
+							onclick="crewmemberdelfun(${m_dto.member_idx})">X</button>
 					</c:if>
 				</div>
 			</c:forEach>
-		
-		
-		
+
+
+
 		</div>
 		<c:if test="${crew_dto.member_idx ==userKey}">
-		<button class="crewdel" onclick="crewdelfun()">크루 삭제</button>&nbsp;
+			<button class="crewdel" onclick="crewdelfun()">크루 삭제</button>&nbsp;
 		</c:if>
 
 
@@ -197,17 +221,17 @@
 
 			<div class="modal_content">
 				<h4 style="text-align: center; font-family: 'Noto Sans KR';">공지사항
-				</h4>		
+				</h4>
 
 				<table class="table notice_table"
 					style="width: 430px; height: 100px;">
 					<thead>
 					</thead>
 					<tbody>
-					<c:forEach var="no" items="${teamnoticelist}">
-						<tr height="35px;">
-							<td colspan="2" style="text-align: left;">${no.notice }</td>
-						</tr>
+						<c:forEach var="no" items="${teamnoticelist}">
+							<tr height="35px;">
+								<td colspan="2" style="text-align: left;">${no.notice }</td>
+							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
@@ -215,8 +239,8 @@
 
 			</div>
 			<button type="button" id="modal_close_btn"
-					style="color: gray; background-color: white; border: none; size: 15px;">X</button>
-			
+				style="color: gray; background-color: white; border: none; size: 15px;">X</button>
+
 
 			<div class="modal_layer"></div>
 		</div>
@@ -235,34 +259,36 @@
 
 			<div class="modal_layer1"></div>
 		</div>
-		
-		
-		 
+
+
+
 		<div id="modal0">
 
 			<div class="modal_content0">
 				<h4 style="text-align: center;">공지사항 작성</h4>
 				<form action="/ground/noticeinsert" method="post">
-				<input type="hidden" value="${crew_dto.team_idx }" id="team_idx" name="team_idx">
-		
-				<div class="wrapper">
-					<textarea class="info" name="notice" style="resize: none;"></textarea>
-					<div id="text_iii" style="font-size:12px; letter-spacing :-0.1em; position: relative; margin-bottom: 65px; color: #505050">
-					</div>
-					
-				</div>
-				<button type="submit" style="text-align: center;" class="btn-small">등록</button>
-				</form>
-				</div>
+					<input type="hidden" value="${crew_dto.team_idx }" id="team_idx"
+						name="team_idx">
 
-				<button type='button' id='modal_close_btn0'
-					style='color: gray; background-color: white; border: none; size: 15px;'>X</button>
+					<div class="wrapper">
+						<textarea class="info" name="notice" style="resize: none;"></textarea>
+						<div id="text_iii"
+							style="font-size: 12px; letter-spacing: -0.1em; position: relative; margin-bottom: 65px; color: #505050">
+						</div>
+
+					</div>
+					<button type="submit" style="text-align: center;" class="btn-small">등록</button>
+				</form>
 			</div>
 
+			<button type='button' id='modal_close_btn0'
+				style='color: gray; background-color: white; border: none; size: 15px;'>X</button>
+		</div>
 
 
-			<div class="modal_layer0"></div>
-		
+
+		<div class="modal_layer0"></div>
+
 
 		<!-- 프로필 보기 모달 -->
 		<div id="modal2">
@@ -281,7 +307,7 @@
 
 						<!-- <div class="crewcolorbox">팀장</div>-->
 						<span class="crewoneprr">한 줄 소개를 입력하세요</span>
-
+						
 						<table class="privacy_table" border="0" style="width: 155px;">
 							<tbody>
 								<tr>
@@ -318,7 +344,7 @@
 		</div>
 
 
-</div>
+	</div>
 	<script type="text/javascript">
 
 	
@@ -419,7 +445,8 @@
 				data:{ 'member_idx':member_idx},
 				success:function(data) {   
 					console.log(data)     
-					 $(".crewproname").text(data.name); //크루원 이름
+					$(".crewproname").text(data.name); //크루원 이름
+					$(".img_profile").val(data.photo);//사진
 					$(".crewoneprr").text(data.pr); //한줄 소개
 					$(".crewm_age").text(data.age); //나이
 					$(".crewm_job").text(data.job); //직업
@@ -469,6 +496,8 @@
 		}
 	 */
 	 }
+	 
+
 		
 	</script>
 

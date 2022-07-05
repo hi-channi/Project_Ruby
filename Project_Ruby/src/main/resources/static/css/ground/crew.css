@@ -243,10 +243,12 @@ td, tr {
 .crewone_profile {
 	width: 100px;
 	height: 17px;
-	margin: 18px 98px 0 0;
+	margin: 18px 90px 0 0;
 	/*폰트 적용*/
 	font-family: 'Noto Sans KR';
 	font-size: 12px;
+	position: relative;
+	top: -10px;
 	font-weight: normal;
 	font-stretch: normal;
 	font-style: normal;
@@ -676,5 +678,8 @@ textarea:focus {
 	border: 0px;
 	background-color: white;
 	margin: 3.5px;
+	position: relative;
+	top: -20px;
+	left: 10px;
 }
 
