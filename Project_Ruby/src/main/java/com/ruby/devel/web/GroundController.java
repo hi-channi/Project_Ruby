@@ -117,7 +117,7 @@ public class GroundController {
 		String userID = (String) session.getAttribute("userID");
 		
 		String age = Mmapper.getMemberAge(userKey);
-		String name = Mmapper.getName(userID);
+		String name = Mmapper.getName(userKey);
 	
 		
 		model.addAttribute("age", age);
