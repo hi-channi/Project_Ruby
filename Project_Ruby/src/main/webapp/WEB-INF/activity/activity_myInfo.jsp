@@ -21,6 +21,7 @@
 <title>DEVEL :: 마이페이지</title>
 
 <script type="text/javascript">
+$("img.icon_myinfo").attr("src","${root }/element/icon_myinfo_active.png");
 <!-- 이미지 파일 업로드 후 이벤트 -->
 function previewFile() {
   const preview = document.querySelector('#myimg');
